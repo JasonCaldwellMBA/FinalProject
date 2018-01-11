@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Request {
+public class Request extends Order {
 
 	@ManyToOne
 	private Vehicle vehicle;

@@ -13,10 +13,10 @@
   	
   	<servlet-mapping>
     		<servlet-name>skeleton</servlet-name>
-    		<url-pattern>/rest/*</url-pattern>
+    		<url-pattern>/api/*</url-pattern>
   	</servlet-mapping>
   	
   	<error-page>
-    		<location>/rest/errors</location>
+    		<location>/api/errors</location>
     </error-page>
 </web-app>

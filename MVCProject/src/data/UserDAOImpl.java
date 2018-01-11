@@ -1,5 +1,7 @@
 package data;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -14,12 +16,35 @@ public class UserDAOImpl implements UserDAO {
 	
 	@PersistenceContext
 	private EntityManager em;
-	
+
 	@Override
-	public User create(User user) {
-		em.persist(user);
-		em.flush();
-		return user;
+	public List<User> index(int uid) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public User show(int uid, int tid) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public User create(int uid, String todoJson) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public User update(int uid, int tid, String todoJson) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Boolean destroy(int uid, int tid) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

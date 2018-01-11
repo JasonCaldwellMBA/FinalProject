@@ -13,6 +13,7 @@
         <class>entities.Request</class>
         <class>entities.User</class>
         <class>entities.Vehicle</class> -->
+        <class>entities.Quote</class>
 
         <properties>
         		<!-- Configure your connection to the database -->

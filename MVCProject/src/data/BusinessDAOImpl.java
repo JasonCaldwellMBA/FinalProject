@@ -13,4 +13,5 @@ public class BusinessDAOImpl implements BusinessDAO {
 	@PersistenceContext
 	private EntityManager em;
 
+	
 }

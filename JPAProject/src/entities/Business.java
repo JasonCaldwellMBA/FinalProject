@@ -1,5 +1,5 @@
 package entities;
-
+//test
 import java.util.List;
 public class Business {
 	private int id;

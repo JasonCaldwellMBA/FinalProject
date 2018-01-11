@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -16,9 +18,15 @@ public class Quote {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id; 
 	
-//	private Request request;
-//	private Business business; 	
-//	private PartQuote partQuote;
+	@ManyToOne
+	@JoinColumn(name = "request_id")
+	private Request request;
+	
+	@ManyToOne
+	@JoinColumn(name = "business_id")
+	private Business business; 	
+	
+	private PartQuote partQuote;
 	
 	@Column(name = "description")
 	private String description; 
@@ -90,12 +98,10 @@ public class Quote {
 	public void setEstimate(double estimate) {
 		this.estimate = estimate;
 	}
-//	@Override
-//	public String toString() {
-//		return "Quote [id=" + id + ", request=" + request + ", business=" + business + ", partQuote=" + partQuote
-//				+ ", description=" + description + ", postDate=" + postDate + ", expireDate=" + expireDate
-//				+ ", completeDate=" + completeDate + ", estimate=" + estimate + "]";
-//	} 
-	
+	@Override
+	public String toString() {
+		return "Quote [id=" + id + ", request=" + request + ", description=" + description + ", postDate=" + postDate
+				+ ", expireDate=" + expireDate + ", completeDate=" + completeDate + ", estimate=" + estimate + "]";
+	}
 	
 }

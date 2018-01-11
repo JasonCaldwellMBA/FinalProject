@@ -23,6 +23,28 @@ public class PartRequest {
 	
 	@OneToMany(mappedBy="partsRequest")
 	private Collection<Part> parts;
+
+	public Request getRequest() {
+		return request;
+	}
+
+	public void setRequest(Request request) {
+		this.request = request;
+	}
+
+	public Collection<Part> getParts() {
+		return parts;
+	}
+
+	public void setParts(Collection<Part> parts) {
+		this.parts = parts;
+	}
+
+	public int getId() {
+		return id;
+	}
+	
+	
 }
 
 

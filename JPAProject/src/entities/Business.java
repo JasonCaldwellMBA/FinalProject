@@ -1,5 +1,7 @@
 package entities;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -31,5 +33,8 @@ public class Business {
 	private int experience;
 	
 	private String website;
+	
+	private List<Certification> certifications;
+	
 	
 }

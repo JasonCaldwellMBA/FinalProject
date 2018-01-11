@@ -4,8 +4,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
 @Entity
-public class Contact {
+public class Contact {	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
@@ -21,7 +22,6 @@ public class Contact {
 	private String latitude;
 	@Column(name="long")
 	private String longitude;
-	
 	
 	public String getAddress1() {
 		return address1;
@@ -79,5 +79,11 @@ public class Contact {
 	}
 	public int getId() {
 		return id;
+	}
+	@Override
+	public String toString() {
+		return "Contact [id=" + id + ", address1=" + address1 + ", address2=" + address2 + ", city=" + city + ", state="
+				+ state + ", zipcode=" + zipcode + ", phone=" + phone + ", email=" + email + ", latitude=" + latitude
+				+ ", longitude=" + longitude + "]";
 	}
 }

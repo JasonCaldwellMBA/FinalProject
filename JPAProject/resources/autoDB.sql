@@ -48,18 +48,6 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `AutoDB`.`privilege`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `AutoDB`.`privilege` ;
-
-CREATE TABLE IF NOT EXISTS `AutoDB`.`privilege` (
-  `id` INT NOT NULL,
-  `type` INT NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `AutoDB`.`user`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `AutoDB`.`user` ;
@@ -71,13 +59,12 @@ CREATE TABLE IF NOT EXISTS `AutoDB`.`user` (
   `last_name` VARCHAR(45) NOT NULL,
   `contact_id` INT NOT NULL,
   `rating_id` INT NULL,
-  `privilege` INT NOT NULL,
+  `is_admin` TINYINT NOT NULL,
   `username` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `username_UNIQUE` (`id` ASC),
   INDEX `fk_user_contact_idx` (`contact_id` ASC),
   INDEX `fk_user_rating_idx` (`rating_id` ASC),
-  INDEX `fk_user_type_idx` (`privilege` ASC),
   CONSTRAINT `fk_user_contact`
     FOREIGN KEY (`contact_id`)
     REFERENCES `AutoDB`.`contact` (`id`)
@@ -86,41 +73,6 @@ CREATE TABLE IF NOT EXISTS `AutoDB`.`user` (
   CONSTRAINT `fk_user_rating`
     FOREIGN KEY (`rating_id`)
     REFERENCES `AutoDB`.`rating` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_user_type`
-    FOREIGN KEY (`privilege`)
-    REFERENCES `AutoDB`.`privilege` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `AutoDB`.`specialty_type`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `AutoDB`.`specialty_type` ;
-
-CREATE TABLE IF NOT EXISTS `AutoDB`.`specialty_type` (
-  `id` INT NOT NULL,
-  `name` VARCHAR(45) NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `AutoDB`.`specialty`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `AutoDB`.`specialty` ;
-
-CREATE TABLE IF NOT EXISTS `AutoDB`.`specialty` (
-  `id` INT NOT NULL,
-  `specialty_id` INT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_specialty_id_idx` (`specialty_id` ASC),
-  CONSTRAINT `fk_specialtyType_specialty`
-    FOREIGN KEY (`specialty_id`)
-    REFERENCES `AutoDB`.`specialty_type` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -142,16 +94,10 @@ CREATE TABLE IF NOT EXISTS `AutoDB`.`business` (
   `website` VARCHAR(45) NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_business_contact_idx` (`contact_id` ASC),
-  INDEX `fk_specialty_id_idx` (`specialty_id` ASC),
   INDEX `fk_business_rating_idx` (`rating_id` ASC),
   CONSTRAINT `fk_contact_business`
     FOREIGN KEY (`contact_id`)
     REFERENCES `AutoDB`.`contact` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_specialty_business`
-    FOREIGN KEY (`specialty_id`)
-    REFERENCES `AutoDB`.`specialty` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_rating_business`
@@ -263,6 +209,37 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
+-- Table `AutoDB`.`certifications`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `AutoDB`.`certifications` ;
+
+CREATE TABLE IF NOT EXISTS `AutoDB`.`certifications` (
+  `id` INT NOT NULL,
+  `business_id` INT NULL,
+  `name` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_business_idx` (`business_id` ASC),
+  CONSTRAINT `fk_business_certifications`
+    FOREIGN KEY (`business_id`)
+    REFERENCES `AutoDB`.`business` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `AutoDB`.`specialty_type`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `AutoDB`.`specialty_type` ;
+
+CREATE TABLE IF NOT EXISTS `AutoDB`.`specialty_type` (
+  `id` INT NOT NULL,
+  `name` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `AutoDB`.`certification_type`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `AutoDB`.`certification_type` ;
@@ -271,31 +248,6 @@ CREATE TABLE IF NOT EXISTS `AutoDB`.`certification_type` (
   `id` INT NOT NULL,
   `name` VARCHAR(140) NULL,
   PRIMARY KEY (`id`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `AutoDB`.`certifications`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `AutoDB`.`certifications` ;
-
-CREATE TABLE IF NOT EXISTS `AutoDB`.`certifications` (
-  `id` INT NOT NULL,
-  `certification_type_id` INT NULL,
-  `business_id` INT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_business_idx` (`business_id` ASC),
-  INDEX `fk_certType_idx` (`certification_type_id` ASC),
-  CONSTRAINT `fk_business_certifications`
-    FOREIGN KEY (`business_id`)
-    REFERENCES `AutoDB`.`business` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_certType_certifications`
-    FOREIGN KEY (`certification_type_id`)
-    REFERENCES `AutoDB`.`certification_type` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
@@ -381,14 +333,3 @@ GRANT ALL ON `AutoDB`.* TO 'auto'@'localhost';
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
-
--- -----------------------------------------------------
--- Data for table `AutoDB`.`privilege`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `AutoDB`;
-INSERT INTO `AutoDB`.`privilege` (`id`, `type`) VALUES (1, 1);
-INSERT INTO `AutoDB`.`privilege` (`id`, `type`) VALUES (2, 2);
-
-COMMIT;
-

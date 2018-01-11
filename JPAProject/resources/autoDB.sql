@@ -376,3 +376,15 @@ INSERT INTO `autodb`.`user` (`id`, `password`, `first_name`, `last_name`, `conta
 INSERT INTO `autodb`.`user` (`id`, `password`, `first_name`, `last_name`, `contact_id`, `rating_id`, `is_admin`, `username`) VALUES (5, 'pwd123', 'Bob', 'Bishop', 5, 5, 0, 'Bob-Bishop');
 
 COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `autodb`.`certification`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `autodb`;
+INSERT INTO `autodb`.`certification` (`id`, `business_id`, `name`) VALUES (1, 1, 'Oil Change');
+INSERT INTO `autodb`.`certification` (`id`, `business_id`, `name`) VALUES (2, 2, 'FixerCert');
+INSERT INTO `autodb`.`certification` (`id`, `business_id`, `name`) VALUES (3, 3, 'We can do it');
+
+COMMIT;

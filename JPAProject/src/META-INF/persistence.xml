@@ -6,11 +6,18 @@
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
         <!-- <class>entities.YourClassNames</class> -->
+<!--    <class>entities.Business</class>
+        <class>entities.Certification</class>
+        <class>entities.Contact</class>
+        <class>entities.Part</class>
+        <class>entities.Request</class>
+        <class>entities.User</class>
+        <class>entities.Vehicle</class> -->
 
         <properties>
         		<!-- Configure your connection to the database -->
-            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/exampledb" />
-            <property name="javax.persistence.jdbc.user" value="Auto" />
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/autodb" />
+            <property name="javax.persistence.jdbc.user" value="auto" />
             <property name="javax.persistence.jdbc.password" value="auto" />
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
 

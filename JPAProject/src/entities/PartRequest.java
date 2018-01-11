@@ -22,5 +22,10 @@ public class PartRequest {
 	private Request request;
 	
 	@OneToMany(mappedBy="partRequest")
+	@JoinColumn(name="part_id")
 	private Collection<Part> parts;
 }
+
+
+
+

@@ -24,7 +24,7 @@ public class Business {
 	
 	@OneToOne
 	@JoinColumn(name="rating_id")
-	private double rating;
+	private Rating rating;
 	
 	@Column(name="labor_rate")
 	private double laborRate;

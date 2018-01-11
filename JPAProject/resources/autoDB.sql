@@ -136,11 +136,11 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `autodb`.`certifications`
+-- Table `autodb`.`certification`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `autodb`.`certifications` ;
+DROP TABLE IF EXISTS `autodb`.`certification` ;
 
-CREATE TABLE IF NOT EXISTS `autodb`.`certifications` (
+CREATE TABLE IF NOT EXISTS `autodb`.`certification` (
   `id` INT(11) NOT NULL,
   `business_id` INT(11) NULL DEFAULT NULL,
   `name` VARCHAR(45) NULL DEFAULT NULL,

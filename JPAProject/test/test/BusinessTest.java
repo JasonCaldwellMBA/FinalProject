@@ -40,14 +40,13 @@ public class BusinessTest {
 	@Test
 	public void test_business_mapping() {
 		assertEquals(1, business.getId());
-		assertEquals("", business.getContact());
+		assertEquals(1, business.getContact().getId());
 		assertEquals("", business.getCertifications().get(0).getName());
-		assertEquals("", business.getRating());
+		assertEquals(1, business.getRating());
 		assertEquals("", business.getLaborRate());
 		assertEquals("", business.getExperience());
-		assertEquals("", business.getWebsite());
-		assertEquals("", business.getCompanyName());
-		assertEquals("", business.getCertifications().get(0));
+		assertEquals("theautoshop.com", business.getWebsite());
+		assertEquals("The Auto Shop", business.getCompanyName());
 
 	}
 

@@ -10,10 +10,17 @@
         <class>entities.Certification</class>
         <class>entities.Contact</class>
         <class>entities.Part</class>
+        <class>entities.PartQuote</class>
+        <class>entities.PartRequest</class>
+        <class>entities.Quote</class>
+        <class>entities.Rating</class>
         <class>entities.Request</class>
         <class>entities.User</class>
         <class>entities.Vehicle</class>
+<<<<<<< HEAD
         <class>entities.Quote</class>
+=======
+>>>>>>> e83ddab11250c36379b0d9290f5a970a7d37efcb
 
         <properties>
         		<!-- Configure your connection to the database -->

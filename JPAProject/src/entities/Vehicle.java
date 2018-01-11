@@ -1,5 +1,5 @@
 package entities;
-
+//test
 import java.util.List;
 
 import javax.persistence.Entity;

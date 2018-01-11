@@ -14,8 +14,6 @@ import javax.persistence.OneToOne;
 public class Request {
 	
 	//===========================Fields====================================//
-
-	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id; 

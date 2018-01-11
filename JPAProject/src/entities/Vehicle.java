@@ -8,11 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-@Entity  
 public class Vehicle {
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
 	private String make;
@@ -23,7 +20,6 @@ public class Vehicle {
 	
 	private int mileage;
 	
-	@OneToMany
 	private List<Request> requests;
 	
 	private User user;

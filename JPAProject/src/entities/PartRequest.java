@@ -1,7 +1,6 @@
 package entities;
 
 import java.util.Collection;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,6 +20,21 @@ public class PartRequest {
 	private Request request;
 	@OneToMany(mappedBy="partsRequest")
 	private Collection<Part> parts;
+	public Request getRequest() {
+		return request;
+	}
+	public void setRequest(Request request) {
+		this.request = request;
+	}
+	public Collection<Part> getParts() {
+		return parts;
+	}
+	public void setParts(Collection<Part> parts) {
+		this.parts = parts;
+	}
+	public int getId() {
+		return id;
+	}
 }
 
 

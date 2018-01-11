@@ -23,4 +23,37 @@ public class Part {
 	@ManyToOne
 	@JoinColumn(name="parts_quote_id")
 	private PartQuote partsQuote;
+	public double getCost() {
+		return cost;
+	}
+	public void setCost(double cost) {
+		this.cost = cost;
+	}
+	public String getSerialNumber() {
+		return serialNumber;
+	}
+	public void setSerialNumber(String serialNumber) {
+		this.serialNumber = serialNumber;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public PartRequest getPartsRequest() {
+		return partsRequest;
+	}
+	public void setPartsRequest(PartRequest partsRequest) {
+		this.partsRequest = partsRequest;
+	}
+	public PartQuote getPartsQuote() {
+		return partsQuote;
+	}
+	public void setPartsQuote(PartQuote partsQuote) {
+		this.partsQuote = partsQuote;
+	}
+	public int getId() {
+		return id;
+	}
 }

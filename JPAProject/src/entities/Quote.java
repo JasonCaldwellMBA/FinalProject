@@ -1,5 +1,5 @@
 package entities;
-
+//test
 import java.sql.Timestamp;
 
 import javax.persistence.Column;

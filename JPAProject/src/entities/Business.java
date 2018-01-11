@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 @Entity
 public class Business {
@@ -21,12 +22,6 @@ public class Business {
 	@JoinColumn(name="contact_id")
 	private Contact contact;
 	
-	@ManyToOne
-	@JoinTable(name="specialty",
-			joinColumns=@JoinColumn(name="specialty_id"),
-			inverseJoinColumns=@JoinColumn(name="specialty_id"))
-	private Specialty specialty; 
-	
 	@OneToOne
 	@JoinColumn(name="rating_id")
 	private double rating;
@@ -37,13 +32,13 @@ public class Business {
 	@Column(name="company_name")
 	private String companyName;
 	
+	@Column(name="experience")
 	private int experience;
 	
+	@Column(name="website")
 	private String website;
 	
-	@JoinTable(name="certifications",
-			joinColumns=@JoinColumn(name="business_id"),
-			inverseJoinColumns=@JoinColumn(name="certification_type_id"))
+	@OneToMany(mappedBy="business")
 	private List<Certification> certifications;
 }
 

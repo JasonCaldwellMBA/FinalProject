@@ -16,13 +16,10 @@ public class PartRequest {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
-	
 	@OneToOne
 	@JoinColumn(name="request_id")
 	private Request request;
-	
-	@OneToMany(mappedBy="partRequest")
-	@JoinColumn(name="part_id")
+	@OneToMany(mappedBy="partsRequest")
 	private Collection<Part> parts;
 }
 

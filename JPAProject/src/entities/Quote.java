@@ -26,6 +26,8 @@ public class Quote {
 	@JoinColumn(name = "business_id")
 	private Business business; 	
 	
+	@ManyToOne
+	@JoinColumn(name = "quote_id")
 	private PartQuote partQuote;
 	
 	@Column(name = "description")
@@ -50,24 +52,24 @@ public class Quote {
 	public void setId(int id) {
 		this.id = id;
 	}
-//	public Request getRequest() {
-//		return request;
-//	}
-//	public void setRequest(Request request) {
-//		this.request = request;
-//	}
-//	public Business getBusiness() {
-//		return business;
-//	}
-//	public void setBusiness(Business business) {
-//		this.business = business;
-//	}
-//	public PartQuote getPartQuote() {
-//		return partQuote;
-//	}
-//	public void setPartQuote(PartQuote partQuote) {
-//		this.partQuote = partQuote;
-//	}
+	public Request getRequest() {
+		return request;
+	}
+	public void setRequest(Request request) {
+		this.request = request;
+	}
+	public Business getBusiness() {
+		return business;
+	}
+	public void setBusiness(Business business) {
+		this.business = business;
+	}
+	public PartQuote getPartQuote() {
+		return partQuote;
+	}
+	public void setPartQuote(PartQuote partQuote) {
+		this.partQuote = partQuote;
+	}
 	public String getDescription() {
 		return description;
 	}

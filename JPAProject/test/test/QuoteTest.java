@@ -47,4 +47,14 @@ public class QuoteTest {
 		assertEquals(1, quote.getEstimate(), .01);
 	}
 	
+	@Test
+	public void test_quote_to_request_mapping() {
+		assertEquals(1, quote.getRequest().getDescription());
+	}
+	
+	@Test
+	public void test_quote_to_business_mapping() {
+		assertEquals(1, quote.getRequest());
+	}
+	
 }

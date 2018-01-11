@@ -32,7 +32,7 @@ public class User {
 	@OneToMany(mappedBy="user")
 	private List<Vehicle> vehicle; 
 	@OneToMany(mappedBy="user")
-	private List<Request> requests; 
+	private List<Request> requests;
 	@Transient
 	List<Business> associatedBusinesses;
 	

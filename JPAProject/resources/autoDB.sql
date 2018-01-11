@@ -57,7 +57,6 @@ DROP TABLE IF EXISTS `autodb`.`business` ;
 CREATE TABLE IF NOT EXISTS `autodb`.`business` (
   `id` INT(11) NOT NULL,
   `contact_id` INT(11) NOT NULL,
-  `specialty_id` INT(11) NOT NULL,
   `rating_id` INT(11) NULL DEFAULT NULL,
   `labor_rate` DECIMAL(10,0) NOT NULL,
   `company_name` TEXT NOT NULL,
@@ -352,6 +351,20 @@ COMMIT;
 
 
 -- -----------------------------------------------------
+-- Data for table `autodb`.`business`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `autodb`;
+INSERT INTO `autodb`.`business` (`id`, `contact_id`, `rating_id`, `labor_rate`, `company_name`, `experience`, `website`) VALUES (1, 1, 1, 1.0, 'The Auto Shop', 1, 'theautoshop.com');
+INSERT INTO `autodb`.`business` (`id`, `contact_id`, `rating_id`, `labor_rate`, `company_name`, `experience`, `website`) VALUES (2, 2, 2, 2.0, 'Bill\'s Auto', 2, 'billsauto.com');
+INSERT INTO `autodb`.`business` (`id`, `contact_id`, `rating_id`, `labor_rate`, `company_name`, `experience`, `website`) VALUES (3, 3, 3, 3.0, 'Stump\'s Auto', 3, 'stumpsauto.com');
+INSERT INTO `autodb`.`business` (`id`, `contact_id`, `rating_id`, `labor_rate`, `company_name`, `experience`, `website`) VALUES (4, 4, 4, 4.0, 'SD Auto', 4, 'sdauto.com');
+INSERT INTO `autodb`.`business` (`id`, `contact_id`, `rating_id`, `labor_rate`, `company_name`, `experience`, `website`) VALUES (5, 5, 5, 5.0, 'BAMCIS', 5, 'bamcis.com');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
 -- Data for table `autodb`.`user`
 -- -----------------------------------------------------
 START TRANSACTION;
@@ -363,4 +376,3 @@ INSERT INTO `autodb`.`user` (`id`, `password`, `first_name`, `last_name`, `conta
 INSERT INTO `autodb`.`user` (`id`, `password`, `first_name`, `last_name`, `contact_id`, `rating_id`, `is_admin`, `username`) VALUES (5, 'pwd123', 'Bob', 'Bishop', 5, 5, 0, 'Bob-Bishop');
 
 COMMIT;
-

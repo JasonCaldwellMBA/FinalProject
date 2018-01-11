@@ -1,5 +1,6 @@
 package entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,5 +12,21 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+
+	@Column(name="first_name")
+	private String firstName;
+	
+	@Column(name="last_name")
+	private String lastName;
+	
+	private Contact contact;
+	
+	private double rating;
+	
+	private boolean type; 
+	
+	@Column(name="user_name")
+	private String userName;
+	
 
 }

@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 @Entity
@@ -28,6 +29,10 @@ public class User {
 	@Column(name="is_admin")
 	private boolean admin; 
 	private String userName;
+	@OneToMany(mappedBy="user")
+	private List<Vehicle> vehicle; 
+	@OneToMany(mappedBy="user")
+	private List<Request> requests; 
 	@Transient
 	List<Business> associatedBusinesses;
 	

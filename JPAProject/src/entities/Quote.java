@@ -7,7 +7,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Quote {
+public class Quote extends Order {
 	
 	@ManyToOne
 	private Request request;
@@ -17,5 +17,7 @@ public class Quote {
 	
 	@OneToMany
 	private List<Part> parts;
+	
+	
 
 }

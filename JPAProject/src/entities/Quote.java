@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -26,8 +27,7 @@ public class Quote {
 	@JoinColumn(name = "business_id")
 	private Business business; 	
 	
-	@ManyToOne
-	@JoinColumn(name = "quote_id")
+	@OneToOne(mappedBy = "quote")
 	private PartQuote partQuote;
 	
 	@Column(name = "description")

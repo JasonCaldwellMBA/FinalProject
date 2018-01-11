@@ -228,30 +228,6 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `AutoDB`.`specialty_type`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `AutoDB`.`specialty_type` ;
-
-CREATE TABLE IF NOT EXISTS `AutoDB`.`specialty_type` (
-  `id` INT NOT NULL,
-  `name` VARCHAR(45) NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `AutoDB`.`certification_type`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `AutoDB`.`certification_type` ;
-
-CREATE TABLE IF NOT EXISTS `AutoDB`.`certification_type` (
-  `id` INT NOT NULL,
-  `name` VARCHAR(140) NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `AutoDB`.`parts_quote`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `AutoDB`.`parts_quote` ;

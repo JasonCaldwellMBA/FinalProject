@@ -24,7 +24,7 @@ public class User {
 	private Contact contact;
 	@OneToOne
 	@JoinColumn(name="rating_id")
-	private double rating;
+	private Rating rating;
 	@Column(name="is_admin")
 	private boolean admin; 
 	private String userName;
@@ -50,10 +50,10 @@ public class User {
 	public void setContact(Contact contact) {
 		this.contact = contact;
 	}
-	public double getRating() {
+	public Rating getRating() {
 		return rating;
 	}
-	public void setRating(double rating) {
+	public void setRating(Rating rating) {
 		this.rating = rating;
 	}
 	public boolean isPrivilege() {

@@ -24,18 +24,16 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public List<User> index(int uid) {
-		String query = "SELECT u FROM User u"; 
+		String query = "SELECT u FROM User u WHERE  u.active = true";
 		return em.createQuery(query, User.class)
 				.getResultList();
 	}
-
 	@Override
-	public User show(int uid) {
-		return em.find(User.class, uid); 
+	public User show(int id) {
+		return em.find(User.class, id); 
 	}
-
 	@Override
-	public User create(int uid, String json) {
+	public User create(String json) {
 		ObjectMapper mapper = new ObjectMapper(); 
 		User user = null; 
 		try {
@@ -52,15 +50,31 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public User update(int uid, int tid, String todoJson) {
+	public User update(int id, String json) {
 		ObjectMapper mapper = new ObjectMapper(); 
 		User user = null; 
-		return null;
+		User retUser = null; 
+		try {
+			user = mapper.readValue(json, User.class);
+			retUser = em.find(User.class, id); 
+			retUser.setContact(user.getContact());
+			retUser.setFirstName(user.getFirstName());
+			retUser.setLastName(user.getLastName());
+			retUser.setPassword(user.getPassword());
+			retUser.setUsername(user.getUsername());
+		} catch (JsonParseException e) {
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} 
+		return retUser;
 	}
 	@Override
 	public User destroy(int uid) {
-		User user = em.find(User.class, uid); 
-		em.remove(user);
+		User user = em.find(User.class, uid);
+		user.setActive(false);
 		return user;
 	}
 }

@@ -23,6 +23,7 @@ public class Vehicle {
 	private String model;
 	private int year;
 	private int mileage;
+
 	@JsonIgnore
 	@OneToMany(mappedBy="vehicle")
 	private List<Request> requests;

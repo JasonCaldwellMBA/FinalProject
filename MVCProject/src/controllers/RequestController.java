@@ -21,7 +21,7 @@ public class RequestController {
 	@Autowired
 	private RequestDAO dao;
 	
-	@RequestMapping(path="user/{uid}/request", method=RequestMethod.GET)
+	@RequestMapping(path="user/{id}/request", method=RequestMethod.GET)
 	public List<Request> index(HttpServletResponse res, @PathVariable int id){
 		System.out.println("In Controller");
 		return dao.index(id);
@@ -52,4 +52,5 @@ public class RequestController {
 		}
 		return request; 
 	}
+	
 }

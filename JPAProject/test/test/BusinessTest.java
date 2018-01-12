@@ -57,6 +57,12 @@ public class BusinessTest {
 		newBusiness.setCompanyName("company name");
 		
 		em.persist(newBusiness);
+		em.flush();
+		em.getTransaction().commit();
+		em.close();
+		emf.close();
+		newBusiness = em.find(Business.class, 6);
+		assertEquals("company name", newBusiness.getCompanyName());
 	}
 
 	

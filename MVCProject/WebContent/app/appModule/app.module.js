@@ -10,6 +10,9 @@ angular.module('appModule', ['ngRoute'])
 	    .when('/login', {
 	    	template : '<login></login>'
 	    })
+	    .when('/user', {
+	    	template : '<user></user>'
+	    })
 	    .when('/logout', {
 	    	template : '<logout></logout>'
 	    })

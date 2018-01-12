@@ -25,6 +25,7 @@ public class Request {
 	@ManyToOne
 	@JoinColumn(name="user_id")
 	private User user;
+	//@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="vehicle_id")
 	private Vehicle vehicle;

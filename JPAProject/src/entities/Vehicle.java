@@ -23,17 +23,11 @@ public class Vehicle {
 	private String model;
 	private int year;
 	private int mileage;
-<<<<<<< HEAD
-	
-	@OneToMany(mappedBy="vehicle")
-	private List<Request> requests;
-	
-=======
+
 	@JsonIgnore
 	@OneToMany(mappedBy="vehicle")
 	private List<Request> requests;
 	@JsonIgnore
->>>>>>> 9a19b083c24e5590ef62f67bd512fab8a1d228eb
 	@ManyToOne
 	@JoinColumn(name="user_id")
 	private User user;

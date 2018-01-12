@@ -1,8 +1,8 @@
-angular.module('appModule')
+angular.module('authModule')
 	.component('register', {
 		template: 'app/authModule/register/register.component.html',
 		controllerAs: 'vm',
-		controller: function($location){
+		controller: function(authService, $location){
 			var vm = this; 
 		}
 }); 

@@ -18,15 +18,15 @@ public class BusinessDAOImpl implements BusinessDAO {
 	private EntityManager em;
 
 	@Override
-	public List<Business> index(int uid) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Business> index(int bid) {
+		String query = "Select b from Business b";
+		return em.createQuery(query, Business.class)
+				 .getResultList();
 	}
 
 	@Override
-	public Business show(int uid, int tid) {
-		// TODO Auto-generated method stub
-		return null;
+	public Business show(int bid) {
+		return em.find(Business.class, bid);
 	}
 
 	@Override

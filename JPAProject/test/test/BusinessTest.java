@@ -2,6 +2,8 @@ package test;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -40,13 +42,12 @@ public class BusinessTest {
 	@Test
 	public void test_business_mapping() {
 		assertEquals(1, business.getId());
-		assertEquals(1, business.getContact().getId());
-		assertEquals("Oil Change", business.getCertifications().get(0).getName());
-		assertEquals(5.0, business.getRating().getRating(), 0);
-		assertEquals(1.0, business.getLaborRate(), 0);
-		assertEquals(1, business.getExperience());
-		assertEquals("theautoshop.com", business.getWebsite());
-		assertEquals("The Auto Shop", business.getCompanyName());
+		assertEquals(6, business.getContact().getId());
+		assertEquals(1.0, business.getRating().getRating(), 0);
+		assertEquals(25, business.getLaborRate(), 0);
+		assertEquals(5, business.getExperience());
+		assertEquals("stumpyauto.com", business.getWebsite());
+		assertEquals("Stumpy Auto", business.getCompanyName());
 	}
 	@Test
 	public void test_create_business() {
@@ -59,11 +60,46 @@ public class BusinessTest {
 		em.persist(newBusiness);
 		em.flush();
 		em.getTransaction().commit();
-		em.close();
-		emf.close();
+
 		newBusiness = em.find(Business.class, 6);
 		assertEquals("company name", newBusiness.getCompanyName());
 	}
+	@Test
+	public void test_index_business() {
+		String query = "Select b from Business b";
+		List<Business> list = em.createQuery(query, Business.class)
+								.getResultList();
+		assertEquals(7, list.size());
+		
+	}
+	@Test
+	public void test_update_business() {
+		Business business = em.find(Business.class, 3);
+		em.getTransaction().begin();
+		business.setCompanyName("Hodor's Auto");
+		em.getTransaction().commit();
+		Business b = em.find(Business.class, 3);
+		assertEquals("Hodor's Auto", b.getCompanyName());
+	}
+	@Test
+	public void test_destroy_business() {
+		Business b = em.find(Business.class, 5);
+		em.getTransaction().begin();
+		em.remove(b);
+		em.getTransaction().commit();
+		Business bnull = em.find(Business.class, 5);
+		assertEquals(bnull, null);
+	}
+	
+	@Test
+	public void test_business_to_certs() {
+		
+	}
+	@Test
+	public void test_business_to_rating() {
+		assertEquals("The best", business.getCertifications().get(0).getName());
+	}
+	
 
 	
 }

@@ -71,17 +71,20 @@ public class QuoteController {
     }
     
     @RequestMapping(path = "/business/{bid}/request/{rid}/quote/{qid}", method = RequestMethod.DELETE)
-    public Boolean destroy(
+    public Quote destroy(
             HttpServletRequest req, 
             HttpServletResponse res, 
             @PathVariable int bid,
             @PathVariable int qid,
     			@PathVariable int rid) {
-        Boolean result = quoteDAO.destroy(bid, rid, qid);
-        if (result == null) {
+        Quote quote = quoteDAO.destroy(bid, rid, qid);
+        if (quote == null) {
             res.setStatus(404);
         }
-        return result;
+        else {
+        		res.setStatus(200);
+        }
+        return quote;
     }
 
 }

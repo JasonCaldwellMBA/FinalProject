@@ -24,19 +24,19 @@ public class RequestDAOImpl implements RequestDAO {
 	private EntityManager em;
 
 	@Override
-	public List<Request> index(int rid) {
-		String query = "SELECT r FROM Requedt r"; 
-		return em.createQuery(query, Request.class)
+	public List<Request> index(int uid) {
+		String query = "SELECT r FROM Request r WHERE r.user.id = :id"; 
+		return em.createQuery(query, Request.class).setParameter("id", uid)
 				.getResultList();
 	}
 
 	@Override
-	public Request show(int rid) {
+	public Request show(int uid, int rid) {
 		return em.find(Request.class, rid); 
 	}
 
 	@Override
-	public Request create(int rid, String requestJson) {
+	public Request create(int uid, String requestJson) {
 		ObjectMapper mapper = new ObjectMapper(); 
 		Request request = null; 
 		try {
@@ -53,20 +53,20 @@ public class RequestDAOImpl implements RequestDAO {
 	}
 
 	@Override
-	public Request update(int rid, String requestJson) {
+	public Request update(int uid, int rid, String requestJson) {
 		ObjectMapper mapper = new ObjectMapper();
-		Request holderRequest = null;
+		Request request = null;
 		Request orgRequest = null;
 		try {
 			orgRequest = em.find(Request.class, rid);
-			holderRequest = mapper.readValue(requestJson, Request.class);
-			orgRequest.setDescription(holderRequest.getDescription());
-			orgRequest.setCompleteDate(holderRequest.getCompleteDate());
-			orgRequest.setCompleted(holderRequest.isCompleted());
-			orgRequest.setActive(holderRequest.isActive());
-			orgRequest.setImg(holderRequest.getImg());
-			orgRequest.setExpireDate(holderRequest.getExpireDate());
-			orgRequest.setEstimate(holderRequest.getEstimate());
+			request = mapper.readValue(requestJson, Request.class);
+			orgRequest.setDescription(request.getDescription());
+			orgRequest.setCompleteDate(request.getCompleteDate());
+			orgRequest.setCompleted(request.isCompleted());
+			orgRequest.setActive(request.isActive());
+			orgRequest.setImg(request.getImg());
+			orgRequest.setExpireDate(request.getExpireDate());
+			orgRequest.setEstimate(request.getEstimate());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -74,15 +74,12 @@ public class RequestDAOImpl implements RequestDAO {
 	}
 
 	@Override
-	public Boolean destroy(int rid) {
-		Request request = em.find(Request.class, rid);
-		try {
-			em.remove(request);
-			return true;
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return false;
+	public Boolean destroy(int uid) {
+		Request request = em.find(Request.class, uid);
+				if (!request.isCompleted()) {
+					request.setCompleted(true);
+				}
+				return true;
 	}
 
 }

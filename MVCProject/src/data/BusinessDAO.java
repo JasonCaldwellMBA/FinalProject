@@ -15,6 +15,6 @@ public interface BusinessDAO {
 
 	  public Business update(int bid, String businessJson);
 
-	  public Boolean destroy(int bid);
+	  public Business destroy(int bid);
 
 }

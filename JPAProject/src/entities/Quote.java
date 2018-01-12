@@ -111,7 +111,6 @@ public class Quote {
 	public void setEstimate(double estimate) {
 		this.estimate = estimate;
 	}
-	
 	public boolean isActive() {
 		return active;
 	}

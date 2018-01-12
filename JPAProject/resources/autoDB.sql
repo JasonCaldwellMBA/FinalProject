@@ -208,12 +208,13 @@ CREATE TABLE IF NOT EXISTS `autodb`.`request` (
   `user_id` INT(11) NOT NULL,
   `description` VARCHAR(45) NOT NULL,
   `vehicle_id` INT(11) NOT NULL,
-  `complete_date` TIMESTAMP NULL DEFAULT NULL,
-  `completed` TINYINT(4) NULL DEFAULT '0',
+  `complete_date` TIMESTAMP NULL,
+  `completed` TINYINT(4) NULL DEFAULT 0,
   `img` TEXT NULL DEFAULT NULL,
   `expire_date` TIMESTAMP NULL DEFAULT NULL,
   `post_date` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
-  `estimate` DECIMAL(10,0) NULL DEFAULT NULL,
+  `estimate` DECIMAL(10,0) NULL DEFAULT 0.0,
+  `active` TINYINT NULL DEFAULT 1,
   PRIMARY KEY (`id`),
   INDEX `fk_req_user_idx` (`user_id` ASC),
   INDEX `fk_req_auto_idx` (`vehicle_id` ASC),
@@ -409,13 +410,25 @@ COMMIT;
 
 
 -- -----------------------------------------------------
+-- Data for table `autodb`.`quote`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `autodb`;
+INSERT INTO `autodb`.`quote` (`id`, `estimate`, `post_date`, `description`, `request_id`, `complete_date`, `expire_date`, `business_id`) VALUES (1, 69.99, '2018-01-02 11:30:45', '60k Maintenence', 1, '2018-01-08 09:30:00', '', 1);
+INSERT INTO `autodb`.`quote` (`id`, `estimate`, `post_date`, `description`, `request_id`, `complete_date`, `expire_date`, `business_id`) VALUES (2, 19.99, '2018-01-11 10:05:45', 'Oil Change', 2, '', '', 2);
+INSERT INTO `autodb`.`quote` (`id`, `estimate`, `post_date`, `description`, `request_id`, `complete_date`, `expire_date`, `business_id`) VALUES (3, 9.99, '2018-01-06 06:30:45', 'Air Filter', 3, '2018-01-09 09:30:00', '2018-01-08 09:30:00', 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
 -- Data for table `autodb`.`request`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `autodb`;
-INSERT INTO `autodb`.`request` (`id`, `user_id`, `description`, `vehicle_id`, `complete_date`, `completed`, `img`, `expire_date`, `post_date`, `estimate`) VALUES (1, 1, 'Need work', 1, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `autodb`.`request` (`id`, `user_id`, `description`, `vehicle_id`, `complete_date`, `completed`, `img`, `expire_date`, `post_date`, `estimate`) VALUES (2, 2, 'Need work', 2, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `autodb`.`request` (`id`, `user_id`, `description`, `vehicle_id`, `complete_date`, `completed`, `img`, `expire_date`, `post_date`, `estimate`) VALUES (3, 3, 'Need work', 3, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `autodb`.`request` (`id`, `user_id`, `description`, `vehicle_id`, `complete_date`, `completed`, `img`, `expire_date`, `post_date`, `estimate`, `active`) VALUES (1, 1, 'Need work', 1, NULL, 0, NULL, NULL, NULL, 0.0, 1);
+INSERT INTO `autodb`.`request` (`id`, `user_id`, `description`, `vehicle_id`, `complete_date`, `completed`, `img`, `expire_date`, `post_date`, `estimate`, `active`) VALUES (2, 2, 'Need work', 2, NULL, 0, NULL, NULL, NULL, 0.0, 1);
+INSERT INTO `autodb`.`request` (`id`, `user_id`, `description`, `vehicle_id`, `complete_date`, `completed`, `img`, `expire_date`, `post_date`, `estimate`, `active`) VALUES (3, 3, 'Need work', 3, NULL, 0, NULL, NULL, NULL, 0.0, 1);
 
 COMMIT;
 

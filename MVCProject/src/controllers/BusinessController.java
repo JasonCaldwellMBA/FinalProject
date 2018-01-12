@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,7 +32,7 @@ public class BusinessController {
 	}
 	
 	@RequestMapping(path="/business", method=RequestMethod.POST)
-	public Business create(HttpServletResponse res, String busJson) {
+	public Business create(HttpServletResponse res, @RequestBody String busJson) {
 		Business bus = dao.create(busJson);
 		if (bus == null) {
 			res.setStatus(400);
@@ -40,7 +41,30 @@ public class BusinessController {
 		}
 		return bus;
 	}
-		
-		
 	
+	@RequestMapping(path="/business/{bid}", method=RequestMethod.PUT)
+	public Business update(HttpServletResponse res,
+						  @RequestBody String json,
+						  @PathVariable int bid) {
+		Business bus = dao.update(bid, json);
+		if (bus == null) {
+			res.setStatus(400);
+		} else {
+			res.setStatus(201);
+		}
+		return bus;
+	}
+	
+	@RequestMapping(path="/business/{bid}", method=RequestMethod.DELETE)
+	public Business destroy(HttpServletResponse res, @PathVariable int bid) {
+		Business bus = dao.destroy(bid);
+		if (bus != null) {
+			res.setStatus(202);
+		} else {
+			res.setStatus(400);
+		}
+		return bus;
+	}
+		
+
 }

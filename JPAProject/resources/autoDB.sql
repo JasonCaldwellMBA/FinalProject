@@ -93,6 +93,7 @@ CREATE TABLE IF NOT EXISTS `autodb`.`user` (
   `rating_id` INT(11) NULL DEFAULT NULL,
   `is_admin` TINYINT NOT NULL,
   `username` VARCHAR(45) NOT NULL,
+  `active` TINYINT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `username_UNIQUE` (`id` ASC),
   INDEX `fk_user_contact_idx` (`contact_id` ASC),
@@ -364,19 +365,19 @@ INSERT INTO `autodb`.`business` (`id`, `contact_id`, `rating_id`, `labor_rate`, 
 
 COMMIT;
 
-
 -- -----------------------------------------------------
 -- Data for table `autodb`.`user`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `autodb`;
-INSERT INTO `autodb`.`user` (`id`, `password`, `first_name`, `last_name`, `contact_id`, `rating_id`, `is_admin`, `username`) VALUES (1, 'pwd123', 'Allen', 'Jackson', 1, 1, 0, 'Allen-Jackson');
-INSERT INTO `autodb`.`user` (`id`, `password`, `first_name`, `last_name`, `contact_id`, `rating_id`, `is_admin`, `username`) VALUES (2, 'pwd123', 'Brian', 'Tanney', 2, 2, 0, 'Brian-Tanney');
-INSERT INTO `autodb`.`user` (`id`, `password`, `first_name`, `last_name`, `contact_id`, `rating_id`, `is_admin`, `username`) VALUES (3, 'pwd123', 'Victor', 'Black', 3, 3, 0, 'Victor-Black');
-INSERT INTO `autodb`.`user` (`id`, `password`, `first_name`, `last_name`, `contact_id`, `rating_id`, `is_admin`, `username`) VALUES (4, 'pwd123', 'Freddy', 'Fingers', 4, 4, 0, 'Freddy-Fingers');
-INSERT INTO `autodb`.`user` (`id`, `password`, `first_name`, `last_name`, `contact_id`, `rating_id`, `is_admin`, `username`) VALUES (5, 'pwd123', 'Bob', 'Bishop', 5, 5, 0, 'Bob-Bishop');
+INSERT INTO `autodb`.`user` (`id`, `password`, `first_name`, `last_name`, `contact_id`, `rating_id`, `is_admin`, `username`, `active`) VALUES (1, 'pwd123', 'Allen', 'Jackson', 1, 1, 0, 'Allen-Jackson', 1);
+INSERT INTO `autodb`.`user` (`id`, `password`, `first_name`, `last_name`, `contact_id`, `rating_id`, `is_admin`, `username`, `active`) VALUES (2, 'pwd123', 'Brian', 'Tanney', 2, 2, 0, 'Brian-Tanney', 1);
+INSERT INTO `autodb`.`user` (`id`, `password`, `first_name`, `last_name`, `contact_id`, `rating_id`, `is_admin`, `username`, `active`) VALUES (3, 'pwd123', 'Victor', 'Black', 3, 3, 0, 'Victor-Black', 1);
+INSERT INTO `autodb`.`user` (`id`, `password`, `first_name`, `last_name`, `contact_id`, `rating_id`, `is_admin`, `username`, `active`) VALUES (4, 'pwd123', 'Freddy', 'Fingers', 4, 4, 0, 'Freddy-Fingers', 1);
+INSERT INTO `autodb`.`user` (`id`, `password`, `first_name`, `last_name`, `contact_id`, `rating_id`, `is_admin`, `username`, `active`) VALUES (5, 'pwd123', 'Bob', 'Bishop', 5, 5, 0, 'Bob-Bishop', 1);
 
 COMMIT;
+
 
 
 -- -----------------------------------------------------
@@ -422,6 +423,6 @@ START TRANSACTION;
 USE `autodb`;
 INSERT INTO `autodb`.`quote` (`id`, `estimate`, `post_date`, `description`, `request_id`, `complete_date`, `expire_date`, `business_id`) VALUES (1, 69.99, '2018-01-02 11:30:45', '60k Maintenence', 1, '2018-01-08 09:30:00', '', 1);
 INSERT INTO `autodb`.`quote` (`id`, `estimate`, `post_date`, `description`, `request_id`, `complete_date`, `expire_date`, `business_id`) VALUES (2, 19.99, '2018-01-11 10:05:45', 'Oil Change', 2, '', '', 2);
-INSERT INTO `autodb`.`quote` (`id`, `estimate`, `post_date`, `description`, `request_id`, `complete_date`, `expire_date`, `business_id`) VALUES (3, 9.99, '2018-01-06 06:30:45', 'Air Filter', 3, '2018-01-09 09:30:00', '2018-01-08 09:30:00', 2);
+INSERT INTO `autodb`.`quote` (`id`, `estimate`, `post_date`, `description`, `request_id`, `complete_date`, `expire_date`, `business_id`) VALUES (3, 9.99, '2018-01-06 06:30:45', 'Air Filter', 3, '2018-01-09 09:30:00', '2018-01-08 09:30:00', 1);
 
 COMMIT;

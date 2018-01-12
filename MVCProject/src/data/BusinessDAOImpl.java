@@ -15,6 +15,8 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import entities.Business;
+import entities.Contact;
+import entities.User;
 
 @Repository
 @Transactional
@@ -79,6 +81,52 @@ public class BusinessDAOImpl implements BusinessDAO {
 			business.setActive(true);
 		}
 		return business;
+	}
+	
+	@Override
+	public Contact showContact(int bid, int cid) {
+		Contact contact = em.find(Contact.class, cid);
+		if (contact == null || contact.getBusiness().getId() != bid) {
+			return null;
+		}
+		return contact;
+	}
+	
+	@Override
+	public Contact createContact(int bid, String contactJson) {
+		ObjectMapper mapper = new ObjectMapper();
+		Contact contact = null;
+		try {
+			contact = mapper.readValue(contactJson, Contact.class);
+			Business business = em.find(Business.class, bid);
+			contact.setBusiness(business);
+			em.persist(contact);
+			em.flush();
+		} catch (Exception e) {
+			e.printStackTrace();		}
+		return contact;
+	}
+
+	@Override
+	public Contact updateContact(int bid, int cid, String contactJson) {
+		ObjectMapper mapper = new ObjectMapper();
+		Contact originalContact = null;
+		Contact holderContact = null;
+		try {
+			holderContact = mapper.readValue(contactJson, Contact.class);
+			originalContact = em.find(Contact.class, cid);
+			originalContact.setAddress1(holderContact.getAddress1());
+			originalContact.setAddress2(holderContact.getAddress2());
+			originalContact.setCity(holderContact.getCity());
+			originalContact.setEmail(holderContact.getEmail());
+			originalContact.setLatitude(holderContact.getLatitude());
+			originalContact.setLongitude(holderContact.getLongitude());
+			originalContact.setPhone(holderContact.getPhone());
+			originalContact.setState(holderContact.getState());
+		} catch (Exception e) {
+			e.printStackTrace();
+			}
+		return originalContact;
 	}
 
 	

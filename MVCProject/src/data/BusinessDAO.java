@@ -3,6 +3,7 @@ package data;
 import java.util.List;
 
 import entities.Business;
+import entities.Contact;
 import entities.User;
 
 public interface BusinessDAO {
@@ -16,5 +17,11 @@ public interface BusinessDAO {
 	  public Business update(int bid, String businessJson);
 
 	  public Business destroy(int bid);
+
+	Contact updateContact(int bid, int cid, String contactJson);
+
+	Contact createContact(int bid, String contactJson);
+
+	Contact showContact(int bid, int cid);
 
 }

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import data.BusinessDAO;
 import entities.Business;
+import entities.Contact;
 
 @RestController
 public class BusinessController {
@@ -65,6 +66,37 @@ public class BusinessController {
 		}
 		return bus;
 	}
-		
-
+	@RequestMapping(path="/business/{bid}/contact/{cid}", method=RequestMethod.GET)
+	public Contact showContact(@PathVariable int bid, @PathVariable int cid, HttpServletResponse res) {
+		Contact contact = dao.showContact(bid, cid); 
+		if(contact != null) {
+			res.setStatus(202);
+		}
+		else {
+			res.setStatus(404);
+		}
+		return contact; 
+	}
+	@RequestMapping(path="/business/{bid}", method=RequestMethod.POST)
+	public Contact createContact(@PathVariable int bid, @RequestBody String json, HttpServletResponse res){
+		Contact contact = dao.createContact(bid, json); 
+		if(contact != null) {
+			res.setStatus(201);
+		}
+		else {
+			res.setStatus(400); 
+		}
+		return contact; 
+	}
+	@RequestMapping(path="/business/{id}/contact/{cid}", method=RequestMethod.PUT)
+	public Contact updateContact(@RequestBody String json, @PathVariable int cid, @PathVariable int id, HttpServletResponse res) {
+		Contact contact = dao.updateContact(id,cid,json);
+		if(contact != null) {
+			res.setStatus(202);
+		}
+		else {
+			res.setStatus(400); 
+		}
+		return contact; 
+	}
 }

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import data.UserDAO;
+import entities.Contact;
 import entities.User;
 
 @RestController
@@ -61,4 +62,48 @@ public class UserController {
 		}
 		return user; 
 	}
+	@RequestMapping(path="/user/{uid}/contact/{cid}", method=RequestMethod.GET)
+	public Contact showContact(@PathVariable int uid, @PathVariable int cid, HttpServletResponse res) {
+		Contact contact = dao.showContact(uid, cid); 
+		if(contact != null) {
+			res.setStatus(202);
+		}
+		else {
+			res.setStatus(404);
+		}
+		return contact; 
+	}
+	@RequestMapping(path="/user/{uid}", method=RequestMethod.POST)
+	public Contact createContact(@PathVariable int uid, @RequestBody String json, HttpServletResponse res){
+		Contact contact = dao.createContact(uid, json); 
+		if(contact != null) {
+			res.setStatus(201);
+		}
+		else {
+			res.setStatus(400); 
+		}
+		return contact; 
+	}
+	@RequestMapping(path="/user/{id}/contact/{cid}", method=RequestMethod.PUT)
+	public Contact updateContact(@RequestBody String json, @PathVariable int cid, @PathVariable int id, HttpServletResponse res) {
+		Contact contact = dao.updateContact(id,cid,json);
+		if(contact != null) {
+			res.setStatus(202);
+		}
+		else {
+			res.setStatus(400); 
+		}
+		return contact; 
+	}
+	
 }
+
+
+
+
+
+
+
+
+
+

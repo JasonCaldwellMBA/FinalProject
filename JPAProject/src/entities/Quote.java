@@ -1,6 +1,7 @@
 package entities;
 //test
 import java.sql.Timestamp;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -41,6 +44,19 @@ public class Quote {
 	
 	@Column(name = "estimate")
 	private double estimate;
+	
+	@ManyToMany
+	@JoinTable(
+			name="parts_quote",
+			joinColumns=@JoinColumn(
+					name="quote_id",
+					referencedColumnName = "id"
+			),
+			inverseJoinColumns= @JoinColumn(
+			name="part_id",
+			referencedColumnName="id")
+	)
+	private List<Part> parts;
 	
 	
 	public int getId() {

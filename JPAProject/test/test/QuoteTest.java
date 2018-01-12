@@ -1,6 +1,7 @@
 package test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -40,22 +41,21 @@ public class QuoteTest {
 	@Test
 	public void test_quote_mapping() {
 		assertEquals(1, quote.getId());
-		assertEquals("desc1", quote.getDescription());
-		assertEquals("2017-12-11 11:30:45.0", quote.getPostDate().toString());
-		assertEquals("2017-12-11 11:30:45.0", quote.getExpireDate().toString());
-		assertEquals("2017-12-11 11:30:45.0", quote.getCompleteDate().toString());
-		assertEquals(1, quote.getEstimate(), .01);
-		assertEquals(1, quote.isActive());
+		assertEquals("60k Maintenence", quote.getDescription());
+		assertNull(quote.getExpireDate());
+		assertEquals("2018-01-08 09:30:00.0", quote.getCompleteDate().toString());
+		assertEquals(70, quote.getEstimate(), .01);
+		assertEquals(false, quote.isActive());
 	}
 	
 	@Test
 	public void test_quote_to_request_mapping() {
-		assertEquals(1, quote.getRequest().getDescription());
+		assertEquals("Need work", quote.getRequest().getDescription());
 	}
 	
 	@Test
 	public void test_quote_to_business_mapping() {
-		assertEquals(1, quote.getRequest());
+		assertEquals("StumpsAuto", quote.getBusiness().getCompanyName());
 	}
 	
 }

@@ -73,6 +73,11 @@ public class BusinessDAOImpl implements BusinessDAO {
 	@Override
 	public Business destroy(int bid) {
 		Business business = em.find(Business.class, bid);
+		if (business.isActive()) {
+			business.setActive(false);
+		} else {
+			business.setActive(true);
+		}
 		return business;
 	}
 

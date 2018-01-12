@@ -99,6 +99,13 @@ public class Business {
 	public void setEmployees(List<User> employees) {
 		this.employees = employees;
 	}
+	
+	public boolean isActive() {
+		return active;
+	}
+	public void setActive(boolean active) {
+		this.active = active;
+	}
 	@Override
 	public String toString() {
 		return "Business [id=" + id + ", contact=" + contact + ", rating=" + rating + ", laborRate=" + laborRate

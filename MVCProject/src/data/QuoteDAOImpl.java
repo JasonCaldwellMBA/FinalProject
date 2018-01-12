@@ -81,17 +81,15 @@ public class QuoteDAOImpl implements QuoteDAO {
     }
 
     @Override
-    public Boolean destroy(int bid, int rid, int qid) {
+    public Quote destroy(int bid, int rid, int qid) {
         Quote quote = em.find(Quote.class, qid);
-        if (quote == null) {
-            return null;
+        if (quote.isActive()) {
+            quote.setActive(false);
         }
-        em.remove(quote);
-        
-        if (em.find(Quote.class, qid) == null) {
-            return true;
+        else {
+        		quote.setActive(true);
         }
-        return false;
+        return quote;
     }
 
 }

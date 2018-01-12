@@ -1,1 +1,3 @@
-app.module('appModule', ['ngRoute'])
+app.module('appModule')
+	.config(function($routeProvider)){
+}

@@ -27,9 +27,6 @@ public class Quote {
 	@JoinColumn(name = "business_id")
 	private Business business; 	
 	
-	@OneToOne(mappedBy = "quote")
-	private PartQuote partQuote;
-	
 	@Column(name = "description")
 	private String description; 
 	
@@ -63,12 +60,6 @@ public class Quote {
 	}
 	public void setBusiness(Business business) {
 		this.business = business;
-	}
-	public PartQuote getPartQuote() {
-		return partQuote;
-	}
-	public void setPartQuote(PartQuote partQuote) {
-		this.partQuote = partQuote;
 	}
 	public String getDescription() {
 		return description;

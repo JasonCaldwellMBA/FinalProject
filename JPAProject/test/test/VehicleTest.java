@@ -32,13 +32,13 @@ public class VehicleTest {
 	}
 	
 	@Test
-	public void test_quote() {
+	public void test_vehicle() {
 		assertEquals(1, vehicle.getId());
 	}
 	
 	
 	@Test
-	public void test_quote_mapping() {
+	public void test_vehicle_mapping() {
 	}
 	
 }

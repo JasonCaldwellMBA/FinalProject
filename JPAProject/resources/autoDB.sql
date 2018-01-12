@@ -57,7 +57,6 @@ DROP TABLE IF EXISTS `autodb`.`business` ;
 CREATE TABLE IF NOT EXISTS `autodb`.`business` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `contact_id` INT(11) NOT NULL,
-  `specialty_id` INT(11) NOT NULL,
   `rating_id` INT(11) NULL DEFAULT NULL,
   `labor_rate` DECIMAL(10,0) NOT NULL,
   `company_name` TEXT NOT NULL,
@@ -137,12 +136,17 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `autodb`.`certifications`
+-- Table `autodb`.`certification`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `autodb`.`certifications` ;
+DROP TABLE IF EXISTS `autodb`.`certification` ;
 
+<<<<<<< HEAD
 CREATE TABLE IF NOT EXISTS `autodb`.`certifications` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
+=======
+CREATE TABLE IF NOT EXISTS `autodb`.`certification` (
+  `id` INT(11) NOT NULL,
+>>>>>>> 91bb23315e7a1426ea804af1e10773624af21056
   `business_id` INT(11) NULL DEFAULT NULL,
   `name` VARCHAR(45) NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -353,6 +357,20 @@ COMMIT;
 
 
 -- -----------------------------------------------------
+-- Data for table `autodb`.`business`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `autodb`;
+INSERT INTO `autodb`.`business` (`id`, `contact_id`, `rating_id`, `labor_rate`, `company_name`, `experience`, `website`) VALUES (1, 1, 1, 1.0, 'The Auto Shop', 1, 'theautoshop.com');
+INSERT INTO `autodb`.`business` (`id`, `contact_id`, `rating_id`, `labor_rate`, `company_name`, `experience`, `website`) VALUES (2, 2, 2, 2.0, 'Bill\'s Auto', 2, 'billsauto.com');
+INSERT INTO `autodb`.`business` (`id`, `contact_id`, `rating_id`, `labor_rate`, `company_name`, `experience`, `website`) VALUES (3, 3, 3, 3.0, 'Stump\'s Auto', 3, 'stumpsauto.com');
+INSERT INTO `autodb`.`business` (`id`, `contact_id`, `rating_id`, `labor_rate`, `company_name`, `experience`, `website`) VALUES (4, 4, 4, 4.0, 'SD Auto', 4, 'sdauto.com');
+INSERT INTO `autodb`.`business` (`id`, `contact_id`, `rating_id`, `labor_rate`, `company_name`, `experience`, `website`) VALUES (5, 5, 5, 5.0, 'BAMCIS', 5, 'bamcis.com');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
 -- Data for table `autodb`.`user`
 -- -----------------------------------------------------
 START TRANSACTION;
@@ -365,3 +383,14 @@ INSERT INTO `autodb`.`user` (`id`, `password`, `first_name`, `last_name`, `conta
 
 COMMIT;
 
+
+-- -----------------------------------------------------
+-- Data for table `autodb`.`certification`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `autodb`;
+INSERT INTO `autodb`.`certification` (`id`, `business_id`, `name`) VALUES (1, 1, 'Oil Change');
+INSERT INTO `autodb`.`certification` (`id`, `business_id`, `name`) VALUES (2, 2, 'FixerCert');
+INSERT INTO `autodb`.`certification` (`id`, `business_id`, `name`) VALUES (3, 3, 'We can do it');
+
+COMMIT;

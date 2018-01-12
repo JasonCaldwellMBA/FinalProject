@@ -8,7 +8,7 @@ public interface UserDAO {
 	
 	public List<User> index(int uid);
 
-	  public User show(int uid, int tid);
+	  public User show(int uid);
 
 	  public User create(int uid, String todoJson);
 

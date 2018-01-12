@@ -8,7 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -33,9 +32,6 @@ public class Business {
 	private String website;
 	@OneToMany(mappedBy="business")
 	private List<Certification> certifications;
-	@ManyToMany(mappedBy="associatedBusinesses")
-	private List<User> employees; 
-	
 	public Contact getContact() {
 		return contact;
 	}
@@ -80,13 +76,6 @@ public class Business {
 	}
 	public int getId() {
 		return id;
-	}
-	
-	public List<User> getEmployees() {
-		return employees;
-	}
-	public void setEmployees(List<User> employees) {
-		this.employees = employees;
 	}
 	@Override
 	public String toString() {

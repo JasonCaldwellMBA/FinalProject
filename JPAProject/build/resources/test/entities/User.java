@@ -1,17 +1,15 @@
 package entities;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 @Entity
 public class User {
 	@Id
@@ -22,10 +20,10 @@ public class User {
 	@Column(name="last_name")
 	private String lastName;
 	private String password; 
-	@OneToOne(cascade= CascadeType.PERSIST)
+	@OneToOne
 	@JoinColumn(name="contact_id")
 	private Contact contact;
-	@OneToOne(cascade= CascadeType.PERSIST)
+	@OneToOne
 	@JoinColumn(name="rating_id")
 	private Rating rating;
 	@Column(name="is_admin")
@@ -35,17 +33,7 @@ public class User {
 	private List<Vehicle> vehicle; 
 	@OneToMany(mappedBy="user")
 	private List<Request> requests;
-	@ManyToMany
-	@JoinTable(
-			name="business_user",
-			joinColumns=@JoinColumn(
-					name="user_id",
-					referencedColumnName = "id"
-			),
-			inverseJoinColumns= @JoinColumn(
-			name="business_id",
-			referencedColumnName="id")
-	)
+	@Transient
 	List<Business> associatedBusinesses;
 	
 	
@@ -112,10 +100,10 @@ public class User {
 	public int getId() {
 		return id;
 	}
-	
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", password=" + password
 				+ ", admin=" + admin + ", username=" + username + "]";
 	}
+	
 }

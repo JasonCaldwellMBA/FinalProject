@@ -22,15 +22,15 @@ DROP TABLE IF EXISTS `autodb`.`contact` ;
 
 CREATE TABLE IF NOT EXISTS `autodb`.`contact` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
-  `city` VARCHAR(45) NULL DEFAULT NULL,
-  `state` VARCHAR(45) NULL DEFAULT NULL,
-  `address_1` VARCHAR(45) NULL DEFAULT NULL,
-  `address_2` VARCHAR(45) NULL DEFAULT NULL,
+  `city` VARCHAR(45) NULL,
+  `state` VARCHAR(45) NULL,
+  `address_1` VARCHAR(45) NULL,
+  `address_2` VARCHAR(45) NULL,
   `zipcode` VARCHAR(45) NOT NULL,
   `phone` VARCHAR(45) NOT NULL,
   `email` VARCHAR(45) NOT NULL,
-  `latitude` TEXT NULL DEFAULT NULL,
-  `long` TEXT NULL DEFAULT NULL,
+  `latitude` VARCHAR(45) NULL,
+  `longitude` VARCHAR(45) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
@@ -57,10 +57,10 @@ DROP TABLE IF EXISTS `autodb`.`business` ;
 CREATE TABLE IF NOT EXISTS `autodb`.`business` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `contact_id` INT(11) NOT NULL,
-  `rating_id` INT(11) NULL DEFAULT NULL,
+  `rating_id` INT(11) NULL DEFAULT 0,
   `labor_rate` DECIMAL(10,0) NOT NULL,
   `company_name` TEXT NOT NULL,
-  `experience` INT(11) NULL DEFAULT NULL,
+  `experience` INT(11) NULL DEFAULT 0,
   `website` VARCHAR(45) NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_business_contact_idx` (`contact_id` ASC),
@@ -89,7 +89,7 @@ CREATE TABLE IF NOT EXISTS `autodb`.`user` (
   `password` VARCHAR(255) NOT NULL,
   `first_name` VARCHAR(45) NOT NULL,
   `last_name` VARCHAR(45) NOT NULL,
-  `contact_id` INT(11) NOT NULL,
+  `contact_id` INT(11) NULL,
   `rating_id` INT(11) NULL DEFAULT NULL,
   `is_admin` TINYINT NOT NULL,
   `username` VARCHAR(45) NOT NULL,
@@ -136,17 +136,12 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `autodb`.`certification`
+-- Table `autodb`.`certifications`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `autodb`.`certification` ;
+DROP TABLE IF EXISTS `autodb`.`certifications` ;
 
-<<<<<<< HEAD
 CREATE TABLE IF NOT EXISTS `autodb`.`certifications` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
-=======
-CREATE TABLE IF NOT EXISTS `autodb`.`certification` (
-  `id` INT(11) NOT NULL,
->>>>>>> 91bb23315e7a1426ea804af1e10773624af21056
   `business_id` INT(11) NULL DEFAULT NULL,
   `name` VARCHAR(45) NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -332,12 +327,13 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `autodb`;
-INSERT INTO `autodb`.`contact` (`id`, `city`, `state`, `address_1`, `address_2`, `zipcode`, `phone`, `email`, `latitude`, `long`) VALUES (1, 'Seattle', 'WA', '783 Hollow avenue', NULL, '89393', '303-728-0970', 'allen.jackson@outlook.com', NULL, NULL);
-INSERT INTO `autodb`.`contact` (`id`, `city`, `state`, `address_1`, `address_2`, `zipcode`, `phone`, `email`, `latitude`, `long`) VALUES (2, 'Phoenix', 'AZ', '897 Black st', NULL, '83939', '202-393-9999', 'brian.tanney@outlook.com', NULL, NULL);
-INSERT INTO `autodb`.`contact` (`id`, `city`, `state`, `address_1`, `address_2`, `zipcode`, `phone`, `email`, `latitude`, `long`) VALUES (3, 'Denver', 'CO', 'Arapahoe Rd 909', NULL, '20202', '888-888-8888', 'Victor.black@gmail.com', NULL, NULL);
-INSERT INTO `autodb`.`contact` (`id`, `city`, `state`, `address_1`, `address_2`, `zipcode`, `phone`, `email`, `latitude`, `long`) VALUES (4, 'Kansas City', 'MO', '905 E Newton', NULL, '39393', '888-888-8888', 'Freddy.fingers@hotmail.com', NULL, NULL);
-INSERT INTO `autodb`.`contact` (`id`, `city`, `state`, `address_1`, `address_2`, `zipcode`, `phone`, `email`, `latitude`, `long`) VALUES (5, 'San diego', 'CA', 'Imperial drive 202', NULL, '89191', '888-888-8888', 'Bob.bishop@live.com', NULL, NULL);
-INSERT INTO `autodb`.`contact` (`id`, `city`, `state`, `address_1`, `address_2`, `zipcode`, `phone`, `email`, `latitude`, `long`) VALUES (DEFAULT, NULL, NULL, NULL, NULL, DEFAULT, DEFAULT, DEFAULT, NULL, NULL);
+INSERT INTO `autodb`.`contact` (`id`, `city`, `state`, `address_1`, `address_2`, `zipcode`, `phone`, `email`, `latitude`, `longitude`) VALUES (1, 'Seattle', 'WA', '783 Hollow avenue', NULL, '89393', '303-728-0970', 'allen.jackson@outlook.com', NULL, NULL);
+INSERT INTO `autodb`.`contact` (`id`, `city`, `state`, `address_1`, `address_2`, `zipcode`, `phone`, `email`, `latitude`, `longitude`) VALUES (2, 'Phoenix', 'AZ', '897 Black st', NULL, '83939', '202-393-9999', 'brian.tanney@outlook.com', NULL, NULL);
+INSERT INTO `autodb`.`contact` (`id`, `city`, `state`, `address_1`, `address_2`, `zipcode`, `phone`, `email`, `latitude`, `longitude`) VALUES (3, 'Denver', 'CO', 'Arapahoe Rd 909', NULL, '20202', '888-888-8888', 'Victor.black@gmail.com', NULL, NULL);
+INSERT INTO `autodb`.`contact` (`id`, `city`, `state`, `address_1`, `address_2`, `zipcode`, `phone`, `email`, `latitude`, `longitude`) VALUES (4, 'Kansas City', 'MO', '905 E Newton', NULL, '39393', '888-888-8888', 'Freddy.fingers@hotmail.com', NULL, NULL);
+INSERT INTO `autodb`.`contact` (`id`, `city`, `state`, `address_1`, `address_2`, `zipcode`, `phone`, `email`, `latitude`, `longitude`) VALUES (5, 'San diego', 'CA', 'Imperial drive 202', NULL, '89191', '888-888-8888', 'Bob.bishop@live.com', NULL, NULL);
+INSERT INTO `autodb`.`contact` (`id`, `city`, `state`, `address_1`, `address_2`, `zipcode`, `phone`, `email`, `latitude`, `longitude`) VALUES (6, 'Provo', 'UT', '1239 W Center ST', NULL, '81023', '888-888-8888', 'miss.piggy@bananas.com', NULL, NULL);
+INSERT INTO `autodb`.`contact` (`id`, `city`, `state`, `address_1`, `address_2`, `zipcode`, `phone`, `email`, `latitude`, `longitude`) VALUES (7, 'Salt Lake City', 'UT', '12300 E Main', NULL, '81234', '888-888-8888', 'winnie.pooh@live.com', NULL, NULL);
 
 COMMIT;
 
@@ -352,6 +348,8 @@ INSERT INTO `autodb`.`rating` (`id`, `rating`) VALUES (2, 2.0);
 INSERT INTO `autodb`.`rating` (`id`, `rating`) VALUES (3, 3.8);
 INSERT INTO `autodb`.`rating` (`id`, `rating`) VALUES (4, 4.3);
 INSERT INTO `autodb`.`rating` (`id`, `rating`) VALUES (5, 4.6);
+INSERT INTO `autodb`.`rating` (`id`, `rating`) VALUES (6, 1.0);
+INSERT INTO `autodb`.`rating` (`id`, `rating`) VALUES (7, 4.9);
 
 COMMIT;
 
@@ -361,11 +359,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `autodb`;
-INSERT INTO `autodb`.`business` (`id`, `contact_id`, `rating_id`, `labor_rate`, `company_name`, `experience`, `website`) VALUES (1, 1, 1, 1.0, 'The Auto Shop', 1, 'theautoshop.com');
-INSERT INTO `autodb`.`business` (`id`, `contact_id`, `rating_id`, `labor_rate`, `company_name`, `experience`, `website`) VALUES (2, 2, 2, 2.0, 'Bill\'s Auto', 2, 'billsauto.com');
-INSERT INTO `autodb`.`business` (`id`, `contact_id`, `rating_id`, `labor_rate`, `company_name`, `experience`, `website`) VALUES (3, 3, 3, 3.0, 'Stump\'s Auto', 3, 'stumpsauto.com');
-INSERT INTO `autodb`.`business` (`id`, `contact_id`, `rating_id`, `labor_rate`, `company_name`, `experience`, `website`) VALUES (4, 4, 4, 4.0, 'SD Auto', 4, 'sdauto.com');
-INSERT INTO `autodb`.`business` (`id`, `contact_id`, `rating_id`, `labor_rate`, `company_name`, `experience`, `website`) VALUES (5, 5, 5, 5.0, 'BAMCIS', 5, 'bamcis.com');
+INSERT INTO `autodb`.`business` (`id`, `contact_id`, `rating_id`, `labor_rate`, `company_name`, `experience`, `website`) VALUES (1, 6, 6, 25, 'Stumpy Auto', 5, 'stumpyauto.com');
+INSERT INTO `autodb`.`business` (`id`, `contact_id`, `rating_id`, `labor_rate`, `company_name`, `experience`, `website`) VALUES (2, 7, 7, 25, 'SD Auto', 5, 'sdauto.com');
 
 COMMIT;
 
@@ -380,17 +375,5 @@ INSERT INTO `autodb`.`user` (`id`, `password`, `first_name`, `last_name`, `conta
 INSERT INTO `autodb`.`user` (`id`, `password`, `first_name`, `last_name`, `contact_id`, `rating_id`, `is_admin`, `username`) VALUES (3, 'pwd123', 'Victor', 'Black', 3, 3, 0, 'Victor-Black');
 INSERT INTO `autodb`.`user` (`id`, `password`, `first_name`, `last_name`, `contact_id`, `rating_id`, `is_admin`, `username`) VALUES (4, 'pwd123', 'Freddy', 'Fingers', 4, 4, 0, 'Freddy-Fingers');
 INSERT INTO `autodb`.`user` (`id`, `password`, `first_name`, `last_name`, `contact_id`, `rating_id`, `is_admin`, `username`) VALUES (5, 'pwd123', 'Bob', 'Bishop', 5, 5, 0, 'Bob-Bishop');
-
-COMMIT;
-
-
--- -----------------------------------------------------
--- Data for table `autodb`.`certification`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `autodb`;
-INSERT INTO `autodb`.`certification` (`id`, `business_id`, `name`) VALUES (1, 1, 'Oil Change');
-INSERT INTO `autodb`.`certification` (`id`, `business_id`, `name`) VALUES (2, 2, 'FixerCert');
-INSERT INTO `autodb`.`certification` (`id`, `business_id`, `name`) VALUES (3, 3, 'We can do it');
 
 COMMIT;

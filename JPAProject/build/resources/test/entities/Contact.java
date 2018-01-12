@@ -21,6 +21,7 @@ public class Contact {
 	private String phone;
 	private String email;
 	private String latitude;
+	@Column(name="long")
 	private String longitude;
 	@OneToOne(mappedBy="contact")
 	private User user; 
@@ -81,13 +82,6 @@ public class Contact {
 	}
 	public int getId() {
 		return id;
-	}
-	
-	public User getUser() {
-		return user;
-	}
-	public void setUser(User user) {
-		this.user = user;
 	}
 	@Override
 	public String toString() {

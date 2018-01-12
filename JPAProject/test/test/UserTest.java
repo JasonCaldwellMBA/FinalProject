@@ -29,18 +29,20 @@ public class UserTest {
 		this.em.close();
 		this.emf.close();
 	}
-//	@Test
-//	public void test_show_user() {
-//		User user = em.find(User.class, 1); 
-//		assertEquals("Allen", user.getFirstName());
-//	}
-//	@Test 
-//	public void test_index_user() {
-//		String query = "SELECT u FROM User u"; 
-//		List<User>list = em.createQuery(query, User.class)
-//				.getResultList();
-//		assertEquals(5, list.size()); 
-//	}
+	
+//CRUD functionality
+	@Test
+	public void test_show_user() {
+		User user = em.find(User.class, 1); 
+		assertEquals("Allen", user.getFirstName());
+	}
+	@Test 
+	public void test_index_user() {
+		String query = "SELECT u FROM User u"; 
+		List<User>list = em.createQuery(query, User.class)
+				.getResultList();
+		assertEquals(5, list.size()); 
+	}
 	@Test 
 	public void test_create_user() {
 		User user = new User(); 
@@ -55,18 +57,57 @@ public class UserTest {
 		user.setFirstName("Bibby");
 		user.setLastName("bob");
 		user.setRating(rating);
+		user.setPassword("pwd123");
 		user.setContact(contact);
+		
+		em.getTransaction().begin(); 
 		em.persist(user);
 		em.flush();
-		String query = "SELECT u FROM User u";
+		em.getTransaction().commit();
+		
+		String query = "SELECT u FROM User u WHERE u.username = :username";
 		List<User> list = em.createQuery(query, User.class)
+				.setParameter("username", "Bibby-bob")
 				.getResultList(); 
-		printUsers(list); 
-		assertEquals("Bibby-bob", list.get(0)); 
+		assertEquals("Bibby-bob", list.get(0).getUsername()); 
 	}
-	public void printUsers(List<User> list) {
-		for (User user : list) {
-			System.out.println(user);
-		}
+	@Test
+	public void test_destroy_user() {
+//		Works
+		User user = em.find(User.class, 7); 
+		em.getTransaction().begin();
+		em.remove(user);
+		em.getTransaction().commit();
+		
+		User u = em.find(User.class, 7); 
+		assertEquals(u, null); 
+	}
+	@Test
+	public void test_update_user() {
+		User user = em.find(User.class, 1); 
+		assertEquals("Allen", user.getFirstName());
+		em.getTransaction().begin();
+		user.setFirstName("Hodor"); 
+		em.getTransaction().commit();
+		User u = em.find(User.class, 1); 
+		assertEquals("Hodor", u.getFirstName());
+	}
+	
+//Mapping Test 
+	@Test
+	public void test_user_to_contact() {
+		User u = em.find(User.class, 1); 
+		assertEquals(u.getContact().getCity(), "Seattle");
+	}
+	@Test
+	public void test_user_to_rating() {
+		User u = em.find(User.class, 1); 
+		assertEquals(u.getRating().getRating(), 5.0, 1.0); 
+	}
+	@Test
+	public void test_user_to_vehicles() {
+		User u = em.find(User.class, 3); 
+		assertEquals("Cobalt",u.getVehicle().get(0).getModel());
+		assertEquals("Bronco", u.getVehicle().get(1).getModel());
 	}
 }

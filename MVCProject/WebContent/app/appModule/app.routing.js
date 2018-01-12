@@ -4,4 +4,7 @@ angular.module('appModule')
 		.when('/register', {
 			template: '<register></register>'
 		})
+		.when('/businessHome',{
+			template: '<bus_component></bus_component>'
+		})
 });

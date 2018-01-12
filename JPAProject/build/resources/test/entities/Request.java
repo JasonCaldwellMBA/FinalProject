@@ -32,9 +32,8 @@ public class Request {
 	
 	private String img;
 	
-//	@OneToOne(mappedBy="request")
-//	@JoinColumn(name="")
-//	private PartRequest partRequest;
+	@OneToOne(mappedBy="request")
+	private PartRequest partRequest;
 	
 	private String description; 
 	
@@ -99,13 +98,13 @@ public class Request {
 		this.img = img;
 	}
 
-//	public PartRequest getPartRequest() {
-//		return partRequest;
-//	}
-//
-//	public void setPartRequest(PartRequest partRequest) {
-//		this.partRequest = partRequest;
-//	}
+	public PartRequest getPartRequest() {
+		return partRequest;
+	}
+
+	public void setPartRequest(PartRequest partRequest) {
+		this.partRequest = partRequest;
+	}
 
 	public String getDescription() {
 		return description;
@@ -149,13 +148,13 @@ public class Request {
 	
 	//====================================toString=======================================//
 
-//	@Override
-//	public String toString() {
-//		return "Request [id=" + id + ", user=" + user + ", vehicle=" + vehicle + ", completed=" + completed
-//				+ ", active=" + active + ", img=" + img + ", partRequest=" + partRequest + ", description="
-//				+ description + ", postDate=" + postDate + ", expireDate=" + expireDate + ", completeDate="
-//				+ completeDate + ", estimate=" + estimate + "]";
-//	} 
+	@Override
+	public String toString() {
+		return "Request [id=" + id + ", user=" + user + ", vehicle=" + vehicle + ", completed=" + completed
+				+ ", active=" + active + ", img=" + img + ", partRequest=" + partRequest + ", description="
+				+ description + ", postDate=" + postDate + ", expireDate=" + expireDate + ", completeDate="
+				+ completeDate + ", estimate=" + estimate + "]";
+	} 
 	
 	
 }

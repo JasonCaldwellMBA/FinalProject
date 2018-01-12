@@ -2,6 +2,7 @@ package entities;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,18 +14,23 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import org.hibernate.annotations.Cascade;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 public class Business {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
-	@ManyToOne
+	
+	@ManyToOne(cascade=CascadeType.PERSIST)
 	@JoinColumn(name="contact_id")
 	private Contact contact;
-	@OneToOne
+	
+	@OneToOne(cascade=CascadeType.PERSIST)
 	@JoinColumn(name="rating_id")
 	private Rating rating;
+	
 	@Column(name="labor_rate")
 	private double laborRate;
 	@Column(name="company_name")
@@ -36,6 +42,7 @@ public class Business {
 	@JsonIgnore
 	@OneToMany(mappedBy="business")
 	private List<Certification> certifications;
+	private boolean active; 
 	@JsonIgnore
 	@ManyToMany(mappedBy="associatedBusinesses")
 	private List<User> employees; 

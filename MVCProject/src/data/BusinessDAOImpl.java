@@ -1,5 +1,6 @@
 package data;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -7,7 +8,10 @@ import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestBody;
 
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import entities.Business;
@@ -33,14 +37,19 @@ public class BusinessDAOImpl implements BusinessDAO {
 	}
 
 	@Override
-	public Business create(int bid, String businessJson) {
+	public Business create( String businessJson) {
 		ObjectMapper mapper = new ObjectMapper();
 		Business business = null;
 		try {
+			System.out.println(businessJson);
 			business = mapper.readValue(businessJson, Business.class);
 			em.persist(business);
 			em.flush();
-		} catch (Exception e) {
+		} catch (JsonParseException e) {
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		return business;
@@ -62,15 +71,9 @@ public class BusinessDAOImpl implements BusinessDAO {
 	}
 
 	@Override
-	public Boolean destroy(int bid) {
+	public Business destroy(int bid) {
 		Business business = em.find(Business.class, bid);
-		try {
-			em.remove(business);
-			return true;
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return false;
+		return business;
 	}
 
 	

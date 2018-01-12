@@ -11,10 +11,10 @@ public interface BusinessDAO {
 
 	  public Business show(int bid);
 
-	  public Business create(int uid, String businessJson);
+	  public Business create(String businessJson);
 
 	  public Business update(int bid, String businessJson);
 
-	  public Boolean destroy(int bid);
+	  public Business destroy(int bid);
 
 }

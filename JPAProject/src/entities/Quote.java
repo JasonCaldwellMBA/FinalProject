@@ -12,8 +12,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "quote")
@@ -21,6 +22,7 @@ public class Quote {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id; 
+	
 	@ManyToOne
 	@JoinColumn(name = "request_id")
 	private Request request;
@@ -43,7 +45,9 @@ public class Quote {
 	
 	@Column(name = "estimate")
 	private double estimate;
+	private boolean active; 
 	
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(
 			name="parts_quote",
@@ -105,6 +109,12 @@ public class Quote {
 	}
 	public void setEstimate(double estimate) {
 		this.estimate = estimate;
+	}
+	public boolean isActive() {
+		return active;
+	}
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 	@Override
 	public String toString() {

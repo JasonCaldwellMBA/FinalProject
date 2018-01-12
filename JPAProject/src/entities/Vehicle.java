@@ -14,26 +14,18 @@ import javax.persistence.OneToMany;
 public class Vehicle {
 	
 	//===========================Fields====================================//
-	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
-	
 	private String make;
-	
 	private String model;
-	
 	private int year;
-	
 	private int mileage;
-	
 	@OneToMany(mappedBy="vehicle")
 	private List<Request> requests;
-	
 	@ManyToOne
 	@JoinColumn(name="user_id")
 	private User user;
-	
 	private String vin;
 	
 	//===========================Getters and Setters==========================//

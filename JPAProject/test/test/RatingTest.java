@@ -32,13 +32,13 @@ public class RatingTest {
 	}
 	
 	@Test
-	public void test_quote() {
+	public void test_rating() {
 		assertEquals(1, rating.getId());
 	}
 	
 	
 	@Test
-	public void test_quote_mapping() {
+	public void test_rating_mapping() {
 	}
 	
 }

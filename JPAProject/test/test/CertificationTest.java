@@ -10,36 +10,35 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import entities.PartQuote;
+import entities.Certification;
 
-public class PartQuoteTest {
+public class CertificationTest {
 	private EntityManagerFactory emf;
 	private EntityManager em;
-	private PartQuote partQuote;
+	private Certification certification;
 	
 	@Before
 	  public void setUp() throws Exception {
 		this.emf = Persistence.createEntityManagerFactory("AutoDB");
 		this.em = emf.createEntityManager();
-		partQuote = em.find(PartQuote.class, 1);
+		certification = em.find(Certification.class, 1);
 	}
 	
 	@After
 	  public void tearDown() throws Exception { 
 		this.em.close();
 		this.emf.close();
-		partQuote = null;
+		certification = null;
 	}
 	
 	@Test
-	public void test_part_quote() {
-		assertEquals(1, partQuote.getId());
+	public void test_certification() {
+		assertEquals(1, certification.getId());
 	}
 	
 	
 	@Test
-	public void test_part_quote_mapping() {
+	public void test_certification_mapping() {
 	}
 	
 }
-

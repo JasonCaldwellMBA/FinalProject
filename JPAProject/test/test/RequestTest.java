@@ -32,13 +32,13 @@ public class RequestTest {
     }
     
     @Test
-    public void test_quote() {
+    public void test_request() {
         assertEquals(1, request.getId());
     }
     
     
     @Test
-    public void test_quote_mapping() {
+    public void test_request_mapping() {
     }
     
 }

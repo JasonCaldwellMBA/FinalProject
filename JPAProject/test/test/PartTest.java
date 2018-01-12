@@ -32,13 +32,13 @@ public class PartTest {
 	}
 	
 	@Test
-	public void test_quote() {
+	public void test_part() {
 		assertEquals(1, part.getId());
 	}
 	
 	
 	@Test
-	public void test_quote_mapping() {
+	public void test_part_mapping() {
 	}
 	
 }

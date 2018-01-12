@@ -359,8 +359,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `autodb`;
-INSERT INTO `autodb`.`business` (`id`, `contact_id`, `rating_id`, `labor_rate`, `company_name`, `experience`, `website`) VALUES (1, 6, 6, 25, 'Stumpy Auto', NULL, NULL);
-INSERT INTO `autodb`.`business` (`id`, `contact_id`, `rating_id`, `labor_rate`, `company_name`, `experience`, `website`) VALUES (2, 7, 7, 25, 'SD Auto', NULL, NULL);
+INSERT INTO `autodb`.`business` (`id`, `contact_id`, `rating_id`, `labor_rate`, `company_name`, `experience`, `website`) VALUES (1, 6, 6, 25, 'Stumpy Auto', 5, 'stumpyauto.com');
+INSERT INTO `autodb`.`business` (`id`, `contact_id`, `rating_id`, `labor_rate`, `company_name`, `experience`, `website`) VALUES (2, 7, 7, 25, 'SD Auto', 5, 'sdauto.com');
 
 COMMIT;
 

@@ -57,10 +57,10 @@ DROP TABLE IF EXISTS `autodb`.`business` ;
 CREATE TABLE IF NOT EXISTS `autodb`.`business` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `contact_id` INT(11) NOT NULL,
-  `rating_id` INT(11) NULL DEFAULT NULL,
+  `rating_id` INT(11) NULL DEFAULT 0,
   `labor_rate` DECIMAL(10,0) NOT NULL,
   `company_name` TEXT NOT NULL,
-  `experience` INT(11) NULL DEFAULT NULL,
+  `experience` INT(11) NULL DEFAULT 0,
   `website` VARCHAR(45) NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_business_contact_idx` (`contact_id` ASC),

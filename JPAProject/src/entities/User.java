@@ -1,6 +1,7 @@
 package entities;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,10 +21,10 @@ public class User {
 	@Column(name="last_name")
 	private String lastName;
 	private String password; 
-	@OneToOne
+	@OneToOne(cascade= CascadeType.PERSIST)
 	@JoinColumn(name="contact_id")
 	private Contact contact;
-	@OneToOne
+	@OneToOne(cascade= CascadeType.PERSIST)
 	@JoinColumn(name="rating_id")
 	private Rating rating;
 	@Column(name="is_admin")

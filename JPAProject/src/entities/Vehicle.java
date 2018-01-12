@@ -27,6 +27,7 @@ public class Vehicle {
 	@JoinColumn(name="user_id")
 	private User user;
 	private String vin;
+	private boolean active; 
 	
 	//===========================Getters and Setters==========================//
 

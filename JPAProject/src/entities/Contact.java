@@ -24,6 +24,7 @@ public class Contact {
 	private String email;
 	private String latitude;
 	private String longitude;
+	private boolean active; 
 	@JsonIgnore
 	@OneToOne(mappedBy="contact")
 	private User user; 

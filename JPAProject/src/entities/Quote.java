@@ -45,6 +45,7 @@ public class Quote {
 	
 	@Column(name = "estimate")
 	private double estimate;
+	private boolean active; 
 	
 	@JsonIgnore
 	@ManyToMany

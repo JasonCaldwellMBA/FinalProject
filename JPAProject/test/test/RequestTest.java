@@ -32,8 +32,22 @@ public class RequestTest {
     }
     
     @Test
+<<<<<<< HEAD
     public void test_request() {
+=======
+    public void test_vehicle_mapping() {
+>>>>>>> 8e81135275bd38eba5a8468dc35e961d73d17e50
         assertEquals(1, request.getId());
+        assertEquals("desc1", request.getDescription());
+        assertEquals("model1", request.getVehicle().getModel());
+        assertEquals("2017-12-31 11:30:45.0", request.getCompleteDate().toString());
+        assertEquals(false, request.isCompleted());
+        assertEquals(false, request.isActive());
+        assertEquals("IMG", request.getImg());
+        assertEquals("2017-03-31 11:30:45.0", request.getExpireDate().toString());
+        assertEquals("2018-01-01 11:30:45.0", request.getPostDate().toString());
+        assertEquals(1, request.getEstimate(), 0.01);
+        
     }
     
     

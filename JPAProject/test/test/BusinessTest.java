@@ -41,13 +41,22 @@ public class BusinessTest {
 	public void test_business_mapping() {
 		assertEquals(1, business.getId());
 		assertEquals(1, business.getContact().getId());
-		assertEquals("", business.getCertifications().get(0).getName());
-		assertEquals(1, business.getRating());
-		assertEquals("", business.getLaborRate());
-		assertEquals("", business.getExperience());
+		assertEquals("Oil Change", business.getCertifications().get(0).getName());
+		assertEquals(5.0, business.getRating().getRating(), 0);
+		assertEquals(1.0, business.getLaborRate(), 0);
+		assertEquals(1, business.getExperience());
 		assertEquals("theautoshop.com", business.getWebsite());
 		assertEquals("The Auto Shop", business.getCompanyName());
-
+	}
+	@Test
+	public void test_create_business() {
+		em.getTransaction().begin();
+		Business newBusiness = new Business();
+		newBusiness.setContact(business.getContact());
+		newBusiness.setLaborRate(0);
+		newBusiness.setCompanyName("company name");
+		
+		em.persist(newBusiness);
 	}
 
 	

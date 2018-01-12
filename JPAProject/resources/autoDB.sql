@@ -21,7 +21,7 @@ USE `autodb` ;
 DROP TABLE IF EXISTS `autodb`.`contact` ;
 
 CREATE TABLE IF NOT EXISTS `autodb`.`contact` (
-  `id` INT(11) NOT NULL,
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
   `city` VARCHAR(45) NULL DEFAULT NULL,
   `state` VARCHAR(45) NULL DEFAULT NULL,
   `address_1` VARCHAR(45) NULL DEFAULT NULL,
@@ -42,7 +42,7 @@ DEFAULT CHARACTER SET = utf8;
 DROP TABLE IF EXISTS `autodb`.`rating` ;
 
 CREATE TABLE IF NOT EXISTS `autodb`.`rating` (
-  `id` INT(11) NOT NULL,
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
   `rating` DECIMAL(10,0) NULL DEFAULT 0,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
@@ -55,7 +55,7 @@ DEFAULT CHARACTER SET = utf8;
 DROP TABLE IF EXISTS `autodb`.`business` ;
 
 CREATE TABLE IF NOT EXISTS `autodb`.`business` (
-  `id` INT(11) NOT NULL,
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
   `contact_id` INT(11) NOT NULL,
   `rating_id` INT(11) NULL DEFAULT NULL,
   `labor_rate` DECIMAL(10,0) NOT NULL,
@@ -85,13 +85,13 @@ DEFAULT CHARACTER SET = utf8;
 DROP TABLE IF EXISTS `autodb`.`user` ;
 
 CREATE TABLE IF NOT EXISTS `autodb`.`user` (
-  `id` INT(11) NOT NULL,
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
   `password` VARCHAR(255) NOT NULL,
   `first_name` VARCHAR(45) NOT NULL,
   `last_name` VARCHAR(45) NOT NULL,
   `contact_id` INT(11) NOT NULL,
   `rating_id` INT(11) NULL DEFAULT NULL,
-  `is_admin` TINYINT(4) NOT NULL,
+  `is_admin` TINYINT NOT NULL,
   `username` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `username_UNIQUE` (`id` ASC),
@@ -117,8 +117,8 @@ DEFAULT CHARACTER SET = utf8;
 DROP TABLE IF EXISTS `autodb`.`business_user` ;
 
 CREATE TABLE IF NOT EXISTS `autodb`.`business_user` (
-  `user_id` INT(11) NULL DEFAULT NULL,
-  `business_id` INT(11) NULL DEFAULT NULL,
+  `user_id` INT(11) NULL,
+  `business_id` INT(11) NULL,
   INDEX `fk_user_business_user_idx` (`user_id` ASC),
   INDEX `fk_business_business_user_idx` (`business_id` ASC),
   CONSTRAINT `fk_business_business_user`
@@ -140,8 +140,13 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `autodb`.`certification` ;
 
+<<<<<<< HEAD
+CREATE TABLE IF NOT EXISTS `autodb`.`certifications` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+=======
 CREATE TABLE IF NOT EXISTS `autodb`.`certification` (
   `id` INT(11) NOT NULL,
+>>>>>>> 91bb23315e7a1426ea804af1e10773624af21056
   `business_id` INT(11) NULL DEFAULT NULL,
   `name` VARCHAR(45) NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -161,7 +166,7 @@ DEFAULT CHARACTER SET = utf8;
 DROP TABLE IF EXISTS `autodb`.`part` ;
 
 CREATE TABLE IF NOT EXISTS `autodb`.`part` (
-  `id` INT(11) NOT NULL,
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
   `name` TEXT NOT NULL,
   `cost` DECIMAL(10,0) NOT NULL,
   `serial_number` INT(11) NULL DEFAULT NULL,
@@ -176,7 +181,7 @@ DEFAULT CHARACTER SET = utf8;
 DROP TABLE IF EXISTS `autodb`.`vehicle` ;
 
 CREATE TABLE IF NOT EXISTS `autodb`.`vehicle` (
-  `id` INT(11) NOT NULL,
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
   `make` VARCHAR(45) NOT NULL,
   `model` VARCHAR(45) NOT NULL,
   `year` INT(11) NOT NULL,
@@ -200,7 +205,7 @@ DEFAULT CHARACTER SET = utf8;
 DROP TABLE IF EXISTS `autodb`.`request` ;
 
 CREATE TABLE IF NOT EXISTS `autodb`.`request` (
-  `id` INT(11) NOT NULL,
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
   `user_id` INT(11) NOT NULL,
   `description` VARCHAR(45) NOT NULL,
   `vehicle_id` INT(11) NOT NULL,
@@ -234,7 +239,7 @@ DEFAULT CHARACTER SET = utf8;
 DROP TABLE IF EXISTS `autodb`.`quote` ;
 
 CREATE TABLE IF NOT EXISTS `autodb`.`quote` (
-  `id` INT(11) NOT NULL,
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
   `estimate` DECIMAL(10,0) NOT NULL,
   `post_date` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
   `description` TEXT NULL DEFAULT NULL,
@@ -265,11 +270,12 @@ DEFAULT CHARACTER SET = utf8;
 DROP TABLE IF EXISTS `autodb`.`parts_quote` ;
 
 CREATE TABLE IF NOT EXISTS `autodb`.`parts_quote` (
-  `id` INT(11) NOT NULL,
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
   `quote_id` INT(11) NOT NULL,
   `part_id` INT(11) NOT NULL,
   INDEX `fk_parts_parts_quote_idx` (`quote_id` ASC),
   INDEX `fk_part_parts_quote_idx` (`part_id` ASC),
+  PRIMARY KEY (`id`),
   CONSTRAINT `fk_part_parts_quote`
     FOREIGN KEY (`part_id`)
     REFERENCES `autodb`.`part` (`id`)
@@ -290,7 +296,7 @@ DEFAULT CHARACTER SET = utf8;
 DROP TABLE IF EXISTS `autodb`.`parts_request` ;
 
 CREATE TABLE IF NOT EXISTS `autodb`.`parts_request` (
-  `id` INT(11) NOT NULL,
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
   `part_id` INT(11) NOT NULL,
   `request_id` INT(11) NOT NULL,
   PRIMARY KEY (`id`),

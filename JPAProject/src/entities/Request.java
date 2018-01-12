@@ -1,6 +1,7 @@
 package entities;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 @Entity
@@ -32,9 +35,18 @@ public class Request {
 	
 	private String img;
 	
-//	@OneToOne(mappedBy="request")
-//	@JoinColumn(name="")
-//	private PartRequest partRequest;
+	@ManyToMany
+	@JoinTable(
+			name="parts_request",
+			joinColumns=@JoinColumn(
+					name="request_id",
+					referencedColumnName = "id"
+			),
+			inverseJoinColumns= @JoinColumn(
+			name="part_id",
+			referencedColumnName="id")
+	)
+	private List<Part> parts;
 	
 	private String description; 
 	
@@ -99,14 +111,6 @@ public class Request {
 		this.img = img;
 	}
 
-//	public PartRequest getPartRequest() {
-//		return partRequest;
-//	}
-//
-//	public void setPartRequest(PartRequest partRequest) {
-//		this.partRequest = partRequest;
-//	}
-
 	public String getDescription() {
 		return description;
 	}
@@ -146,16 +150,24 @@ public class Request {
 	public void setEstimate(double estimate) {
 		this.estimate = estimate;
 	}
+
+	public List<Part> getParts() {
+		return parts;
+	}
+
+	public void setParts(List<Part> parts) {
+		this.parts = parts;
+	}
+
 	
 	//====================================toString=======================================//
 
-//	@Override
-//	public String toString() {
-//		return "Request [id=" + id + ", user=" + user + ", vehicle=" + vehicle + ", completed=" + completed
-//				+ ", active=" + active + ", img=" + img + ", partRequest=" + partRequest + ", description="
-//				+ description + ", postDate=" + postDate + ", expireDate=" + expireDate + ", completeDate="
-//				+ completeDate + ", estimate=" + estimate + "]";
-//	} 
-	
+	@Override
+	public String toString() {
+		return "Request [id=" + id + ", completed=" + completed + ", active=" + active + ", img=" + img
+				+ ", description=" + description + ", postDate=" + postDate + ", expireDate=" + expireDate
+				+ ", completeDate=" + completeDate + ", estimate=" + estimate + "]";
+	}
+
 	
 }

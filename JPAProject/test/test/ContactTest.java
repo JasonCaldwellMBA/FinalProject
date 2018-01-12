@@ -10,35 +10,35 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import entities.PartRequest;
+import entities.Contact;
 
-public class PartRequestTest {
+public class ContactTest {
 	private EntityManagerFactory emf;
 	private EntityManager em;
-	private PartRequest partRequest;
+	private Contact contact;
 	
 	@Before
 	  public void setUp() throws Exception {
 		this.emf = Persistence.createEntityManagerFactory("AutoDB");
 		this.em = emf.createEntityManager();
-		partRequest = em.find(PartRequest.class, 1);
+		contact = em.find(Contact.class, 1);
 	}
 	
 	@After
 	  public void tearDown() throws Exception { 
 		this.em.close();
 		this.emf.close();
-		partRequest = null;
+		contact = null;
 	}
 	
 	@Test
-	public void test_quote() {
-		assertEquals(1, partRequest.getId());
+	public void test_contact() {
+		assertEquals(1, contact.getId());
 	}
 	
 	
 	@Test
-	public void test_quote_mapping() {
+	public void test_contact_mapping() {
 	}
 	
 }

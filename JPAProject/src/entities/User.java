@@ -46,7 +46,7 @@ public class User {
 			name="business_id",
 			referencedColumnName="id")
 	)
-	List<Business> associatedBusinesses;
+	private List<Business> associatedBusinesses;
 	
 	
 	public String getFirstName() {

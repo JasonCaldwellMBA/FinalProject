@@ -378,7 +378,6 @@ INSERT INTO `autodb`.`user` (`id`, `password`, `first_name`, `last_name`, `conta
 
 COMMIT;
 
-
 -- -----------------------------------------------------
 -- Data for table `autodb`.`certification`
 -- -----------------------------------------------------

@@ -4,12 +4,6 @@ angular.module('appModule', ['ngRoute'])
 	    .when('/home', {
 	      template : '<home></home>'
 	    })
-	    .when('/about', {
-	      template : '<about></about>'
-	    })
-	    .when('/contact', {
-	    	template : '<contact></contact>'
-	    })
 	    .when('/register', {
 	    	template : '<register></register>'
 	    })

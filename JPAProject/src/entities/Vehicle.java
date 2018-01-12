@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Vehicle {
 	
@@ -21,8 +23,10 @@ public class Vehicle {
 	private String model;
 	private int year;
 	private int mileage;
+	@JsonIgnore
 	@OneToMany(mappedBy="vehicle")
 	private List<Request> requests;
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="user_id")
 	private User user;

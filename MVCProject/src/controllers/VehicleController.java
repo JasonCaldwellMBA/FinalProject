@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,5 +29,27 @@ public class VehicleController {
 			res.setStatus(404);
 		}
 		return vehicles; 
+	}
+	@RequestMapping(path="/user/{id}/vehicle/{vid}", method=RequestMethod.GET)
+	public Vehicle show(@PathVariable int id, @PathVariable int vid, HttpServletResponse res) {
+		Vehicle v = dao.show(id, vid); 
+		if(v != null) {
+			res.setStatus(202);
+		}
+		else {
+			res.setStatus(404);
+		}
+		return v; 
+	}
+	@RequestMapping(path="/user/{id}/vehicle", method=RequestMethod.POST)
+	public Vehicle create(@PathVariable int id, @PathVariable int vid,@RequestBody String json, HttpServletResponse res) {
+		Vehicle v = dao.create(id, json); 
+		if(v != null) {
+			res.setStatus(201);
+		}
+		else {
+			res.setStatus(400);
+		}
+		return v;
 	}
 }

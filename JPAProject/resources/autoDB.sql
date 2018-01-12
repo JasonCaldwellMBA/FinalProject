@@ -57,7 +57,6 @@ DROP TABLE IF EXISTS `autodb`.`business` ;
 CREATE TABLE IF NOT EXISTS `autodb`.`business` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `contact_id` INT(11) NOT NULL,
-  `specialty_id` INT(11) NOT NULL,
   `rating_id` INT(11) NULL DEFAULT NULL,
   `labor_rate` DECIMAL(10,0) NOT NULL,
   `company_name` TEXT NOT NULL,
@@ -333,7 +332,8 @@ INSERT INTO `autodb`.`contact` (`id`, `city`, `state`, `address_1`, `address_2`,
 INSERT INTO `autodb`.`contact` (`id`, `city`, `state`, `address_1`, `address_2`, `zipcode`, `phone`, `email`, `latitude`, `longitude`) VALUES (3, 'Denver', 'CO', 'Arapahoe Rd 909', NULL, '20202', '888-888-8888', 'Victor.black@gmail.com', NULL, NULL);
 INSERT INTO `autodb`.`contact` (`id`, `city`, `state`, `address_1`, `address_2`, `zipcode`, `phone`, `email`, `latitude`, `longitude`) VALUES (4, 'Kansas City', 'MO', '905 E Newton', NULL, '39393', '888-888-8888', 'Freddy.fingers@hotmail.com', NULL, NULL);
 INSERT INTO `autodb`.`contact` (`id`, `city`, `state`, `address_1`, `address_2`, `zipcode`, `phone`, `email`, `latitude`, `longitude`) VALUES (5, 'San diego', 'CA', 'Imperial drive 202', NULL, '89191', '888-888-8888', 'Bob.bishop@live.com', NULL, NULL);
-INSERT INTO `autodb`.`contact` (`id`, `city`, `state`, `address_1`, `address_2`, `zipcode`, `phone`, `email`, `latitude`, `longitude`) VALUES (DEFAULT, NULL, NULL, NULL, NULL, DEFAULT, DEFAULT, DEFAULT, NULL, NULL);
+INSERT INTO `autodb`.`contact` (`id`, `city`, `state`, `address_1`, `address_2`, `zipcode`, `phone`, `email`, `latitude`, `longitude`) VALUES (6, 'Provo', 'UT', '1239 W Center ST', NULL, '81023', '888-888-8888', 'miss.piggy@bananas.com', NULL, NULL);
+INSERT INTO `autodb`.`contact` (`id`, `city`, `state`, `address_1`, `address_2`, `zipcode`, `phone`, `email`, `latitude`, `longitude`) VALUES (7, 'Salt Lake City', 'UT', '12300 E Main', NULL, '81234', '888-888-8888', 'winnie.pooh@live.com', NULL, NULL);
 
 COMMIT;
 
@@ -348,6 +348,19 @@ INSERT INTO `autodb`.`rating` (`id`, `rating`) VALUES (2, 2.0);
 INSERT INTO `autodb`.`rating` (`id`, `rating`) VALUES (3, 3.8);
 INSERT INTO `autodb`.`rating` (`id`, `rating`) VALUES (4, 4.3);
 INSERT INTO `autodb`.`rating` (`id`, `rating`) VALUES (5, 4.6);
+INSERT INTO `autodb`.`rating` (`id`, `rating`) VALUES (6, 1.0);
+INSERT INTO `autodb`.`rating` (`id`, `rating`) VALUES (7, 4.9);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `autodb`.`business`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `autodb`;
+INSERT INTO `autodb`.`business` (`id`, `contact_id`, `rating_id`, `labor_rate`, `company_name`, `experience`, `website`) VALUES (1, 6, 6, 25, 'Stumpy Auto', NULL, NULL);
+INSERT INTO `autodb`.`business` (`id`, `contact_id`, `rating_id`, `labor_rate`, `company_name`, `experience`, `website`) VALUES (2, 7, 7, 25, 'SD Auto', NULL, NULL);
 
 COMMIT;
 
@@ -364,18 +377,3 @@ INSERT INTO `autodb`.`user` (`id`, `password`, `first_name`, `last_name`, `conta
 INSERT INTO `autodb`.`user` (`id`, `password`, `first_name`, `last_name`, `contact_id`, `rating_id`, `is_admin`, `username`) VALUES (5, 'pwd123', 'Bob', 'Bishop', 5, 5, 0, 'Bob-Bishop');
 
 COMMIT;
-
-
--- -----------------------------------------------------
--- Data for table `autodb`.`vehicle`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `autodb`;
-INSERT INTO `autodb`.`vehicle` (`id`, `make`, `model`, `year`, `user_id`, `vin`, `mileage`) VALUES (1, 'Ford', 'Escape', 2006, 1, '30903820983', 1277777);
-INSERT INTO `autodb`.`vehicle` (`id`, `make`, `model`, `year`, `user_id`, `vin`, `mileage`) VALUES (2, 'Ford', 'Fusion', 2017, 2, '33209320983', 393993);
-INSERT INTO `autodb`.`vehicle` (`id`, `make`, `model`, `year`, `user_id`, `vin`, `mileage`) VALUES (3, 'Chevorlet', 'Cobalt', 2007, 3, '87878363622', 90000);
-INSERT INTO `autodb`.`vehicle` (`id`, `make`, `model`, `year`, `user_id`, `vin`, `mileage`) VALUES (4, 'Ford', 'Bronco', 1982, 3, '87822828228', 300000);
-INSERT INTO `autodb`.`vehicle` (`id`, `make`, `model`, `year`, `user_id`, `vin`, `mileage`) VALUES (5, 'BMW', 'Series 2', 2018, 4, '382827171717', 939393);
-
-COMMIT;
-

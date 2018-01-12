@@ -21,6 +21,7 @@ public class BusinessDAOImpl implements BusinessDAO {
 
 	@Override
 	public List<Business> index(int bid) {
+		System.out.println("in DAO");
 		String query = "Select b from Business b";
 		return em.createQuery(query, Business.class)
 				 .getResultList();

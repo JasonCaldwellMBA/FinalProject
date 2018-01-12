@@ -92,12 +92,12 @@ public class BusinessTest {
 	}
 	
 	@Test
-	public void test_business_to_certs() {
+	public void test_business_to_ratings() {
 		
 	}
 	@Test
-	public void test_business_to_rating() {
-		assertEquals("The best", business.getCertifications().get(0).getName());
+	public void test_business_to_certs() {
+		assertEquals("Automotive master", business.getCertifications().get(0).getName());
 	}
 	
 

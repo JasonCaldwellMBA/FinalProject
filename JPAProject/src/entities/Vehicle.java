@@ -97,6 +97,14 @@ public class Vehicle {
 	
 	//====================================toString=======================================//
 
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
 	@Override
 	public String toString() {
 		return "Vehicle [id=" + id + ", make=" + make + ", model=" + model + ", year=" + year + ", mileage=" + mileage

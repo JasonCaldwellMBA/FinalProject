@@ -110,6 +110,13 @@ public class Quote {
 	public void setEstimate(double estimate) {
 		this.estimate = estimate;
 	}
+	
+	public boolean isActive() {
+		return active;
+	}
+	public void setActive(boolean active) {
+		this.active = active;
+	}
 	@Override
 	public String toString() {
 		return "Quote [id=" + id + ", request=" + request + ", description=" + description + ", postDate=" + postDate

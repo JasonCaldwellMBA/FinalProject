@@ -37,11 +37,11 @@ public class BusinessDAOImpl implements BusinessDAO {
 	}
 
 	@Override
-	public Business create(@RequestBody String businessJson) {
+	public Business create( String businessJson) {
 		ObjectMapper mapper = new ObjectMapper();
 		Business business = null;
 		try {
-			System.out.println(mapper.readValue(businessJson, Business.class));
+			System.out.println(businessJson);
 			business = mapper.readValue(businessJson, Business.class);
 			em.persist(business);
 			em.flush();
@@ -56,7 +56,7 @@ public class BusinessDAOImpl implements BusinessDAO {
 	}
 
 	@Override
-	public Business update(int bid, @RequestBody String businessJson) {
+	public Business update(int bid, String businessJson) {
 		ObjectMapper mapper = new ObjectMapper();
 		Business holderBusiness = null;
 		Business orgBusiness = null;
@@ -71,15 +71,15 @@ public class BusinessDAOImpl implements BusinessDAO {
 	}
 
 	@Override
-	public Boolean destroy(int bid) {
+	public Business destroy(int bid) {
 		Business business = em.find(Business.class, bid);
 		try {
 			em.remove(business);
-			return true;
+			return business;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return false;
+		return business;
 	}
 
 	

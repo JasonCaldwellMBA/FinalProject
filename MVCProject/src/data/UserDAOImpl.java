@@ -53,15 +53,14 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public User update(int uid, int tid, String todoJson) {
-		// TODO Auto-generated method stub
+		ObjectMapper mapper = new ObjectMapper(); 
+		User user = null; 
 		return null;
 	}
-
 	@Override
-	public Boolean destroy(int uid, int tid) {
-		// TODO Auto-generated method stub
-		return null;
+	public User destroy(int uid) {
+		User user = em.find(User.class, uid); 
+		em.remove(user);
+		return user;
 	}
-
-
 }

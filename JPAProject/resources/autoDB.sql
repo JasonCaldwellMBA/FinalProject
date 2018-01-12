@@ -422,6 +422,5 @@ USE `autodb`;
 INSERT INTO `autodb`.`quote` (`id`, `estimate`, `post_date`, `description`, `request_id`, `complete_date`, `expire_date`, `business_id`) VALUES (1, 69.99, '2018-01-02 11:30:45', '60k Maintenence', 1, '2018-01-08 09:30:00', '', 1);
 INSERT INTO `autodb`.`quote` (`id`, `estimate`, `post_date`, `description`, `request_id`, `complete_date`, `expire_date`, `business_id`) VALUES (2, 19.99, '2018-01-11 10:05:45', 'Oil Change', 2, '', '', 2);
 INSERT INTO `autodb`.`quote` (`id`, `estimate`, `post_date`, `description`, `request_id`, `complete_date`, `expire_date`, `business_id`) VALUES (3, 9.99, '2018-01-06 06:30:45', 'Air Filter', 3, '2018-01-09 09:30:00', '2018-01-08 09:30:00', 2);
->>>>>>> 48ceab43af94d6e91f755b600e9e65e88ae618a6
 
 COMMIT;

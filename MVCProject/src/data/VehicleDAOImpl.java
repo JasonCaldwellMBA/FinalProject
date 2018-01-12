@@ -13,6 +13,7 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import entities.User;
 import entities.Vehicle;
 @Transactional
 @Repository
@@ -39,6 +40,8 @@ public class VehicleDAOImpl implements VehicleDAO {
 		
 		try {
 			v = mapper.readValue(json, Vehicle.class);
+			User u = em.find(User.class, uid); 
+			v.setUser(u);
 			em.persist(v);
 		} catch (JsonParseException e) {
 			e.printStackTrace();

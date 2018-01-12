@@ -23,7 +23,7 @@ public class QuoteDAOImpl implements QuoteDAO {
 	private EntityManager em;
 
 	@Override
-    public Set<Quote> index(int bid) {
+    public Set<Quote> index(int bid, int rid) {
         
         String query = "SELECT q FROM Quote q WHERE q.business.id = :bid";
         
@@ -34,12 +34,12 @@ public class QuoteDAOImpl implements QuoteDAO {
     }
 
     @Override
-    public Quote show(int bid, int qid) {
+    public Quote show(int bid, int rid, int qid) {
         return em.find(Quote.class, qid);
     }
 
     @Override
-    public Quote create(int bid, String quoteJson) {
+    public Quote create(int bid, int rid, String quoteJson) {
         ObjectMapper om = new ObjectMapper();
         Quote quote = null;
         try {
@@ -56,7 +56,7 @@ public class QuoteDAOImpl implements QuoteDAO {
     }
 
     @Override
-    public Quote update(int bid, int qid, String quoteJson) {
+    public Quote update(int bid, int rid, int qid, String quoteJson) {
         ObjectMapper om = new ObjectMapper();
         Quote updateQuote = null;
         Quote origQuote = null;
@@ -76,7 +76,7 @@ public class QuoteDAOImpl implements QuoteDAO {
     }
 
     @Override
-    public Boolean destroy(int bid, int qid) {
+    public Boolean destroy(int bid, int rid, int qid) {
         Quote quote = em.find(Quote.class, qid);
         if (quote == null) {
             return null;

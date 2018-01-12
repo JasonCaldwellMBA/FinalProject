@@ -55,16 +55,16 @@ public class BusinessController {
 		return bus;
 	}
 	
-	public Boolean destroy(HttpServletResponse res, @PathVariable int bid) {
+	@RequestMapping(path="/business/{bid}", method=RequestMethod.DELETE)
+	public Business destroy(HttpServletResponse res, @PathVariable int bid) {
 		Business bus = dao.destroy(bid);
 		if (bus != null) {
 			res.setStatus(202);
 		} else {
 			res.setStatus(400);
 		}
-		return false;
+		return bus;
 	}
 		
-		
-	
+
 }

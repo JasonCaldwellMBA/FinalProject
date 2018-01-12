@@ -32,6 +32,7 @@ public class Request {
 	private boolean completed;
 	private boolean active;
 	private String img;
+	
 	@JsonIgnore
 	@ManyToMany
 	@JoinTable(
@@ -158,8 +159,7 @@ public class Request {
 	
 	@Override
 	public String toString() {
-		return "Request [id=" + id + ", completed=" + completed + ", active=" + active + ", img=" + img + ", parts="
-				+ parts + ", description=" + description + ", postDate=" + postDate + ", expireDate=" + expireDate
+		return "Request [id=" + id + ", completed=" + completed + ", active=" + active + ", img=" + img + ", description=" + description + ", postDate=" + postDate + ", expireDate=" + expireDate
 				+ ", completeDate=" + completeDate + ", estimate=" + estimate + "]";
 	}
 }

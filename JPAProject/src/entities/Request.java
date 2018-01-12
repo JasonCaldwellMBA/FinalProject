@@ -24,17 +24,12 @@ public class Request {
 	@ManyToOne
 	@JoinColumn(name="user_id")
 	private User user;
-	
 	@ManyToOne
 	@JoinColumn(name="vehicle_id")
 	private Vehicle vehicle;
-	
 	private boolean completed;
-	
 	private boolean active;
-	
 	private String img;
-	
 	@ManyToMany
 	@JoinTable(
 			name="parts_request",
@@ -47,7 +42,6 @@ public class Request {
 			referencedColumnName="id")
 	)
 	private List<Part> parts;
-	
 	private String description; 
 	
 	@Column(name="post_date")
@@ -159,15 +153,10 @@ public class Request {
 		this.parts = parts;
 	}
 
-	
-	//====================================toString=======================================//
-
 	@Override
 	public String toString() {
-		return "Request [id=" + id + ", completed=" + completed + ", active=" + active + ", img=" + img
-				+ ", description=" + description + ", postDate=" + postDate + ", expireDate=" + expireDate
+		return "Request [id=" + id + ", completed=" + completed + ", active=" + active + ", img=" + img + ", parts="
+				+ parts + ", description=" + description + ", postDate=" + postDate + ", expireDate=" + expireDate
 				+ ", completeDate=" + completeDate + ", estimate=" + estimate + "]";
 	}
-
-	
 }

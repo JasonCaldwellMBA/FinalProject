@@ -420,7 +420,10 @@ INSERT INTO `autodb`.`request` (`id`, `user_id`, `description`, `vehicle_id`, `c
 
 COMMIT;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6cfa0a9aa12c0178eeed8ab44f50c4a84d5da300
 -- -----------------------------------------------------
 -- Data for table `autodb`.`quote`
 -- -----------------------------------------------------
@@ -430,4 +433,8 @@ INSERT INTO `autodb`.`quote` (`id`, `estimate`, `post_date`, `description`, `req
 INSERT INTO `autodb`.`quote` (`id`, `estimate`, `post_date`, `description`, `request_id`, `complete_date`, `expire_date`, `business_id`) VALUES (2, 19.99, '2018-01-11 10:05:45', 'Oil Change', 2, '', '', 2);
 INSERT INTO `autodb`.`quote` (`id`, `estimate`, `post_date`, `description`, `request_id`, `complete_date`, `expire_date`, `business_id`) VALUES (3, 9.99, '2018-01-06 06:30:45', 'Air Filter', 3, '2018-01-09 09:30:00', '2018-01-08 09:30:00', 1);
 
+<<<<<<< HEAD
 COMMIT;
+=======
+COMMIT;
+>>>>>>> 6cfa0a9aa12c0178eeed8ab44f50c4a84d5da300

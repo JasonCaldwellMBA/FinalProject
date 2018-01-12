@@ -32,11 +32,7 @@ public class RequestTest {
     }
     
     @Test
-<<<<<<< HEAD
-    public void test_request() {
-=======
     public void test_vehicle_mapping() {
->>>>>>> 8e81135275bd38eba5a8468dc35e961d73d17e50
         assertEquals(1, request.getId());
         assertEquals("desc1", request.getDescription());
         assertEquals("model1", request.getVehicle().getModel());

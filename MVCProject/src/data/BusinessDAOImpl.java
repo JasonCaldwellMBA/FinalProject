@@ -61,9 +61,15 @@ public class BusinessDAOImpl implements BusinessDAO {
 	}
 
 	@Override
-	public Boolean destroy(int uid, int tid) {
-		// TODO Auto-generated method stub
-		return null;
+	public Boolean destroy(int bid) {
+		Business business = em.find(Business.class, bid);
+		try {
+			em.remove(business);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 
 	

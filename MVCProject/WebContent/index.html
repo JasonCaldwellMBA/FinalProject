@@ -1,22 +1,38 @@
-<!DOCTYPE html ng-app='appModule'>
-<html>
+<!DOCTYPE html >
+<html ng-app='appModule'>
 <head>
 <meta charset="UTF-8">
 <title>AutoCheck</title>
 <!--CSS files  -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
 <!--END CSS files -->
+<!-- Angular Files -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.7/angular.min.js" type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.7/angular-route.min.js" type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.7/angular-cookies.min.js"></script>
+<!--End Angular Files-->
+<!--Auth module -->
+    <script src="app/authModule/auth.module.js"type="text/javascript"></script>
+    <script src="app/authModule/login/login.component.js"type="text/javascript"></script>
+    <script src="app/authModule/logout/logout.component.js"type="text/javascript"></script>
+    <script src="app/authModule/register/register.component.js"type="text/javascript"></script>
+    <script src="app/authModule/auth.service.js"type="text/javascript"></script>
+<!--End Auth module  -->
     <script src="app/appModule/app.module.js" type="text/javascript"></script>
     <script src="app/appModule/app.routing.js" type="text/javascript"></script>
+    <script src="app/appModule/navigation/navigation.component.js"> </script>
+	<script src="app/appModule/endBody/endBody.component.js"> </script>
+	<script src="app/appModule/notFound/notFound.component.js"> </script>
+	<script src="app/appModule/user/user.component.js"> </script>
     <script src="app/appModule/register/register.component.js" type="text/javascript"></script>
     <script src="app/appModule/business/business.component.js"></script>
 </head>
 <body>
-    <register>Loading..</register>
+
+	<navigation> Loading... </navigation>
     <ng-view></ng-view>
+	
+	<end-body> Loading ...</end-body>
 </body>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

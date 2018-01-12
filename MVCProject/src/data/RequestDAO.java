@@ -3,17 +3,16 @@ package data;
 import java.util.List;
 
 import entities.Request;
-import entities.User;
 
 public interface RequestDAO {
 
-	public List<Request> index(int rid);
+	public List<Request> index(int uid);
 
-	  public Request show(int rid);
+	  public Request show(int uid, int rid);
 
-	  public Request create(int rid, String requestJson);
+	  public Request create(int uid, String requestJson);
 
-	  public Request update(int rid, String requestJson);
+	  public Request update(int uid, int rid, String requestJson);
 
-	  public Boolean destroy(int rid);
+	  public Boolean destroy(int uid);
 }

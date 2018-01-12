@@ -214,6 +214,7 @@ CREATE TABLE IF NOT EXISTS `autodb`.`request` (
   `expire_date` TIMESTAMP NULL DEFAULT NULL,
   `post_date` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
   `estimate` DECIMAL(10,0) NULL DEFAULT NULL,
+  `active` TINYINT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_req_user_idx` (`user_id` ASC),
   INDEX `fk_req_auto_idx` (`vehicle_id` ASC),
@@ -413,9 +414,9 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `autodb`;
-INSERT INTO `autodb`.`request` (`id`, `user_id`, `description`, `vehicle_id`, `complete_date`, `completed`, `img`, `expire_date`, `post_date`, `estimate`) VALUES (1, 1, 'Need work', 1, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `autodb`.`request` (`id`, `user_id`, `description`, `vehicle_id`, `complete_date`, `completed`, `img`, `expire_date`, `post_date`, `estimate`) VALUES (2, 2, 'Need work', 2, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `autodb`.`request` (`id`, `user_id`, `description`, `vehicle_id`, `complete_date`, `completed`, `img`, `expire_date`, `post_date`, `estimate`) VALUES (3, 3, 'Need work', 3, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `autodb`.`request` (`id`, `user_id`, `description`, `vehicle_id`, `complete_date`, `completed`, `img`, `expire_date`, `post_date`, `estimate`, `active`) VALUES (1, 1, 'Need work', 1, NULL, NULL, NULL, NULL, NULL, NULL, 1);
+INSERT INTO `autodb`.`request` (`id`, `user_id`, `description`, `vehicle_id`, `complete_date`, `completed`, `img`, `expire_date`, `post_date`, `estimate`, `active`) VALUES (2, 2, 'Need work', 2, NULL, NULL, NULL, NULL, NULL, NULL, 1);
+INSERT INTO `autodb`.`request` (`id`, `user_id`, `description`, `vehicle_id`, `complete_date`, `completed`, `img`, `expire_date`, `post_date`, `estimate`, `active`) VALUES (3, 3, 'Need work', 3, NULL, NULL, NULL, NULL, NULL, NULL, 1);
 
 COMMIT;
 

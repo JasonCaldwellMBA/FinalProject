@@ -45,6 +45,7 @@ public class QuoteTest {
 		assertEquals("2017-12-11 11:30:45.0", quote.getExpireDate().toString());
 		assertEquals("2017-12-11 11:30:45.0", quote.getCompleteDate().toString());
 		assertEquals(1, quote.getEstimate(), .01);
+		assertEquals(1, quote.isActive());
 	}
 	
 	@Test

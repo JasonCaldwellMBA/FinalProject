@@ -1,5 +1,4 @@
 package entities;
-//test
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -45,6 +44,8 @@ public class Quote {
 	
 	@Column(name = "estimate")
 	private double estimate;
+	
+	@Column(name = "active")
 	private boolean active; 
 	
 	@JsonIgnore
@@ -117,10 +118,17 @@ public class Quote {
 	public void setActive(boolean active) {
 		this.active = active;
 	}
+	public List<Part> getParts() {
+		return parts;
+	}
+	public void setParts(List<Part> parts) {
+		this.parts = parts;
+	}
 	@Override
 	public String toString() {
-		return "Quote [id=" + id + ", request=" + request + ", description=" + description + ", postDate=" + postDate
-				+ ", expireDate=" + expireDate + ", completeDate=" + completeDate + ", estimate=" + estimate + "]";
+		return "Quote [id=" + id + ", request=" + request + ", business=" + business + ", description=" + description
+				+ ", postDate=" + postDate + ", expireDate=" + expireDate + ", completeDate=" + completeDate
+				+ ", estimate=" + estimate + ", active=" + active + "]";
 	}
 	
 }

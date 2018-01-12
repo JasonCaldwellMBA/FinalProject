@@ -8,6 +8,8 @@ import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import entities.Business;
 
 @Repository
@@ -30,9 +32,17 @@ public class BusinessDAOImpl implements BusinessDAO {
 	}
 
 	@Override
-	public Business create(int uid, String todoJson) {
-		// TODO Auto-generated method stub
-		return null;
+	public Business create(int bid, String businessJson) {
+		ObjectMapper mapper = new ObjectMapper();
+		Business business = null;
+		try {
+			business = mapper.readValue(businessJson, Business.class);
+			em.persist(business);
+			em.flush();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return business;
 	}
 
 	@Override

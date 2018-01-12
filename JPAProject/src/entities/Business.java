@@ -12,6 +12,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 public class Business {
 	@Id
@@ -31,8 +33,10 @@ public class Business {
 	private int experience;
 	@Column(name="website")
 	private String website;
+	@JsonIgnore
 	@OneToMany(mappedBy="business")
 	private List<Certification> certifications;
+	@JsonIgnore
 	@ManyToMany(mappedBy="associatedBusinesses")
 	private List<User> employees; 
 	

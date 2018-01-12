@@ -20,7 +20,7 @@ public class BusinessDAOImpl implements BusinessDAO {
 	private EntityManager em;
 
 	@Override
-	public List<Business> index(int bid) {
+	public List<Business> index() {
 		System.out.println("in DAO");
 		String query = "Select b from Business b";
 		return em.createQuery(query, Business.class)

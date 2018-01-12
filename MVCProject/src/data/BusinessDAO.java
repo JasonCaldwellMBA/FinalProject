@@ -7,7 +7,7 @@ import entities.User;
 
 public interface BusinessDAO {
 	
-	public List<Business> index(int bid);
+	public List<Business> index();
 
 	  public Business show(int bid);
 

@@ -42,6 +42,7 @@ public class Business {
 	@JsonIgnore
 	@OneToMany(mappedBy="business")
 	private List<Certification> certifications;
+	private boolean active; 
 	@JsonIgnore
 	@ManyToMany(mappedBy="associatedBusinesses")
 	private List<User> employees; 

@@ -45,6 +45,7 @@ public class Quote {
 	
 	@Column(name = "estimate")
 	private double estimate;
+	private boolean active; 
 	
 	@JsonIgnore
 	@ManyToMany
@@ -108,6 +109,13 @@ public class Quote {
 	}
 	public void setEstimate(double estimate) {
 		this.estimate = estimate;
+	}
+	
+	public boolean isActive() {
+		return active;
+	}
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 	@Override
 	public String toString() {

@@ -24,6 +24,7 @@ public class Contact {
 	private String email;
 	private String latitude;
 	private String longitude;
+	private boolean active; 
 	@JsonIgnore
 	@OneToOne(mappedBy="contact")
 	private User user; 
@@ -91,6 +92,13 @@ public class Contact {
 	}
 	public void setUser(User user) {
 		this.user = user;
+	}
+	
+	public boolean isActive() {
+		return active;
+	}
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 	@Override
 	public String toString() {

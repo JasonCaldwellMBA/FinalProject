@@ -152,7 +152,7 @@ public class Request {
 	public void setParts(List<Part> parts) {
 		this.parts = parts;
 	}
-
+	
 	@Override
 	public String toString() {
 		return "Request [id=" + id + ", completed=" + completed + ", active=" + active + ", img=" + img + ", parts="

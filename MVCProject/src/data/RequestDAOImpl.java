@@ -14,6 +14,8 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import entities.Request;
+import entities.User;
+import entities.Vehicle;
 
 @Repository
 @Transactional
@@ -35,11 +37,15 @@ public class RequestDAOImpl implements RequestDAO {
 	}
 
 	@Override
-	public Request create(int uid, String requestJson) {
+	public Request create(int uid, int vid, String requestJson) {
 		ObjectMapper mapper = new ObjectMapper(); 
 		Request request = null; 
 		try {
 			request = mapper.readValue(requestJson, Request.class);
+			Vehicle v = em.find(Vehicle.class, vid);
+			User user = em.find(User.class, uid);
+			request.setVehicle(v);
+			request.setUser(user);
 			em.persist(request);
 		} catch (JsonParseException e) {
 			e.printStackTrace();

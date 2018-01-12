@@ -10,7 +10,7 @@ public interface RequestDAO {
 
 	  public Request show(int uid, int rid);
 
-	  public Request create(int uid, String requestJson);
+	  public Request create(int uid, int vid, String requestJson);
 
 	  public Request update(int uid, int rid, String requestJson);
 

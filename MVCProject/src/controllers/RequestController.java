@@ -37,13 +37,14 @@ public class RequestController {
 		}
 		return request; 
 	}
-	@RequestMapping(path="/user/{uid}/request", method=RequestMethod.POST)
+	@RequestMapping(path="/user/{uid}/vehicle/{vid}/request", method=RequestMethod.POST)
 	public Request create(
 			@RequestBody String requestJson, 
 			HttpServletResponse res,
 			HttpServletRequest req,
+			@PathVariable int vid,
 			@PathVariable int uid){
-		Request request = dao.create(uid, requestJson); 
+		Request request = dao.create(uid, vid, requestJson); 
 		if(request != null) {
 			res.setStatus(201);
 		}

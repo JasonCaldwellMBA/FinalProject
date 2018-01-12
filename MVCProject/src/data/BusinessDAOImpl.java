@@ -46,9 +46,18 @@ public class BusinessDAOImpl implements BusinessDAO {
 	}
 
 	@Override
-	public Business update(int uid, int tid, String todoJson) {
-		// TODO Auto-generated method stub
-		return null;
+	public Business update(int bid, String businessJson) {
+		ObjectMapper mapper = new ObjectMapper();
+		Business holderBusiness = null;
+		Business orgBusiness = null;
+		try {
+			orgBusiness = em.find(Business.class, bid);
+			holderBusiness = mapper.readValue(businessJson, Business.class);
+			orgBusiness.setCompanyName(holderBusiness.getCompanyName());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return orgBusiness;
 	}
 
 	@Override

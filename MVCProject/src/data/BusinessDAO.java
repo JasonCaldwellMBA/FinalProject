@@ -11,9 +11,9 @@ public interface BusinessDAO {
 
 	  public Business show(int bid);
 
-	  public Business create(int uid, String todoJson);
+	  public Business create(int uid, String businessJson);
 
-	  public Business update(int uid, int tid, String todoJson);
+	  public Business update(int bid, String businessJson);
 
 	  public Boolean destroy(int uid, int tid);
 

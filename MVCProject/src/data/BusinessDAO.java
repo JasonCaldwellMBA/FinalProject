@@ -7,7 +7,7 @@ import entities.User;
 
 public interface BusinessDAO {
 	
-	public List<Business> index(int bid);
+	public List<Business> index();
 
 	  public Business show(int bid);
 
@@ -15,6 +15,6 @@ public interface BusinessDAO {
 
 	  public Business update(int bid, String businessJson);
 
-	  public Boolean destroy(int uid, int tid);
+	  public Boolean destroy(int bid);
 
 }

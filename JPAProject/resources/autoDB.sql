@@ -377,9 +377,6 @@ INSERT INTO `autodb`.`user` (`id`, `password`, `first_name`, `last_name`, `conta
 INSERT INTO `autodb`.`user` (`id`, `password`, `first_name`, `last_name`, `contact_id`, `rating_id`, `is_admin`, `username`, `active`) VALUES (5, 'pwd123', 'Bob', 'Bishop', 5, 5, 0, 'Bob-Bishop', 1);
 
 COMMIT;
-
-
-
 -- -----------------------------------------------------
 -- Data for table `autodb`.`certification`
 -- -----------------------------------------------------

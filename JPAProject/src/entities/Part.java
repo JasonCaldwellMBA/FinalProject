@@ -20,6 +20,8 @@ public class Part {
 	private String name;
 	@ManyToMany(mappedBy="parts")
 	private List<Request> requests; 
+	@ManyToMany(mappedBy="parts")
+	private List<Quote> quotes; 
 
 	public double getCost() {
 		return cost;

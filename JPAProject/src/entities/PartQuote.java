@@ -21,8 +21,8 @@ public class PartQuote {
 	@JoinColumn(name="quote_id")
 	private Quote quote;
 	
-	@OneToMany(mappedBy="partsQuote")
-	private Collection<Part> parts;
+//	@OneToMany(mappedBy="partsQuote")
+//	private Collection<Part> parts;
 
 	public Quote getQuote() {
 		return quote;
@@ -32,13 +32,13 @@ public class PartQuote {
 		this.quote = quote;
 	}
 
-	public Collection<Part> getParts() {
-		return parts;
-	}
-
-	public void setParts(Collection<Part> parts) {
-		this.parts = parts;
-	}
+//	public Collection<Part> getParts() {
+//		return parts;
+//	}
+//
+//	public void setParts(Collection<Part> parts) {
+//		this.parts = parts;
+//	}
 
 	public int getId() {
 		return id;

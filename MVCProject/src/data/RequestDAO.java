@@ -14,5 +14,5 @@ public interface RequestDAO {
 
 	  public Request update(int uid, int rid, String requestJson);
 
-	  public Boolean destroy(int uid);
+	  public Request destroy(int uid);
 }

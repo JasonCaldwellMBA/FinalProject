@@ -13,7 +13,6 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import entities.Business;
 import entities.Request;
 
 @Repository
@@ -63,7 +62,6 @@ public class RequestDAOImpl implements RequestDAO {
 			orgRequest.setDescription(request.getDescription());
 			orgRequest.setCompleteDate(request.getCompleteDate());
 			orgRequest.setCompleted(request.isCompleted());
-			orgRequest.setActive(request.isActive());
 			orgRequest.setImg(request.getImg());
 			orgRequest.setExpireDate(request.getExpireDate());
 			orgRequest.setEstimate(request.getEstimate());
@@ -74,12 +72,14 @@ public class RequestDAOImpl implements RequestDAO {
 	}
 
 	@Override
-	public Boolean destroy(int uid) {
+	public Request destroy(int uid) {
 		Request request = em.find(Request.class, uid);
-				if (!request.isCompleted()) {
-					request.setCompleted(true);
+				if (request.isActive()) {
+					request.setActive(false);
+				} else {
+					request.setActive(true);
 				}
-				return true;
+				return request;
 	}
 
 }

@@ -51,5 +51,9 @@ public class Part {
 		return id;
 	}
 
+	@Override
+	public String toString() {
+		return "Part [id=" + id + ", cost=" + cost + ", serialNumber=" + serialNumber + ", name=" + name + "]";
+	}
 }
 	

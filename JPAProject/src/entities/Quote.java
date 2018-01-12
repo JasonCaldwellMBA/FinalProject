@@ -21,7 +21,6 @@ public class Quote {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id; 
-	
 	@ManyToOne
 	@JoinColumn(name = "request_id")
 	private Request request;

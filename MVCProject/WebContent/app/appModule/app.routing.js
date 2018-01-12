@@ -5,6 +5,6 @@ angular.module('appModule')
 			template: '<register></register>'
 		})
 		.when('/businessHome',{
-			template: '<bus_component></bus_component>'
+			template: '<bus-component></bus-component>'
 		})
 });

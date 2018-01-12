@@ -12,7 +12,7 @@ public interface RequestDAO {
 
 	  public Request create(int uid, int vid, String requestJson);
 
-	  public Request update(int uid, int rid, String requestJson);
+	  public Request update(int uid, int vid, int rid, String requestJson);
 
-	  public Request destroy(int uid);
+	  public Request destroy(int uid, int vid, int rid);
 }

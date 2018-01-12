@@ -5,6 +5,7 @@ angular.module('appModule')
 	controller : {
 		var vm = this;
 		
+		vm.quotes = [];
 		
 	}
 })	

@@ -7,9 +7,9 @@ import entities.User;
 
 public interface BusinessDAO {
 	
-	public List<Business> index(int uid);
+	public List<Business> index(int bid);
 
-	  public Business show(int uid, int tid);
+	  public Business show(int bid);
 
 	  public Business create(int uid, String todoJson);
 

@@ -14,6 +14,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import entities.Business;
 import entities.Quote;
+import entities.Request;
 
 @Transactional
 @Repository
@@ -26,9 +27,11 @@ public class QuoteDAOImpl implements QuoteDAO {
     public Set<Quote> index(int bid, int rid) {
         
         String query = "SELECT q FROM Quote q WHERE q.business.id = :bid";
+        // need to include rid
         
         List<Quote> quotes = em.createQuery(query, Quote.class)
                             .setParameter("bid", bid)
+                            .setParameter("rid", rid)
                             .getResultList();
         return new HashSet<Quote>(quotes);
     }
@@ -46,6 +49,8 @@ public class QuoteDAOImpl implements QuoteDAO {
             quote = om.readValue(quoteJson, Quote.class);
             Business business = em.find(Business.class, bid);
             quote.setBusiness(business);
+            Request request = em.find(Request.class, rid);
+            quote.setRequest(request);
             
             em.persist(quote);
             em.flush();

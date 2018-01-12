@@ -408,7 +408,6 @@ INSERT INTO `autodb`.`vehicle` (`id`, `make`, `model`, `year`, `user_id`, `vin`,
 
 COMMIT;
 
-
 -- -----------------------------------------------------
 -- Data for table `autodb`.`request`
 -- -----------------------------------------------------

@@ -12,7 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 public class Request {
 	
@@ -24,12 +25,14 @@ public class Request {
 	@ManyToOne
 	@JoinColumn(name="user_id")
 	private User user;
+	//@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="vehicle_id")
 	private Vehicle vehicle;
 	private boolean completed;
 	private boolean active;
 	private String img;
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(
 			name="parts_request",

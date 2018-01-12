@@ -29,6 +29,10 @@ public class Contact {
 	@OneToOne(mappedBy="contact")
 	private User user; 
 	
+	@JsonIgnore
+	@OneToOne(mappedBy="contact")
+	private Business business;
+	
 	public String getAddress1() {
 		return address1;
 	}
@@ -99,6 +103,14 @@ public class Contact {
 	}
 	public void setActive(boolean active) {
 		this.active = active;
+	}
+	
+	
+	public Business getBusiness() {
+		return business;
+	}
+	public void setBusiness(Business business) {
+		this.business = business;
 	}
 	@Override
 	public String toString() {

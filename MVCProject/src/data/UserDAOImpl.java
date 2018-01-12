@@ -82,4 +82,50 @@ public class UserDAOImpl implements UserDAO {
 		}
 		return user;
 	}
+	
+	@Override
+	public Contact showContact(int uid, int cid) {
+		Contact contact = em.find(Contact.class, cid);
+		if (contact == null || contact.getUser().getId() != uid) {
+			return null;
+		}
+		return contact;
+	}
+
+	@Override
+	public Contact createContact(int uid, String contactJson) {
+		ObjectMapper mapper = new ObjectMapper();
+		Contact contact = null;
+		try {
+			contact = mapper.readValue(contactJson, Contact.class);
+			User user = em.find(User.class, uid);
+			contact.setUser(user);
+			em.persist(contact);
+			em.flush();
+		} catch (Exception e) {
+			e.printStackTrace();		}
+		return contact;
+	}
+
+	@Override
+	public Contact updateContact(int uid, int cid, String contactJson) {
+		ObjectMapper mapper = new ObjectMapper();
+		Contact originalContact = null;
+		Contact holderContact = null;
+		try {
+			holderContact = mapper.readValue(contactJson, Contact.class);
+			originalContact = em.find(Contact.class, cid);
+			originalContact.setAddress1(holderContact.getAddress1());
+			originalContact.setAddress2(holderContact.getAddress2());
+			originalContact.setCity(holderContact.getCity());
+			originalContact.setEmail(holderContact.getEmail());
+			originalContact.setLatitude(holderContact.getLatitude());
+			originalContact.setLongitude(holderContact.getLongitude());
+			originalContact.setPhone(holderContact.getPhone());
+			originalContact.setState(holderContact.getState());
+		} catch (Exception e) {
+			e.printStackTrace();
+			}
+		return originalContact;
+	}
 }

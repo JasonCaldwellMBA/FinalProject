@@ -21,63 +21,63 @@ public class QuoteController {
     @Autowired
     private QuoteDAO quoteDAO;
 
-//  GET /business/{bid}/quote
-    @RequestMapping(path = "/business/{bid}/quote", method = RequestMethod.GET)
+    @RequestMapping(path = "/business/{bid}/request/{rid}/quote", method = RequestMethod.GET)
     public Collection<Quote> index(
             HttpServletRequest req, 
             HttpServletResponse res, 
-            @PathVariable int bid) {
-        return quoteDAO.index(bid);
+            @PathVariable int rid,
+    			@PathVariable int bid) {
+        return quoteDAO.index(bid, rid);
     }
     
-//  GET /business/{bid}/quote/{qid}
-    @RequestMapping(path = "/business/{bid}/quote/{qid}", method = RequestMethod.GET)
+    @RequestMapping(path = "/business/{bid}/request/{rid}/quote/{qid}", method = RequestMethod.GET)
     public Quote show(
                 HttpServletRequest req, 
                 HttpServletResponse res, 
                 @PathVariable int bid, 
+                @PathVariable int rid, 
                 @PathVariable int qid) {
-        return quoteDAO.show(bid, qid);
+        return quoteDAO.show(bid, rid, qid);
     }
     
-//  POST /business/{bid}/quote
-    @RequestMapping(path = "/business/{bid}/quote", method = RequestMethod.POST)
+    @RequestMapping(path = "/business/{bid}/request/{rid}/quote", method = RequestMethod.POST)
     public Quote create(
             HttpServletRequest req, 
             HttpServletResponse res, 
             @PathVariable int bid, 
+            @PathVariable int rid, 
             @RequestBody String quoteJson) {
         
-        Quote quote = quoteDAO.create(bid, quoteJson);
+        Quote quote = quoteDAO.create(bid, rid, quoteJson);
         if (quote == null) {
             res.setStatus(400);
         }
         return quote;
     }
     
-//  PUT /business/{bid}/quote/{qid}
-    @RequestMapping(path = "/business/{bid}/quote/{qid}", method = RequestMethod.PUT)
+    @RequestMapping(path = "/business/{bid}/request/{rid}/quote/{qid}", method = RequestMethod.PUT)
     public Quote update(
             HttpServletRequest req, 
             HttpServletResponse res, 
             @PathVariable int bid, 
+            @PathVariable int rid, 
             @PathVariable int qid, 
             @RequestBody String quoteJson) {
-        Quote quote = quoteDAO.update(bid, qid, quoteJson);
+        Quote quote = quoteDAO.update(bid, rid, qid, quoteJson);
         if (quote == null) {
             res.setStatus(400);
         }
         return quote;
     }
     
-//  DELETE /business/{bid}/quote/{qid}
-    @RequestMapping(path = "/business/{bid}/quote/{qid}", method = RequestMethod.DELETE)
+    @RequestMapping(path = "/business/{bid}/request/{rid}/quote/{qid}", method = RequestMethod.DELETE)
     public Boolean destroy(
             HttpServletRequest req, 
             HttpServletResponse res, 
             @PathVariable int bid,
-            @PathVariable int qid) {
-        Boolean result = quoteDAO.destroy(bid, qid);
+            @PathVariable int qid,
+    			@PathVariable int rid) {
+        Boolean result = quoteDAO.destroy(bid, rid, qid);
         if (result == null) {
             res.setStatus(404);
         }

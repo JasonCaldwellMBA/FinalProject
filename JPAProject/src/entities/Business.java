@@ -23,7 +23,7 @@ public class Business {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
-	@ManyToOne(cascade=CascadeType.PERSIST)
+	@OneToOne(cascade=CascadeType.PERSIST)
 	@JoinColumn(name="contact_id")
 	private Contact contact;
 	

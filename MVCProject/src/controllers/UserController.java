@@ -42,7 +42,7 @@ public class UserController {
 	}
 	@RequestMapping(path="/user/{id}", method=RequestMethod.PUT)
 	public User update(@RequestBody String json, @PathVariable int id, HttpServletResponse res) {
-		User user = dao.update(id,json);
+		User user = dao.update(id, json);
 		if(user != null) {
 			res.setStatus(202);
 		}

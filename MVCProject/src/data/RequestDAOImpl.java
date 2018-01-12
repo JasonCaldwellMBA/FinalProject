@@ -58,13 +58,13 @@ public class RequestDAOImpl implements RequestDAO {
 	}
 
 	@Override
-	public Request update(int uid, int rid, String requestJson) {
+	public Request update(int uid, int vid, int rid, String requestJson) {
 		ObjectMapper mapper = new ObjectMapper();
 		Request request = null;
 		Request orgRequest = null;
 		try {
-			orgRequest = em.find(Request.class, rid);
 			request = mapper.readValue(requestJson, Request.class);
+			orgRequest = em.find(Request.class, rid);
 			orgRequest.setDescription(request.getDescription());
 			orgRequest.setCompleteDate(request.getCompleteDate());
 			orgRequest.setCompleted(request.isCompleted());
@@ -78,7 +78,7 @@ public class RequestDAOImpl implements RequestDAO {
 	}
 
 	@Override
-	public Request destroy(int uid) {
+	public Request destroy(int uid, int vid, int rid) {
 		Request request = em.find(Request.class, uid);
 				if (request.isActive()) {
 					request.setActive(false);

@@ -13,6 +13,7 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import entities.Contact;
 import entities.User;
 
 @Repository
@@ -56,8 +57,7 @@ public class UserDAOImpl implements UserDAO {
 		User retUser = null; 
 		try {
 			user = mapper.readValue(json, User.class);
-			retUser = em.find(User.class, id); 
-			retUser.setContact(user.getContact());
+			retUser = em.find(User.class, id);
 			retUser.setFirstName(user.getFirstName());
 			retUser.setLastName(user.getLastName());
 			retUser.setPassword(user.getPassword());
@@ -74,7 +74,12 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public User destroy(int uid) {
 		User user = em.find(User.class, uid);
-		user.setActive(false);
+		if(user.isActive()) {
+			user.setActive(false);
+		}
+		else {
+			user.setActive(true);
+		}
 		return user;
 	}
 }

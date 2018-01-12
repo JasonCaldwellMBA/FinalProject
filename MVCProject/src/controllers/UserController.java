@@ -48,7 +48,7 @@ public class UserController {
 		else {
 			res.setStatus(400); 
 		}
-		return null; 
+		return user; 
 	}
 	@RequestMapping(path="/user/{id}", method=RequestMethod.DELETE)
 	public User destroy(@PathVariable int id, HttpServletResponse res) {

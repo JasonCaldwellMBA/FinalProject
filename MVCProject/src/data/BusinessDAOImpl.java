@@ -7,6 +7,7 @@ import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -33,10 +34,11 @@ public class BusinessDAOImpl implements BusinessDAO {
 	}
 
 	@Override
-	public Business create(int bid, String businessJson) {
+	public Business create(@RequestBody String businessJson) {
 		ObjectMapper mapper = new ObjectMapper();
 		Business business = null;
 		try {
+			System.out.println(mapper.readValue(businessJson, Business.class));
 			business = mapper.readValue(businessJson, Business.class);
 			em.persist(business);
 			em.flush();
@@ -47,7 +49,7 @@ public class BusinessDAOImpl implements BusinessDAO {
 	}
 
 	@Override
-	public Business update(int bid, String businessJson) {
+	public Business update(int bid, @RequestBody String businessJson) {
 		ObjectMapper mapper = new ObjectMapper();
 		Business holderBusiness = null;
 		Business orgBusiness = null;

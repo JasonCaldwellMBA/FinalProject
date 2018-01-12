@@ -25,9 +25,20 @@ public class BusinessController {
 		return dao.index();
 	}
 	
-	@RequestMapping(path="/business/{bid}")
+	@RequestMapping(path="/business/{bid}", method=RequestMethod.GET)
 	public Business show(@PathVariable int bid, HttpServletResponse res) {
 		return dao.show(bid);
+	}
+	
+	@RequestMapping(path="/business", method=RequestMethod.POST)
+	public Business create(HttpServletResponse res, String busJson) {
+		Business bus = dao.create(busJson);
+		if (bus == null) {
+			res.setStatus(400);
+		} else {
+			res.setStatus(201);
+		}
+		return bus;
 	}
 		
 		

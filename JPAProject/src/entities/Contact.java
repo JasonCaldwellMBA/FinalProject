@@ -6,6 +6,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Contact {	
 	@Id
@@ -22,6 +24,7 @@ public class Contact {
 	private String email;
 	private String latitude;
 	private String longitude;
+	@JsonIgnore
 	@OneToOne(mappedBy="contact")
 	private User user; 
 	

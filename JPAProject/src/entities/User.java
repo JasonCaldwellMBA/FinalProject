@@ -1,5 +1,4 @@
 package entities;
-//test
 import java.util.List;
 
 import javax.persistence.Column;
@@ -20,6 +19,7 @@ public class User {
 	private String firstName;
 	@Column(name="last_name")
 	private String lastName;
+	private String password; 
 	@OneToOne
 	@JoinColumn(name="contact_id")
 	private Contact contact;
@@ -28,7 +28,7 @@ public class User {
 	private Rating rating;
 	@Column(name="is_admin")
 	private boolean admin; 
-	private String userName;
+	private String username;
 	@OneToMany(mappedBy="user")
 	private List<Vehicle> vehicle; 
 	@OneToMany(mappedBy="user")
@@ -61,17 +61,35 @@ public class User {
 	public void setRating(Rating rating) {
 		this.rating = rating;
 	}
-	public boolean isPrivilege() {
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public boolean isAdmin() {
 		return admin;
 	}
-	public void setPrivilege(boolean admin) {
+	public void setAdmin(boolean admin) {
 		this.admin = admin;
 	}
-	public String getUserName() {
-		return userName;
+	public List<Vehicle> getVehicle() {
+		return vehicle;
 	}
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setVehicle(List<Vehicle> vehicle) {
+		this.vehicle = vehicle;
+	}
+	public List<Request> getRequests() {
+		return requests;
+	}
+	public void setRequests(List<Request> requests) {
+		this.requests = requests;
+	}
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
 	}
 	public List<Business> getAssociatedBusinesses() {
 		return associatedBusinesses;
@@ -82,4 +100,10 @@ public class User {
 	public int getId() {
 		return id;
 	}
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", password=" + password
+				+ ", admin=" + admin + ", username=" + username + "]";
+	}
+	
 }

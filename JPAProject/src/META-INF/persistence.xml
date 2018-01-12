@@ -4,35 +4,19 @@
     xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
     <persistence-unit name="AutoDB">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-
-<<<<<<< HEAD
         <!-- <class>entities.YourClassNames</class>  -->
-   		<class>entities.Business</class>
-=======
-        <!-- <class>entities.YourClassNames</class> -->
 		<class>entities.Business</class>
->>>>>>> e83ddab11250c36379b0d9290f5a970a7d37efcb
         <class>entities.Certification</class>
         <class>entities.Contact</class>
         <class>entities.Part</class>
         <class>entities.PartQuote</class>
         <class>entities.PartRequest</class>
-        <class>entities.Quote</class>
         <class>entities.Rating</class>
         <class>entities.Request</class>
         <class>entities.User</class>
-<<<<<<< HEAD
         <class>entities.Vehicle</class> 
         <class>entities.Quote</class>
-=======
         <class>entities.Vehicle</class>
-<<<<<<< HEAD
-<<<<<<< HEAD
-        <class>entities.Quote</class>
-=======
-=======
->>>>>>> af3c739a4493eae17b9426694f3f2b07c801c641
->>>>>>> e83ddab11250c36379b0d9290f5a970a7d37efcb
 
         <properties>
         		<!-- Configure your connection to the database -->

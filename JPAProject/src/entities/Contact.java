@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Contact {	
@@ -22,6 +23,8 @@ public class Contact {
 	private String latitude;
 	@Column(name="long")
 	private String longitude;
+	@OneToOne(mappedBy="contact")
+	private User user; 
 	
 	public String getAddress1() {
 		return address1;

@@ -17,6 +17,8 @@ angular.module('appModule')
 			.then(function(response){
 				vm.business = response.data;
 			})
+		}		
+
 		}
 		getBusiness(1);
 		

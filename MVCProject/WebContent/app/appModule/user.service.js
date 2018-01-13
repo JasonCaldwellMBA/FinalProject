@@ -2,7 +2,10 @@ $angular.module('appModule')
 .factory('userService', function($http){
 	var service = {};
 	
-	service.index = function(){
-		var user = checkLogin();
+	service.show = function(id){
+		return $http({
+			method : 'GET',
+			url : 'api/user' + id
+		})
 	}
 })

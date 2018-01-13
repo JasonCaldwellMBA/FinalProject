@@ -1,5 +1,5 @@
 angular.module('appModule')
-	.component('endBody', {
+	.component('footer', {
 		templateUrl : "app/appModule/endBody/endBody.component.html",
 		controller: function() {
 			

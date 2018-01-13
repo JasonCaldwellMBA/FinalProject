@@ -22,9 +22,8 @@ angular.module('authModule')
 			vm.registerUser = function () {
 				authService.userRegister(vm.user)
 					.then(function (res) {
-						console.log(res); 
-					// $location.path('/user-home')
-				}); 
+						$location.path('/home');
+					}).catch(console.error); 
 			}
 			//helper methods
 			vm.return = function () {

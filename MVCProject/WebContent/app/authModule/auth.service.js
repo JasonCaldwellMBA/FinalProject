@@ -5,17 +5,32 @@ angular.module('authModule')
 		service.userRegister = function(user){
 			return $http({
 				method: 'POST',
-				url: BASE_URL + 'api/register',
+				url: BASE_URL + 'api/user/register',
 				headers: {
 					'content-type': 'application/json'
 				},
 				data: user
 			});
 		}
-		service.businessRegister = function(business){
+		service.businessRegister = function (business) {
+			return $http({
+				method: 'POST',
+				url: BASE_URL + 'api/business/register',
+				headers: {
+					'content-type': 'application/json'
+				},
+				data: business
+			}); 
 		}
 		service.login = function(entity){
-			
+			return $http({
+				method: 'GET',
+				url: BASE_URL + 'api/login',
+				headers: {
+					'content-type': 'application/json'
+				},
+				data: entity
+			}); 
 		}
 		service.logout = function(entity){
 			

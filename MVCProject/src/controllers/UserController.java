@@ -29,17 +29,6 @@ public class UserController {
 		}
 		return user; 
 	}
-	@RequestMapping(path="/user", method=RequestMethod.POST)
-	public User create(@RequestBody String json, HttpServletResponse res){
-		User user = dao.create(json); 
-		if(user != null) {
-			res.setStatus(201);
-		}
-		else {
-			res.setStatus(400); 
-		}
-		return user; 
-	}
 	@RequestMapping(path="/user/{id}", method=RequestMethod.PUT)
 	public User update(@RequestBody String json, @PathVariable int id, HttpServletResponse res) {
 		User user = dao.update(id, json);

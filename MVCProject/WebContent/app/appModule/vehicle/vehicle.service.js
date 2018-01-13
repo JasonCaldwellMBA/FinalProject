@@ -1,10 +1,10 @@
 angular.module('appModule')
     .factory('vehicleService', function($http, authService){
         var service = {}; 
-        var BASE_URL = 'localhost:8080/MVCProject/api/'; 
+        var BASE_URL = 'http://localhost:8080/MVCProject/api/'; 
 
         service.index = function () {
-            var userId = authService.getToken(); 
+            // var userId = authService.getToken(); 
             return $http({
                 method: 'GET', 
                 url: BASE_URL + 'user/' + 3 + '/vehicle',
@@ -14,10 +14,10 @@ angular.module('appModule')
             }); 
         }
         service.show = function (id) {
-            var userId = authService.getToken(); 
+//            var userId = authService.getToken(); 
             return $http({
                 method: 'GET',
-                url: BASE_URL + userId + '/vehicle/' + id,
+                url: BASE_URL +'user/'+ 3 + '/vehicle/' + id,
                 headers: {
                     'content-type': 'application/json'
                 }

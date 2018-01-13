@@ -42,9 +42,9 @@ angular.module('authModule')
 				data: business
 			}); 
 		}
-		service.logout = function(entity){
+		service.logout = function(){
 			service.removeToken(); 
-            $location.path('/login'); 
+            $location.path('/logout'); 
 		}
 		service.getToken = function(){
 			let id = $cookies.get('userId'); 

@@ -4,17 +4,17 @@ angular.module('appModule')
         var BASE_URL = 'http://localhost:8080/MVCProject/api/'; 
 
         service.index = function () {
-            // var userId = authService.getToken(); 
+             var userId = authService.getToken(); 
             return $http({
                 method: 'GET', 
-                url: BASE_URL + 'user/' + 3 + '/vehicle',
+                url: BASE_URL + 'user/' + userId + '/vehicle',
             }); 
         }
         service.show = function (id) {
-//            var userId = authService.getToken(); 
+            var userId = authService.getToken(); 
             return $http({
                 method: 'GET',
-                url: BASE_URL +'user/'+ 3 + '/vehicle/' + id,
+                url: BASE_URL +'user/'+ userId + '/vehicle/' + id,
                 headers: {
                     'content-type': 'application/json'
                 }

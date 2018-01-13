@@ -5,13 +5,22 @@ angular.module('authModule')
 		controller: function(authService, $location){
 			var vm = this; 
 			vm.user = null; 
+			vm.error = null; 
+
+			if (authService.isUser() == true) {
+                $location.path('/home'); 
+			}
+			
 			vm.setUser = function (user) {
-				if (user.password !== user.confirm) {
-					return; 
+				if (user.password === user.confirm) {
+                    delete user.confirm; 
+                    vm.error = null; 
+					user.active = true; 
+					vm.user = user; 
 				}
-				delete user.confirm; 
-				user.active = true; 
-				vm.user = user; 
+				else {
+					vm.error = "passwords do not match"; 
+				}
 			}
 			vm.addContact = function (contact) {
 				contact.active = true; 
@@ -28,6 +37,7 @@ angular.module('authModule')
 			vm.registerUser = function () {
 				authService.register(vm.user)
 					.then(function (res) {
+                        authService.setToken(res.data.id); 
 						$location.path('/home');
 					}).catch(console.error); 
 			}

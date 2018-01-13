@@ -25,6 +25,7 @@
                     <label for="txtConfirmPwd">Confirm Password</label>
                     <input type="password" class="form-control" id="txtConfirmPwd" ng-model="user.confirm" placeholder="Password">
                 </div>
+                <label>{{vm.error}}</label>
                 <button  ng-click="vm.setUser(user)" class="btn btn-primary">Next</button>
             </form>
         </div>

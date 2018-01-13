@@ -4,6 +4,7 @@ angular.module('appModule')
 	controllerAs : 'vm',
 	controller : function(businessService){
 		var vm = this;
+		vm.copy = null;
 		
 		vm.quotes = [];
 		
@@ -28,6 +29,10 @@ angular.module('appModule')
 			})
 		}
 		getQuotes(1);
+		
+		vm.detailedQuote = function(quote){
+			vm.copy = angular.copy(quote);	
+		}
 		
 	}
 })	

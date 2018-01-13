@@ -26,5 +26,8 @@ angular.module('appModule').component(
 						vm.vehicles = res.data;
 					});
 				}
+				vm.return = function(){
+					$location.path('/user/' + $routeParams.id); 
+				}
 			}
 		});

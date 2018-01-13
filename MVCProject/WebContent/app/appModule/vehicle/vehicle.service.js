@@ -8,9 +8,6 @@ angular.module('appModule')
             return $http({
                 method: 'GET', 
                 url: BASE_URL + 'user/' + 3 + '/vehicle',
-                headers: {
-                    'content-type': 'application/json'
-                }
             }); 
         }
         service.show = function (id) {

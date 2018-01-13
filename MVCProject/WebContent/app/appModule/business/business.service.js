@@ -20,5 +20,12 @@ angular.module('appModule')
 			url : "api/business/" + id + "/quote/"
 		})
 	}
+	service.getQuote = function(bid, qid){
+		return $http({
+			method : "GET",
+			url : "api/business/" + bid + "/quote/" + qid
+		})
+	}
+	
 	return service;
 })

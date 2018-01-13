@@ -8,7 +8,6 @@ angular.module('appModule')
 		vm.user = null;
 		//Init load
 		userService.show($routeParams.id).then(function(res){
-			console.log(res.data)
 			vm.user = res.data; 
 		}); 
 		

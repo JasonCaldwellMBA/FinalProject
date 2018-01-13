@@ -64,9 +64,12 @@ CREATE TABLE IF NOT EXISTS `autodb`.`business` (
   `experience` INT(11) NULL DEFAULT NULL,
   `website` VARCHAR(45) NULL DEFAULT NULL,
   `active` TINYINT NOT NULL,
+  `login_name` VARCHAR(45) NOT NULL,
+  `login_password` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_business_contact_idx` (`contact_id` ASC),
   INDEX `fk_business_rating_idx` (`rating_id` ASC),
+  UNIQUE INDEX `business_login_name_UNIQUE` (`login_name` ASC),
   CONSTRAINT `fk_contact_business`
     FOREIGN KEY (`contact_id`)
     REFERENCES `autodb`.`contact` (`id`)
@@ -75,63 +78,6 @@ CREATE TABLE IF NOT EXISTS `autodb`.`business` (
   CONSTRAINT `fk_rating_business`
     FOREIGN KEY (`rating_id`)
     REFERENCES `autodb`.`rating` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
-
-
--- -----------------------------------------------------
--- Table `autodb`.`user`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `autodb`.`user` ;
-
-CREATE TABLE IF NOT EXISTS `autodb`.`user` (
-  `id` INT(11) NOT NULL AUTO_INCREMENT,
-  `password` VARCHAR(255) NOT NULL,
-  `first_name` VARCHAR(45) NOT NULL,
-  `last_name` VARCHAR(45) NOT NULL,
-  `contact_id` INT(11) NULL,
-  `rating_id` INT(11) NULL DEFAULT NULL,
-  `is_admin` TINYINT NOT NULL,
-  `username` VARCHAR(45) NOT NULL,
-  `active` TINYINT NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE INDEX `username_UNIQUE` (`id` ASC),
-  INDEX `fk_user_contact_idx` (`contact_id` ASC),
-  INDEX `fk_user_rating_idx` (`rating_id` ASC),
-  CONSTRAINT `fk_user_contact`
-    FOREIGN KEY (`contact_id`)
-    REFERENCES `autodb`.`contact` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_user_rating`
-    FOREIGN KEY (`rating_id`)
-    REFERENCES `autodb`.`rating` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
-
-
--- -----------------------------------------------------
--- Table `autodb`.`business_user`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `autodb`.`business_user` ;
-
-CREATE TABLE IF NOT EXISTS `autodb`.`business_user` (
-  `user_id` INT(11) NULL,
-  `business_id` INT(11) NULL,
-  INDEX `fk_user_business_user_idx` (`user_id` ASC),
-  INDEX `fk_business_business_user_idx` (`business_id` ASC),
-  CONSTRAINT `fk_business_business_user`
-    FOREIGN KEY (`business_id`)
-    REFERENCES `autodb`.`business` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_user_business_user`
-    FOREIGN KEY (`user_id`)
-    REFERENCES `autodb`.`user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -169,6 +115,39 @@ CREATE TABLE IF NOT EXISTS `autodb`.`part` (
   `cost` DECIMAL(10,0) NOT NULL,
   `serial_number` INT(11) NULL DEFAULT NULL,
   PRIMARY KEY (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `autodb`.`user`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `autodb`.`user` ;
+
+CREATE TABLE IF NOT EXISTS `autodb`.`user` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `password` VARCHAR(255) NOT NULL,
+  `first_name` VARCHAR(45) NOT NULL,
+  `last_name` VARCHAR(45) NOT NULL,
+  `contact_id` INT(11) NULL,
+  `rating_id` INT(11) NULL DEFAULT NULL,
+  `is_admin` TINYINT NOT NULL,
+  `username` VARCHAR(45) NOT NULL,
+  `active` TINYINT NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `username_UNIQUE` (`id` ASC),
+  INDEX `fk_user_contact_idx` (`contact_id` ASC),
+  INDEX `fk_user_rating_idx` (`rating_id` ASC),
+  CONSTRAINT `fk_user_contact`
+    FOREIGN KEY (`contact_id`)
+    REFERENCES `autodb`.`contact` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_user_rating`
+    FOREIGN KEY (`rating_id`)
+    REFERENCES `autodb`.`rating` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
@@ -213,7 +192,7 @@ CREATE TABLE IF NOT EXISTS `autodb`.`request` (
   `img` TEXT NULL DEFAULT NULL,
   `expire_date` TIMESTAMP NULL DEFAULT NULL,
   `post_date` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
-  `estimate` DECIMAL(10,0) NULL DEFAULT 0.0,
+  `estimate` DECIMAL(10,0) NULL DEFAULT NULL,
   `active` TINYINT NULL DEFAULT 1,
   PRIMARY KEY (`id`),
   INDEX `fk_req_user_idx` (`user_id` ASC),
@@ -364,8 +343,19 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `autodb`;
-INSERT INTO `autodb`.`business` (`id`, `contact_id`, `rating_id`, `labor_rate`, `company_name`, `experience`, `website`, `active`) VALUES (1, 6, 6, 25, 'StumpsAuto', 0, NULL, 1);
-INSERT INTO `autodb`.`business` (`id`, `contact_id`, `rating_id`, `labor_rate`, `company_name`, `experience`, `website`, `active`) VALUES (2, 7, 7, 20, 'Oliver\'s', 0, NULL, 1);
+INSERT INTO `autodb`.`business` (`id`, `contact_id`, `rating_id`, `labor_rate`, `company_name`, `experience`, `website`, `active`, `login_name`, `login_password`) VALUES (1, 6, 6, 25, 'StumpsAuto', 0, NULL, 1, 'stumpsauto', 'stumpsauto');
+INSERT INTO `autodb`.`business` (`id`, `contact_id`, `rating_id`, `labor_rate`, `company_name`, `experience`, `website`, `active`, `login_name`, `login_password`) VALUES (2, 7, 7, 20, 'Oliver\'s', 0, NULL, 1, 'oliver', 'olivers');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `autodb`.`certification`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `autodb`;
+INSERT INTO `autodb`.`certification` (`id`, `business_id`, `name`) VALUES (1, 1, 'Automotive master');
+INSERT INTO `autodb`.`certification` (`id`, `business_id`, `name`) VALUES (2, 2, 'Oil picker upper');
 
 COMMIT;
 
@@ -385,17 +375,6 @@ COMMIT;
 
 
 -- -----------------------------------------------------
--- Data for table `autodb`.`certification`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `autodb`;
-INSERT INTO `autodb`.`certification` (`id`, `business_id`, `name`) VALUES (1, 1, 'Automotive master');
-INSERT INTO `autodb`.`certification` (`id`, `business_id`, `name`) VALUES (2, 2, 'Oil picker upper');
-
-COMMIT;
-
-
--- -----------------------------------------------------
 -- Data for table `autodb`.`vehicle`
 -- -----------------------------------------------------
 START TRANSACTION;
@@ -408,24 +387,27 @@ INSERT INTO `autodb`.`vehicle` (`id`, `make`, `model`, `year`, `user_id`, `vin`,
 
 COMMIT;
 
+
 -- -----------------------------------------------------
 -- Data for table `autodb`.`request`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `autodb`;
-INSERT INTO `autodb`.`request` (`id`, `user_id`, `description`, `vehicle_id`, `complete_date`, `completed`, `img`, `expire_date`, `post_date`, `estimate`, `active`) VALUES (1, 1, 'Need work', 1, NULL, 0, NULL, NULL, NULL, 0.0, 1);
-INSERT INTO `autodb`.`request` (`id`, `user_id`, `description`, `vehicle_id`, `complete_date`, `completed`, `img`, `expire_date`, `post_date`, `estimate`, `active`) VALUES (2, 2, 'Need work', 2, NULL, 0, NULL, NULL, NULL, 0.0, 1);
-INSERT INTO `autodb`.`request` (`id`, `user_id`, `description`, `vehicle_id`, `complete_date`, `completed`, `img`, `expire_date`, `post_date`, `estimate`, `active`) VALUES (3, 3, 'Need work', 3, NULL, 0, NULL, NULL, NULL, 0.0, 1);
+INSERT INTO `autodb`.`request` (`id`, `user_id`, `description`, `vehicle_id`, `complete_date`, `completed`, `img`, `expire_date`, `post_date`, `estimate`, `active`) VALUES (1, 1, 'Need work', 1, NULL, 0, NULL, NULL, NULL, 0, 1);
+INSERT INTO `autodb`.`request` (`id`, `user_id`, `description`, `vehicle_id`, `complete_date`, `completed`, `img`, `expire_date`, `post_date`, `estimate`, `active`) VALUES (2, 2, 'Need work', 2, NULL, 0, NULL, NULL, NULL, 0, 1);
+INSERT INTO `autodb`.`request` (`id`, `user_id`, `description`, `vehicle_id`, `complete_date`, `completed`, `img`, `expire_date`, `post_date`, `estimate`, `active`) VALUES (3, 3, 'Need work', 3, NULL, 0, NULL, NULL, NULL, 0, 1);
 
 COMMIT;
+
 
 -- -----------------------------------------------------
 -- Data for table `autodb`.`quote`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `autodb`;
-INSERT INTO `autodb`.`quote` (`id`, `estimate`, `post_date`, `description`, `request_id`, `complete_date`, `expire_date`, `business_id`) VALUES (1, 69.99, '2018-01-02 11:30:45', '60k Maintenence', 1, '2018-01-08 09:30:00', '', 1);
-INSERT INTO `autodb`.`quote` (`id`, `estimate`, `post_date`, `description`, `request_id`, `complete_date`, `expire_date`, `business_id`) VALUES (2, 19.99, '2018-01-11 10:05:45', 'Oil Change', 2, '', '', 2);
-INSERT INTO `autodb`.`quote` (`id`, `estimate`, `post_date`, `description`, `request_id`, `complete_date`, `expire_date`, `business_id`) VALUES (3, 9.99, '2018-01-06 06:30:45', 'Air Filter', 3, '2018-01-09 09:30:00', '2018-01-08 09:30:00', 1);
+INSERT INTO `autodb`.`quote` (`id`, `estimate`, `post_date`, `description`, `request_id`, `complete_date`, `expire_date`, `business_id`, `active`) VALUES (1, 69.99, NULL, 'Air muffle', 1, NULL, NULL, 1, 1);
+INSERT INTO `autodb`.`quote` (`id`, `estimate`, `post_date`, `description`, `request_id`, `complete_date`, `expire_date`, `business_id`, `active`) VALUES (2, 345, NULL, 'Air Brakes', 2, NULL, NULL, 1, 1);
+INSERT INTO `autodb`.`quote` (`id`, `estimate`, `post_date`, `description`, `request_id`, `complete_date`, `expire_date`, `business_id`, `active`) VALUES (3, 1000, NULL, 'Air Guitar', 3, NULL, NULL, 2, 1);
 
 COMMIT;
+

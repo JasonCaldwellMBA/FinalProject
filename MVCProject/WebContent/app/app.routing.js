@@ -10,6 +10,12 @@ angular.module('appModule')
 	    .when('/login', {
 	    		template : '<login></login>'
 	    })
+	    .when('/registerBusiness', {
+	    	template: '<register-business></register-business>'
+	    })
+	    .when('/loginBusiness', {
+	    	template : '<login-business></login-business>'
+	    })
 	    .when('/logout', {
 	    		template : '<logout></logout>'
 	    })

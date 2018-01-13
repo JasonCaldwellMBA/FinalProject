@@ -8,8 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -40,19 +38,7 @@ public class User {
 	@JsonIgnore
 	@OneToMany(mappedBy="user")
 	private List<Request> requests;
-	@JsonIgnore
-	@ManyToMany
-	@JoinTable(
-			name="business_user",
-			joinColumns=@JoinColumn(
-					name="user_id",
-					referencedColumnName = "id"
-			),
-			inverseJoinColumns= @JoinColumn(
-			name="business_id",
-			referencedColumnName="id")
-	)
-	private List<Business> associatedBusinesses;
+
 	
 	
 	public String getFirstName() {
@@ -108,12 +94,6 @@ public class User {
 	}
 	public void setUsername(String username) {
 		this.username = username;
-	}
-	public List<Business> getAssociatedBusinesses() {
-		return associatedBusinesses;
-	}
-	public void setAssociatedBusinesses(List<Business> associatedBusinesses) {
-		this.associatedBusinesses = associatedBusinesses;
 	}
 	public int getId() {
 		return id;

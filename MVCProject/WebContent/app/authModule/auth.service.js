@@ -22,9 +22,29 @@ angular.module('authModule')
 				data: user
 			}); 
 		}
-		service.logout = function(entity){
+		service.registerBusiness = function(business){
+			return $http({
+				method: 'POST',
+				url: BASE_URL + 'api/auth/business/register',
+				headers: {
+					'content-type': 'application/json'
+				},
+				data: business
+			});
+		}
+		service.loginBusiness = function(business){
+			return $http({
+				method: 'PUT',
+				url: BASE_URL + 'api/auth/business/login',
+				headers: {
+					'content-type': 'application/json'
+				},
+				data: business
+			}); 
+		}
+		service.logout = function(){
 			service.removeToken(); 
-            $location.path('/login'); 
+            $location.path('/logout'); 
 		}
 		service.getToken = function(){
 			let id = $cookies.get('userId'); 

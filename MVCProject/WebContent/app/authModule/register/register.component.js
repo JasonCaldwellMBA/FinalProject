@@ -8,7 +8,8 @@ angular.module('authModule')
 			vm.error = null; 
 
 			if (authService.isUser() == true) {
-                $location.path('/home'); 
+				var id = authService.getToken(); 
+                $location.path('/user' + id); 
 			}
 			
 			vm.setUser = function (user) {
@@ -37,8 +38,9 @@ angular.module('authModule')
 			vm.registerUser = function () {
 				authService.register(vm.user)
 					.then(function (res) {
+						var id = res.data.id; 
                         authService.setToken(res.data.id); 
-						$location.path('/home');
+						$location.path('/user/' + id);
 					}).catch(console.error); 
 			}
 			//helper methods

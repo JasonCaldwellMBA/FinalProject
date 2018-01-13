@@ -4,6 +4,6 @@ angular.module('authModule')
 		controllerAs: 'vm',
 		controller: function(authService){
 			var vm = this; 
-			console.log(authService.logout()); 
+			authService.logout(); 
 		}
 	})

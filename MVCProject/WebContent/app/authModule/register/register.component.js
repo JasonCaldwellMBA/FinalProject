@@ -9,7 +9,7 @@ angular.module('authModule')
 
 			if (authService.isUser() == true) {
 				var id = authService.getToken(); 
-                $location.path('/user' + id); 
+                $location.path('/user/' + id); 
 			}
 			
 			vm.setUser = function (user) {

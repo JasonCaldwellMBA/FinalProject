@@ -7,10 +7,15 @@ import entities.Quote;
 
 public interface QuoteDAO {
 	
-	public Set<Quote> index(int bid, int rid);
-	public Quote show(int bid, int rid, int qid);
-	public Quote create(int bid, int rid, String quoteJson);
-	public Quote update(int bid, int qid, int rid, String quoteJson);
-	public Quote destroy(int bid, int rid, int qid);
+	public Set<Quote> index(int uid, int rid);
+	public Quote show(int uid, int rid, int qid);
+	public Quote create(int uid, int rid, String quoteJson);
+	public Quote update(int uid, int qid, int rid, String quoteJson);
+	public Quote destroy(int uid, int rid, int qid);
+	
 	public Collection<Quote> indexQuoteForBusiness(int bid);
+	public Quote showBiz(int bid, int qid);
+	public Quote createBiz(int bid, String quoteJson);
+	public Quote updateBiz(int bid, int qid, String quoteJson);
+	public Quote destroyBiz(int bid, int qid);
 }

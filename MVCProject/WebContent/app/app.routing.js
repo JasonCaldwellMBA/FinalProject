@@ -19,6 +19,9 @@ angular.module('appModule')
 		.when('/user/:id/vehicle',{
 			template: '<vehicle></vehicle>'
 		})
+	    .when('/userComponent',{
+	    	template: '<user-component></user-component>'
+	    })
 	    .otherwise({
 	    		template : '<not-found></not-found>'
 	    })

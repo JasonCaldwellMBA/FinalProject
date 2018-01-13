@@ -29,6 +29,13 @@ public class QuoteController {
     			@PathVariable int bid) {
     		return quoteDAO.index(bid, rid);
     }
+    @RequestMapping(path = "/business/{bid}/quote", method = RequestMethod.GET)
+    public Collection<Quote> indexQuotesForBusiness(
+    		HttpServletRequest req, 
+    		HttpServletResponse res,
+    		@PathVariable int bid) {
+    	return quoteDAO.indexQuoteForBusiness(bid);
+    }
     
     @RequestMapping(path = "/business/{bid}/request/{rid}/quote/{qid}", method = RequestMethod.GET)
     public Quote show(

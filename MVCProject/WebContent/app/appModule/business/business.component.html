@@ -1,3 +1,25 @@
 <h1>@ Business Component</h1>
 {{vm.message}}
-{{vm.getBusiness(1)}}
+{{vm.business.companyName}}
+{{vm.business.contact.city}}
+<ul>
+	<div ng-repeat="quote in vm.quotes">
+		<li ng-click="vm.detailedQuote(quote)">
+			{{quote.description}}
+			{{quote.postDate}}
+			{{quote.request.vehicle.make}}
+			{{quote.request.vehicle.model}}
+		</li>
+	</div>
+</ul>
+
+<h4>{{vm.copy.request}}</h4>
+<div ng-model="vm.copy" ng-show="vm.copy">
+{{vm.copy.description}}
+{{vm.copy.request.firstName}}
+{{vm.copy.request.vehicle}}
+{{vm.copy.expireDate}}
+{{vm.copy.postDate}}
+<button type="button" ng-click="vm.copy = null">Return</button>
+</div>
+

@@ -4,6 +4,7 @@ angular.module('appModule')
 	controllerAs : 'vm',
 	controller : function(businessService){
 		var vm = this;
+		vm.copy = null;
 		
 		vm.quotes = [];
 		
@@ -11,11 +12,26 @@ angular.module('appModule')
 		
 		vm.message = "Working...";
 		
-		vm.getBusiness = function(id){
+		var getBusiness = function(id){
 			businessService.show(id)
 			.then(function(response){
 				vm.business = response.data;
 			})
+		}		
+
+		}
+		getBusiness(1);
+		
+		var getQuotes = function(id){
+			businessService.indexQuotes(id)
+			.then(function(response){
+				vm.quotes = response.data;
+			})
+		}
+		getQuotes(1);
+		
+		vm.detailedQuote = function(quote){
+			vm.copy = angular.copy(quote);	
 		}
 		
 	}

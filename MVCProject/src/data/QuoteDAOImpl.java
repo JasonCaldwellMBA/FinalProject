@@ -25,7 +25,7 @@ public class QuoteDAOImpl implements QuoteDAO {
 
 	@Override
     public Set<Quote> index(int bid, int rid) {
-        String query = "SELECT q FROM Quote q WHERE q.business.id = :bid AND q.request.id = :rid AND q.active = true";
+        String query = "SELECT q FROM Quote q WHERE q.business.id = :bid AND q.business.active = true AND q.request.id = :rid AND q.request.active = true AND q.active = true";
         
         List<Quote> quotes = em.createQuery(query, Quote.class)
                             .setParameter("bid", bid)

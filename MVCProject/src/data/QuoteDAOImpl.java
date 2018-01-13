@@ -26,11 +26,18 @@ public class QuoteDAOImpl implements QuoteDAO {
 	@Override
     public Set<Quote> index(int bid, int rid) {
         String query = "SELECT q FROM Quote q WHERE q.business.id = :bid AND q.business.active = true AND q.request.id = :rid AND q.request.active = true AND q.active = true";
-        
+        //q.description, q.estimate, q.postDate, q.expireDate, q.completeDate
         List<Quote> quotes = em.createQuery(query, Quote.class)
                             .setParameter("bid", bid)
                             .setParameter("rid", rid)
                             .getResultList();
+//        for (Quote quote : quotes) {
+//			System.out.println(quote.getDescription());
+//			System.out.println(quote.getEstimate());
+//			System.out.println(quote.getPostDate());
+//			System.out.println(quote.getExpireDate());
+//			System.out.println(quote.getCompleteDate());
+//		}
         return new HashSet<Quote>(quotes);
     }
 

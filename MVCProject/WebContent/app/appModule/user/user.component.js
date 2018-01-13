@@ -2,20 +2,27 @@ angular.module('appModule')
 .component('userComponent', {
 	templateUrl : 'app/appModule/user/user.component.html',
 	controllerAs : 'vm',
-	controller : function(userComponent){
+	controller : function($routeParams, $location, userService){
 		var vm = this;
-
 		vm.requests = [];
-		
 		vm.user = null;
+		//Init load
+		userService.show($routeParams.id).then(function(res){
+			vm.user = res.data; 
+		}); 
 		
-		vm.getUser = function(id){
-			userService.show(id)
+		var getRequests = function(id){
+			userService.indexRequests(id)
 			.then(function(response){
-				vm.user = response.data;
+				vm.requests = response.data;
 			})
 		}
+		
+		vm.detailedRequest = function(request){
+			vm.copy = angular.copy(request);	
 		}
-}); 
-		
-		
+		vm.getVehicles = function(){
+			$location.path("user/" + $routeParams.id + "/vehicle"); 
+		}
+	}
+})	

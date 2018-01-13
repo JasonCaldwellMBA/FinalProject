@@ -1,0 +1,40 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            <!-- optional sidebar -->
+            <button class="btn btn-primary" ng-click="vm.return()">Return to user home</button>
+        </div>
+        <div class="col-sm">
+            <h4>User Vehicles</h4>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Make</th>
+                        <th>Model</th>
+                        <th>Year</th>
+                        <th>Mileage</th>
+                        <th>VIN</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="v in vm.vehicles" ng-click="vm.detailView(v.id)">
+                        <td>{{v.make}}</td>
+                        <td>{{v.model}}</td>
+                        <td>{{v.year}}</td>
+                        <td>{{v.mileage}}</td>
+                        <td>{{v.vin}}</td>
+                        <td>
+                            <button class="btn btn-secondary">Update</button>
+                        </td>
+                        <td>
+                            <button class="btn btn-danger">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-sm">
+            <!-- optional sidebar -->
+        </div>
+    </div>
+</div>

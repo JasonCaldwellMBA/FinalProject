@@ -21,14 +21,6 @@ public class QuoteController {
     @Autowired
     private QuoteDAO quoteDAO;
 
-    @RequestMapping(path = "/business/{bid}/request/{rid}/quote", method = RequestMethod.GET)
-    public Collection<Quote> index(
-            HttpServletRequest req, 
-            HttpServletResponse res, 
-            @PathVariable int rid,
-    			@PathVariable int bid) {
-    		return quoteDAO.index(bid, rid);
-    }
     @RequestMapping(path = "/business/{bid}/quote", method = RequestMethod.GET)
     public Collection<Quote> indexQuotesForBusiness(
     		HttpServletRequest req, 
@@ -37,58 +29,54 @@ public class QuoteController {
     	return quoteDAO.indexQuoteForBusiness(bid);
     }
     
-    @RequestMapping(path = "/business/{bid}/request/{rid}/quote/{qid}", method = RequestMethod.GET)
-    public Quote show(
+    @RequestMapping(path = "/business/{bid}/quote/{qid}", method = RequestMethod.GET)
+    public Quote showBiz(
                 HttpServletRequest req, 
                 HttpServletResponse res, 
                 @PathVariable int bid, 
-                @PathVariable int rid, 
                 @PathVariable int qid) {
-    		Quote quote = quoteDAO.show(bid, rid, qid);
+    		Quote quote = quoteDAO.showBiz(bid, qid);
     		if (quote == null) {
             res.setStatus(400);
         }
     		return quote;
     }
     
-    @RequestMapping(path = "/business/{bid}/request/{rid}/quote", method = RequestMethod.POST)
-    public Quote create(
+    @RequestMapping(path = "/business/{bid}/quote", method = RequestMethod.POST)
+    public Quote createBiz(
             HttpServletRequest req, 
             HttpServletResponse res, 
             @PathVariable int bid, 
-            @PathVariable int rid, 
             @RequestBody String quoteJson) {
         
-        Quote quote = quoteDAO.create(bid, rid, quoteJson);
+        Quote quote = quoteDAO.createBiz(bid, quoteJson);
         if (quote == null) {
             res.setStatus(400);
         }
         return quote;
     }
     
-    @RequestMapping(path = "/business/{bid}/request/{rid}/quote/{qid}", method = RequestMethod.PUT)
-    public Quote update(
+    @RequestMapping(path = "/business/{bid}/quote/{qid}", method = RequestMethod.PUT)
+    public Quote updateBiz(
             HttpServletRequest req, 
             HttpServletResponse res, 
             @PathVariable int bid, 
-            @PathVariable int rid, 
             @PathVariable int qid, 
             @RequestBody String quoteJson) {
-        Quote quote = quoteDAO.update(bid, rid, qid, quoteJson);
+        Quote quote = quoteDAO.updateBiz(bid, qid, quoteJson);
         if (quote == null) {
             res.setStatus(400);
         }
         return quote;
     }
     
-    @RequestMapping(path = "/business/{bid}/request/{rid}/quote/{qid}", method = RequestMethod.DELETE)
-    public Quote destroy(
+    @RequestMapping(path = "/business/{bid}/quote/{qid}", method = RequestMethod.DELETE)
+    public Quote destroyBiz(
             HttpServletRequest req, 
             HttpServletResponse res, 
             @PathVariable int bid,
-            @PathVariable int qid,
-    			@PathVariable int rid) {
-        Quote quote = quoteDAO.destroy(bid, rid, qid);
+            @PathVariable int qid) {
+        Quote quote = quoteDAO.destroyBiz(bid, qid);
         if (quote == null) {
             res.setStatus(404);
         }
@@ -96,6 +84,77 @@ public class QuoteController {
         		res.setStatus(200);
         }
         return quote;
+    }
+    
+    
+    @RequestMapping(path = "/user/{uid}/request/{rid}/quote", method = RequestMethod.GET)
+    public Collection<Quote> index(
+    		HttpServletRequest req, 
+    		HttpServletResponse res, 
+    		@PathVariable int rid,
+    		@PathVariable int uid) {
+    	return quoteDAO.index(uid, rid);
+    }
+    
+    @RequestMapping(path = "/user/{uid}/request/{rid}/quote/{qid}", method = RequestMethod.GET)
+    public Quote show(
+    		HttpServletRequest req, 
+    		HttpServletResponse res, 
+    		@PathVariable int uid, 
+    		@PathVariable int rid, 
+    		@PathVariable int qid) {
+    	Quote quote = quoteDAO.show(uid, rid, qid);
+    	if (quote == null) {
+    		res.setStatus(400);
+    	}
+    	return quote;
+    }
+    
+    @RequestMapping(path = "/user/{uid}/request/{rid}/quote", method = RequestMethod.POST)
+    public Quote create(
+    		HttpServletRequest req, 
+    		HttpServletResponse res, 
+    		@PathVariable int uid, 
+    		@PathVariable int rid, 
+    		@RequestBody String quoteJson) {
+    	
+    	Quote quote = quoteDAO.create(uid, rid, quoteJson);
+    	if (quote == null) {
+    		res.setStatus(400);
+    	}
+    	return quote;
+    }
+    
+    @RequestMapping(path = "/user/{uid}/request/{rid}/quote/{qid}", method = RequestMethod.PUT)
+    public Quote update(
+    		HttpServletRequest req, 
+    		HttpServletResponse res, 
+    		@PathVariable int uid, 
+    		@PathVariable int rid, 
+    		@PathVariable int qid, 
+    		@RequestBody String quoteJson) {
+    	Quote quote = quoteDAO.update(uid, rid, qid, quoteJson);
+    	if (quote == null) {
+    		res.setStatus(400);
+    	}
+    	return quote;
+    }
+    
+    @RequestMapping(path = "/user/{uid}/request/{rid}/quote/{qid}", method = RequestMethod.DELETE)
+    public Quote destroy(
+    		HttpServletRequest req, 
+    		HttpServletResponse res, 
+    		@PathVariable int uid,
+    		@PathVariable int qid,
+    		@PathVariable int rid) {
+    	Quote quote = quoteDAO.destroy(uid, rid, qid);
+    	if (quote == null) {
+    		res.setStatus(404);
+    	}
+    	else {
+    		res.setStatus(200);
+    	}
+    	return quote;
     }
 
 }

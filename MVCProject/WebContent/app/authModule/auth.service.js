@@ -43,19 +43,32 @@ angular.module('authModule')
 			}); 
 		}
 		service.logout = function(entity){
-			
+			service.removeToken(); 
+            $location.path('/login'); 
 		}
 		service.getToken = function(){
-			
+			let id = $cookies.get('userId'); 
+            return id; 
 		}
 		service.setToken = function(id){
-			
+			$cookies.put('userId', id); 
+            if (id == $cookies.get('userId')) {
+                return true; 
+            }
+            return false; 
 		}
 		service.removeToken = function(){
-			
+			$cookies.remove('userId'); 
+            if ($cookies.get('userId') == null) {
+                return true; 
+            }
+            return false; 
 		}
-		service.isEntity = function(){
-			
+		service.isUser = function(){
+			if ($cookies.get('userId')) {
+                return true;
+            }
+            return false; 
 		}
 		return service; 
 	}); 

@@ -16,6 +16,9 @@ angular.module('appModule')
 	    .when('/businessHome',{
 	    	template: '<business-component></business-component>'
 	    })
+	    .when('/userComponent',{
+	    	template: '<user-component></user-component>'
+	    })
 	    .otherwise({
 	    		template : '<not-found></not-found>'
 	    })

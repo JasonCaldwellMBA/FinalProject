@@ -5,7 +5,7 @@ angular.module('authModule')
 		service.userRegister = function(user){
 			return $http({
 				method: 'POST',
-				url: BASE_URL + 'api/user/register',
+				url: BASE_URL + 'api/auth/user/register',
 				headers: {
 					'content-type': 'application/json'
 				},
@@ -15,7 +15,7 @@ angular.module('authModule')
 		service.businessRegister = function (business) {
 			return $http({
 				method: 'POST',
-				url: BASE_URL + 'api/business/register',
+				url: BASE_URL + 'api/auth/business/register',
 				headers: {
 					'content-type': 'application/json'
 				},

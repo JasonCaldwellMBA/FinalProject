@@ -3,7 +3,7 @@ angular.module('appModule')
 	$routeProvider
     	.when('/home', {
     			template : '<home></home>'
-	    })
+		})
 		.when('/register', {
 			template: '<register></register>'
 		})

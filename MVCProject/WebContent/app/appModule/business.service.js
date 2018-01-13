@@ -1,12 +1,13 @@
 angular.module('appModule')
-.factory('busService', function($http){
+.factory('businessService', function($http){
 	var service = {};
 	
 	
 	service.show = function(id){
 		return $http({
 			method : "GET",
-			url : "api/business/" + id
+			url : "/api/business/" + id
 		})
 	}
+	return service;
 })

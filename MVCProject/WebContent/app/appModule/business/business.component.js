@@ -1,16 +1,18 @@
 angular.module('appModule')
-.component('busComponent', {
+.component('businessComponent', {
 	templateUrl : "app/appModule/business/business.component.html",
 	controllerAs : 'vm',
-	controller : function(busService){
+	controller : function(businessService){
 		var vm = this;
 		
 		vm.quotes = [];
 		
 		vm.business = null;
 		
+		vm.message = "Working...";
+		
 		vm.getBusiness = function(id){
-			busService.show(id)
+			businessService.show(id)
 			.then(function(response){
 				vm.business = response.data;
 			})

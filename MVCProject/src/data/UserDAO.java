@@ -7,7 +7,7 @@ import entities.User;
 
 public interface UserDAO {
 	
-		public List<User> index(int uid);
+	public List<User> index(int uid);
 
 	  public User show(int uid);
 	  public User create(String json);
@@ -18,5 +18,5 @@ public interface UserDAO {
 
 	  public Contact createContact(int uid, String contactJson);
 
-	  	public Contact updateContact(int uid, int cid, String contactJson);
+	  public Contact updateContact(int uid, int cid, String contactJson);
 }

@@ -17,7 +17,7 @@ angular.module('appModule')
 	    	template : '<logout></logout>'
 	    })
 	    .when('/businessHome',{
-	    	template: '<bus_component></bus_component>'
+	    	template: '<business-component></business-component>'
 	    })
 	    .otherwise({
 	      template : '<not-found></not-found>'

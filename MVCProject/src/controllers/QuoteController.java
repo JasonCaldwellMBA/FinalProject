@@ -58,7 +58,6 @@ public class QuoteController {
         }
         return quote;
     }
-    
     @RequestMapping(path = "/business/{bid}/request/{rid}/quote/{qid}", method = RequestMethod.PUT)
     public Quote update(
             HttpServletRequest req, 

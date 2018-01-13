@@ -27,12 +27,6 @@ angular.module('authModule')
 						$location.path('/home');
 					}).catch(console.error); 
 			}
-			vm.login = function () {
-				authService.login(vm.user)
-					.then(function (res) {
-						$location.path('/home');
-					}).catch(console.error); 
-			}
 			//helper methods
 			vm.return = function () {
 				vm.user = null; 

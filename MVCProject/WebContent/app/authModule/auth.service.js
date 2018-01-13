@@ -14,7 +14,7 @@ angular.module('authModule')
 		}
 		service.login = function(user){
 			return $http({
-				method: 'POST',
+				method: 'PUT',
 				url: BASE_URL + 'api/auth/user/login',
 				headers: {
 					'content-type': 'application/json'

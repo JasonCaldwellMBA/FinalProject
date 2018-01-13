@@ -1,5 +1,6 @@
 package data;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -89,5 +90,12 @@ public class QuoteDAOImpl implements QuoteDAO {
         }
         return quote;
     }
+
+	@Override
+	public Set<Quote> indexQuoteForBusiness(int bid) {
+		String query = "SELECT q FROM Quote q WHERE q.business.id = :bid";
+		
+		return new HashSet<Quote>(em.createQuery(query).setParameter("bid", bid).getResultList());
+	}
 
 }

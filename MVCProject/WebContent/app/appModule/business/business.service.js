@@ -8,19 +8,17 @@ angular.module('appModule')
 			url : "api/business"
 		})
 	}
-	
 	service.show = function(id){
 		return $http({
 			method : "GET",
 			url : "api/business/" + id
 		})
 	}
-//	service.indexQuotes = function(id){
-//		return $http({
-//			method : "GET"
-//			url : "api/business/" + id + "quote/"
-//		})
-//	}
-	
+	service.indexQuotes = function(id){
+		return $http({
+			method : "GET",
+			url : "api/business/" + id + "/quote/"
+		})
+	}
 	return service;
 })

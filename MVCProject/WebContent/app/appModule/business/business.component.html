@@ -1,5 +1,7 @@
 <h1>@ Business Component</h1>
 {{vm.message}}
-{{vm.business}}
-{{vm.business.contact}}
-<div ng-repeat="quote in vm.business.quotes">{{quote}}</div>
+{{vm.business.companyName}}
+{{vm.business.contact.city}}
+<ul>
+<div ng-repeat="quote in vm.quotes"><li>{{quote.description}}</li></div>
+</ul>

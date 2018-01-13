@@ -19,12 +19,13 @@ angular.module('appModule')
 		}
 		getBusiness(1);
 		
-//		var getQuotes = function(id){
-//			businessService.indexQuotes(id)
-//			.then(function(response){
-//				vm.quotes = response.data;
-//			})
-//		}
+		var getQuotes = function(id){
+			businessService.indexQuotes(id)
+			.then(function(response){
+				vm.quotes = response.data;
+			})
+		}
+		getQuotes(1);
 		
 	}
 })	

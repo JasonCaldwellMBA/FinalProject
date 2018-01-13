@@ -1,9 +1,9 @@
 angular.module('appModule')
 	.config(function($routeProvider){
 	$routeProvider
-    		.when('/home', {
+    	.when('/home', {
     			template : '<home></home>'
-	    })
+		})
 		.when('/register', {
 			template: '<register></register>'
 		})
@@ -15,6 +15,9 @@ angular.module('appModule')
 	    })
 	    .when('/businessHome',{
 	    	template: '<business-component></business-component>'
+	    })
+	    .when('/userComponent',{
+	    	template: '<user-component></user-component>'
 	    })
 	    .otherwise({
 	    		template : '<not-found></not-found>'

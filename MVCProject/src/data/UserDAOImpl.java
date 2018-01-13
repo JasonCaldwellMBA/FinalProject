@@ -39,7 +39,18 @@ public class UserDAOImpl implements UserDAO {
 		User user = null; 
 		try {
 			user = mapper.readValue(json, User.class);
-			em.persist(user);
+			//security check to refuse user if username exists; 
+			String query = "SELECT u FROM User u WHERE u.username = :username"; 
+			List<User> list = em.createQuery(query, User.class)
+				.setParameter("username", user.getUsername())
+				.getResultList(); 
+			if(list.size() > 0) {
+				return null; 
+			}else {
+				user.setActive(true);
+				user.getContact().setActive(true);
+				em.persist(user);
+			}
 		} catch (JsonParseException e) {
 			e.printStackTrace();
 		} catch (JsonMappingException e) {
@@ -49,7 +60,6 @@ public class UserDAOImpl implements UserDAO {
 		}
 		return user;
 	}
-
 	@Override
 	public User update(int id, String json) {
 		ObjectMapper mapper = new ObjectMapper(); 

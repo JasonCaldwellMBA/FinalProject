@@ -27,7 +27,7 @@ public class QuoteController {
             HttpServletResponse res, 
             @PathVariable int rid,
     			@PathVariable int bid) {
-        return quoteDAO.index(bid, rid);
+    		return quoteDAO.index(bid, rid);
     }
     
     @RequestMapping(path = "/business/{bid}/request/{rid}/quote/{qid}", method = RequestMethod.GET)
@@ -37,7 +37,11 @@ public class QuoteController {
                 @PathVariable int bid, 
                 @PathVariable int rid, 
                 @PathVariable int qid) {
-        return quoteDAO.show(bid, rid, qid);
+    		Quote quote = quoteDAO.show(bid, rid, qid);
+    		if (quote == null) {
+            res.setStatus(400);
+        }
+    		return quote;
     }
     
     @RequestMapping(path = "/business/{bid}/request/{rid}/quote", method = RequestMethod.POST)

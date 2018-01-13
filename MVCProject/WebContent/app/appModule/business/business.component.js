@@ -10,6 +10,8 @@ angular.module('appModule')
 		
 		vm.business = null;
 		
+		vm.singleQuote = null;
+		
 		vm.message = "Working...";
 		
 		var getBusiness = function(id){
@@ -32,6 +34,16 @@ angular.module('appModule')
 		vm.detailedQuote = function(quote){
 			vm.copy = angular.copy(quote);	
 		}
+		
+		var getQuote = function(bid, qid){
+			businessService.getQuote(bid, qid)
+			.then(function(res){
+				vm.singleQuote = res.data;
+			})
+		}
+		
+		getQuote(1,1);
+	
 		
 	}
 })	

@@ -5,7 +5,6 @@ angular.module('authModule')
 			
 		}
 		service.businessRegister = function(business){
-			
 		}
 		service.login = function(entity){
 			

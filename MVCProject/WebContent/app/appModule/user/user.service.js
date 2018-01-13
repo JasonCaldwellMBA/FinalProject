@@ -1,17 +1,12 @@
-$angular.module('appModule')
+angular.module('appModule')
 .factory('userService', function($http){
 	var service = {};
-	
-	service.index = function(){
-		return $http({
-			method : "GET",
-			url : "api/user"
-		})
-	}
+	var BASE_URL = "http://localhost:8080/MVCProject/api/"
+		
 	service.show = function(id){
 		return $http({
 			method : "GET",
-			url : "api/user/" + id
+			url : BASE_URL + "user/" + id
 		})
 	}
 	service.indexRequests = function(id){
@@ -22,9 +17,3 @@ $angular.module('appModule')
 	}
 	return service;
 })
-
-service.addVehicle = function(id){
-	return $http({
-		method : "PUT"
-	})
-}

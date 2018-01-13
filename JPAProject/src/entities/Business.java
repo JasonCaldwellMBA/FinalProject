@@ -43,9 +43,12 @@ public class Business {
 	@OneToMany(mappedBy="business")
 	private List<Certification> certifications;
 	private boolean active; 
-	@JsonIgnore
-	@ManyToMany(mappedBy="associatedBusinesses")
-	private List<User> employees; 
+
+	
+	@Column(name = "login_name")
+	private String loginName;
+	@Column(name = "login_password")
+	private String loginPassword;
 	
 	public Contact getContact() {
 		return contact;
@@ -93,18 +96,25 @@ public class Business {
 		return id;
 	}
 	
-	public List<User> getEmployees() {
-		return employees;
-	}
-	public void setEmployees(List<User> employees) {
-		this.employees = employees;
-	}
-	
 	public boolean isActive() {
 		return active;
 	}
 	public void setActive(boolean active) {
 		this.active = active;
+	}
+	
+	
+	public String getLoginName() {
+		return loginName;
+	}
+	public void setLoginName(String loginName) {
+		this.loginName = loginName;
+	}
+	public String getLoginPassword() {
+		return loginPassword;
+	}
+	public void setLoginPassword(String loginPassword) {
+		this.loginPassword = loginPassword;
 	}
 	@Override
 	public String toString() {

@@ -19,9 +19,8 @@ angular.module('appModule')
 			})
 		}		
 
-		}
-		getBusiness(1);
 		
+		getBusiness(1);
 		var getQuotes = function(id){
 			businessService.indexQuotes(id)
 			.then(function(response){

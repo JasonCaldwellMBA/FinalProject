@@ -56,4 +56,36 @@ public class AuthController {
 		res.setStatus(401);
 		return "Fail"; 
 	}
+	
+	//Business Authorization
+	@RequestMapping(path="/auth/business/register", method=RequestMethod.POST)
+	public Business createBusiness(@RequestBody String json,
+			HttpServletResponse res,
+			HttpSession session){
+		Business bus = dao.registerBusiness(json); 
+		if(bus != null) {
+			session.setAttribute("bus", bus);
+			res.setStatus(201);
+		}
+		else {
+			res.setStatus(400); 
+		}
+		return bus; 
+	}
+	@RequestMapping(path="/auth/business/login", method=RequestMethod.PUT)
+	public Business loginBusiness(@RequestBody String json,
+			HttpServletResponse res,
+			HttpSession session){
+		Business bus = dao.loginBusiness(json); 
+		if(bus != null) {
+			res.setStatus(201);
+			session.setAttribute("bus", bus);
+		}
+		else {
+			res.setStatus(400);
+		}
+		return bus; 
+	}
+
+
 }

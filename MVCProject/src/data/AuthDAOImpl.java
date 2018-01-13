@@ -15,6 +15,7 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import entities.Business;
 import entities.User;
 @Transactional
 @Repository
@@ -67,6 +68,67 @@ public class AuthDAOImpl implements AuthDAO {
 				if(retUser.getUsername().equals(user.getUsername())) {
 					if(encoder.matches(user.getPassword(), retUser.getPassword())) {
 						return retUser; 
+					}
+					else {
+						return null; 
+					}
+				}
+			}
+		} catch (JsonParseException e) {
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;	
+	}
+	
+	//Business
+	@Override
+	public Business registerBusiness(String json) {
+		ObjectMapper mapper = new ObjectMapper(); 
+		Business bus = null; 
+		try {
+			bus = mapper.readValue(json, Business.class);
+			//security check to refuse user if username exists; 
+			String query = "SELECT b FROM Business b WHERE b.loginName = :loginName"; 
+			List<Business> list = em.createQuery(query, Business.class)
+					.setParameter("loginName", bus.getLoginName())
+					.getResultList(); 
+			if(list.size() > 0) {
+				return null; 
+			}else {
+				final String encryptedPwd = encoder.encode(bus.getLoginPassword()); 
+				bus.setLoginPassword(encryptedPwd);
+				em.persist(bus);
+			}
+		} catch (JsonParseException e) {
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return bus;
+	}
+	@Override
+	public Business loginBusiness(String json) {
+		ObjectMapper mapper = new ObjectMapper(); 
+		Business bus = null; 
+		Business retBus = null; 
+		try {
+			bus = mapper.readValue(json, Business.class);
+			String busQuery = "SELECT b FROM Business b WHERE b.loginName = :loginName"; 
+			//run userQuery if no user check business 
+			List<Business> buses = em.createQuery(busQuery, Business.class)
+					.setParameter("loginName", bus.getLoginName())
+					.getResultList(); 
+			if(buses.size() == 1) {
+				retBus = buses.get(0);
+				if(retBus.getLoginName().equals(bus.getLoginName())) {
+					if(encoder.matches(bus.getLoginPassword(), retBus.getLoginPassword())) {
+						return retBus; 
 					}
 					else {
 						return null; 

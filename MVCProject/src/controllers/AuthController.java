@@ -32,7 +32,7 @@ public class AuthController {
 		}
 		return user; 
 	}
-	@RequestMapping(path="/auth/user/login", method=RequestMethod.GET)
+	@RequestMapping(path="/auth/user/login", method=RequestMethod.PUT)
 	public User login(@RequestBody String json,
 			HttpServletResponse res,
 			HttpSession session){

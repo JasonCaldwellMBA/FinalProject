@@ -5,10 +5,12 @@ angular.module('authModule')
 		controller: function(authService, $location){
 			var vm = this; 
 			vm.user = null; 
-			vm.setUser = function(user) {
+			vm.setUser = function (user) {
+				user.active = true; 
 				vm.user = user; 
 			}
 			vm.addContact = function (contact) {
+				contact.active = true; 
 				vm.user.contact = contact; 
 				vm.addRating();
 				vm.registerUser(); 
@@ -20,7 +22,13 @@ angular.module('authModule')
 				}; 
 			}
 			vm.registerUser = function () {
-				authService.userRegister(vm.user)
+				authService.register(vm.user)
+					.then(function (res) {
+						$location.path('/home');
+					}).catch(console.error); 
+			}
+			vm.login = function () {
+				authService.login(vm.user)
 					.then(function (res) {
 						$location.path('/home');
 					}).catch(console.error); 

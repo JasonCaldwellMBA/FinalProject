@@ -39,8 +39,6 @@ public class AuthDAOImpl implements AuthDAO {
 			}else {
 				final String encryptedPwd = encoder.encode(user.getPassword()); 
 				user.setPassword(encryptedPwd);
-				user.setActive(true);
-				user.getContact().setActive(true);
 				em.persist(user);
 			}
 		} catch (JsonParseException e) {

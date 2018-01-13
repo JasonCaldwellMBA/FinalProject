@@ -2,7 +2,7 @@ angular.module('authModule')
 	.factory('authService', function($http, $cookies, $location){
 		var service = {}; 
 		var BASE_URL = "http://localhost:8080/MVCProject/"
-		service.userRegister = function(user){
+		service.register = function(user){
 			return $http({
 				method: 'POST',
 				url: BASE_URL + 'api/auth/user/register',
@@ -12,24 +12,14 @@ angular.module('authModule')
 				data: user
 			});
 		}
-		service.businessRegister = function (business) {
+		service.login = function(user){
 			return $http({
 				method: 'POST',
-				url: BASE_URL + 'api/auth/business/register',
+				url: BASE_URL + 'api/auth/user/login',
 				headers: {
 					'content-type': 'application/json'
 				},
-				data: business
-			}); 
-		}
-		service.login = function(entity){
-			return $http({
-				method: 'GET',
-				url: BASE_URL + 'api/login',
-				headers: {
-					'content-type': 'application/json'
-				},
-				data: entity
+				data: user
 			}); 
 		}
 		service.logout = function(entity){

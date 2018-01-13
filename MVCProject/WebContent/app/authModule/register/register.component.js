@@ -6,6 +6,10 @@ angular.module('authModule')
 			var vm = this; 
 			vm.user = null; 
 			vm.setUser = function (user) {
+				if (user.password !== user.confirm) {
+					return; 
+				}
+				delete user.confirm; 
 				user.active = true; 
 				vm.user = user; 
 			}

@@ -9,6 +9,8 @@ angular.module('appModule')
 		
 		vm.business = null;
 		
+		vm.message = "Working...";
+		
 		vm.getBusiness = function(id){
 			businessService.show(id)
 			.then(function(response){

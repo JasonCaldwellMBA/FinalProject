@@ -25,36 +25,26 @@ public class QuoteDAOImpl implements QuoteDAO {
 	private EntityManager em;
 
 	@Override
-    public Set<Quote> index(int bid, int rid) {
-        String query = "SELECT q FROM Quote q WHERE q.business.id = :bid AND q.business.active = true AND q.request.id = :rid AND q.request.active = true AND q.active = true";
-        //q.description, q.estimate, q.postDate, q.expireDate, q.completeDate
+    public Set<Quote> index(int uid, int rid) {
+        String query = "SELECT q FROM Quote q WHERE q.request.user.id = :uid AND q.request.user.active = true AND q.request.id = :rid AND q.request.active = true AND q.active = true";
         List<Quote> quotes = em.createQuery(query, Quote.class)
-                            .setParameter("bid", bid)
+                            .setParameter("uid", uid)
                             .setParameter("rid", rid)
                             .getResultList();
-//        for (Quote quote : quotes) {
-//			System.out.println(quote.getDescription());
-//			System.out.println(quote.getEstimate());
-//			System.out.println(quote.getPostDate());
-//			System.out.println(quote.getExpireDate());
-//			System.out.println(quote.getCompleteDate());
-//		}
         return new HashSet<Quote>(quotes);
     }
 
     @Override
-    public Quote show(int bid, int rid, int qid) {
+    public Quote show(int uid, int rid, int qid) {
         return em.find(Quote.class, qid);
     }
 
     @Override
-    public Quote create(int bid, int rid, String quoteJson) {
+    public Quote create(int uid, int rid, String quoteJson) {
         ObjectMapper om = new ObjectMapper();
         Quote quote = null;
         try {
             quote = om.readValue(quoteJson, Quote.class);
-            Business business = em.find(Business.class, bid);
-            quote.setBusiness(business);
             Request request = em.find(Request.class, rid);
             quote.setRequest(request);
             
@@ -67,7 +57,7 @@ public class QuoteDAOImpl implements QuoteDAO {
     }
 
     @Override
-    public Quote update(int bid, int rid, int qid, String quoteJson) {
+    public Quote update(int uid, int rid, int qid, String quoteJson) {
         ObjectMapper om = new ObjectMapper();
         Quote updateQuote = null;
         Quote origQuote = null;
@@ -87,7 +77,7 @@ public class QuoteDAOImpl implements QuoteDAO {
     }
 
     @Override
-    public Quote destroy(int bid, int rid, int qid) {
+    public Quote destroy(int uid, int rid, int qid) {
         Quote quote = em.find(Quote.class, qid);
         if (quote.isActive()) {
             quote.setActive(false);
@@ -97,12 +87,68 @@ public class QuoteDAOImpl implements QuoteDAO {
         }
         return quote;
     }
-
+    
+    public Set<Quote> indexQuoteForBusiness(int bid) {
+        String query = "SELECT q FROM Quote q WHERE q.business.id = :bid AND q.business.active = true AND q.active = true";
+        
+        List<Quote> quotes = em.createQuery(query, Quote.class)
+                            .setParameter("bid", bid)
+                            .getResultList();
+        return new HashSet<Quote>(quotes);
+    }
+	
 	@Override
-	public Set<Quote> indexQuoteForBusiness(int bid) {
-		String query = "SELECT q FROM Quote q WHERE q.business.id = :bid";
-		
-		return new HashSet<Quote>(em.createQuery(query).setParameter("bid", bid).getResultList());
-	}
+    public Quote showBiz(int bid, int qid) {
+        return em.find(Quote.class, qid);
+    }
+
+    @Override
+    public Quote createBiz(int bid, String quoteJson) {
+        ObjectMapper om = new ObjectMapper();
+        Quote quote = null;
+        try {
+            quote = om.readValue(quoteJson, Quote.class);
+            Business business = em.find(Business.class, bid);
+            quote.setBusiness(business);
+            
+            em.persist(quote);
+            em.flush();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return quote;
+    }
+
+    @Override
+    public Quote updateBiz(int bid, int qid, String quoteJson) {
+        ObjectMapper om = new ObjectMapper();
+        Quote updateQuote = null;
+        Quote origQuote = null;
+        try {
+            updateQuote = om.readValue(quoteJson, Quote.class);
+            origQuote = em.find(Quote.class, qid);
+            origQuote.setDescription(updateQuote.getDescription());
+            origQuote.setPostDate(updateQuote.getPostDate());
+            origQuote.setExpireDate(updateQuote.getExpireDate());
+            origQuote.setCompleteDate(updateQuote.getCompleteDate());
+            origQuote.setEstimate(updateQuote.getEstimate());
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return origQuote;
+    }
+
+    @Override
+    public Quote destroyBiz(int bid, int qid) {
+        Quote quote = em.find(Quote.class, qid);
+        if (quote.isActive()) {
+            quote.setActive(false);
+        }
+        else {
+        		quote.setActive(true);
+        }
+        return quote;
+    }
 
 }

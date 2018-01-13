@@ -65,7 +65,7 @@ CREATE TABLE IF NOT EXISTS `autodb`.`business` (
   `website` VARCHAR(45) NULL DEFAULT NULL,
   `active` TINYINT NOT NULL,
   `login_name` VARCHAR(45) NOT NULL,
-  `login_password` VARCHAR(45) NOT NULL,
+  `login_password` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_business_contact_idx` (`contact_id` ASC),
   INDEX `fk_business_rating_idx` (`rating_id` ASC),

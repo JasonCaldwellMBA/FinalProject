@@ -13,6 +13,7 @@ angular.module('appModule')
 			vm.update = function(vehicle){
 				vehicleService.update(vehicle).then(function (res) {
 					reload(); 
+					vm.return(); 
 				})
 			}
 			vm.destroy = function(){

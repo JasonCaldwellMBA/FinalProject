@@ -28,6 +28,9 @@ angular.module('appModule')
 		.when('/user/:id/request',{
 			template: '<request></request>'
 		})
+		.when('/user/:uid/request/:rid',{
+			template: '<request-detail></request-detail>'
+		})
 		.when('/user/:uid/vehicle/:vid',{
 			template: '<vehicle-detail></vehicle-detail>'
 		})

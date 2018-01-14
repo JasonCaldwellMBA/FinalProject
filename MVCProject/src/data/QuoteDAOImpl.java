@@ -99,7 +99,7 @@ public class QuoteDAOImpl implements QuoteDAO {
 	
 	@Override
     public Quote showBiz(int bid, int qid) {
-        return em.find(Quote.class, qid);
+		return em.find(Quote.class, qid);
     }
 
     @Override

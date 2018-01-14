@@ -2,6 +2,7 @@ package test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -35,6 +36,19 @@ public class RequestTest {
     @Test
     public void test_request() {
     		assertEquals(1, request.getId());
+    }
+    
+    @Test
+    public void test_request_mapping() {
+    		assertNotNull(request.getId());
+    		assertNotNull(request.getDescription());
+    		assertNull(request.getCompleteDate());
+    		assertNotNull(request.isCompleted());
+    		assertNull(request.getImg());
+    		assertNull(request.getExpireDate());
+    		assertNull(request.getPostDate());
+    		assertNotNull(request.getEstimate());
+    		assertNotNull(request.isActive());
     }
     
     

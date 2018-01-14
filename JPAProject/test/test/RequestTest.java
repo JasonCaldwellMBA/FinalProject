@@ -51,6 +51,11 @@ public class RequestTest {
     		assertNotNull(request.isActive());
     }
     
+    @Test
+    public void test_request_to_user_mapping() {
+    		assertNotNull(request.getUser().getId());
+    		assertNotNull(request.getUser().getLastName());
+    }
     
     @Test
     public void test_vehicle_mapping() {

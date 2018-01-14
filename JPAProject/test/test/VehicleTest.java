@@ -1,6 +1,7 @@
 package test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -39,6 +40,13 @@ public class VehicleTest {
 	
 	@Test
 	public void test_vehicle_mapping() {
+		assertNotNull(vehicle.getId());
+		assertNotNull(vehicle.getMake());
+		assertNotNull(vehicle.getModel());
+		assertNotNull(vehicle.getYear());
+		assertNotNull(vehicle.getVin());
+		assertNotNull(vehicle.getMileage());
+		assertNotNull(vehicle.isActive());
 	}
 	
 }

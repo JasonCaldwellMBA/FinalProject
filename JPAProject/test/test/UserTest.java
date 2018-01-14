@@ -1,6 +1,7 @@
 package test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import java.util.List;
 
@@ -109,5 +110,13 @@ public class UserTest {
 		User u = em.find(User.class, 3); 
 		assertEquals("Cobalt",u.getVehicle().get(0).getModel());
 		assertEquals("Bronco", u.getVehicle().get(1).getModel());
+	}
+	
+	@Test
+	public void test_user_to_request() {
+		User user = em.find(User.class, 1); 
+		assertNotNull(user.getRequests().get(0).getId());
+		assertNotNull(user.getRequests().get(0).getDescription());
+		
 	}
 }

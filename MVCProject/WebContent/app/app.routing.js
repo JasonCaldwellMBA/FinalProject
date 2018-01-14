@@ -1,8 +1,11 @@
 angular.module('appModule')
 	.config(function($routeProvider){
 	$routeProvider
-    	.when('/home', {
+    		.when('/home', {
     			template : '<home></home>'
+		})
+		.when('/contact', {
+			template : '<contact></contact>'
 		})
 		.when('/register', {
 			template: '<register></register>'

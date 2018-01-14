@@ -22,7 +22,7 @@ public class VehicleDAOImpl implements VehicleDAO {
 	EntityManager em; 
 	@Override
 	public List<Vehicle> index(int id) {
-		String query = "SELECT v FROM Vehicle v WHERE v.user.id = :id"; 
+		String query = "SELECT v FROM Vehicle v WHERE (v.active = true) AND v.user.id = :id "; 
 		return em.createQuery(query, Vehicle.class)
 				.setParameter("id", id)
 				.getResultList();

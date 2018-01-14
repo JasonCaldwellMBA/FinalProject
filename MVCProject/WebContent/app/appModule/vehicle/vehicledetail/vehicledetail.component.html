@@ -1,10 +1,39 @@
-<ul>
-    <li>{{vm.vehicle.make}}</li>
-    <li>{{vm.vehicle.model}}</li>
-    <li>{{vm.vehicle.year}}</li>
-    <li>{{vm.vehicle.mileage}}</li>
-    <li>{{vm.vehicle.VIN}}</li>
-    <li><button>Go Back</button></li>
-    <li><button>Update</button></li>
-    <li><button>Delete</button></li>
-</ul>
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            <!-- optional sidebar -->
+            <button class="btn btn-primary" ng-click="vm.return()">Return to Vehicle list</button>
+        </div>
+        <div class="col-sm">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <label>Make: </label>
+                    <input type="text" ng-model="vm.vehicle.make" />
+                </li>
+                <li class="list-group-item">
+                    <label>Model: </label>
+                    <input type="text" ng-model="vm.vehicle.model" />
+                </li>
+                <li class="list-group-item">
+                    <label>Year: </label>
+                    <input type="text" ng-model="vm.vehicle.year" />
+                </li>
+                <li class="list-group-item">
+                    <label>Mileage: </label>
+                    <input type="text" ng-model="vm.vehicle.mileage" />
+                </li>
+                <li class="list-group-item">
+                    <label>Vin: </label>
+                    <input type="text" ng-model="vm.vehicle.vin" />
+                </li>
+                <li class="list-group-item justify-content-center">
+                    <button class="btn btn-warning" ng-click="vm.update(vm.vehicle)">Update</button>
+                    <button class="btn btn-danger" ng-click="vm.destroy(vm.vehicle)">Delete</button>
+                </li>
+            </ul>
+        </div>
+        <div class="col-sm">
+            <!-- optional sidebar -->
+        </div>
+    </div>
+</div>

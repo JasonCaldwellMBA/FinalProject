@@ -5,8 +5,31 @@
             <button class="btn btn-primary" ng-click="vm.return()">Return to user home</button>
         </div>
         <div class="col-sm">
+            <div class="col-sm-8">
+                <h4>Add Vehicle</h4>
+                <div>
+                    <p>
+                        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false"
+                            aria-controls="collapseExample">Expand                        </button>
+                    </p>
+                    <div class="collapse" id="collapseExample">
+                        <div class="card card-body">
+                            <ul class="list-group">
+                                <li class="list-group-item"><label>Make</label><input type="text" ng-model="vehicle.make"/></li>
+                                <li class="list-group-item"><label>Model</label><input type="text" ng-model="vehicle.model"/></li>
+                                <li class="list-group-item"><label>Year</label><input type="number" ng-model="vehicle.year"/></li>
+                                <li class="list-group-item"><label>Mileage</label><input type="number" ng-model="vehicle.mileage"/></li>
+                                <li class="list-group-item"><label>VIN</label><input type="text" ng-model="vehicle.vin"/></li>
+                                <li class="list-group-item"><button class="btn btn-primary"ng-click="vm.addVehicle(vehicle)">Add Vechicle</button></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--  -->
             <h4>User Vehicles</h4>
-            <table class="table">
+            <table class="table table-hover">
                 <thead>
                     <tr>
                         <th>Make</th>
@@ -17,17 +40,17 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="v in vm.vehicles" ng-click="vm.detailView(v.id)">
+                    <tr ng-repeat="v in vm.vehicles">
                         <td>{{v.make}}</td>
                         <td>{{v.model}}</td>
                         <td>{{v.year}}</td>
                         <td>{{v.mileage}}</td>
                         <td>{{v.vin}}</td>
                         <td>
-                            <button class="btn btn-secondary">Update</button>
+                            <button class="btn btn-secondary" ng-click="vm.detailView(v.id)">Update</button>
                         </td>
                         <td>
-                            <button class="btn btn-danger">Delete</button>
+                            <button class="btn btn-danger" ng-click="vm.destroy(v.id)">Delete</button>
                         </td>
                     </tr>
                 </tbody>

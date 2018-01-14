@@ -64,7 +64,7 @@ public class VehicleController {
 		return v; 
 	}
 	@RequestMapping(path="/user/{id}/vehicle/{vid}", method=RequestMethod.DELETE)
-	public Vehicle destroy(@PathVariable int id, @PathVariable int vid,  @RequestBody String json, HttpServletResponse res) {
+	public Vehicle destroy(@PathVariable int id, @PathVariable int vid, HttpServletResponse res) {
 		Vehicle v = dao.destroy(id, vid); 
 		if(v != null) {
 			res.setStatus(202);

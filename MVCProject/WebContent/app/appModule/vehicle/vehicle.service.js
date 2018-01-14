@@ -21,7 +21,7 @@ angular.module('appModule')
             var userId = authService.getToken(); 
             return $http({
                 method: 'POST',
-                url: BASE_URL + userId + '/vehicle',
+                url: BASE_URL + 'user/' +  userId + '/vehicle',
                 headers: {
                     'content-type': 'application/json'
                 },
@@ -32,7 +32,7 @@ angular.module('appModule')
             var userId = authService.getToken(); 
             return $http({
                 method: 'PUT',
-                url: BASE_URL + userId + '/vehicle/' + vehicle.id,
+                url: BASE_URL + 'user/' + userId + '/vehicle/' + vehicle.id,
                 headers: {
                     'content-type':'application/json'
                 },
@@ -43,11 +43,8 @@ angular.module('appModule')
             var userId = authService.getToken(); 
             return $http({
                 method: 'DELETE',
-                url: BASE_URL + userId + 'vehicle/' + id,
-                headers: {
-                    'content-type': 'application/json'
-                }
-            })
+                url: BASE_URL + 'user/' + userId + '/vehicle/' + id
+            }); 
         }
         return service; 
     })

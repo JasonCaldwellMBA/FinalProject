@@ -16,8 +16,14 @@ angular.module('appModule')
 					$location.path('user/' + $cookies.get('userId')
 							+ '/vehicle/' + id);
 				}
+				vm.addVehicle = function (vehicle) {
+					vehicle.active = true; 
+					vehicleService.create(vehicle).then(function(res){
+						reload(); 
+					}); 
+				}
 				vm.destroy = function(id) {
-					vehicleService.destroy(id).then(function(res) {
+					vehicleService.destroy(id).then(function (res) {
 						reload();
 					})
 				}

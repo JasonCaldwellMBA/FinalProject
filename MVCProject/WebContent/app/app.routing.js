@@ -17,12 +17,12 @@ angular.module('appModule')
 	    	template: '<register-business></register-business>'
 	    })
 	    .when('/loginBusiness', {
-	    	template : '<login-business></login-business>'
+	    	template : '<business-login></business-login>'
 	    })
 	    .when('/logout', {
 	    		template : '<logout></logout>'
 	    })
-	    .when('/businessHome',{
+	    .when('/business/:busId',{
 	    	template: '<business-component></business-component>'
 		})
 		.when('/user/:id/vehicle',{

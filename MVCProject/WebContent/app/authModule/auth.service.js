@@ -32,7 +32,7 @@ angular.module('authModule')
 				data: business
 			});
 		}
-		service.loginBusiness = function(business){
+		service.businessLogin = function(business){
 			return $http({
 				method: 'PUT',
 				url: BASE_URL + 'api/auth/business/login',
@@ -43,7 +43,7 @@ angular.module('authModule')
 			}); 
 		}
 		service.logout = function(){
-			if(removeToken()){
+			if(removeToken() | removeBusToken()){
 				return true; 
 			}else{
 				return false; 
@@ -73,6 +73,31 @@ angular.module('authModule')
                 return true;
             }
             return false; 
+		}
+		var removeBusToken = function(){
+			$cookies.remove('busId'); 
+			if ($cookies.get('busId') == null) {
+				return true; 
+			}
+			return false; 
+		}
+		service.getBusToken = function(){
+			let id = $cookies.get('busId'); 
+			return id; 
+		}
+		service.setBusToken = function(id){
+			
+			$cookies.put('busId', parseInt(id)); 
+			if (id == $cookies.get('busId')) {
+				return true; 
+			}
+			return false; 
+		}
+		service.isBus = function(){
+			if ($cookies.get('busId')) {
+				return true;
+			}
+			return false; 
 		}
 		return service; 
 	}); 

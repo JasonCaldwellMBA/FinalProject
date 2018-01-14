@@ -4,7 +4,13 @@ angular.module('authModule')
 		controllerAs: 'vm',
 		controller: function(authService, $location){
 			var vm = this; 
-			vm.business = null; 
+			vm.business = null;
+			
+			if (authService.isBus() == true) {
+				var id = authService.getBusToken(); 
+                $location.path('/business/' + id); 
+			}
+			
 			vm.setBusiness = function (bus) {
 				if (bus.loginPassword !== bus.confirm) {
 					return; 
@@ -33,7 +39,9 @@ angular.module('authModule')
 			vm.registerBusiness = function () {
 				authService.registerBusiness(vm.business)
 					.then(function (res) {
-						$location.path('/home');
+						var id = res.data.id;
+						authService.setBusToken(res.data.id);
+						$location.path('/business/' + id);
 					}).catch(console.error); 
 			}
 			//helper methods

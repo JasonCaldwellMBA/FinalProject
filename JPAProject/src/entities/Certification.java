@@ -16,9 +16,7 @@ public class Certification {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
-	
 	private String name;
-	
 	@ManyToOne
 	@JoinColumn(name="business_id")
 	private Business business;
@@ -55,6 +53,4 @@ public class Certification {
 	public String toString() {
 		return "Certification [id=" + id + ", name=" + name + "]";
 	}
-	
-	
 }

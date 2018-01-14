@@ -1,6 +1,5 @@
 package data;
 
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -25,15 +24,14 @@ public class QuoteDAOImpl implements QuoteDAO {
 	private EntityManager em;
 
 	@Override
-    public Set<Quote> index(int uid, int rid) {
-        String query = "SELECT q FROM Quote q WHERE q.request.user.id = :uid AND q.request.user.active = true AND q.request.id = :rid AND q.request.active = true AND q.active = true";
+    public List<Quote> index(int uid, int rid) {
+        String query = "SELECT DISTINCT q FROM Quote q WHERE (q.request.id = :rid) AND q.request.user.id = :uid";
         List<Quote> quotes = em.createQuery(query, Quote.class)
-                            .setParameter("uid", uid)
                             .setParameter("rid", rid)
+                            .setParameter("uid", uid)
                             .getResultList();
-        return new HashSet<Quote>(quotes);
+        return quotes;
     }
-
     @Override
     public Quote show(int uid, int rid, int qid) {
         return em.find(Quote.class, qid);

@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
@@ -21,7 +22,6 @@ public class Request {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id; 
-	
 	@ManyToOne
 	@JoinColumn(name="user_id")
 	private User user;
@@ -58,15 +58,13 @@ public class Request {
 	private Timestamp completeDate; 
 	
 	private double estimate;
-	
+	@JsonIgnore
+	@OneToMany(mappedBy="request")
+	private List<Quote> quotes; 
 	//===========================Getters and Setters==========================//
 
 	public int getId() {
 		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public User getUser() {
@@ -157,6 +155,14 @@ public class Request {
 		this.parts = parts;
 	}
 	
+	public List<Quote> getQuotes() {
+		return quotes;
+	}
+
+	public void setQuotes(List<Quote> quotes) {
+		this.quotes = quotes;
+	}
+
 	@Override
 	public String toString() {
 		return "Request [id=" + id + ", completed=" + completed + ", active=" + active + ", img=" + img + ", description=" + description + ", postDate=" + postDate + ", expireDate=" + expireDate

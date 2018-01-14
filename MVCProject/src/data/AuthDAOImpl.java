@@ -66,7 +66,9 @@ public class AuthDAOImpl implements AuthDAO {
 			if(users.size() == 1) {
 				retUser = users.get(0);
 				if(retUser.getUsername().equals(user.getUsername())) {
-					if(encoder.matches(user.getPassword(), retUser.getPassword())) {
+					//Change to match user; 
+					if(/*encoder.matches(user.getPassword(), retUser.getPassword())*/
+							user.getPassword().equals(retUser.getPassword())) {
 						return retUser; 
 					}
 					else {

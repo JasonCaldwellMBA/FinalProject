@@ -43,23 +43,27 @@ angular.module('authModule')
 			}); 
 		}
 		service.logout = function(){
-			service.removeToken(); 
-            $location.path('/logout'); 
+			if(removeToken()){
+				return true; 
+			}else{
+				return false; 
+			}
+		}
+		var removeToken = function(){
+			$cookies.remove('userId'); 
+            if ($cookies.get('userId') == null) {
+                return true; 
+            }
+            return false; 
 		}
 		service.getToken = function(){
 			let id = $cookies.get('userId'); 
             return id; 
 		}
 		service.setToken = function(id){
-			$cookies.put('userId', id); 
+			
+			$cookies.put('userId', parseInt(id)); 
             if (id == $cookies.get('userId')) {
-                return true; 
-            }
-            return false; 
-		}
-		service.removeToken = function(){
-			$cookies.remove('userId'); 
-            if ($cookies.get('userId') == null) {
                 return true; 
             }
             return false; 

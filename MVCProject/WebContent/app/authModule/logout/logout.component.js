@@ -2,8 +2,11 @@ angular.module('authModule')
 	.component('logout', {
 		templateUrl:'app/authModule/logout/logout.component.html',
 		controllerAs: 'vm',
-		controller: function(authService){
+		controller: function(authService, $location){
 			var vm = this; 
-			authService.logout(); 
+			vm.logout = function(){
+				authService.logout()
+				$location.path('/login')
+			}
 		}
 	})

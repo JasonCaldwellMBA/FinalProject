@@ -7,9 +7,12 @@ angular.module('authModule')
             vm.setUser = function (user) {
                 authService.login(user)
                     .then(function (res) {
-                    	console.log(res); 
-                    	authService.setToken('userId', res.data.id); 
-                    $location.path('/user/' + res.data.id); 
+                    	console.log(res);
+                    	console.log(res.data.id); 
+                    	if(authService.setToken(res.data.id)){
+                    		$location.path('/user/' + authService.getToken()); 
+                    	}
+                    	return; 
                 }); 
             }
         }

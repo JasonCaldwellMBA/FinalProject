@@ -1,4 +1,5 @@
-angular.module('appModule').component(
+angular.module('appModule')
+.component(
 		'vehicle',
 		{
 			templateUrl : 'app/appModule/vehicle/vehicle.component.html',

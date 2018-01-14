@@ -24,7 +24,6 @@ public class RequestController {
 
 	@RequestMapping(path = "user/{id}/request", method = RequestMethod.GET)
 	public List<Request> index(HttpServletResponse res, @PathVariable int id) {
-		System.out.println("In Controller");
 		return dao.index(id);
 	}
 

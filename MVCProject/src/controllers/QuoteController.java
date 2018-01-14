@@ -90,12 +90,11 @@ public class QuoteController {
     
     
     @RequestMapping(path = "/user/{uid}/request/{rid}/quote", method = RequestMethod.GET)
-    public List<Quote> index(
-    		HttpServletRequest req, 
-    		HttpServletResponse res, 
+    public List<Quote> index(HttpServletRequest req, HttpServletResponse res,
     		@PathVariable int rid,
     		@PathVariable int uid) {
-    	return quoteDAO.index(uid, rid);
+    	List<Quote> quotes = quoteDAO.index(uid, rid); 
+    	return quotes;
     }
     
     @RequestMapping(path = "/user/{uid}/request/{rid}/quote/{qid}", method = RequestMethod.GET)

@@ -34,6 +34,9 @@
             </div>
             <div class="col-sm">
                 <!-- optional sidebar -->
+                <ul ng-repeat="q in vm.quotes">
+                    <li>{{q.description}}</li>
+                </ul>
             </div>
         </div>
     </div>

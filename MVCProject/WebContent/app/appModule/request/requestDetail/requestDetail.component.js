@@ -2,12 +2,17 @@ angular.module('appModule')
     .component('requestDetail', {
         controllerAs: 'vm',
         templateUrl: 'app/appModule/request/requestDetail/requestDetail.component.html',
-        controller: function (requestService, $location, $routeParams) {
+        controller: function (requestService, quoteService, $location, $routeParams) {
             var vm = this; 
             vm.request = null; 
             vm.quotes = null; 
+            //init load
             requestService.show($routeParams.rid).then(function (res) {
-                vm.request = angular.copy(res.data); 
+                vm.request = angular.copy(res.data);
+            }); 
+            quoteService.requestQuotes($routeParams.rid).then(function (res) {
+                console.log(res); 
+                vm.quotes = res.data;
             }); 
             
             vm.update = function (request) {

@@ -1,6 +1,8 @@
 package test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -36,9 +38,19 @@ public class ContactTest {
 		assertEquals(1, contact.getId());
 	}
 	
-	
 	@Test
 	public void test_contact_mapping() {
+		assertNotNull(contact.getId());
+		assertNotNull(contact.getCity());
+		assertNotNull(contact.getState());
+		assertNotNull(contact.getAddress1());
+		assertNull(contact.getAddress2());
+		assertNotNull(contact.getZipcode());
+		assertNotNull(contact.getPhone());
+		assertNotNull(contact.getEmail());
+		assertNull(contact.getLatitude());
+		assertNull(contact.getLongitude());
+		assertNotNull(contact.isActive());
 	}
 	
 }

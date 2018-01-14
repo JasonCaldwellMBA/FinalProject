@@ -2,3 +2,24 @@ html, body{
     margin: 0;
     padding:0;
 }
+
+table th {
+	background-color: blue;
+	color: white;
+	text-align: center;
+	padding: 5px;
+}
+
+table td:first-child {
+	text-align: left;
+	padding: 5px;
+}
+
+table td {
+	text-align: center;
+	padding: 5px;
+}
+
+.footer {
+	text-align: center;
+})

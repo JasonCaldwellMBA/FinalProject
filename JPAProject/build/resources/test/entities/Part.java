@@ -1,12 +1,13 @@
 package entities;
+import java.util.List;
+
 //test
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Part {
@@ -17,12 +18,10 @@ public class Part {
 	@Column(name="serial_number")
 	private String serialNumber;
 	private String name;
-	@ManyToOne
-	@JoinColumn(name="parts_request_id")
-	private PartRequest partsRequest;
-	@ManyToOne
-	@JoinColumn(name="parts_quote_id")
-	private PartQuote partsQuote;
+	@ManyToMany(mappedBy="parts")
+	private List<Request> requests; 
+	@ManyToMany(mappedBy="parts")
+	private List<Quote> quotes; 
 
 	public double getCost() {
 		return cost;
@@ -48,30 +47,13 @@ public class Part {
 		this.name = name;
 	}
 
-	public PartRequest getPartsRequest() {
-		return partsRequest;
-	}
-
-	public void setPartsRequest(PartRequest partsRequest) {
-		this.partsRequest = partsRequest;
-	}
-
-	public PartQuote getPartsQuote() {
-		return partsQuote;
-	}
-
-	public void setPartsQuote(PartQuote partsQuote) {
-		this.partsQuote = partsQuote;
-	}
-
 	public int getId() {
 		return id;
 	}
 
 	@Override
 	public String toString() {
-		return "Part [id=" + id + ", cost=" + cost + ", serialNumber=" + serialNumber + ", name=" + name
-				+ ", partsRequest=" + partsRequest + ", partsQuote=" + partsQuote + "]";
+		return "Part [id=" + id + ", cost=" + cost + ", serialNumber=" + serialNumber + ", name=" + name + "]";
 	}
 }
 	

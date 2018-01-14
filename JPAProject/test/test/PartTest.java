@@ -1,6 +1,7 @@
 package test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -39,6 +40,10 @@ public class PartTest {
 	
 	@Test
 	public void test_part_mapping() {
+		assertNotNull(part.getId());
+		assertNotNull(part.getName());
+		assertNotNull(part.getCost());
+		assertNotNull(part.getSerialNumber());
 	}
 	
 }

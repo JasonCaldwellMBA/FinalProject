@@ -1,6 +1,7 @@
 package test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -36,9 +37,16 @@ public class CertificationTest {
 		assertEquals(1, certification.getId());
 	}
 	
-	
 	@Test
 	public void test_certification_mapping() {
+		assertNotNull(certification.getId());
+		assertNotNull(certification.getName());
+	}
+	
+	@Test
+	public void test_cert_to_biz_mapping() {
+		assertNotNull(certification.getBusiness().getId());
+		assertNotNull(certification.getBusiness().getCompanyName());
 	}
 	
 }

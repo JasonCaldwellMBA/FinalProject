@@ -2,6 +2,7 @@ package entities;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,17 +13,24 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
+import org.hibernate.annotations.Cascade;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 public class Business {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
-	@ManyToOne
+	
+	@OneToOne(cascade=CascadeType.PERSIST)
 	@JoinColumn(name="contact_id")
 	private Contact contact;
-	@OneToOne
+	
+	@OneToOne(cascade=CascadeType.PERSIST)
 	@JoinColumn(name="rating_id")
 	private Rating rating;
+	
 	@Column(name="labor_rate")
 	private double laborRate;
 	@Column(name="company_name")
@@ -31,10 +39,16 @@ public class Business {
 	private int experience;
 	@Column(name="website")
 	private String website;
+	@JsonIgnore
 	@OneToMany(mappedBy="business")
 	private List<Certification> certifications;
-	@ManyToMany(mappedBy="associatedBusinesses")
-	private List<User> employees; 
+	private boolean active; 
+
+	
+	@Column(name = "login_name")
+	private String loginName;
+	@Column(name = "login_password")
+	private String loginPassword;
 	
 	public Contact getContact() {
 		return contact;
@@ -82,11 +96,25 @@ public class Business {
 		return id;
 	}
 	
-	public List<User> getEmployees() {
-		return employees;
+	public boolean isActive() {
+		return active;
 	}
-	public void setEmployees(List<User> employees) {
-		this.employees = employees;
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+	
+	
+	public String getLoginName() {
+		return loginName;
+	}
+	public void setLoginName(String loginName) {
+		this.loginName = loginName;
+	}
+	public String getLoginPassword() {
+		return loginPassword;
+	}
+	public void setLoginPassword(String loginPassword) {
+		this.loginPassword = loginPassword;
 	}
 	@Override
 	public String toString() {

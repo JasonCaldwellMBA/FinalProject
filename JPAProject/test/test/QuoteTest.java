@@ -1,6 +1,7 @@
 package test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
 import javax.persistence.EntityManager;
@@ -43,6 +44,7 @@ public class QuoteTest {
 		assertEquals(1, quote.getId());
 		assertEquals("60k Maintenence", quote.getDescription());
 		assertNull(quote.getExpireDate());
+		assertNotNull(quote.getPostDate());
 		assertEquals("2018-01-08 09:30:00.0", quote.getCompleteDate().toString());
 		assertEquals(70, quote.getEstimate(), .01);
 		assertEquals(false, quote.isActive());
@@ -56,6 +58,12 @@ public class QuoteTest {
 	@Test
 	public void test_quote_to_business_mapping() {
 		assertEquals("StumpsAuto", quote.getBusiness().getCompanyName());
+	}
+	
+	@Test
+	public void test_quote_to_parts_quote_to_part_mapping() {
+		assertNotNull(quote.getParts().get(0).getId());
+		assertNotNull(quote.getParts().get(0).getName());
 	}
 	
 }

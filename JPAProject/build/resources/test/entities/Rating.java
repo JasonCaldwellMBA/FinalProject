@@ -15,7 +15,6 @@ public class Rating {
 	@OneToOne(mappedBy="rating")
 	private User user; 
 	
-	
 	public double getRating() {
 		return rating;
 	}

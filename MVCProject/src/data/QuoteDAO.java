@@ -1,13 +1,12 @@
 package data;
 
 import java.util.Collection;
-import java.util.Set;
+import java.util.List;
 
 import entities.Quote;
 
 public interface QuoteDAO {
-	
-	public Set<Quote> index(int uid, int rid);
+	public List<Quote> index(int uid, int rid);
 	public Quote show(int uid, int rid, int qid);
 	public Quote create(int uid, int rid, String quoteJson);
 	public Quote update(int uid, int qid, int rid, String quoteJson);

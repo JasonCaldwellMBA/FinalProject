@@ -1,11 +1,13 @@
 package controllers;
 
 import java.util.Collection;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import data.QuoteDAO;
 import entities.Quote;
-
+@CrossOrigin
 @RestController
 public class QuoteController {
     
@@ -88,7 +90,7 @@ public class QuoteController {
     
     
     @RequestMapping(path = "/user/{uid}/request/{rid}/quote", method = RequestMethod.GET)
-    public Collection<Quote> index(
+    public List<Quote> index(
     		HttpServletRequest req, 
     		HttpServletResponse res, 
     		@PathVariable int rid,

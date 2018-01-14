@@ -15,9 +15,6 @@ angular.module('appModule')
             return $http({
                 method: 'GET',
                 url: BASE_URL +'user/'+ userId + '/vehicle/' + id,
-                headers: {
-                    'content-type': 'application/json'
-                }
             });
         }
         service.create = function (vehicle) {

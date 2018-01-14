@@ -4,6 +4,10 @@ angular.module('authModule')
         controllerAs: 'vm',
         controller: function (authService, $location, $cookies) {
             var vm = this; 
+			if (authService.isUser() == true) {
+				var id = authService.getToken(); 
+                $location.path('/user/' + id); 
+			}
             vm.setUser = function (user) {
                 authService.login(user)
                     .then(function (res) {

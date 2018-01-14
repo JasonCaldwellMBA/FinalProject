@@ -1,6 +1,7 @@
 package test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import java.util.List;
 
@@ -42,13 +43,24 @@ public class BusinessTest {
 	@Test
 	public void test_business_mapping() {
 		assertEquals(1, business.getId());
-		assertEquals(6, business.getContact().getId());
-		assertEquals(1.0, business.getRating().getRating(), 0);
 		assertEquals(25, business.getLaborRate(), 0);
 		assertEquals(5, business.getExperience());
 		assertEquals("stumpyauto.com", business.getWebsite());
 		assertEquals("Stumpy Auto", business.getCompanyName());
+		assertNotNull(business.getLoginName());
+		assertNotNull(business.getLoginPassword());
 	}
+	
+	@Test
+	public void test_business_to_contact_mapping() {
+		assertEquals(6, business.getContact().getId());
+	}
+	
+	@Test
+	public void test_business_to_rating_mapping() {
+		assertEquals(1.0, business.getRating().getRating(), 0);
+	}
+	
 	@Test
 	public void test_create_business() {
 		em.getTransaction().begin();

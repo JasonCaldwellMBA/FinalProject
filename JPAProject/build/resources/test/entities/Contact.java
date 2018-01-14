@@ -6,6 +6,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Contact {	
 	@Id
@@ -22,8 +24,14 @@ public class Contact {
 	private String email;
 	private String latitude;
 	private String longitude;
+	private boolean active; 
+	@JsonIgnore
 	@OneToOne(mappedBy="contact")
 	private User user; 
+	
+	@JsonIgnore
+	@OneToOne(mappedBy="contact")
+	private Business business;
 	
 	public String getAddress1() {
 		return address1;
@@ -88,6 +96,21 @@ public class Contact {
 	}
 	public void setUser(User user) {
 		this.user = user;
+	}
+	
+	public boolean isActive() {
+		return active;
+	}
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+	
+	
+	public Business getBusiness() {
+		return business;
+	}
+	public void setBusiness(Business business) {
+		this.business = business;
 	}
 	@Override
 	public String toString() {

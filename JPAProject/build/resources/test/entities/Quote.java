@@ -1,6 +1,6 @@
 package entities;
-//test
 import java.sql.Timestamp;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,9 +8,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "quote")
@@ -27,9 +30,6 @@ public class Quote {
 	@JoinColumn(name = "business_id")
 	private Business business; 	
 	
-	@OneToOne(mappedBy = "quote")
-	private PartQuote partQuote;
-	
 	@Column(name = "description")
 	private String description; 
 	
@@ -44,6 +44,23 @@ public class Quote {
 	
 	@Column(name = "estimate")
 	private double estimate;
+	
+	@Column(name = "active")
+	private boolean active; 
+	
+	@JsonIgnore
+	@ManyToMany
+	@JoinTable(
+			name="parts_quote",
+			joinColumns=@JoinColumn(
+					name="quote_id",
+					referencedColumnName = "id"
+			),
+			inverseJoinColumns= @JoinColumn(
+			name="part_id",
+			referencedColumnName="id")
+	)
+	private List<Part> parts;
 	
 	
 	public int getId() {
@@ -63,12 +80,6 @@ public class Quote {
 	}
 	public void setBusiness(Business business) {
 		this.business = business;
-	}
-	public PartQuote getPartQuote() {
-		return partQuote;
-	}
-	public void setPartQuote(PartQuote partQuote) {
-		this.partQuote = partQuote;
 	}
 	public String getDescription() {
 		return description;
@@ -100,10 +111,23 @@ public class Quote {
 	public void setEstimate(double estimate) {
 		this.estimate = estimate;
 	}
+	public boolean isActive() {
+		return active;
+	}
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+	public List<Part> getParts() {
+		return parts;
+	}
+	public void setParts(List<Part> parts) {
+		this.parts = parts;
+	}
 	@Override
 	public String toString() {
-		return "Quote [id=" + id + ", request=" + request + ", description=" + description + ", postDate=" + postDate
-				+ ", expireDate=" + expireDate + ", completeDate=" + completeDate + ", estimate=" + estimate + "]";
+		return "Quote [id=" + id + ", request=" + request + ", business=" + business + ", description=" + description
+				+ ", postDate=" + postDate + ", expireDate=" + expireDate + ", completeDate=" + completeDate
+				+ ", estimate=" + estimate + ", active=" + active + "]";
 	}
 	
 }

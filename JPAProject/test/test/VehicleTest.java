@@ -49,5 +49,11 @@ public class VehicleTest {
 		assertNotNull(vehicle.isActive());
 	}
 	
+	@Test
+	public void test_vehicle_to_user_mapping() {
+		assertNotNull(vehicle.getUser().getId());
+		assertNotNull(vehicle.getUser().getFirstName());
+	}
+	
 }
 

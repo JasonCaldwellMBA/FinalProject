@@ -25,11 +25,11 @@ public class QuoteDAOImpl implements QuoteDAO {
 
 	@Override
     public List<Quote> index(int uid, int rid) {
-        String query = "SELECT DISTINCT q FROM Quote q WHERE (q.request.id = :rid) AND q.request.user.id = :uid";
+        String query = "SELECT q FROM Quote q WHERE q.request.id = :rid";
         List<Quote> quotes = em.createQuery(query, Quote.class)
                             .setParameter("rid", rid)
-                            .setParameter("uid", uid)
                             .getResultList();
+        System.out.print(rid);
         return quotes;
     }
     @Override

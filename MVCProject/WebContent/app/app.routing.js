@@ -31,6 +31,9 @@ angular.module('appModule')
 		.when('/user/:id/request',{
 			template: '<request></request>'
 		})
+		.when('/request',{
+			template: '<business-request></business-request>'
+		})
 		.when('/user/:uid/request/:rid',{
 			template: '<request-detail></request-detail>'
 		})

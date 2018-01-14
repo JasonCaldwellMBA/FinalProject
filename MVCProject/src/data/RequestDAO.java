@@ -15,4 +15,8 @@ public interface RequestDAO {
 	  public Request update(int uid, int vid, int rid, String requestJson);
 
 	  public Request destroy(int uid, int vid, int rid);
+
+	public List<Request> indexAllRequests();
+
+	public Request showForBiz(int id);
 }

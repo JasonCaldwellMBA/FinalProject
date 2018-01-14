@@ -30,10 +30,20 @@ public class RequestDAOImpl implements RequestDAO {
 		return em.createQuery(query, Request.class).setParameter("id", uid)
 				.getResultList();
 	}
+	@Override
+	public List<Request> indexAllRequests() {
+		String query = "SELECT r FROM Request r"; 
+		return em.createQuery(query, Request.class)
+				.getResultList();
+	}
 
 	@Override
 	public Request show(int uid, int rid) {
 		return em.find(Request.class, rid); 
+	}
+	@Override
+	public Request showForBiz(int id) {
+		return em.find(Request.class, id); 
 	}
 
 	@Override

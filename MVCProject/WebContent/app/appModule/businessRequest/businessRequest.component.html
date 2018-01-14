@@ -1,0 +1,16 @@
+<h1>All Requests</h1>
+<ul>
+<div ng-hide="vm.selected" ng-repeat="request in vm.requests">
+<li>Customer's Name : {{request.user.firstName}}
+{{request.user.lastName}}<br>
+Vehicle : {{request.vehicle.make}}
+{{request.vehicle.model}} <br>
+Request Description : {{request.description}}
+<button type="button" ng-click="vm.viewDetails(request)">View Details</button>
+</li>
+</div>
+</ul>
+<div ng-show="vm.selected">
+{{vm.selected}}
+<button type="button" ng-click="vm.selected = null">Return</button>
+</div>

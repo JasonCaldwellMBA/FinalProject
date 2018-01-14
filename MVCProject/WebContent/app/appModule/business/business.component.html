@@ -2,6 +2,8 @@
 {{vm.message}}
 {{vm.business.companyName}}
 {{vm.business.contact.city}}
+
+<button type="button" ng-click="vm.getRequests()">View Requests</button>
 <ul>
 	<div ng-repeat="quote in vm.quotes">
 		<li ng-click="vm.detailedQuote(quote)">

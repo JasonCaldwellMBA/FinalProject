@@ -21,6 +21,16 @@ public class RequestController {
 
 	@Autowired
 	private RequestDAO dao;
+	
+	@RequestMapping(path="/request", method=RequestMethod.GET)
+	public List<Request> indexAllRequests(){
+		return dao.indexAllRequests();
+	}
+	@RequestMapping(path="/request/{id}", method=RequestMethod.GET)
+	public Request showForBiz(HttpServletResponse res, @PathVariable int id) {
+		
+		return dao.showForBiz(id);
+	}
 
 	@RequestMapping(path = "user/{id}/request", method = RequestMethod.GET)
 	public List<Request> index(HttpServletResponse res, @PathVariable int id) {

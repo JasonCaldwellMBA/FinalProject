@@ -5,10 +5,11 @@ angular.module('appModule')
         controller: function (requestService, $location, $routeParams) {
             var vm = this; 
             vm.request = null; 
-
+            vm.quotes = null; 
             requestService.show($routeParams.rid).then(function (res) {
                 vm.request = angular.copy(res.data); 
             }); 
+            
             vm.update = function (request) {
                 requestService.update(request).then(function (res) {
                     reload();

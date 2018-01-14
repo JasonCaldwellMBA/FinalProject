@@ -8,9 +8,6 @@ angular.module('appModule')
             return $http({
                 method: 'GET', 
                 url: BASE_URL + 'user/' + userId + '/request',
-                headers: {
-                    'content-type': 'application/json'
-                }
             }); 
         }
         service.show = function (id) {
@@ -18,16 +15,13 @@ angular.module('appModule')
             return $http({
                 method: 'GET',
                 url: BASE_URL +'user/'+ userId + '/request/' + id,
-                headers: {
-                    'content-type': 'application/json'
-                }
             });
         }
         service.create = function (request) {
             var userId = authService.getToken(); 
             return $http({
                 method: 'POST',
-                url: BASE_URL + userId + '/request',
+                url: BASE_URL + 'user/' +  userId + '/vehicle/' + request.vehicle.id + '/request',
                 headers: {
                     'content-type': 'application/json'
                 },
@@ -38,18 +32,18 @@ angular.module('appModule')
             var userId = authService.getToken(); 
             return $http({
                 method: 'PUT',
-                url: BASE_URL + userId + 'request/' + request.id,
+                url: BASE_URL + 'user/' + userId + '/vehicle/' + request.vehicle.id + '/request/' + request.id,
                 headers: {
                     'content-type':'application/json'
                 },
                 data : request
             })
         }
-        service.destroy = function (id) {
+        service.destroy = function (request) {
             var userId = authService.getToken(); 
             return $http({
                 method: 'DELETE',
-                url: BASE_URL + userId + 'request/' + id,
+                url: BASE_URL + 'user/' + userId + '/vehicle/' + request.vehicle.id + '/request/' + request.id,
                 headers: {
                     'content-type': 'application/json'
                 }

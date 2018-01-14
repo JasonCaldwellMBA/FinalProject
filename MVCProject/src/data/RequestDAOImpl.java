@@ -26,7 +26,7 @@ public class RequestDAOImpl implements RequestDAO {
 
 	@Override
 	public List<Request> index(int uid) {
-		String query = "SELECT r FROM Request r WHERE r.user.id = :id"; 
+		String query = "SELECT r FROM Request r WHERE (r.active = true) AND r.user.id = :id"; 
 		return em.createQuery(query, Request.class).setParameter("id", uid)
 				.getResultList();
 	}

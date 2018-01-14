@@ -43,4 +43,10 @@ public class CertificationTest {
 		assertNotNull(certification.getName());
 	}
 	
+	@Test
+	public void test_cert_to_biz_mapping() {
+		assertNotNull(certification.getBusiness().getId());
+		assertNotNull(certification.getBusiness().getCompanyName());
+	}
+	
 }

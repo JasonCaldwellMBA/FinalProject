@@ -58,6 +58,12 @@ public class RequestTest {
     }
     
     @Test
+    public void test_request_to_vehicle_mapping() {
+    	assertNotNull(request.getVehicle().getId());
+    	assertNotNull(request.getVehicle().getMake());
+    }
+    
+    @Test
     public void test_vehicle_mapping() {
         assertEquals("Muffler", request.getParts().get(0).getName().toString());
     }

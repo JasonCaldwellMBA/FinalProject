@@ -8,8 +8,6 @@ angular.module('appModule')
 		vm.selected = null;
 		vm.quoteFlag = null;
 		
-		
-		
 		businessRequestService
 		.indexRequests()
 		.then(function(res){
@@ -24,7 +22,6 @@ angular.module('appModule')
 			})
 		}
 
-		
 		vm.addQuote = function(quote){
 			businessRequestService
 			.createQuote(quote, vm.selected.id)

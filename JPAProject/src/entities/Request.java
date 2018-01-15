@@ -63,18 +63,18 @@ public class Request {
 	@OneToMany(mappedBy="request")
 	private List<Quote> quotes; 
 	
-	@OneToOne
-	@Column(name="winning_quote")
-	private int winningQuote;
+//	@OneToOne
+//	@Column(name="winning_quote")
+//	private int winningQuote;
 	//===========================Getters and Setters==========================//
 
-	public int getWinningQuote() {
-		return winningQuote;
-	}
-
-	public void setWinningQuote(int winningQuote) {
-		this.winningQuote = winningQuote;
-	}
+//	public int getWinningQuote() {
+//		return winningQuote;
+//	}
+//
+//	public void setWinningQuote(int winningQuote) {
+//		this.winningQuote = winningQuote;
+//	}
 
 	public int getId() {
 		return id;
@@ -180,6 +180,6 @@ public class Request {
 	public String toString() {
 		return "Request [id=" + id + ", completed=" + completed + ", active=" + active + ", img=" + img
 				+ ", description=" + description + ", postDate=" + postDate + ", expireDate=" + expireDate
-				+ ", completeDate=" + completeDate + ", estimate=" + estimate + ", winningQuote=" + winningQuote + "]";
+				+ ", completeDate=" + completeDate + ", estimate=" + estimate + "]";
 	}
 }

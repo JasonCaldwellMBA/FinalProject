@@ -26,6 +26,22 @@ angular.module('appModule')
 			url : "api/business/" + bid + "/quote/" + qid
 		})
 	}
+	service.updateBusiness = function(business, contact){
+		return $http({
+			method : "PUT",
+			url : "/api/business/" + business.id
+			headers: {
+				'content-type' : 'application/json'
+			},
+			data : business
+		}).then(function(res){
+			$http({
+				method : "PUT",
+				url : "/api/contact/" + contact.id
+			})
+		})
+	}
+	
 	
 	return service;
 })

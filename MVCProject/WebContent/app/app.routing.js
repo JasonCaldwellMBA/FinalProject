@@ -28,6 +28,9 @@ angular.module('appModule')
 		.when('/business/:bid/quote',{
 			template: '<quote></quote>'
 		})
+		.when('/businessSettings',{
+			template : '<business-settings></business-settings>'
+		})
 		.when('/user/:id/vehicle',{
 			template: '<vehicle></vehicle>'
 		})

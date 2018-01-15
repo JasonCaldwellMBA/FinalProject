@@ -7,12 +7,24 @@ angular.module('appModule')
 		vm.copy = null;
 		
 		vm.quotes = [];
+		vm.winningQuotes = [];
 		
 		vm.business = null;
 		
 		vm.singleQuote = null;
 		
 		vm.message = "Working...";
+		
+		vm.businesses = [];
+		
+		vm.loadBusinesses = function(){
+		businessService.index().then(function(res) {
+			vm.businesses = res.data;
+			console.log("Data is: ", res.data);
+		
+		});
+		}
+		vm.loadBusinesses();
 		
 		var getBusiness = function(id){
 			businessService.show(id)
@@ -23,12 +35,19 @@ angular.module('appModule')
 
 		
 		getBusiness($routeParams.busId);
+		
 		var getQuotes = function(id){
 			businessService.indexQuotes(id)
 			.then(function(response){
 				vm.quotes = response.data;
+				vm.quotes.forEach(function(element){
+					if (element.acceptedRequest != null) {
+						vm.winningQuotes.put(element);
+					}
+				})
 			})
 		}
+		
 		getQuotes($routeParams.busId);
 		
 		vm.detailedQuote = function(quote){

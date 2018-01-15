@@ -61,7 +61,9 @@ public class Request {
 	@JsonIgnore
 	@OneToMany(mappedBy="request")
 	private List<Quote> quotes; 
+	
 	//===========================Getters and Setters==========================//
+
 
 	public int getId() {
 		return id;
@@ -165,7 +167,8 @@ public class Request {
 
 	@Override
 	public String toString() {
-		return "Request [id=" + id + ", completed=" + completed + ", active=" + active + ", img=" + img + ", description=" + description + ", postDate=" + postDate + ", expireDate=" + expireDate
+		return "Request [id=" + id + ", completed=" + completed + ", active=" + active + ", img=" + img
+				+ ", description=" + description + ", postDate=" + postDate + ", expireDate=" + expireDate
 				+ ", completeDate=" + completeDate + ", estimate=" + estimate + "]";
 	}
 }

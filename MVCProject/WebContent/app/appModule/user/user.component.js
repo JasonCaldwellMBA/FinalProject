@@ -2,7 +2,7 @@ angular.module('appModule')
 .component('userComponent', {
 	templateUrl : 'app/appModule/user/user.component.html',
 	controllerAs : 'vm',
-	controller : function($routeParams, $location, userService){
+	controller : function($routeParams, $location, userService, businessService){
 		var vm = this;
 		vm.user = null;
 		//Init load
@@ -19,5 +19,14 @@ angular.module('appModule')
 		vm.getRequests = function(){
 			$location.path("/user/" + $routeParams.id + "/request"); 
 		}
+		var loadBusinesses = function() {
+			businessService.index()
+			.then(function(res) {
+			console.log("Data is: ", res.data);
+			vm.businesses = res.data;
+			})
+			.catch(console.error);
+			}
+		loadBusinesses();
 	}
 })	

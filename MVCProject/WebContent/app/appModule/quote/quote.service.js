@@ -11,4 +11,16 @@ angular.module('appModule')
             }); 
         }; 
         return service; 
+        
+        service.createQuote = function (quote) {
+            var businessId = authService.getToken(); 
+            return $http({
+                method: 'POST',
+                url: BASE_URL + 'business/' +  businessId + '/quote',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                data: quote
+            })
+        }
     })

@@ -7,10 +7,14 @@ Vehicle : {{request.vehicle.make}}
 {{request.vehicle.model}} <br>
 Request Description : {{request.description}}
 <button type="button" ng-click="vm.viewDetails(request)">View Details</button>
+ <button type="button" ng-click="vm.getQuotes(quote)">Add Quote</button>
+ <a href='#/business/3/quote'> Add Quote </a>
 </li>
 </div>
 </ul>
 <div ng-show="vm.selected">
 {{vm.selected}}
 <button type="button" ng-click="vm.selected = null">Return</button>
+ <button type="button" ng-click="vm.getQuotes(quote)">Add Quote</button>
+ <a href='#/business/3/quote'> Add Quote </a>
 </div>

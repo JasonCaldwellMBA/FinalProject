@@ -4,10 +4,6 @@
             <div class="col-sm-8">
                 <h4>Add Quote</h4>
                 <div>
-                    <p>
-                        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false"
-                            aria-controls="collapseExample">Expand</button>
-                    </p>
                     <div class="collapse" id="collapseExample">
                         <div class="card card-body">
                             <form>
@@ -38,34 +34,6 @@
                     </div>
                 </div>
             </div>
-
-            <h4>User Quotes</h4>
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th>Quote Id</th>
-                        <th>Description</th>
-                        <th>Estimate</th>
-                        <th>Posted At</th>
-                        <th>Complete Data</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="q in vm.quotes">
-                        <td>{{q.id}}</td>
-                        <td>{{q.description}}</td>
-                        <td>{{q.estimate | currency}}</td>
-                        <td>{{q.postDate | date: 'MMM dd, y'}}</td>
-                        <td>{{q.completeDate | date: 'MMM dd, y'}}</td>
-                        <td>
-                            <button class="btn btn-secondary" ng-click="vm.detailView(q.id)">Update</button>
-                        </td>
-                        <td>
-                            <button class="btn btn-danger" ng-click="vm.destroy(q)">Delete</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
         </div>
     </div>
 </div>

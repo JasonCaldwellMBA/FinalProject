@@ -2,75 +2,24 @@
     <div class="row">
         <div class="col-sm">
             <!-- optional sidebar -->
-            <button class="btn btn-primary" ng-click="vm.return()">Return to user home</button>
+            <button class="btn btn-primary">Return to user home</button>
         </div>
         <div class="col-sm">
-            <div class="col-sm-8">
-                <h4>Add Request</h4>
-                <div>
-                    <p>
-                        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false"
-                            aria-controls="collapseExample">Expand</button>
-                    </p>
-                    <div class="collapse" id="collapseExample">
-                        <div class="card card-body">
-                            <form>
-                                <ul class="list-group">
-                                    <li class="list-group-item">
-                                        <label>Select Vehicle</label>
-                                        <select ng-model="request.vehicle" ng-options="v.vin for v in  vm.vehicles">
-                                        </select>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <label>Complete Date</label>
-                                        <input type="text" ng-model="request.completeDate" />
-                                    </li>
-                                    <li class="list-group-item">
-                                        <label>Estimate</label>
-                                        <input type="number" ng-model="request.estimate" />
-                                    </li>
-                                    <li class="list-group-item">
-                                        <label>Expire Date</label>
-                                        <input type="text" ng-model="request.expireDate" />
-                                    </li>
-                                    <li class="list-group-item">
-                                        <label>Description</label>
-                                        <input type="text" ng-model="request.description" />
-                                    </li>
-                                    <li class="list-group-item">
-                                        <button class="btn btn-primary" ng-click="vm.addRequest(request)">Add Request</button>
-                                    </li>
-                                </ul>
-
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
             <h4>User Requests</h4>
-            <table class="table table-hover">
+            <table class="table">
                 <thead>
                     <tr>
-                        <th>Request Id</th>
-                        <th>Vin</th>
-                        <th>Complete Data</th>
-                        <th>Posted At</th>
-                        <th>Estimate</th>
+                        <th>Description</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="r in vm.requests">
-                        <td>{{r.id}}</td>
-                        <td>{{r.vehicle.vin}}</td>
-                        <td>{{r.completeDate | date: 'MMM dd, y'}}</td>
-                        <td>{{r.postDate | date: 'MMM dd, y'}}</td>
-                        <td>{{r.estimate | currency}}</td>
+                    <tr ng-repeat="r in vm.requests" ng-click="vm.detailView(r.id)">
+                        <td>{{r.description}}</td>
                         <td>
-                            <button class="btn btn-secondary" ng-click="vm.detailView(r.id)">Update</button>
+                            <button class="btn btn-secondary">Update</button>
                         </td>
                         <td>
-                            <button class="btn btn-danger" ng-click="vm.destroy(r)">Delete</button>
+                            <button class="btn btn-danger">Delete</button>
                         </td>
                     </tr>
                 </tbody>

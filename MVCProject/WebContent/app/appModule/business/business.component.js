@@ -14,6 +14,17 @@ angular.module('appModule')
 		
 		vm.message = "Working...";
 		
+		vm.businesses = [];
+		
+		vm.loadBusinesses = function(){
+		businessService.index().then(function(res) {
+			vm.businesses = res.data;
+			console.log("Data is: ", res.data);
+		
+		});
+		}
+		loadBusinesses();
+		
 		var getBusiness = function(id){
 			businessService.show(id)
 			.then(function(response){

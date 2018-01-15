@@ -101,7 +101,7 @@ public class QuoteDAOImpl implements QuoteDAO {
     }
 
     @Override
-    public Quote createBiz(int bid, String quoteJson) {
+    public Quote createBiz(int bid, int rid, String quoteJson) {
         ObjectMapper om = new ObjectMapper();
         Quote quote = null;
         try {

@@ -2,7 +2,7 @@ angular.module('appModule')
 .component('businessRequest', {
 	templateUrl : 'app/appModule/businessRequest/businessRequest.component.html',
 	controllerAs : 'vm',
-	controller : function(businessRequestService, $routeParms){
+	controller : function(businessRequestService){
 		var vm = this;
 		vm.requests = [];
 		vm.selected = null;
@@ -29,7 +29,8 @@ angular.module('appModule')
 			businessRequestService
 			.createQuote(quote, vm.selected.id)
 			.then(function(res){
-				
+				vm.selected = null;
+				vm.quoteFlag = null;
 			})
 		}
 		

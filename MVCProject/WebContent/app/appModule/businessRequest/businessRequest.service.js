@@ -19,7 +19,11 @@ angular.module('appModule')
 	service.createQuote = function(quote, rid){
 		return $http({
 			method : 'POST',
-			url : 'api/business/' + $cookies.get('busId') + '/request/' + rid + '/quote'
+			url : 'api/business/'
+				+ $cookies.get('busId') 
+				+ '/request/' 
+				+ rid 
+				+ '/quote',
             headers: {
                 'content-type': 'application/json'
             },

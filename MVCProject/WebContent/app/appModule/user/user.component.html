@@ -1,48 +1,57 @@
-<h1>User Component</h1>
-<div>
-    {{vm.user.firstName}}
-    {{vm.user.lastName}}
-</div>
- <button class="red" ng-click="vm.getVehicles()">Add Vehicle</button>
- <button class="red" ng-click="vm.getRequests()">Add Request</button>
- 
- <!-- Button trigger modal -->
-<button type="button" class="red" data-toggle="modal" data-target="#exampleModalLong" ng-click="vm.loadBusinesses()">
-  See All Businesses
-</button>
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            <!-- optional sidebar -->
+            <h6>
+                {{vm.user.firstName}} {{vm.user.lastName}}
+            </h6>
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Participating Businesses</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th>Business name</th>
-                        <th>Labor Rate</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="b in vm.businesses">
-                        <td>{{b.companyName}}</td>
-                        <td>{{b.laborRate}}</td>
-                            <button class="btn btn-secondary" ng-click="vm.detailedQuote(b.id)">Business Quotes</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
+            <button class="btn btn-primary" ng-click="vm.getRequests()">Add Request</button>
+            <button class="btn btn-primary" ng-click="vm.getVehicles()">
+                Add Vehicle</button>
+        </div>
+        <div class="col-sm">
+            <button type="button" class="red" data-toggle="modal" data-target="#exampleModalLong" ng-click="vm.loadBusinesses()">
+                See All Businesses
+            </button>
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Participating Businesses</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Business name</th>
+                                        <th>Labor Rate</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="b in vm.businesses">
+                                        <td>{{b.companyName}}</td>
+                                        <td>{{b.laborRate}}</td>
+                                        <button class="btn btn-secondary" ng-click="vm.detailedQuote(b.id)">Business Quotes</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm">
+                <!-- optional sidebar -->
+                <button class="btn btn-secondary" ng-click="vm.getSettings()">Settings</button>
+            </div>
+        </div>
     </div>
-  </div>
-</div>

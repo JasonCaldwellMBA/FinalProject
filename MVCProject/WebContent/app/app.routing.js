@@ -54,7 +54,10 @@ angular.module('appModule')
 		})
 	    .when('/user/:id',{
 	    		template: '<user-component></user-component>'
-	    })
+		})
+		.when('/user/:id/settings', {
+			template:'<settings></settings>'
+		})
 	    .otherwise({
 	    		template : '<not-found></not-found>'
 	    })

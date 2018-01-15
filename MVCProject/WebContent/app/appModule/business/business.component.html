@@ -1,7 +1,7 @@
-<h1>@ Business Component</h1>
-{{vm.message}}
-{{vm.business.companyName}}
-{{vm.business.contact.city}}
+<h2>{{vm.business.companyName}} Business Home </h2>
+<p> Welcome {{vm.business.loginName}}! </p>
+
+
 
 <button type="button" ng-click="vm.getRequests()">View Requests</button>
 <ul>
@@ -26,3 +26,27 @@
 <button type="button" ng-click="vm.markComplete()">Job Completed</button>
 </div>
 
+<h3>Certifications</h3>
+<div>
+<ul>
+	<li ng-repeat="cert in vm.certifications"> cert.name </li>
+</ul>
+</div>
+
+
+
+<h3>Business Contact</h3>
+<ul>
+	<li> <strong>Phone:</strong> {{vm.business.contact.phone}}</li>
+	<li> <strong>Email:</strong> {{vm.business.contact.email}}</li>
+	<li> <strong>Website:</strong> {{vm.business.website}}</li>
+</ul>
+
+<h3>Business Address</h3>
+<ul>
+	<li> <strong>Address:</strong> {{vm.business.contact.address1}}</li>
+	<li> <strong>Address 2:</strong> {{vm.business.contact.address2}}</li>
+	<li> <strong>City:</strong> {{vm.business.contact.city}}</li>
+	<li> <strong>State:</strong> {{vm.business.contact.state}}</li>
+	<li> <strong>Zip Code:</strong> {{vm.business.contact.zipcode}}</li>
+</ul>

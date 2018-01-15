@@ -28,6 +28,9 @@ angular.module('appModule')
 		.when('/business/:bid/quote',{
 			template: '<quote></quote>'
 		})
+		.when('/businessSettings',{
+			template : '<business-settings></business-settings>'
+		})
 		.when('/user/:id/vehicle',{
 			template: '<vehicle></vehicle>'
 		})
@@ -54,7 +57,10 @@ angular.module('appModule')
 		})
 	    .when('/user/:id',{
 	    		template: '<user-component></user-component>'
-	    })
+		})
+		.when('/user/:id/settings', {
+			template:'<settings></settings>'
+		})
 	    .otherwise({
 	    		template : '<not-found></not-found>'
 	    })

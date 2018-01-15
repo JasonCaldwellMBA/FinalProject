@@ -64,8 +64,6 @@ angular.module('appModule')
 		vm.getRequests = function(){
 			$location.path("/request");
 		}
-		
-	
-		
+
 	}
 })	

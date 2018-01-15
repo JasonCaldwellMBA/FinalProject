@@ -65,13 +65,26 @@ public class UserDAOImpl implements UserDAO {
 		ObjectMapper mapper = new ObjectMapper(); 
 		User user = null; 
 		User retUser = null; 
+		Contact c = null; 
 		try {
 			user = mapper.readValue(json, User.class);
 			retUser = em.find(User.class, id);
+			c = em.find(Contact.class, user.getContact().getId());
+			c.setAddress1(user.getContact().getAddress1());
+			c.setAddress2(user.getContact().getAddress2());
+			c.setCity(user.getContact().getCity());
+			c.setEmail(user.getContact().getEmail());
+			c.setLatitude(user.getContact().getLatitude());
+			c.setLongitude(user.getContact().getLongitude());
+			c.setPhone(user.getContact().getPhone());
+			c.setState(user.getContact().getState());			
+			
+			
 			retUser.setFirstName(user.getFirstName());
 			retUser.setLastName(user.getLastName());
 			retUser.setPassword(user.getPassword());
 			retUser.setUsername(user.getUsername());
+			retUser.setContact(c);
 		} catch (JsonParseException e) {
 			e.printStackTrace();
 		} catch (JsonMappingException e) {

@@ -12,6 +12,10 @@ angular.module('appModule')
 		vm.getVehicles = function(){
 			$location.path("/user/" + $routeParams.id + "/vehicle"); 
 		}
+        vm.getSettings = function(){
+        		console.log('hello'); 
+    			$location.path("/user/" + $routeParams.id + '/settings'); 
+        }
 		vm.getRequests = function(){
 			$location.path("/user/" + $routeParams.id + "/request"); 
 		}

@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -62,6 +63,10 @@ public class Quote {
 	)
 	private List<Part> parts;
 	
+	@OneToOne(mappedBy="winningQuote")
+	private Request acceptedRequest;
+	
+	//===========================Getters and Setters==========================//
 	
 	public int getId() {
 		return id;

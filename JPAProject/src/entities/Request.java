@@ -13,7 +13,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
@@ -63,18 +62,8 @@ public class Request {
 	@OneToMany(mappedBy="request")
 	private List<Quote> quotes; 
 	
-//	@OneToOne
-//	@Column(name="winning_quote")
-//	private int winningQuote;
 	//===========================Getters and Setters==========================//
 
-//	public int getWinningQuote() {
-//		return winningQuote;
-//	}
-//
-//	public void setWinningQuote(int winningQuote) {
-//		this.winningQuote = winningQuote;
-//	}
 
 	public int getId() {
 		return id;

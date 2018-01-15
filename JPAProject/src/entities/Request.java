@@ -64,15 +64,15 @@ public class Request {
 	private List<Quote> quotes; 
 	
 	@OneToOne
-	@Column(name="winning_quote")
-	private int winningQuote;
+	@JoinColumn(name="winning_quote")
+	private Quote winningQuote;
 	//===========================Getters and Setters==========================//
 
-	public int getWinningQuote() {
+	public Quote getWinningQuote() {
 		return winningQuote;
 	}
 
-	public void setWinningQuote(int winningQuote) {
+	public void setWinningQuote(Quote winningQuote) {
 		this.winningQuote = winningQuote;
 	}
 

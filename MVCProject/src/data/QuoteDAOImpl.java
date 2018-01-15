@@ -86,6 +86,7 @@ public class QuoteDAOImpl implements QuoteDAO {
         return quote;
     }
     
+    
     public Set<Quote> indexQuoteForBusiness(int bid) {
         String query = "SELECT q FROM Quote q WHERE q.business.id = :bid AND q.business.active = true AND q.active = true";
         
@@ -94,7 +95,8 @@ public class QuoteDAOImpl implements QuoteDAO {
                             .getResultList();
         return new HashSet<Quote>(quotes);
     }
-	
+    
+
 	@Override
     public Quote showBiz(int bid, int qid) {
 		return em.find(Quote.class, qid);

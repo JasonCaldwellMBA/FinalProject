@@ -194,9 +194,11 @@ CREATE TABLE IF NOT EXISTS `autodb`.`request` (
   `post_date` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
   `estimate` DECIMAL(10,0) NULL DEFAULT NULL,
   `active` TINYINT NULL DEFAULT 1,
+  `winning_quote` INT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_req_user_idx` (`user_id` ASC),
   INDEX `fk_req_auto_idx` (`vehicle_id` ASC),
+  INDEX `fk_req_quote_idx` (`winning_quote` ASC),
   CONSTRAINT `fk_req_user`
     FOREIGN KEY (`user_id`)
     REFERENCES `autodb`.`user` (`id`)
@@ -205,6 +207,11 @@ CREATE TABLE IF NOT EXISTS `autodb`.`request` (
   CONSTRAINT `fk_req_vehicle`
     FOREIGN KEY (`vehicle_id`)
     REFERENCES `autodb`.`vehicle` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_req_quote`
+    FOREIGN KEY (`winning_quote`)
+    REFERENCES `autodb`.`quote` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -393,9 +400,9 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `autodb`;
-INSERT INTO `autodb`.`request` (`id`, `user_id`, `description`, `vehicle_id`, `complete_date`, `completed`, `img`, `expire_date`, `post_date`, `estimate`, `active`) VALUES (1, 1, 'Need work', 1, NULL, 0, NULL, NULL, NULL, 0, 1);
-INSERT INTO `autodb`.`request` (`id`, `user_id`, `description`, `vehicle_id`, `complete_date`, `completed`, `img`, `expire_date`, `post_date`, `estimate`, `active`) VALUES (2, 2, 'Need work', 2, NULL, 0, NULL, NULL, NULL, 0, 1);
-INSERT INTO `autodb`.`request` (`id`, `user_id`, `description`, `vehicle_id`, `complete_date`, `completed`, `img`, `expire_date`, `post_date`, `estimate`, `active`) VALUES (3, 3, 'Need work', 3, NULL, 0, NULL, NULL, NULL, 0, 1);
+INSERT INTO `autodb`.`request` (`id`, `user_id`, `description`, `vehicle_id`, `complete_date`, `completed`, `img`, `expire_date`, `post_date`, `estimate`, `active`, `winning_quote`) VALUES (1, 1, 'Need work', 1, NULL, 0, NULL, NULL, NULL, 0, 1, NULL);
+INSERT INTO `autodb`.`request` (`id`, `user_id`, `description`, `vehicle_id`, `complete_date`, `completed`, `img`, `expire_date`, `post_date`, `estimate`, `active`, `winning_quote`) VALUES (2, 2, 'Need work', 2, NULL, 0, NULL, NULL, NULL, 0, 1, NULL);
+INSERT INTO `autodb`.`request` (`id`, `user_id`, `description`, `vehicle_id`, `complete_date`, `completed`, `img`, `expire_date`, `post_date`, `estimate`, `active`, `winning_quote`) VALUES (3, 3, 'Need work', 3, NULL, 0, NULL, NULL, NULL, 0, 1, NULL);
 
 COMMIT;
 

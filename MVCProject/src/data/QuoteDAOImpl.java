@@ -101,13 +101,16 @@ public class QuoteDAOImpl implements QuoteDAO {
     }
 
     @Override
-    public Quote createBiz(int bid, String quoteJson) {
+    public Quote createBiz(int bid, int rid, String quoteJson) {
         ObjectMapper om = new ObjectMapper();
         Quote quote = null;
         try {
             quote = om.readValue(quoteJson, Quote.class);
             Business business = em.find(Business.class, bid);
             quote.setBusiness(business);
+            Request request = em.find(Request.class, rid);
+            quote.setRequest(request);
+            quote.setActive(true);
             
             em.persist(quote);
             em.flush();
@@ -118,7 +121,7 @@ public class QuoteDAOImpl implements QuoteDAO {
     }
 
     @Override
-    public Quote updateBiz(int bid, int qid, String quoteJson) {
+    public Quote updateBiz(int bid, int rid, int qid, String quoteJson) {
         ObjectMapper om = new ObjectMapper();
         Quote updateQuote = null;
         Quote origQuote = null;
@@ -138,7 +141,7 @@ public class QuoteDAOImpl implements QuoteDAO {
     }
 
     @Override
-    public Quote destroyBiz(int bid, int qid) {
+    public Quote destroyBiz(int bid, int rid, int qid) {
         Quote quote = em.find(Quote.class, qid);
         if (quote.isActive()) {
             quote.setActive(false);

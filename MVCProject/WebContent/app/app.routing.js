@@ -25,6 +25,9 @@ angular.module('appModule')
 	    .when('/business/:busId',{
 	    	template: '<business-component></business-component>'
 		})
+		.when('/business/:bid/quote',{
+			template: '<quote></quote>'
+		})
 		.when('/user/:id/vehicle',{
 			template: '<vehicle></vehicle>'
 		})
@@ -39,6 +42,12 @@ angular.module('appModule')
 		})
 		.when('/user/:uid/vehicle/:vid',{
 			template: '<vehicle-detail></vehicle-detail>'
+		})
+		.when('/user/:uid/request/:rid/quote',{
+			template: '<quote></quote>'
+		})
+		.when('/user/:uid/request/:rid/quote/:qid',{
+			template: '<quote-detail></quote-detail>'
 		})
 	    .when('/user/:id',{
 	    		template: '<user-component></user-component>'

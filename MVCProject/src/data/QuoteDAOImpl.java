@@ -108,8 +108,9 @@ public class QuoteDAOImpl implements QuoteDAO {
             quote = om.readValue(quoteJson, Quote.class);
             Business business = em.find(Business.class, bid);
             quote.setBusiness(business);
-            Request request = em.find(Request.class, bid);
+            Request request = em.find(Request.class, rid);
             quote.setRequest(request);
+            quote.setActive(true);
             
             em.persist(quote);
             em.flush();

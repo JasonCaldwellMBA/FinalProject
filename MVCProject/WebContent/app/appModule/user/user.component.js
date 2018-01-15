@@ -24,5 +24,9 @@ angular.module('appModule')
 			.catch(console.error);
 			}
 		loadBusinesses();
+		
+		vm.getBusiness = function() {
+			$location.path("/user/business")
+		}
 	}
 })	

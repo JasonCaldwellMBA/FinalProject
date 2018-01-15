@@ -31,8 +31,8 @@
                 </thead>
                 <tbody>
                     <tr ng-repeat="b in vm.businesses">
-                        <td>{{b.companyName}}</td>
-                        <td>{{b.laborRate}}</td>
+                        <td data-dismiss="modal" ng-click="vm.getBusiness(b)">{{b.companyName}}</td>
+                        <td data-dismiss="modal" ng-click="vm.getBusiness(b)">{{b.laborRate}}</td>
                             <button class="btn btn-secondary" ng-click="vm.detailedQuote(b.id)">Business Quotes</button>
                         </td>
                     </tr>
@@ -46,3 +46,5 @@
     </div>
   </div>
 </div>
+<br>
+<a href="#/user/business">GO TO THE FUCKIN BUSINESS DETAILS</a>

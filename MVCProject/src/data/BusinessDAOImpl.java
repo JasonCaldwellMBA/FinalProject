@@ -8,15 +8,14 @@ import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import entities.Business;
+import entities.Certification;
 import entities.Contact;
-import entities.User;
 
 @Repository
 @Transactional
@@ -143,6 +142,13 @@ public class BusinessDAOImpl implements BusinessDAO {
 			}
 		return originalContact;
 	}
-
 	
+	@Override
+	public List<Certification> indexCert(int bid) {
+		String query = "Select c from Certification c where c.business.id = :bid";
+		List<Certification> certifications = em.createQuery(query, Certification.class)
+				.setParameter("bid", bid)
+				 .getResultList();
+		return certifications;
+	}
 }

@@ -3,8 +3,8 @@ package data;
 import java.util.List;
 
 import entities.Business;
+import entities.Certification;
 import entities.Contact;
-import entities.User;
 
 public interface BusinessDAO {
 	
@@ -23,5 +23,7 @@ public interface BusinessDAO {
 	Contact createContact(int bid, String contactJson);
 
 	Contact showContact(int bid, int cid);
+	
+	public List<Certification> indexCert(int bid);
 
 }

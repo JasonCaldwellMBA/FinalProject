@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import data.BusinessDAO;
 import entities.Business;
+import entities.Certification;
 import entities.Contact;
 @CrossOrigin
 @RestController
@@ -100,4 +101,17 @@ public class BusinessController {
 		}
 		return contact; 
 	}
+	
+	@RequestMapping(path="/business/{bid}/certification", method=RequestMethod.GET)
+	public List<Certification> indexCert(@PathVariable int bid, HttpServletResponse res) {
+		List<Certification> certifications = dao.indexCert(bid);
+		if(certifications != null) {
+			res.setStatus(202);
+		}
+		else {
+			res.setStatus(404);
+		}
+		return certifications;
+	}
+	
 }

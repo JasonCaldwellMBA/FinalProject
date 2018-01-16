@@ -2,7 +2,7 @@ angular.module('appModule')
 .component('businessComponent', {
 	templateUrl : "app/appModule/business/business.component.html",
 	controllerAs : 'vm',
-	controller : function(businessService, quoteService, $routeParams, $location){
+	controller : function(authService, businessService, quoteService, $routeParams, $location){
 		var vm = this;
 		vm.copy = null;
 		
@@ -37,7 +37,8 @@ angular.module('appModule')
 		
 		getBusiness($routeParams.busId);
 		
-		var getQuotes = function(id){
+		var getQuotes = function(){
+			var id = authService.getBusToken();
 			businessService.indexQuotes(id)
 			.then(function(response){
 				vm.quotes = response.data;
@@ -71,6 +72,8 @@ angular.module('appModule')
 			.then(function(res){
 				vm.selected = null;
 				vm.copy = null;
+				vm.update = null;
+				getQuotes();
 			})
 		}
 

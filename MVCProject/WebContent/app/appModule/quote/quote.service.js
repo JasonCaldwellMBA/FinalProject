@@ -22,12 +22,11 @@ angular.module('appModule')
                 data: quote
             })
         }
-        
         service.updateQuote = function(quote){
-            var businessId = authService.getBusToken(); 
+            // var businessId = authService.getBusToken(); 
             return $http({
                 method: 'PUT',
-                url: BASE_URL + 'business/' +  businessId + '/quote/' + quote.id,
+                url: BASE_URL + 'business/' +  quote.business.id + '/quote/' + quote.id,
                 headers: {
                     'content-type': 'application/json'
                 },

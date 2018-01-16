@@ -5,17 +5,29 @@ angular.module('appModule')
         controller: function (requestService, quoteService, $location, $routeParams) {
             var vm = this; 
             vm.request = null; 
-            vm.quotes = null; 
+            vm.quotes = [];
             //init load
             requestService.show($routeParams.rid).then(function (res) {
                 vm.request = angular.copy(res.data);
             }); 
             quoteService.requestQuotes($routeParams.rid).then(function (res) {
-                console.data(res); 
-                vm.quotes = res.data;
+                var preQuotes = res.data;
+                preQuotes.forEach(quote => {
+                    if (quote.acceptedRequest != undefined) {
+                        vm.quotes.push(quote); 
+                        return; 
+                    }
+                });
+                if (vm.quotes.length < 1) {
+                    vm.quotes = preQuotes; 
+                }
             }); 
             vm.selectQuote = function (quote) {
-                q
+                quote.acceptedRequest = quote.request; 
+                console.log(quote); 
+                quoteService.updateQuote(quote).then(function () {
+                    
+                }); 
             }
             vm.update = function (request) {
                 requestService.update(request).then(function (res) {

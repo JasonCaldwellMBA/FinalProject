@@ -16,6 +16,7 @@ import data.BusinessDAO;
 import entities.Business;
 import entities.Certification;
 import entities.Contact;
+import entities.Vehicle;
 @CrossOrigin
 @RestController
 public class BusinessController {
@@ -123,5 +124,17 @@ public class BusinessController {
 			res.setStatus(201);
 		}
 		return cert;
+	}
+	
+	@RequestMapping(path="/business/{bid}/certification/{certid}", method=RequestMethod.PUT)
+	public Certification updateCert(@PathVariable int bid, @PathVariable int certid,  @RequestBody String json, HttpServletResponse res) {
+		Certification cert = dao.updateCert(bid, certid, json); 
+		if(cert != null) {
+			res.setStatus(201);
+		}
+		else {
+			res.setStatus(400);
+		}
+		return cert; 
 	}
 }

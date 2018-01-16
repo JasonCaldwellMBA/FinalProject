@@ -3,9 +3,9 @@
 
 
 
-<button type="button" ng-click="vm.getRequests()">View Requests</button>
+<button type="button"  ng-click="vm.getRequests()">View Requests</button>
 <ul>
-	<div ng-repeat="quote in vm.quotes">
+	<div ng-hide="vm.copy" ng-repeat="quote in vm.quotes">
 		<li ng-click="vm.detailedQuote(quote)">
 			{{quote.description}}
 			{{quote.postDate}}
@@ -15,20 +15,34 @@
 	</div>
 </ul>
 
-<h4>{{vm.copy.request}}</h4>
-<div ng-model="vm.copy" ng-show="vm.copy">
-{{vm.copy.description}}
-{{vm.copy.request.firstName}}
-{{vm.copy.request.vehicle}}
-{{vm.copy.expireDate}}
-{{vm.copy.postDate}}
-<button type="button" ng-click="vm.copy = null">Return</button>
-<button type="button" ng-click="vm.markComplete()">Job Completed</button>
-</div>
 
+<div ng-model="vm.copy" ng-show="vm.copy">
+	<form>
+		Customer Name: {{vm.copy.request.user.firstName}}
+		{{vm.copy.request.user.lastName}}<br>
+		Phone Number: {{vm.copy.request.user.contact.phone}}<br>
+		Vehicle Information: {{vm.copy.request.vehicle.make}}
+		{{vm.copy.request.vehicle.model}}
+		{{vm.copy.request.vehicle.year}}<br>
+		VIN: {{vm.copy.request.vehicle.vin}}<br>
+		Mileage: {{vm.copy.request.vehicle.mileage}} <br>
+		Vehicle Issues: {{vm.copy.request.description}} <br>
+		Work Description: {{vm.copy.description}}
+		<ng-show="vm.update"><input type="text" ng-model="vm.copy.description"></input></ng-show><br>
+		Expire Date : {{vm.copy.expireDate | date:"MMM dd, yy"}}
+		<ng-show="vm.update"><input type="date" ng-model="vm.copy.expireDate"></input></ng-show><br>
+		Estimate : {{vm.copy.estimate}}<br>
+		<button type="button" ng-click="vm.updateQuote(vm.copy)">Submit Changes</button>
+	
+	</form>	
+	<button type="button" ng-click="vm.update = true">Update Quote</button>
+	<button type="button" ng-click="vm.markComplete()">Job Completed</button>
+	<button type="button" ng-click="vm.copy = null; vm.update = null">Return</button>
+</div>
+<!-- <ng-show="vm.update"><input type="datetime" ng-model=""></input></ng-show> -->
 <h3>Certifications</h3>
 <div>
-<ul>
+<ul>	
 	<li ng-repeat="cert in vm.certifications"> cert.name </li>
 </ul>
 </div>

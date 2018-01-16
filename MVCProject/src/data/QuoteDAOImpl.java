@@ -123,10 +123,11 @@ public class QuoteDAOImpl implements QuoteDAO {
     }
 
     @Override
-    public Quote updateBiz(int bid, int rid, int qid, String quoteJson) {
+    public Quote updateBiz(int bid, int qid, String quoteJson) {
         ObjectMapper om = new ObjectMapper();
         Quote updateQuote = null;
         Quote origQuote = null;
+        System.out.println("at impl");
         try {
             updateQuote = om.readValue(quoteJson, Quote.class);
             origQuote = em.find(Quote.class, qid);
@@ -135,6 +136,7 @@ public class QuoteDAOImpl implements QuoteDAO {
             origQuote.setExpireDate(updateQuote.getExpireDate());
             origQuote.setCompleteDate(updateQuote.getCompleteDate());
             origQuote.setEstimate(updateQuote.getEstimate());
+
             
         } catch (Exception e) {
             e.printStackTrace();

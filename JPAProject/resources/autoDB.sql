@@ -413,9 +413,9 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `autodb`;
-INSERT INTO `autodb`.`quote` (`id`, `estimate`, `post_date`, `description`, `request_id`, `complete_date`, `expire_date`, `business_id`, `active`, `accepted_request`, `completed`) VALUES (1, 69.99, NULL, 'Air muffle', 1, NULL, NULL, 1, 1, NULL, NULL);
-INSERT INTO `autodb`.`quote` (`id`, `estimate`, `post_date`, `description`, `request_id`, `complete_date`, `expire_date`, `business_id`, `active`, `accepted_request`, `completed`) VALUES (2, 345, NULL, 'Air Brakes', 1, NULL, NULL, 1, 1, NULL, NULL);
-INSERT INTO `autodb`.`quote` (`id`, `estimate`, `post_date`, `description`, `request_id`, `complete_date`, `expire_date`, `business_id`, `active`, `accepted_request`, `completed`) VALUES (3, 1000, NULL, 'Air Guitar', 1, NULL, NULL, 2, 1, NULL, NULL);
+INSERT INTO `autodb`.`quote` (`id`, `estimate`, `post_date`, `description`, `request_id`, `complete_date`, `expire_date`, `business_id`, `active`, `accepted_request`, `completed`) VALUES (1, 69.99, NULL, 'Air muffle', 1, NULL, NULL, 1, 1, NULL, 0);
+INSERT INTO `autodb`.`quote` (`id`, `estimate`, `post_date`, `description`, `request_id`, `complete_date`, `expire_date`, `business_id`, `active`, `accepted_request`, `completed`) VALUES (2, 345, NULL, 'Air Brakes', 1, NULL, NULL, 1, 1, NULL, 0);
+INSERT INTO `autodb`.`quote` (`id`, `estimate`, `post_date`, `description`, `request_id`, `complete_date`, `expire_date`, `business_id`, `active`, `accepted_request`, `completed`) VALUES (3, 1000, NULL, 'Air Guitar', 1, NULL, NULL, 2, 1, NULL, 0);
 
 COMMIT;
 

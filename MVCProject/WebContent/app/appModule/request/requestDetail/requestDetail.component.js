@@ -25,8 +25,8 @@ angular.module('appModule')
             vm.selectQuote = function (quote) {
                 quote.acceptedRequest = quote.request; 
                 console.log(quote); 
-                quoteService.updateQuote(quote).then(function () {
-                    
+                quoteService.updateQuote(quote).then(function (res) {
+                    console.log(res.data); 
                 }); 
             }
             vm.update = function (request) {

@@ -40,7 +40,7 @@ angular.module('appModule')
 		.when('/request',{
 			template: '<business-request></business-request>'
 		})
-		.when('/user/business',{
+		.when('/user/:uid/business/:bid',{
 			template: '<business-detail></business-detail>'
 		})
 		.when('/user/:uid/request/:rid',{

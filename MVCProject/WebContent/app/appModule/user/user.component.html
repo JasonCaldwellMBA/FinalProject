@@ -35,7 +35,7 @@
                                 </thead>
                                 <tbody>
                                     <tr ng-repeat="b in vm.businesses">
-                                        <td>{{b.companyName}}</td>
+                                        <td data-dismiss="modal"  ng-click="vm.getBusiness(b)">{{b.companyName}}</td>
                                         <td>{{b.laborRate}}</td>
                                         <button class="btn btn-secondary" ng-click="vm.detailedQuote(b.id)">Business Quotes</button>
                                         </td>
@@ -56,4 +56,3 @@
             </div>
         </div>
     </div>
->>>>>>> 4dec1c654d6b0e989bbaae14c5d410083e4e0c07

@@ -10,7 +10,6 @@ angular.module('appModule')
                 url: BASE_URL + 'user/' + userId + '/request/' +  rid + '/quote'
             }); 
         }; 
-        return service; 
         
         service.createQuote = function (quote) {
             var businessId = authService.getToken(); 
@@ -23,4 +22,5 @@ angular.module('appModule')
                 data: quote
             })
         }
+        return service; 
     })

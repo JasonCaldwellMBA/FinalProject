@@ -2,7 +2,7 @@ angular.module('appModule')
 .component('businessComponent', {
 	templateUrl : "app/appModule/business/business.component.html",
 	controllerAs : 'vm',
-	controller : function(authService, businessService, quoteService, $routeParams, $location){
+	controller : function(authService, businessService, quoteService, certificationService, $routeParams, $location){
 		var vm = this;
 		vm.copy = null;
 		

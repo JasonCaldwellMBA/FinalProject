@@ -137,4 +137,13 @@ public class BusinessController {
 		}
 		return cert; 
 	}
+	
+	@RequestMapping(path="/business/{bid}/certification/{certid}", method=RequestMethod.DELETE)
+	public Boolean destroy(@PathVariable int bid, @PathVariable int certid, HttpServletResponse res) {
+		Boolean result = dao.deleteCert(bid, certid); 
+		if(result == null) {
+			res.setStatus(404);
+		}
+		return result; 
+	}
 }

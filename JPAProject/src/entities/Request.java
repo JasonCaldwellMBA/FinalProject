@@ -13,6 +13,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
@@ -25,13 +26,16 @@ public class Request {
 	@ManyToOne
 	@JoinColumn(name="user_id")
 	private User user;
-	//@JsonIgnore
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="vehicle_id")
 	private Vehicle vehicle;
 	private boolean completed;
 	private boolean active;
 	private String img;
+	@JsonIgnore
+	@OneToOne(mappedBy="acceptedRequest")
+	private Quote acceptedQuote;
 	
 	@JsonIgnore
 	@ManyToMany
@@ -163,6 +167,14 @@ public class Request {
 
 	public void setQuotes(List<Quote> quotes) {
 		this.quotes = quotes;
+	}
+
+	public Quote getAcceptedQuote() {
+		return acceptedQuote;
+	}
+
+	public void setAcceptedQuote(Quote acceptedQuote) {
+		this.acceptedQuote = acceptedQuote;
 	}
 
 	@Override

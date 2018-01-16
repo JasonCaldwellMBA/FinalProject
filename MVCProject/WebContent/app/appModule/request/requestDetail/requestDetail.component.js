@@ -11,10 +11,12 @@ angular.module('appModule')
                 vm.request = angular.copy(res.data);
             }); 
             quoteService.requestQuotes($routeParams.rid).then(function (res) {
-                console.log(res); 
+                console.data(res); 
                 vm.quotes = res.data;
             }); 
-            
+            vm.selectQuote = function (quote) {
+                q
+            }
             vm.update = function (request) {
                 requestService.update(request).then(function (res) {
                     reload();

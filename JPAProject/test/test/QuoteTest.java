@@ -60,10 +60,10 @@ public class QuoteTest {
 		assertEquals("StumpsAuto", quote.getBusiness().getCompanyName());
 	}
 	
-	@Test
-	public void test_quote_to_parts_quote_to_part_mapping() {
-		assertNotNull(quote.getParts().get(0).getId());
-		assertNotNull(quote.getParts().get(0).getName());
-	}
+//	@Test
+//	public void test_quote_to_parts_quote_to_part_mapping() {
+//		assertNotNull(quote.getParts().get(0).getId());
+//		assertNotNull(quote.getParts().get(0).getName());
+//	}
 	
 }

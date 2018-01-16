@@ -11,17 +11,20 @@ angular.module('appModule')
             }); 
         }; 
         
-        service.createQuote = function (quote) {
-            var businessId = authService.getBusToken(); 
-            return $http({
-                method: 'POST',
-                url: BASE_URL + 'business/' +  businessId + '/quote',
-                headers: {
-                    'content-type': 'application/json'
-                },
-                data: quote
-            })
-        }
+	    	service.createQuote = function(quote, rid){
+	    		return $http({
+	    			method : 'POST',
+	    			url : 'api/business/'
+	    				+ $cookies.get('busId') 
+	    				+ '/request/' 
+	    				+ rid 
+	    				+ '/quote',
+	                headers: {
+	                    'content-type': 'application/json'
+	                },
+	                data: quote
+	    		})
+	    	}
         service.updateQuote = function(quote){
             // var businessId = authService.getBusToken(); 
             return $http({

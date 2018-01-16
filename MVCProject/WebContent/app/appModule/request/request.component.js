@@ -31,7 +31,6 @@ angular.module('appModule')
 			vm.return = function(){
 				$location.path('/user/' + $cookies.get('userId')); 
 			}
-
 			//helper methods; 
 			reload = function () {
 				requestService.index().then(function (res) {

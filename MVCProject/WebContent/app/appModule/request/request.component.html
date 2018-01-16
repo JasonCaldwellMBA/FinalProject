@@ -9,17 +9,29 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th>Description</th>
+                        <th>#</th>
+                        <th>Estimate</th>
+                        <th>Vehicle VIN</th>
+                        <th>Complete date</th>
+                        <th>Completed</th>
+                        <th>Expire date</th>
+                        <th>Post Date</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="r in vm.requests" ng-click="vm.detailView(r.id)">
-                        <td>{{r.description}}</td>
+                    <tr ng-repeat="r in vm.requests" >
+                        <td ng-click="vm.detailView(r.id)">{{r.id}}</td>
+                        <td>{{r.estimate | currency}}</td>
+                        <td>{{r.vehicle.vin}}</td>
+                        <td>{{r.postDate}}</td>
+                        <td>{{r.completeDate | date: 'MMM dd, yy'}}</td>
+                        <td>{{r.completed}}</td>
+                        <td>{{r.expireDate}}</td>
                         <td>
-                            <button class="btn btn-secondary">Update</button>
+                            <button class="btn btn-secondary" ng-click="vm.detailView(r.id)">Update</button>
                         </td>
                         <td>
-                            <button class="btn btn-danger">Delete</button>
+                            <button class="btn btn-danger" ng-click="vm.destroy(request)">Delete</button>
                         </td>
                     </tr>
                 </tbody>

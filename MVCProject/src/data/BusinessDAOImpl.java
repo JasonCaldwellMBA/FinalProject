@@ -62,10 +62,25 @@ public class BusinessDAOImpl implements BusinessDAO {
 		ObjectMapper mapper = new ObjectMapper();
 		Business holderBusiness = null;
 		Business orgBusiness = null;
+		Contact c = null;
 		try {
 			orgBusiness = em.find(Business.class, bid);
 			holderBusiness = mapper.readValue(businessJson, Business.class);
+			
+			c = em.find(Contact.class, holderBusiness.getContact().getId());
+			c.setAddress1(holderBusiness.getContact().getAddress1());
+			c.setAddress2(holderBusiness.getContact().getAddress2());
+			c.setCity(holderBusiness.getContact().getCity());
+			c.setEmail(holderBusiness.getContact().getEmail());
+			c.setLatitude(holderBusiness.getContact().getLatitude());
+			c.setLongitude(holderBusiness.getContact().getLongitude());
+			c.setPhone(holderBusiness.getContact().getPhone());
+			c.setState(holderBusiness.getContact().getState());	
+			
 			orgBusiness.setCompanyName(holderBusiness.getCompanyName());
+			orgBusiness.setLoginName(holderBusiness.getLoginName());
+			orgBusiness.setLoginPassword(holderBusiness.getLoginPassword());
+			orgBusiness.setContact(c);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

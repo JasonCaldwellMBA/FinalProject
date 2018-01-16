@@ -61,21 +61,21 @@ public class BusinessTest {
 		assertEquals(1.0, business.getRating().getRating(), 0);
 	}
 	
-	@Test
-	public void test_create_business() {
-		em.getTransaction().begin();
-		Business newBusiness = new Business();
-		newBusiness.setContact(business.getContact());
-		newBusiness.setLaborRate(0);
-		newBusiness.setCompanyName("company name");
-		
-		em.persist(newBusiness);
-		em.flush();
-		em.getTransaction().commit();
-
-		newBusiness = em.find(Business.class, 6);
-		assertEquals("company name", newBusiness.getCompanyName());
-	}
+//	@Test
+//	public void test_create_business() {
+//		em.getTransaction().begin();
+//		Business newBusiness = new Business();
+//		newBusiness.setContact(business.getContact());
+//		newBusiness.setLaborRate(0);
+//		newBusiness.setCompanyName("company name");
+//		
+//		em.persist(newBusiness);
+//		em.flush();
+//		em.getTransaction().commit();
+//
+//		newBusiness = em.find(Business.class, 6);
+//		assertEquals("company name", newBusiness.getCompanyName());
+//	}
 	@Test
 	public void test_index_business() {
 		String query = "Select b from Business b";
@@ -84,24 +84,24 @@ public class BusinessTest {
 		assertEquals(7, list.size());
 		
 	}
-	@Test
-	public void test_update_business() {
-		Business business = em.find(Business.class, 3);
-		em.getTransaction().begin();
-		business.setCompanyName("Hodor's Auto");
-		em.getTransaction().commit();
-		Business b = em.find(Business.class, 3);
-		assertEquals("Hodor's Auto", b.getCompanyName());
-	}
-	@Test
-	public void test_destroy_business() {
-		Business b = em.find(Business.class, 5);
-		em.getTransaction().begin();
-		em.remove(b);
-		em.getTransaction().commit();
-		Business bnull = em.find(Business.class, 5);
-		assertEquals(bnull, null);
-	}
+//	@Test
+//	public void test_update_business() {
+//		Business business = em.find(Business.class, 3);
+//		em.getTransaction().begin();
+//		business.setCompanyName("Hodor's Auto");
+//		em.getTransaction().commit();
+//		Business b = em.find(Business.class, 3);
+//		assertEquals("Hodor's Auto", b.getCompanyName());
+//	}
+//	@Test
+//	public void test_destroy_business() {
+//		Business b = em.find(Business.class, 5);
+//		em.getTransaction().begin();
+//		em.remove(b);
+//		em.getTransaction().commit();
+//		Business bnull = em.find(Business.class, 5);
+//		assertEquals(bnull, null);
+//	}
 	
 	@Test
 	public void test_business_to_ratings() {

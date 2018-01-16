@@ -36,5 +36,7 @@ angular.module('appModule')
                 data: quote
             })
         }
+        
+        
         return service; 
     })

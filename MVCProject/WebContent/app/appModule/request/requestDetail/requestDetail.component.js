@@ -24,9 +24,8 @@ angular.module('appModule')
             }); 
             vm.selectQuote = function (quote) {
                 quote.acceptedRequest = quote.request; 
-                console.log(quote); 
                 quoteService.updateQuote(quote).then(function (res) {
-                    console.log(res.data); 
+                    reload(); 
                 }); 
             }
             vm.update = function (request) {
@@ -45,6 +44,19 @@ angular.module('appModule')
             var reload = function () {
                 requestService.show($routeParams.rid).then(function (res) {
                     vm.request = angular.copy(res.data); 
+                    quoteService.requestQuotes($routeParams.rid).then(function (res) {
+                        var preQuotes = res.data;
+                        preQuotes.forEach(quote => {
+                            if (quote.acceptedRequest != undefined) {
+                                vm.quotes = []; 
+                                vm.quotes.push(quote); 
+                                return; 
+                            }
+                        });
+                        if (vm.quotes.length < 1) {
+                            vm.quotes = preQuotes; 
+                        }
+                    }); 
                 }); 
             }
         }

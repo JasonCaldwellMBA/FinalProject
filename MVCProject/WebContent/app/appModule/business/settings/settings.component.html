@@ -1,0 +1,56 @@
+<h1>Business Settings</h1>
+
+<div class="container">
+        <div class="row">
+            <div class="col-sm">
+                <!-- optional sidebar -->
+            </div>
+            <div  ng-show="vm.business" class="col-sm" >
+                <form>
+                		<div class="form-group">
+	                    <label for="txtCompanyName">Company Name</label>
+	                    <input type="text" class="form-control" id="txtCompanyName" placeholder="Company name" ng-model="vm.business.companyName" required>
+                		</div>
+                    <div class="form-group">
+                        <label for="txtAddress1">Address 1</label>
+                        <input type="text" class="form-control" ng-model="vm.contact.address1" id="txtAddress1" placeholder="Enter address1">
+                    </div>
+                    <div class="form-group">
+                        <label for="txtAddress2">Address 2</label>
+                        <input type="text" class="form-control" id="txtAddress2" placeholder="Enter address2" ng-model="vm.contact.address2">
+                    </div>
+                    <div class="form-group">
+                        <label for="txtZipcode">Zip code</label>
+                        <input type="text" class="form-control" id="txtZipcode" ng-model="vm.contact.zipcode" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="txtCity">City</label>
+                        <input type="text" class="form-control" id="txtCity" ng-model="vm.contact.city">
+                    </div>
+                    <div class="form-group">
+                        <label for="txtState">State</label>
+                        <input type="text" class="form-control" id="txtState" ng-model="vm.contact.state" >
+                    </div>
+                    <div class="form-group">
+                        <label for="txtPhone">Phone</label>
+                        <input type="phone" class="form-control" id="txtPhone" ng-model="vm.contact.phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="txtEmail">Email</label>
+                        <input type="email" class="form-control" id="txtEmail" ng-model="vm.contact.email" required>
+                    </div>
+                    <button ng-click="vm.return()" class="btn btn-primary">Back</button>
+                    <button ng-click="vm.updateBusiness(vm.business, vm.contact)" class="btn btn-primary">Register</button>
+                </form>
+            </div>
+            <div class="col-sm">
+                <!-- optional sidebar -->
+            </div>
+        </div>
+    </div>
+    
+    <div ng-show="vm.updatedBusiness">
+		<h3>Your business has been updated.</h3>
+    </div>
+    
+    <button type="button" ng-click="vm.updateBusiness = null">Return</button>

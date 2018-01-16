@@ -5,7 +5,8 @@ angular.module('appModule')
 		controller : function(requestService, vehicleService, $cookies, $location, $routeParams) {				
 			var vm = this;
 			vm.requests = [];
-			vm.vehicles = []; 
+			vm.vehicles = [];
+			vm.vehicle = null; 
 
 			//init load
 			requestService.index().then(function (res) {
@@ -15,6 +16,7 @@ angular.module('appModule')
 				vm.vehicles = res.data; 
 			})
 			vm.addRequest = function (request) {
+				request.vehicle = vm.vehicle; 
 				request.active = true; 
 				requestService.create(request).then(function (res) {
 					reload(); 
@@ -31,7 +33,6 @@ angular.module('appModule')
 			vm.return = function(){
 				$location.path('/user/' + $cookies.get('userId')); 
 			}
-
 			//helper methods; 
 			reload = function () {
 				requestService.index().then(function (res) {

@@ -34,9 +34,23 @@
             </div>
             <div class="col-sm">
                 <!-- optional sidebar -->
-                <ul ng-repeat="q in vm.quotes">
+                <ul ng-repeat="q in vm.quotes" class="list-group">
+                    <li class="list-group-item">
+                        <label>Quote ID: {{q.id}}</label>
+                    </li>
+                    <li class="list-group-item">
+                    	<label>{{q.description}}</label>
+                    </li>
+                    <li class="list-group-item">
+                    	<label>Estimate: {{q.estimate}}</label>
+                    </li>
+                	<li class="list-group-item justify-content-center">
+                        <button class="btn btn-success" ng-click="vm.update(vm.request)">Select</button>
+                        <button class="btn btn-danger" ng-click="vm.destroy(vm.request.id)">Reject</button>
+                    </li>
+                <!-- <ul ng-repeat="q in vm.quotes">
                     <li>{{q.description}}</li>
-                </ul>
+                </ul> -->
             </div>
         </div>
     </div>

@@ -4,8 +4,8 @@ angular.module('appModule')
         templateUrl: 'app/appModule/business/businessDetail/businessDetail.component.html',
         controller: function (businessService, quoteService, $location, $routeParams) {
             var vm = this; 
-            vm.business = null; 
             vm.quotes = null; 
+            vm.business = null; 
             //init load
             businessService.show($routeParams.bid).then(function (res) {
                 vm.business = angular.copy(res.data);

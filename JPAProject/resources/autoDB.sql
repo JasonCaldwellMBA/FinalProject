@@ -191,7 +191,7 @@ CREATE TABLE IF NOT EXISTS `autodb`.`request` (
   `completed` TINYINT(4) NULL DEFAULT 0,
   `img` TEXT NULL DEFAULT NULL,
   `expire_date` TIMESTAMP NULL DEFAULT NULL,
-  `post_date` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  `post_date` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP(),
   `estimate` DECIMAL(10,0) NULL DEFAULT NULL,
   `active` TINYINT NULL DEFAULT 1,
   PRIMARY KEY (`id`),
@@ -219,16 +219,19 @@ DROP TABLE IF EXISTS `autodb`.`quote` ;
 CREATE TABLE IF NOT EXISTS `autodb`.`quote` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `estimate` DECIMAL(10,0) NOT NULL,
-  `post_date` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  `post_date` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP(),
   `description` TEXT NULL DEFAULT NULL,
   `request_id` INT(11) NOT NULL,
   `complete_date` TIMESTAMP NULL DEFAULT NULL,
   `expire_date` TIMESTAMP NULL DEFAULT NULL,
   `business_id` INT(11) NOT NULL,
   `active` TINYINT NOT NULL,
+  `accepted_request` INT NULL,
+  `completed` TINYINT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
   INDEX `FK_business_quote_idx` (`business_id` ASC),
   INDEX `FK_reqId_idx` (`request_id` ASC),
+  INDEX `FK_quote_to_request_idx` (`accepted_request` ASC),
   CONSTRAINT `FK_business_quote`
     FOREIGN KEY (`business_id`)
     REFERENCES `autodb`.`business` (`id`)
@@ -236,6 +239,11 @@ CREATE TABLE IF NOT EXISTS `autodb`.`quote` (
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_reqId`
     FOREIGN KEY (`request_id`)
+    REFERENCES `autodb`.`request` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `FK_quote_to_request`
+    FOREIGN KEY (`accepted_request`)
     REFERENCES `autodb`.`request` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
@@ -318,8 +326,6 @@ INSERT INTO `autodb`.`contact` (`id`, `city`, `state`, `address_1`, `address_2`,
 INSERT INTO `autodb`.`contact` (`id`, `city`, `state`, `address_1`, `address_2`, `zipcode`, `phone`, `email`, `latitude`, `longitude`, `active`) VALUES (5, 'San diego', 'CA', 'Imperial drive 202', NULL, '89191', '888-888-8888', 'Bob.bishop@live.com', NULL, NULL, 1);
 INSERT INTO `autodb`.`contact` (`id`, `city`, `state`, `address_1`, `address_2`, `zipcode`, `phone`, `email`, `latitude`, `longitude`, `active`) VALUES (6, 'San Francisco', 'CA', NULL, NULL, '45344', '888-888-8888', 'StumpAuto@live.com', NULL, NULL, 1);
 INSERT INTO `autodb`.`contact` (`id`, `city`, `state`, `address_1`, `address_2`, `zipcode`, `phone`, `email`, `latitude`, `longitude`, `active`) VALUES (7, 'Memphis', 'TN', NULL, NULL, '84988', '888-888-8888', 'OliverSanchez@meet.com', NULL, NULL, 1);
-INSERT INTO `autodb`.`contact` (`id`, `city`, `state`, `address_1`, `address_2`, `zipcode`, `phone`, `email`, `latitude`, `longitude`, `active`) VALUES (10, 'Greenwood Village', 'CO', '7400 East Orchard Road', '1450N', '80111', '3033025234', 'skilldistillery@gmail.com', '39.608922', '-104.903166', 1);
-INSERT INTO `autodb`.`contact` (`id`, `city`, `state`, `address_1`, `address_2`, `zipcode`, `phone`, `email`, `latitude`, `longitude`, `active`) VALUES (11, 'Greenwood Village', 'CO', '7400 East Orchard Road', '1450N', '80111', '3033025234', 'skilldistillery@gmail.com', '39.608922', '-104.903166', 1);
 
 COMMIT;
 
@@ -336,8 +342,6 @@ INSERT INTO `autodb`.`rating` (`id`, `rating`) VALUES (4, 4.3);
 INSERT INTO `autodb`.`rating` (`id`, `rating`) VALUES (5, 4.6);
 INSERT INTO `autodb`.`rating` (`id`, `rating`) VALUES (6, 3.0);
 INSERT INTO `autodb`.`rating` (`id`, `rating`) VALUES (7, 3.0);
-INSERT INTO `autodb`.`rating` (`id`, `rating`) VALUES (10, 9.0);
-INSERT INTO `autodb`.`rating` (`id`, `rating`) VALUES (11, 7.5);
 
 COMMIT;
 
@@ -349,7 +353,6 @@ START TRANSACTION;
 USE `autodb`;
 INSERT INTO `autodb`.`business` (`id`, `contact_id`, `rating_id`, `labor_rate`, `company_name`, `experience`, `website`, `active`, `login_name`, `login_password`) VALUES (1, 6, 6, 25, 'StumpsAuto', 0, NULL, 1, 'stumpsauto', 'stumpsauto');
 INSERT INTO `autodb`.`business` (`id`, `contact_id`, `rating_id`, `labor_rate`, `company_name`, `experience`, `website`, `active`, `login_name`, `login_password`) VALUES (2, 7, 7, 20, 'Oliver\'s', 0, NULL, 1, 'oliver', 'olivers');
-INSERT INTO `autodb`.`business` (`id`, `contact_id`, `rating_id`, `labor_rate`, `company_name`, `experience`, `website`, `active`, `login_name`, `login_password`) VALUES (3, 10, 10, 10, 'Auto World', 2, 'jdcald13.com', 1, 'jason', 'jason');
 
 COMMIT;
 
@@ -361,14 +364,6 @@ START TRANSACTION;
 USE `autodb`;
 INSERT INTO `autodb`.`certification` (`id`, `business_id`, `name`) VALUES (1, 1, 'Automotive master');
 INSERT INTO `autodb`.`certification` (`id`, `business_id`, `name`) VALUES (2, 2, 'Oil picker upper');
-INSERT INTO `autodb`.`certification` (`id`, `business_id`, `name`) VALUES (3, 3, 'Engine Repair ');
-INSERT INTO `autodb`.`certification` (`id`, `business_id`, `name`) VALUES (4, 3, 'Automatic Transmission / Transaxle');
-INSERT INTO `autodb`.`certification` (`id`, `business_id`, `name`) VALUES (5, 3, 'Manual Drive Train and Axles');
-INSERT INTO `autodb`.`certification` (`id`, `business_id`, `name`) VALUES (6, 3, 'Suspension and Steering');
-INSERT INTO `autodb`.`certification` (`id`, `business_id`, `name`) VALUES (7, 3, 'Brakes');
-INSERT INTO `autodb`.`certification` (`id`, `business_id`, `name`) VALUES (8, 3, 'Electrical / Electronic Systems');
-INSERT INTO `autodb`.`certification` (`id`, `business_id`, `name`) VALUES (9, 3, 'Heating and Air Conditioning');
-INSERT INTO `autodb`.`certification` (`id`, `business_id`, `name`) VALUES (10, 3, 'Engine Performance ');
 
 COMMIT;
 
@@ -383,7 +378,6 @@ INSERT INTO `autodb`.`user` (`id`, `password`, `first_name`, `last_name`, `conta
 INSERT INTO `autodb`.`user` (`id`, `password`, `first_name`, `last_name`, `contact_id`, `rating_id`, `is_admin`, `username`, `active`) VALUES (3, 'pwd123', 'Victor', 'Black', 3, 3, 0, 'Victor-Black', 1);
 INSERT INTO `autodb`.`user` (`id`, `password`, `first_name`, `last_name`, `contact_id`, `rating_id`, `is_admin`, `username`, `active`) VALUES (4, 'pwd123', 'Freddy', 'Fingers', 4, 4, 0, 'Freddy-Fingers', 1);
 INSERT INTO `autodb`.`user` (`id`, `password`, `first_name`, `last_name`, `contact_id`, `rating_id`, `is_admin`, `username`, `active`) VALUES (5, 'pwd123', 'Bob', 'Bishop', 5, 5, 0, 'Bob-Bishop', 1);
-INSERT INTO `autodb`.`user` (`id`, `password`, `first_name`, `last_name`, `contact_id`, `rating_id`, `is_admin`, `username`, `active`) VALUES (10, 'jason', 'jason', 'c', 11, 11, 1, 'jason', 1);
 
 COMMIT;
 
@@ -398,7 +392,6 @@ INSERT INTO `autodb`.`vehicle` (`id`, `make`, `model`, `year`, `user_id`, `vin`,
 INSERT INTO `autodb`.`vehicle` (`id`, `make`, `model`, `year`, `user_id`, `vin`, `mileage`, `active`) VALUES (3, 'Chevorlet', 'Cobalt', 2007, 3, '87878363622', 90000, 1);
 INSERT INTO `autodb`.`vehicle` (`id`, `make`, `model`, `year`, `user_id`, `vin`, `mileage`, `active`) VALUES (4, 'Ford', 'Bronco', 1982, 3, '87822828228', 300000, 1);
 INSERT INTO `autodb`.`vehicle` (`id`, `make`, `model`, `year`, `user_id`, `vin`, `mileage`, `active`) VALUES (5, 'BMW', 'Series 2', 2018, 4, '382827171717', 939393, 1);
-INSERT INTO `autodb`.`vehicle` (`id`, `make`, `model`, `year`, `user_id`, `vin`, `mileage`, `active`) VALUES (10, 'Toyota', 'Prius', 2009, 10, '382827171717', 90000, 1);
 
 COMMIT;
 
@@ -409,10 +402,8 @@ COMMIT;
 START TRANSACTION;
 USE `autodb`;
 INSERT INTO `autodb`.`request` (`id`, `user_id`, `description`, `vehicle_id`, `complete_date`, `completed`, `img`, `expire_date`, `post_date`, `estimate`, `active`) VALUES (1, 1, 'Need work', 1, NULL, 0, NULL, NULL, NULL, 0, 1);
-INSERT INTO `autodb`.`request` (`id`, `user_id`, `description`, `vehicle_id`, `complete_date`, `completed`, `img`, `expire_date`, `post_date`, `estimate`, `active`) VALUES (2, 2, 'Oil change', 2, NULL, 0, NULL, NULL, NULL, 0, 1);
-INSERT INTO `autodb`.`request` (`id`, `user_id`, `description`, `vehicle_id`, `complete_date`, `completed`, `img`, `expire_date`, `post_date`, `estimate`, `active`) VALUES (3, 3, 'Air Filter', 3, NULL, 0, NULL, NULL, NULL, 0, 1);
-INSERT INTO `autodb`.`request` (`id`, `user_id`, `description`, `vehicle_id`, `complete_date`, `completed`, `img`, `expire_date`, `post_date`, `estimate`, `active`) VALUES (4, 10, 'Replace battery', 10, NULL, 0, NULL, NULL, NULL, 0, 1);
-INSERT INTO `autodb`.`request` (`id`, `user_id`, `description`, `vehicle_id`, `complete_date`, `completed`, `img`, `expire_date`, `post_date`, `estimate`, `active`) VALUES (5, 10, 'Oil Change', 10, NULL, 0, NULL, NULL, NULL, 0, 1);
+INSERT INTO `autodb`.`request` (`id`, `user_id`, `description`, `vehicle_id`, `complete_date`, `completed`, `img`, `expire_date`, `post_date`, `estimate`, `active`) VALUES (2, 2, 'Need work', 2, NULL, 0, NULL, NULL, NULL, 0, 1);
+INSERT INTO `autodb`.`request` (`id`, `user_id`, `description`, `vehicle_id`, `complete_date`, `completed`, `img`, `expire_date`, `post_date`, `estimate`, `active`) VALUES (3, 3, 'Need work', 3, NULL, 0, NULL, NULL, NULL, 0, 1);
 
 COMMIT;
 
@@ -422,11 +413,9 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `autodb`;
-INSERT INTO `autodb`.`quote` (`id`, `estimate`, `post_date`, `description`, `request_id`, `complete_date`, `expire_date`, `business_id`, `active`) VALUES (1, 69.99, NULL, 'Air muffle', 1, NULL, NULL, 1, 1);
-INSERT INTO `autodb`.`quote` (`id`, `estimate`, `post_date`, `description`, `request_id`, `complete_date`, `expire_date`, `business_id`, `active`) VALUES (2, 345, NULL, 'Air Brakes', 2, NULL, NULL, 1, 1);
-INSERT INTO `autodb`.`quote` (`id`, `estimate`, `post_date`, `description`, `request_id`, `complete_date`, `expire_date`, `business_id`, `active`) VALUES (3, 1000, NULL, 'Fix Flat', 3, NULL, NULL, 2, 1);
-INSERT INTO `autodb`.`quote` (`id`, `estimate`, `post_date`, `description`, `request_id`, `complete_date`, `expire_date`, `business_id`, `active`) VALUES (4, 2000, NULL, 'New battery', 4, NULL, NULL, 3, 1);
-INSERT INTO `autodb`.`quote` (`id`, `estimate`, `post_date`, `description`, `request_id`, `complete_date`, `expire_date`, `business_id`, `active`) VALUES (5, 10, NULL, 'Jump Battery', 4, NULL, NULL, 1, 1);
-INSERT INTO `autodb`.`quote` (`id`, `estimate`, `post_date`, `description`, `request_id`, `complete_date`, `expire_date`, `business_id`, `active`) VALUES (6, 100, NULL, '90k Maintence', 5, NULL, NULL, 3, 1);
+INSERT INTO `autodb`.`quote` (`id`, `estimate`, `post_date`, `description`, `request_id`, `complete_date`, `expire_date`, `business_id`, `active`, `accepted_request`, `completed`) VALUES (1, 69.99, NULL, 'Air muffle', 1, NULL, NULL, 1, 1, NULL, NULL);
+INSERT INTO `autodb`.`quote` (`id`, `estimate`, `post_date`, `description`, `request_id`, `complete_date`, `expire_date`, `business_id`, `active`, `accepted_request`, `completed`) VALUES (2, 345, NULL, 'Air Brakes', 1, NULL, NULL, 1, 1, NULL, NULL);
+INSERT INTO `autodb`.`quote` (`id`, `estimate`, `post_date`, `description`, `request_id`, `complete_date`, `expire_date`, `business_id`, `active`, `accepted_request`, `completed`) VALUES (3, 1000, NULL, 'Air Guitar', 1, NULL, NULL, 2, 1, NULL, NULL);
 
 COMMIT;
+

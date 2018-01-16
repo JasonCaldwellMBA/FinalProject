@@ -8,6 +8,7 @@ angular.module('appModule')
 		
 		vm.pendingQuotes = [];
 		vm.winningQuotes = [];
+		vm.completedQuotes = [];
 		vm.update = null;
 		
 		vm.business = null;
@@ -44,16 +45,18 @@ angular.module('appModule')
 			.then(function(res){
                 var preQuotes = res.data;
                 preQuotes.forEach(quote => {
-                    if (quote.acceptedRequest != undefined) {
-                        vm.winningQuotes = []; 
+                    if (quote.acceptedRequest != undefined && quote.completed == false) {
                         vm.winningQuotes.push(quote); 
                     }
-					if (quote.acceptedRequest == undefined) {
-						vm.pendingQuotes = []; 
+					if (quote.acceptedRequest == undefined && quote.completed == false) {
 						vm.pendingQuotes.push(quote); 
-						return; 
+					}
+					if(quote.completed == true){
+						vm.completedQuotes.push(quote)
+						return;
 					}
                 })
+                preQuotes = [];
 			})
 		}
 //		var getPendingQuotes = function(){
@@ -107,7 +110,6 @@ angular.module('appModule')
 				vm.selected = null;
 				vm.copy = null;
 				vm.update = null;
-				vm.date = null;
 				getQuotes();
 			})
 		}

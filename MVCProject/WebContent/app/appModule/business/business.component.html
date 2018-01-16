@@ -30,6 +30,19 @@
 		</li>
 	</div>
 </ul>
+<ul>
+	<div ng-hide="vm.copy" ng-repeat="quote in vm.completedQuotes">
+	<h5>Completed Quotes</h5>
+		<li ng-click="vm.detailedQuote(quote)">
+			{{quote.request.user.lastName}},
+			{{quote.description}}
+			{{quote.expireDate | date: "MMM dd, yy"}}
+			{{quote.request.vehicle.make}}
+			{{quote.request.vehicle.model}}
+			<!-- {{quote.completeDate | date: "MMM dd, yy"]}} -->
+		</li>
+	</div>
+</ul>
 
 <div class="container">
 <div class ="row">

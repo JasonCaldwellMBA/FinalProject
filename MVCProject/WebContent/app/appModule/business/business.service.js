@@ -1,20 +1,12 @@
 angular.module('appModule')
 .factory('businessService', function($http, authService){
 	var service = {};
-<<<<<<< HEAD
 	var BASE_URL= 'http://localhost:8080/MVCProject/api/'
-=======
-	var BASE_URL= 'http://localhost:8080/MVCProject/api/';
->>>>>>> 65439cd5a2c15dbcc1ece2a53efd990d0d9fa492
 	service.index = function(){
 		return $http({
 			method: "GET",
 			url: BASE_URL + "business"
-<<<<<<< HEAD
-		}); 
-=======
 		});
->>>>>>> 65439cd5a2c15dbcc1ece2a53efd990d0d9fa492
 	}
 	service.show = function(id){
 		return $http({

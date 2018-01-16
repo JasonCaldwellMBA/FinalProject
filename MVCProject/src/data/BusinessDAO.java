@@ -5,6 +5,7 @@ import java.util.List;
 import entities.Business;
 import entities.Certification;
 import entities.Contact;
+import entities.Vehicle;
 
 public interface BusinessDAO {
 	
@@ -27,5 +28,6 @@ public interface BusinessDAO {
 	public List<Certification> indexCert(int bid);
 	public Certification createCert(int bid, String certJson);
 	public Certification updateCert(int bid, int certid, String certJson);
+	public Boolean deleteCert(int bid, int certid);
 
 }

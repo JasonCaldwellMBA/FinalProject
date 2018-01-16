@@ -1,0 +1,46 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            <button class="btn btn-primary" ng-click="vm.return()">Return to user home</button>
+        </div>
+        <div class="col-sm">
+            <div class="col-sm-8">
+                <h4>Add Certification</h4>
+                <div>
+                    <p>
+                        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false"
+                            aria-controls="collapseExample">Expand</button>
+                    </p>
+                    <div class="collapse" id="collapseExample">
+                        <div class="card card-body">
+                            <ul class="list-group">
+                                <li class="list-group-item"><label>Name</label><input type="text" ng-model="certification.name"/></li>
+                                <li class="list-group-item"><button class="btn btn-primary"ng-click="vm.addCertification(certification)">Add Certification</button></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h4>User Certifications</h4>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="cert in vm.certifications">
+                        <td>{{cert.name}}</td>
+                        <td>
+                            <button class="btn btn-secondary" ng-click="vm.detailView(cert.id)">Update</button>
+                        </td>
+                        <td>
+                            <button class="btn btn-danger" ng-click="vm.destroy(cert.id)">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

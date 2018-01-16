@@ -62,6 +62,7 @@ public class QuoteDAOImpl implements QuoteDAO {
         try {
             updateQuote = om.readValue(quoteJson, Quote.class);
             origQuote = em.find(Quote.class, qid);
+            origQuote.setAcceptedRequest(updateQuote.getAcceptedRequest());
             origQuote.setDescription(updateQuote.getDescription());
             origQuote.setPostDate(updateQuote.getPostDate());
             origQuote.setExpireDate(updateQuote.getExpireDate());
@@ -131,6 +132,7 @@ public class QuoteDAOImpl implements QuoteDAO {
         try {
             updateQuote = om.readValue(quoteJson, Quote.class);
             origQuote = em.find(Quote.class, qid);
+            origQuote.setAcceptedRequest(updateQuote.getAcceptedRequest());
             origQuote.setDescription(updateQuote.getDescription());
             origQuote.setPostDate(updateQuote.getPostDate());
             origQuote.setExpireDate(updateQuote.getExpireDate());

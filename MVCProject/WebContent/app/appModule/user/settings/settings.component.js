@@ -2,8 +2,9 @@ angular.module('appModule')
     .component('settings', {
         controllerAs: 'vm', 
         templateUrl: 'app/appModule/user/settings/settings.component.html',
-        controller: function (userService, $routeParams, $location, authService) {
+        controller: function (authService, userService, $routeParams, $location, authService) {
             var vm = this; 
+            vm.userId = authService.getToken(); 
             vm.user = null;
             
             //init load
@@ -13,7 +14,7 @@ angular.module('appModule')
             vm.updateUser = function(user) {
                 userService.update(user).then(function (res) {
                     vm.user = res.data;
-                    reload();
+                    $location.path('user/' + vm.userId); 
                 }); 
             }
             vm.destroyAccount = function () {

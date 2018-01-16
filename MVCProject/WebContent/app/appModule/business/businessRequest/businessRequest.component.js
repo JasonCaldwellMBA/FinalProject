@@ -1,29 +1,31 @@
 angular.module('appModule')
 .component('businessRequest', {
-	templateUrl : 'app/appModule/businessRequest/businessRequest.component.html',
+	templateUrl : 'app/appModule/business/businessRequest/businessRequest.component.html',
 	controllerAs : 'vm',
-	controller : function(businessRequestService){
+	controller : function(requestService, quoteService){
 		var vm = this;
 		vm.requests = [];
 		vm.selected = null;
 		vm.quoteFlag = null;
 		
-		businessRequestService
-		.indexRequests()
-		.then(function(res){
-			vm.requests = res.data;
-		});
-		
+		var reload = function(){
+			requestService
+			.indexAllRequests()
+			.then(function(res){
+				vm.requests = res.data;
+			});
+		}
+		reload();
 		vm.viewDetails = function(request){
-			businessRequestService
-			.show(request)
+			requestService
+			.showForBiz(request)
 			.then(function(res){
 				vm.selected = res.data;
 			})
 		}
 
 		vm.addQuote = function(quote){
-			businessRequestService
+			quoteService
 			.createQuote(quote, vm.selected.id)
 			.then(function(res){
 				vm.selected = null;

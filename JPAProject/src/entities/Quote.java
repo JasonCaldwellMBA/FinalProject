@@ -48,7 +48,7 @@ public class Quote {
 	
 	@Column(name = "active")
 	private boolean active; 
-	
+	boolean completed; 
 	@OneToOne
 	@JoinColumn(name="accepted_request")
 	private Request acceptedRequest;
@@ -136,6 +136,13 @@ public class Quote {
 	}
 	public void setAcceptedRequest(Request acceptedRequest) {
 		this.acceptedRequest = acceptedRequest;
+	}
+	
+	public boolean isCompleted() {
+		return completed;
+	}
+	public void setCompleted(boolean completed) {
+		this.completed = completed;
 	}
 	@Override
 	public String toString() {

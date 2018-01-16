@@ -10,6 +10,12 @@ angular.module('appModule')
                 url: BASE_URL + 'user/' + userId + '/request',
             }); 
         }
+	    	service.indexAllRequests = function(){
+	    		return $http({
+	    			method : 'GET',
+	    			url : 'api/request'
+	    		})
+	    	}
         service.show = function (id) {
           var userId = authService.getToken(); 
             return $http({
@@ -17,6 +23,12 @@ angular.module('appModule')
                 url: BASE_URL +'user/'+ userId + '/request/' + id,
             });
         }
+	    	service.showForBiz = function(request){
+	    		return $http({
+	    			method : 'GET',
+	    			url : 'api/request/' + request.id
+	    		})
+	    	}
         service.create = function (request) {
             var userId = authService.getToken(); 
             return $http({

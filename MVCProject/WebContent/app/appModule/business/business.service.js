@@ -1,5 +1,5 @@
 angular.module('appModule')
-.factory('businessService', function($http){
+.factory('businessService', function($http, authService){
 	var service = {};
 	
 	service.index = function(){
@@ -26,20 +26,22 @@ angular.module('appModule')
 			url : "api/business/" + bid + "/quote/" + qid
 		})
 	}
-	service.updateBusiness = function(business, contact){
+	service.update = function(business){
 		return $http({
 			method : "PUT",
-			url : "/api/business/" + business.id
+			url : "api/business/" + business.id,
 			headers: {
 				'content-type' : 'application/json'
 			},
 			data : business
-		}).then(function(res){
-			$http({
-				method : "PUT",
-				url : "/api/contact/" + contact.id
-			})
 		})
+	}
+	service.destroy = function () {
+		var id = authService.getBusToken();
+		return $http({
+			method: 'DELETE',
+			url: 'api/business/' + id
+		}); 
 	}
 	
 	

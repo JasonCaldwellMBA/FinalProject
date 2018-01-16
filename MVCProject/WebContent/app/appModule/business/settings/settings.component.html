@@ -5,7 +5,7 @@
             <div class="col-sm">
                 <!-- optional sidebar -->
             </div>
-            <div  ng-show="vm.business" class="col-sm" >
+            <div ng-show="vm.business" class="col-sm" >
                 <form>
                 		<div class="form-group">
 	                    <label for="txtCompanyName">Company Name</label>
@@ -13,40 +13,67 @@
                 		</div>
                     <div class="form-group">
                         <label for="txtAddress1">Address 1</label>
-                        <input type="text" class="form-control" ng-model="vm.contact.address1" id="txtAddress1" placeholder="Enter address1">
+                        <input type="text" class="form-control" ng-model="vm.business.contact.address1" id="txtAddress1" placeholder="Enter address1">
                     </div>
                     <div class="form-group">
                         <label for="txtAddress2">Address 2</label>
-                        <input type="text" class="form-control" id="txtAddress2" placeholder="Enter address2" ng-model="vm.contact.address2">
+                        <input type="text" class="form-control" id="txtAddress2" placeholder="Enter address2" ng-model="vm.business.contact.address2">
                     </div>
                     <div class="form-group">
                         <label for="txtZipcode">Zip code</label>
-                        <input type="text" class="form-control" id="txtZipcode" ng-model="vm.contact.zipcode" required>
+                        <input type="text" class="form-control" id="txtZipcode" ng-model="vm.business.contact.zipcode" required>
                     </div>
                     <div class="form-group">
                         <label for="txtCity">City</label>
-                        <input type="text" class="form-control" id="txtCity" ng-model="vm.contact.city">
+                        <input type="text" class="form-control" id="txtCity" ng-model="vm.business.contact.city">
                     </div>
                     <div class="form-group">
                         <label for="txtState">State</label>
-                        <input type="text" class="form-control" id="txtState" ng-model="vm.contact.state" >
+                        <input type="text" class="form-control" id="txtState" ng-model="vm.business.contact.state" >
                     </div>
                     <div class="form-group">
                         <label for="txtPhone">Phone</label>
-                        <input type="phone" class="form-control" id="txtPhone" ng-model="vm.contact.phone" required>
+                        <input type="phone" class="form-control" id="txtPhone" ng-model="vm.business.contact.phone" required>
                     </div>
                     <div class="form-group">
                         <label for="txtEmail">Email</label>
-                        <input type="email" class="form-control" id="txtEmail" ng-model="vm.contact.email" required>
+                        <input type="email" class="form-control" id="txtEmail" ng-model="vm.business.contact.email" required>
                     </div>
                     <button ng-click="vm.return()" class="btn btn-primary">Back</button>
-                    <button ng-click="vm.updateBusiness(vm.business, vm.contact)" class="btn btn-primary">Register</button>
+                    <button ng-click="vm.update(vm.business)" class="btn btn-primary">Update</button>
                 </form>
             </div>
             <div class="col-sm">
                 <!-- optional sidebar -->
             </div>
+                    <div class="col-sm">
+            <!-- Button trigger modal -->
+<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete">
+    Delete Account
+      </button>
+      
+      <!-- Modal -->
+      <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="delete">Are you sure you want to delete your account?</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <button  data-dismiss="modal" class="btn btn-danger" ng-click="vm.destroyAccount()">Delete</button>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
         </div>
+      </div>
+        </div>
+        </div>
+        
     </div>
     
     <div ng-show="vm.updatedBusiness">

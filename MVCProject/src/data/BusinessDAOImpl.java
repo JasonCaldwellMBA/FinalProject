@@ -151,4 +151,24 @@ public class BusinessDAOImpl implements BusinessDAO {
 				 .getResultList();
 		return certifications;
 	}
+	
+	@Override
+	public Certification createCert(int bid, String certJson) {
+		ObjectMapper mapper = new ObjectMapper();
+		Certification certification = null;
+		try {
+			certification = mapper.readValue(certJson, Certification.class);
+			Business biz = em.find(Business.class, bid);
+			certification.setBusiness(biz);
+			em.persist(certification);
+			em.flush();
+		} catch (JsonParseException e) {
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return certification;
+	}
 }

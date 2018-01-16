@@ -114,4 +114,14 @@ public class BusinessController {
 		return certifications;
 	}
 	
+	@RequestMapping(path="/business/{bid}/certification", method=RequestMethod.POST)
+	public Certification createCert(@PathVariable int bid, HttpServletResponse res, @RequestBody String certJson) {
+		Certification cert = dao.createCert(bid, certJson);
+		if (cert == null) {
+			res.setStatus(400);
+		} else {
+			res.setStatus(201);
+		}
+		return cert;
+	}
 }

@@ -23,10 +23,10 @@
                         <td ng-click="vm.detailView(r.id)">{{r.id}}</td>
                         <td>{{r.estimate | currency}}</td>
                         <td>{{r.vehicle.vin}}</td>
-                        <td>{{r.postDate}}</td>
+                        <td>{{r.postDate | date: 'MMM dd, yy'}}</td>
                         <td>{{r.completeDate | date: 'MMM dd, yy'}}</td>
                         <td>{{r.completed}}</td>
-                        <td>{{r.expireDate}}</td>
+                        <td>{{r.expireDate | date: 'MMM dd, yy'}}</td>
                         <td>
                             <button class="btn btn-secondary" ng-click="vm.detailView(r.id)">Update</button>
                         </td>
@@ -39,6 +39,27 @@
         </div>
         <div class="col-sm">
             <!-- optional sidebar -->
+            <div class="col-sm-8">
+                <h4>Add Request</h4>
+                <div>
+                    <p>
+                        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false"
+                            aria-controls="collapseExample">Expand                        </button>
+                    </p>
+                    <div class="collapse" id="collapseExample">
+                        <div class="card card-body">
+                            <select ng-model="vm.vehicle" ng-options="v.vin for v in vm.vehicles">
+                            </select>
+                            <ul class="list-group">
+                                <li class="list-group-item"><label>Estimate</label><input type="text" ng-model="request.estimate"/></li>
+                                <li class="list-group-item"><label>Complete Date</label><input type="date" ng-model="request.completeDate"/></li>
+                                <li class="list-group-item"><label>Description</label><input type="text" ng-model="request.description"/></li>
+                                <li class="list-group-item"><label>Expire Date</label><input type="date" ng-model="request.expireDate"/></li>
+                                <li class="list-group-item"><button class="btn btn-primary"ng-click="vm.addRequest(request)">Add Request</button></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
         </div>
     </div>
 </div>

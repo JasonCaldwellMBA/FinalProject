@@ -5,8 +5,9 @@ angular.module('appModule')
 			templateUrl : 'app/appModule/vehicle/vehicle.component.html',
 			controllerAs : 'vm',
 			controller : function(vehicleService, $cookies, $location,
-					$routeParams) {
+				$routeParams, authService) {
 				var vm = this;
+				vm.userId = authService.getToken(); 
 				vm.vehicles = [];
 
 				vehicleService.index().then(function(res) {

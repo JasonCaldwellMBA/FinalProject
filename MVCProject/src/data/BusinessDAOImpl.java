@@ -191,4 +191,18 @@ public class BusinessDAOImpl implements BusinessDAO {
 		}
 		return origCert;
 	}
+	
+	@Override
+	public Boolean deleteCert(int bid, int certid) {
+		Certification cert = em.find(Certification.class, certid); 
+		if(cert == null) {
+			return null;
+		}
+		em.remove(cert);
+		
+		if(em.find(Certification.class, certid) == null) {
+			return true;
+		}
+		return false;
+	}
 }

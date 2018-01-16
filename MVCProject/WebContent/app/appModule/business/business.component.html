@@ -3,7 +3,9 @@
 
 
 
-<button type="button"  ng-click="vm.getRequests()">View Requests</button>
+<button type="button"  ng-click="vm.getRequests()">View All Requests</button>
+
+<h3>{{vm.business.companyName}}'s Requests</h3>
 <ul>
 	<div ng-hide="vm.copy" ng-repeat="quote in vm.winningQuotes">
 	<h5>Winning Quotes</h5>
@@ -66,14 +68,14 @@
 <div class = "col-3"></div>
 </div>
 </div>
+
 <h3>Certifications</h3>
 <div>
 <ul>	
-	<li ng-repeat="cert in vm.certifications"> cert.name </li>
+	<li>Can I see you</li>
+	<li ng-repeat="cert in vm.certifications"> {{vm.cert.name}} </li>
 </ul>
 </div>
-
-
 
 <h3>Business Contact</h3>
 <ul>

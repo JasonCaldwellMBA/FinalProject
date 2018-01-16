@@ -1,12 +1,19 @@
-<div class="container">
+<div class="container-fluid">
     <div class="row">
-        <div class="col-sm">
-            <!-- optional sidebar -->
-            <button class="btn btn-primary" ng-click="vm.return()">Return to user home</button>
+        <div class="col-sm-2">
+            <div class="list-group" id="list-tab" role="tablist">
+                <a class="list-group-item list-group-item-action" id="list-home-list" data-toggle="list" href="#/user/{{vm.userId}}" role="tab"
+                    aria-controls="home">Home</a>
+                <a class="list-group-item list-group-item-action active" id="list-profile-list" data-toggle="list" href="#/user/{{vm.userId}}/request"
+                    role="tab" aria-controls="profile">View requests</a>
+                <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#/user/{{vm.userId}}/vehicle"
+                    role="tab" aria-controls="messages">View vehicles</a>
+                <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" role="tab" aria-controls="settings"
+                    href="#/user/{{vm.user.id}}/settings">Settings</a>
+            </div>
         </div>
-        <div class="col-sm">
-            <h4>User Requests</h4>
-            <table class="table">
+        <div class="col">
+            <table class="table table-sm">
                 <thead>
                     <tr>
                         <th>#</th>
@@ -16,16 +23,18 @@
                         <th>Completed</th>
                         <th>Expire date</th>
                         <th>Post Date</th>
+                        <th>Update</th>
+                        <th>Delete</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="r in vm.requests" >
+                    <tr ng-repeat="r in vm.requests">
                         <td ng-click="vm.detailView(r.id)">{{r.id}}</td>
                         <td>{{r.estimate | currency}}</td>
                         <td>{{r.vehicle.vin}}</td>
-                        <td>{{r.postDate | date: 'MMM dd, yy'}}</td>
                         <td>{{r.completeDate | date: 'MMM dd, yy'}}</td>
                         <td>{{r.completed}}</td>
+                        <td>{{r.postDate | date: 'MMM dd, yy'}}</td>
                         <td>{{r.expireDate | date: 'MMM dd, yy'}}</td>
                         <td>
                             <button class="btn btn-secondary" ng-click="vm.detailView(r.id)">Update</button>
@@ -38,28 +47,37 @@
             </table>
         </div>
         <div class="col-sm">
-            <!-- optional sidebar -->
-            <div class="col-sm-8">
-                <h4>Add Request</h4>
-                <div>
-                    <p>
-                        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false"
-                            aria-controls="collapseExample">Expand                        </button>
-                    </p>
-                    <div class="collapse" id="collapseExample">
-                        <div class="card card-body">
-                            <select ng-model="vm.vehicle" ng-options="v.vin for v in vm.vehicles">
-                            </select>
-                            <ul class="list-group">
-                                <li class="list-group-item"><label>Estimate</label><input type="text" ng-model="request.estimate"/></li>
-                                <li class="list-group-item"><label>Complete Date</label><input type="date" ng-model="request.completeDate"/></li>
-                                <li class="list-group-item"><label>Description</label><input type="text" ng-model="request.description"/></li>
-                                <li class="list-group-item"><label>Expire Date</label><input type="date" ng-model="request.expireDate"/></li>
-                                <li class="list-group-item"><button class="btn btn-primary"ng-click="vm.addRequest(request)">Add Request</button></li>
-                            </ul>
-                        </div>
+                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false"
+                        aria-controls="collapseExample">Add a Request </button>
+                <div class="collapse" id="collapseExample">
+                    <div class="card card-body">
+                        <label>Vehicle VIN</label>
+                        <select ng-model="vm.vehicle" ng-options="v.vin for v in vm.vehicles">
+                        </select>
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <label>Estimate</label>
+                                <input class="form-control" type="text" ng-model="request.estimate" />
+                            </li>
+                            <li class="list-group-item">
+                                <label>Complete Date</label>
+                                <input class="form-control" type="date" ng-model="request.completeDate" />
+                            </li>
+                            <li class="list-group-item">
+                                <label>Description</label>
+                                <input class="form-control" type="text" ng-model="request.description" />
+                            </li>
+                            <li class="list-group-item">
+                                <label>Expire Date</label>
+                                <input class="form-control" type="date" ng-model="request.expireDate" />
+                            </li>
+                            <li class="list-group-item">
+                                <button class="btn btn-primary" ng-click="vm.addRequest(request)">Add Request</button>
+                            </li>
+                        </ul>
                     </div>
                 </div>
+            </div>
         </div>
     </div>
 </div>

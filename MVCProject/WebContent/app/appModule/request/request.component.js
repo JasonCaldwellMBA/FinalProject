@@ -2,8 +2,9 @@ angular.module('appModule')
 	.component('request', {
 		templateUrl : 'app/appModule/request/request.component.html',
 		controllerAs : 'vm',
-		controller : function(requestService, vehicleService, $cookies, $location, $routeParams) {				
+		controller : function(authService, requestService, vehicleService, $cookies, $location, $routeParams) {				
 			var vm = this;
+			vm.userId = authService.getToken(); 
 			vm.requests = [];
 			vm.vehicles = [];
 			vm.vehicle = null; 

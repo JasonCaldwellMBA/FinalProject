@@ -1,20 +1,27 @@
-<div class="container">
+<div class="container-fluid">
     <div class="row">
         <div class="col-sm">
-            <!-- optional sidebar -->
-            <h6>
-                {{vm.user.firstName}} {{vm.user.lastName}}
-            </h6>
-
-
-            <button class="btn btn-primary" ng-click="vm.getRequests()">Add Request</button>
-            <button class="btn btn-primary" ng-click="vm.getVehicles()">
-                Add Vehicle</button>
+            <div class="row">
+                <div class="col-4">
+                    <div class="list-group" id="list-tab" role="tablist">
+                        <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#/user/{{vm.user.id}}"
+                            role="tab" aria-controls="home">Home</a>
+                        <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#/user/{{vm.user.id}}/request"
+                            role="tab" aria-controls="profile">View requests</a>
+                        <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#/user/{{vm.user.id}}/vehicle"
+                            role="tab" aria-controls="messages">View vehicles</a>
+                        <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="modal" data-target="#exampleModalLong"
+                            role="tab" aria-controls="settings">View businesses</a>
+                        <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" role="tab" aria-controls="settings"
+                            href="#/user/{{vm.user.id}}/settings">Settings</a>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="col-sm">
-            <button type="button" class="red" data-toggle="modal" data-target="#exampleModalLong" ng-click="vm.loadBusinesses()">
-                See All Businesses
-            </button>
+            <h3>
+                Welcome, {{vm.user.firstName}} {{vm.user.lastName}}!
+            </h3>
             <!-- Modal -->
             <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -35,7 +42,7 @@
                                 </thead>
                                 <tbody>
                                     <tr ng-repeat="b in vm.businesses">
-                                        <td data-dismiss="modal"  ng-click="vm.getBusiness(b)">{{b.companyName}}</td>
+                                        <td data-dismiss="modal" ng-click="vm.getBusiness(b)">{{b.companyName}}</td>
                                         <td>{{b.laborRate}}</td>
                                         <button class="btn btn-secondary" ng-click="vm.detailedQuote(b.id)">Business Quotes</button>
                                         </td>
@@ -49,10 +56,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-sm">
-                <!-- optional sidebar -->
-                <button class="btn btn-secondary" ng-click="vm.getSettings()">Settings</button>
             </div>
         </div>
     </div>

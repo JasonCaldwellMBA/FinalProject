@@ -12,10 +12,22 @@ angular.module('appModule')
         }; 
         
         service.createQuote = function (quote) {
-            var businessId = authService.getToken(); 
+            var businessId = authService.getBusToken(); 
             return $http({
                 method: 'POST',
                 url: BASE_URL + 'business/' +  businessId + '/quote',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                data: quote
+            })
+        }
+        
+        service.updateQuote = function(quote){
+            var businessId = authService.getBusToken(); 
+            return $http({
+                method: 'PUT',
+                url: BASE_URL + 'business/' +  businessId + '/quote/' + quote.id,
                 headers: {
                     'content-type': 'application/json'
                 },

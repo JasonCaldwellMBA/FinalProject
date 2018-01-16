@@ -59,15 +59,14 @@ public class QuoteController {
         return quote;
     }
     
-    @RequestMapping(path = "/business/{bid}/reqest/{rid}/quote/{qid}", method = RequestMethod.PUT)
+    @RequestMapping(path = "/business/{bid}/quote/{qid}", method = RequestMethod.PUT)
     public Quote updateBiz(
             HttpServletRequest req, 
             HttpServletResponse res, 
-            @PathVariable int bid, 
-            @PathVariable int rid, 
+            @PathVariable int bid,
             @PathVariable int qid, 
             @RequestBody String quoteJson) {
-        Quote quote = quoteDAO.updateBiz(bid, rid, qid, quoteJson);
+        Quote quote = quoteDAO.updateBiz(bid, qid, quoteJson);
         if (quote == null) {
             res.setStatus(400);
         }

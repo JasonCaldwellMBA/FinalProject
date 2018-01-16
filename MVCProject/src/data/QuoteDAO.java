@@ -15,6 +15,6 @@ public interface QuoteDAO {
 	public Collection<Quote> indexQuoteForBusiness(int bid);
 	public Quote showBiz(int bid, int qid);
 	public Quote createBiz(int bid, int rid, String quoteJson);
-	public Quote updateBiz(int bid, int rid, int qid, String quoteJson);
+	public Quote updateBiz(int bid, int qid, String quoteJson);
 	public Quote destroyBiz(int bid, int rid, int qid);
 }

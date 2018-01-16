@@ -8,15 +8,15 @@ import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import entities.Business;
+import entities.Certification;
 import entities.Contact;
-import entities.User;
+import entities.Vehicle;
 
 @Repository
 @Transactional
@@ -143,6 +143,52 @@ public class BusinessDAOImpl implements BusinessDAO {
 			}
 		return originalContact;
 	}
-
 	
+	@Override
+	public List<Certification> indexCert(int bid) {
+		String query = "Select c from Certification c where c.business.id = :bid";
+		List<Certification> certifications = em.createQuery(query, Certification.class)
+				.setParameter("bid", bid)
+				 .getResultList();
+		return certifications;
+	}
+	
+	@Override
+	public Certification createCert(int bid, String certJson) {
+		ObjectMapper mapper = new ObjectMapper();
+		Certification certification = null;
+		try {
+			certification = mapper.readValue(certJson, Certification.class);
+			Business biz = em.find(Business.class, bid);
+			certification.setBusiness(biz);
+			em.persist(certification);
+			em.flush();
+		} catch (JsonParseException e) {
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return certification;
+	}
+	
+	@Override
+	public Certification updateCert(int bid, int certid, String json) {
+		ObjectMapper mapper = new ObjectMapper(); 
+		Certification cert = null; 
+		Certification origCert = null; 
+		try {
+			cert = mapper.readValue(json, Certification.class);
+			origCert = em.find(Certification.class, certid); 
+			origCert.setName(cert.getName());
+		} catch (JsonParseException e) {
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return origCert;
+	}
 }

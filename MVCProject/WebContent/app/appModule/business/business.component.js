@@ -2,12 +2,13 @@ angular.module('appModule')
 .component('businessComponent', {
 	templateUrl : "app/appModule/business/business.component.html",
 	controllerAs : 'vm',
-	controller : function(businessService, $routeParams, $location){
+	controller : function(businessService, quoteService, $routeParams, $location){
 		var vm = this;
 		vm.copy = null;
 		
 		vm.quotes = [];
 		vm.winningQuotes = [];
+		vm.update = null;
 		
 		vm.business = null;
 		
@@ -64,6 +65,19 @@ angular.module('appModule')
 		vm.getRequests = function(){
 			$location.path("/request");
 		}
+		
+		vm.updateQuote = function(quote){
+			quoteService.updateQuote(quote, vm.copy.id)
+			.then(function(res){
+				vm.selected = null;
+				vm.copy = null;
+			})
+		}
 
 	}
 })	
+
+
+
+
+

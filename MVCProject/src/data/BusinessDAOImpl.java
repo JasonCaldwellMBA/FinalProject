@@ -16,6 +16,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import entities.Business;
 import entities.Certification;
 import entities.Contact;
+import entities.Vehicle;
 
 @Repository
 @Transactional
@@ -170,5 +171,24 @@ public class BusinessDAOImpl implements BusinessDAO {
 			e.printStackTrace();
 		}
 		return certification;
+	}
+	
+	@Override
+	public Certification updateCert(int bid, int certid, String json) {
+		ObjectMapper mapper = new ObjectMapper(); 
+		Certification cert = null; 
+		Certification origCert = null; 
+		try {
+			cert = mapper.readValue(json, Certification.class);
+			origCert = em.find(Certification.class, certid); 
+			origCert.setName(cert.getName());
+		} catch (JsonParseException e) {
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return origCert;
 	}
 }

@@ -49,6 +49,10 @@ public class Quote {
 	@Column(name = "active")
 	private boolean active; 
 	
+	@OneToOne
+	@JoinColumn(name="accepted_request")
+	private Request acceptedRequest;
+	
 	@JsonIgnore
 	@ManyToMany
 	@JoinTable(
@@ -125,6 +129,13 @@ public class Quote {
 	}
 	public void setParts(List<Part> parts) {
 		this.parts = parts;
+	}
+	
+	public Request getAcceptedRequest() {
+		return acceptedRequest;
+	}
+	public void setAcceptedRequest(Request acceptedRequest) {
+		this.acceptedRequest = acceptedRequest;
 	}
 	@Override
 	public String toString() {

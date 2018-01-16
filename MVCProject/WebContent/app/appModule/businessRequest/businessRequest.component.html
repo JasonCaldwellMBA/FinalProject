@@ -1,21 +1,47 @@
 <h1>All Requests</h1>
 <ul>
 <div ng-hide="vm.selected" ng-repeat="request in vm.requests">
-<li>Customer's Name : {{request.user.firstName}}
-{{request.user.lastName}}<br>
-Vehicle : {{request.vehicle.make}}
-{{request.vehicle.model}} <br>
-Request Description : {{request.description}}
-<button type="button" ng-click="vm.viewDetails(request)">View Details</button>
-</li>
+	<li>Customer's Name : {{request.user.firstName}}
+	{{request.user.lastName}}<br>
+	Vehicle : {{request.vehicle.make}}
+	{{request.vehicle.model}} <br>
+	Request Description : {{request.description}}
+	<button type="button" ng-click="vm.viewDetails(request)">View Details</button>
+	</li>
 </div>
 </ul>
-<div ng-show="vm.selected">
-{{vm.selected}}
-<button type="button" ng-click="vm.selected = null">Return</button>
- <button type="button" ng-click="vm.quoteFlag = true">Add Quote</button>
-</div>
-
+<div class="container" ng-show="vm.selected">
+        <div class="row">
+            <div class="col-sm">
+                <!-- optional sidebar -->
+                <button class="btn btn-primary" ng-click="vm.return()">Return to Request List</button>
+            </div>
+            <div class="col-sm">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <label>Name: {{vm.selected.user.firstName}} {{vm.selected.user.lastName}}</label><br>
+                    </li>
+                    <li class="list-group-item">
+                      	<label>Vehicle: {{vm.selected.vehicle.make}} {{vm.selected.vehicle.model}}</label><br>
+                    </li>
+                    <li class="list-group-item">
+                      	<label>Request Description: {{vm.selected.description}}</label><br>
+                    </li>
+                    <li class="list-group-item">
+                      	<label>Request Description: {{vm.selected.postDate}}</label><br>
+                    </li>
+                    <li class="list-group-item">
+                      	<label>Request Description: {{vm.selected.expireDate}}</label><br>
+                    </li>
+                    <li class="list-group-item">
+                      	<label>Estimate: {{vm.selected.estimate}}</label><br>
+                    </li>
+                    <li class="list-group-item justify-content-center">
+                        <button type="button" class="btn btn-warning" ng-click="vm.selected = null">Return</button>
+						 <button type="button" class="btn btn-success" ng-click="vm.quoteFlag = true">Add Quote</button>
+                    </li>
+                </ul>
+            </div>
 
 <div ng-show="vm.quoteFlag" class="card card-body">
     <form>

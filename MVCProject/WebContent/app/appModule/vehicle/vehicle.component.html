@@ -1,34 +1,18 @@
-<div class="container">
+<div class="container-fluid">
     <div class="row">
-        <div class="col-sm">
-            <!-- optional sidebar -->
-            <button class="btn btn-primary" ng-click="vm.return()">Return to user home</button>
+        <div class="col-sm-2">
+            <div class="list-group" id="list-tab" role="tablist">
+                <a class="list-group-item list-group-item-action " id="list-home-list" data-toggle="list" href="#/user/{{vm.userId}}" role="tab"
+                    aria-controls="home">Home</a>
+                <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#/user/{{vm.userId}}/request"
+                    role="tab" aria-controls="profile">View requests</a>
+                <a class="list-group-item list-group-item-action active" id="list-messages-list" data-toggle="list" href="#/user/{{vm.userId}}/vehicle"
+                    role="tab" aria-controls="messages">View vehicles</a>
+                <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" role="tab" aria-controls="settings"
+                    href="#/user/{{vm.userId}}/settings">Settings</a>
+            </div>
         </div>
         <div class="col-sm">
-            <div class="col-sm-8">
-                <h4>Add Vehicle</h4>
-                <div>
-                    <p>
-                        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false"
-                            aria-controls="collapseExample">Expand                        </button>
-                    </p>
-                    <div class="collapse" id="collapseExample">
-                        <div class="card card-body">
-                            <ul class="list-group">
-                                <li class="list-group-item"><label>Make</label><input type="text" ng-model="vehicle.make"/></li>
-                                <li class="list-group-item"><label>Model</label><input type="text" ng-model="vehicle.model"/></li>
-                                <li class="list-group-item"><label>Year</label><input type="number" ng-model="vehicle.year"/></li>
-                                <li class="list-group-item"><label>Mileage</label><input type="number" ng-model="vehicle.mileage"/></li>
-                                <li class="list-group-item"><label>VIN</label><input type="text" ng-model="vehicle.vin"/></li>
-                                <li class="list-group-item"><button class="btn btn-primary"ng-click="vm.addVehicle(vehicle)">Add Vechicle</button></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!--  -->
-            <h4>User Vehicles</h4>
             <table class="table table-hover">
                 <thead>
                     <tr>
@@ -37,6 +21,8 @@
                         <th>Year</th>
                         <th>Mileage</th>
                         <th>VIN</th>
+                        <th>Update</th>
+                        <th>Delete</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -57,7 +43,37 @@
             </table>
         </div>
         <div class="col-sm">
-            <!-- optional sidebar -->
+            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false"
+                aria-controls="collapseExample">Add Vehicle </button>
+            <div class="collapse" id="collapseExample">
+                <div class="card card-body">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <label>Make</label>
+                            <input class="form-control" type="text" ng-model="vehicle.make" />
+                        </li>
+                        <li class="list-group-item">
+                            <label>Model</label>
+                            <input class="form-control" type="text" ng-model="vehicle.model" />
+                        </li>
+                        <li class="list-group-item">
+                            <label>Year</label>
+                            <input class="form-control" type="number" ng-model="vehicle.year" min="1900" />
+                        </li>
+                        <li class="list-group-item">
+                            <label>Mileage</label>
+                            <input class="form-control" type="number" ng-model="vehicle.mileage" min="0" />
+                        </li>
+                        <li class="list-group-item">
+                            <label>VIN</label>
+                            <input class="form-control" type="text" ng-model="vehicle.vin" />
+                        </li>
+                        <li class="list-group-item">
+                            <button class="btn btn-primary" ng-click="vm.addVehicle(vehicle)">Add Vechicle</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
 </div>

@@ -32,19 +32,19 @@ public class PartTest {
 		part = null;
 	}
 	
-	@Test
-	public void test_part() {
-		assertEquals(1, part.getId());
-	}
-	
-	
-	@Test
-	public void test_part_mapping() {
-		assertNotNull(part.getId());
-		assertNotNull(part.getName());
-		assertNotNull(part.getCost());
-		assertNotNull(part.getSerialNumber());
-	}
+//	@Test
+//	public void test_part() {
+//		assertEquals(1, part.getId());
+//	}
+//	
+//	
+//	@Test
+//	public void test_part_mapping() {
+//		assertNotNull(part.getId());
+//		assertNotNull(part.getName());
+//		assertNotNull(part.getCost());
+//		assertNotNull(part.getSerialNumber());
+//	}
 	
 }
 

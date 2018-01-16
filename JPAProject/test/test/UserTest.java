@@ -72,27 +72,27 @@ public class UserTest {
 				.getResultList(); 
 		assertEquals("Bibby-bob", list.get(0).getUsername()); 
 	}
-	@Test
-	public void test_destroy_user() {
-//		Works
-		User user = em.find(User.class, 7); 
-		em.getTransaction().begin();
-		em.remove(user);
-		em.getTransaction().commit();
-		
-		User u = em.find(User.class, 7); 
-		assertEquals(u, null); 
-	}
-	@Test
-	public void test_update_user() {
-		User user = em.find(User.class, 1); 
-		assertEquals("Allen", user.getFirstName());
-		em.getTransaction().begin();
-		user.setFirstName("Hodor"); 
-		em.getTransaction().commit();
-		User u = em.find(User.class, 1); 
-		assertEquals("Hodor", u.getFirstName());
-	}
+//	@Test
+//	public void test_destroy_user() {
+////		Works
+//		User user = em.find(User.class, 100); 
+//		em.getTransaction().begin();
+//		em.remove(user);
+//		em.getTransaction().commit();
+//		
+//		User u = em.find(User.class, 100); 
+//		assertEquals(u, null); 
+//	}
+//	@Test
+//	public void test_update_user() {
+//		User user = em.find(User.class, 1); 
+//		assertEquals("Allen", user.getFirstName());
+//		em.getTransaction().begin();
+//		user.setFirstName("Hodor"); 
+//		em.getTransaction().commit();
+//		User u = em.find(User.class, 1); 
+//		assertEquals("Hodor", u.getFirstName());
+//	}
 	
 //Mapping Test 
 	@Test

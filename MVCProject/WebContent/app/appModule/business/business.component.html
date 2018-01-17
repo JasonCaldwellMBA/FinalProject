@@ -1,3 +1,7 @@
+<h2 class="row justify-content-center">
+	{{vm.business.companyName}} homepage</h2>
+
+
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-sm-3">
@@ -19,15 +23,51 @@
 		<div class="col-sm">
 
 		</div>
-		<div class="col-sm">
-			One of three columns
+		<div class="col-sm-3">
+			<ul class="list-group">
+				<li class="list-group-item">
+					<strong>Phone:</strong> {{vm.business.contact.phone}}</li>
+				<li class="list-group-item">
+					<strong>Email:</strong> {{vm.business.contact.email}}</li>
+				<li class="list-group-item">
+					<strong>Website:</strong><a href="{{vm.business.website}}">{{vm.business.website}}</a></li>
+				<li class="list-group-item">
+					<strong>Address:</strong> {{vm.business.contact.address1}}</li>
+				<li class="list-group-item">
+					<strong>Address 2:</strong> {{vm.business.contact.address2}}</li>
+				<li class="list-group-item">
+					<strong>City:</strong> {{vm.business.contact.city}}</li>
+				<li class="list-group-item">
+					<strong>State:</strong> {{vm.business.contact.state}}</li>
+				<li class="list-group-item">
+					<strong>Zip Code:</strong> {{vm.business.contact.zipcode}}</li>
+			</ul>
+			<div>
+				<h3 class="row justify-content-center">Certifications</h3>
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>Name</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="cert in vm.certifications">
+							<td>{{cert.name}}</td>
+							<td>
+								<button class="btn btn-secondary" ng-click="vm.detailView(cert.id)">Update</button>
+							</td>
+							<td>
+								<button class="btn btn-danger" ng-click="vm.destroy(cert.id)">Delete</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<button class="btn btn-primary" ng-click="vm.getCertifications()">Add Certification</button>
+			</div>
 		</div>
 	</div>
 </div>
 
-
-<h2>{{vm.business.companyName}} Business Home </h2>
-<p> Welcome {{vm.business.loginName}}! </p>
 
 
 
@@ -100,48 +140,3 @@
 		<div class="col-3"></div>
 	</div>
 </div>
-
-<h3>Business Certifications</h3>
-<table class="table table-hover">
-	<thead>
-		<tr>
-			<th>Name</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr ng-repeat="cert in vm.certifications">
-			<td>{{cert.name}}</td>
-			<td>
-				<button class="btn btn-secondary" ng-click="vm.detailView(cert.id)">Update</button>
-			</td>
-			<td>
-				<button class="btn btn-danger" ng-click="vm.destroy(cert.id)">Delete</button>
-			</td>
-		</tr>
-	</tbody>
-</table>
-<button class="btn btn-primary" ng-click="vm.getCertifications()">Add Certification</button>
-
-<h3>Business Contact</h3>
-<ul>
-	<li>
-		<strong>Phone:</strong> {{vm.business.contact.phone}}</li>
-	<li>
-		<strong>Email:</strong> {{vm.business.contact.email}}</li>
-	<li>
-		<strong>Website:</strong> {{vm.business.website}}</li>
-</ul>
-
-<h3>Business Address</h3>
-<ul>
-	<li>
-		<strong>Address:</strong> {{vm.business.contact.address1}}</li>
-	<li>
-		<strong>Address 2:</strong> {{vm.business.contact.address2}}</li>
-	<li>
-		<strong>City:</strong> {{vm.business.contact.city}}</li>
-	<li>
-		<strong>State:</strong> {{vm.business.contact.state}}</li>
-	<li>
-		<strong>Zip Code:</strong> {{vm.business.contact.zipcode}}</li>
-</ul>

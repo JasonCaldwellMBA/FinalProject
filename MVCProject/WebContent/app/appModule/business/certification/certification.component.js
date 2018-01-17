@@ -3,9 +3,13 @@ angular.module('appModule')
         templateUrl: 'app/appModule/business/certification/certification.component.html',
         controllerAs: 'vm',
         controller: function (certificationService, $cookies, $location,
-				$routeParams) {
+				$routeParams, authService) {
         		var vm = this;
 			vm.certifications = [];
+			
+			vm.detailView = function(certid) {
+				$location.path('business/' + authService.getBusToken() + '/certification/' + certid);
+			}
 
 			certificationService.index().then(function(res) {
 				vm.certifications = res.data;

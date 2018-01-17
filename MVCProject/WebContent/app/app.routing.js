@@ -31,6 +31,9 @@ angular.module('appModule')
 		.when('/business/:bid/certification',{
 			template: '<certification></certification>'
 		})
+		.when('/business/:bid/certification/:certid',{
+			template: '<certification-detail></certification-detail>'
+		})
 		.when('/business/:bid/settings',{
 			template : '<business-settings></business-settings>'
 		})

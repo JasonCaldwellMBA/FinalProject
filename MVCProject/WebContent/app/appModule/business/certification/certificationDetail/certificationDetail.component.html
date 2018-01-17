@@ -1,0 +1,71 @@
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-sm-3">
+			<div class="list-group" id="list-tab" role="tablist">
+				<a class="list-group-item list-group-item-action"
+					id="list-home-list" data-toggle="list"
+					href="#/business/{{vm.bizId}}" role="tab" aria-controls="home">Home</a>
+				<a class="list-group-item list-group-item-action active "
+					id="list-profile-list" data-toggle="list"
+					href="#/business/{{vm.bizId}}/quote" role="tab"
+					aria-controls="profile">View all quotes</a> <a
+					class="list-group-item list-group-item-action"
+					id="list-messages-list" data-toggle="list"
+					href="#/business/{{vm.bizId}}/quote" role="tab"
+					aria-controls="messages">View pending quotes</a> <a
+					class="list-group-item list-group-item-action"
+					id="list-settings-list" data-toggle="modal"
+					data-target="#exampleModalLong" role="tab" aria-controls="settings">View
+					accepted quotes</a> <a class="list-group-item list-group-item-action"
+					id="list-settings-list" data-toggle="modal"
+					data-target="#exampleModalLong" role="tab" aria-controls="settings">View
+					requests in area</a> <a class="list-group-item list-group-item-action"
+					id="list-certifications-list" data-toggle="list"
+					href="#/business/{{vm.business.id}}/certification" role="tab"
+					aria-controls="messages">View certifications</a> <a
+					class="list-group-item list-group-item-action"
+					id="list-settings-list" data-toggle="list" role="tab"
+					aria-controls="settings"
+					href="#/business/{{vm.business.id}}/settings">Settings</a>
+			</div>
+		</div>
+		<div class="col-sm">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Certification Name</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="cert in vm.certifications">
+						<td>{{cert.name}}</td>
+						<td>
+							<button class="btn btn-secondary"
+								ng-click="vm.updateCertification(cert)">Update</button>
+						</td>
+						<td>
+							<button class="btn btn-danger" ng-click="vm.destroy(cert.id)">Delete</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<div class="col-sm">
+				<div class="col-sm-8">
+					<h4>Add Certification</h4>
+					<div>
+						<div class="card card-body">
+							<ul class="list-group">
+								<li class="list-group-item"><label>Name</label><input
+									type="text" ng-model="certification.name" /></li>
+								<li class="list-group-item"><button class="btn btn-primary"
+										ng-click="vm.addCertification(certification)">Add
+										Certification</button></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

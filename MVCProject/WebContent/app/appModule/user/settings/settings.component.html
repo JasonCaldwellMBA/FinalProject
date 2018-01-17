@@ -2,8 +2,8 @@
     <div class="row">
         <div class="col-sm-2">
             <div class="list-group" id="list-tab" role="tablist">
-                <a class="list-group-item list-group-item-action " id="list-home-list" data-toggle="list" href="#/user/{{vm.userId}}"
-                    role="tab" aria-controls="home">Home</a>
+                <a class="list-group-item list-group-item-action " id="list-home-list" data-toggle="list" href="#/user/{{vm.userId}}" role="tab"
+                    aria-controls="home">Home</a>
                 <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#/user/{{vm.userId}}/request"
                     role="tab" aria-controls="profile">View requests</a>
                 <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#/user/{{vm.userId}}/vehicle"
@@ -31,7 +31,7 @@
             </div>
             <div class="form-group">
                 <label for="txtZipcode">Zip code</label>
-                <input type="text" class="form-control" id="txtZipcode" ng-model="vm.user.contact.zipcode" placeholder="Ex: 454733"required>
+                <input type="text" class="form-control" id="txtZipcode" ng-model="vm.user.contact.zipcode" placeholder="Ex: 454733" required>
             </div>
             <div class="form-group">
                 <label for="txtCity">City</label>
@@ -43,7 +43,7 @@
             </div>
             <div class="form-group">
                 <label for="txtPhone">Phone</label>
-                <input type="text" class="form-control" id="txtPhone" ng-model="vm.user.contact.phone" required placeholder="Ex: 8269890872"> 
+                <input type="text" class="form-control" id="txtPhone" ng-model="vm.user.contact.phone" required placeholder="Ex: 8269890872">
             </div>
             <div class="form-group">
                 <label for="txtEmail">Email</label>
@@ -58,7 +58,9 @@
                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete">
                     Delete Account
                 </button>
-
+                <div ng-show="vm.updatedUser" class="alert alert-success mt-2 col-sm" role="alert">
+                    Update was successful!
+                </div>
                 <!-- Modal -->
                 <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">

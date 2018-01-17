@@ -6,6 +6,7 @@ angular.module('appModule')
             var vm = this; 
             vm.userId = authService.getToken(); 
             vm.user = null;
+            vm.updatedUser = null; 
             
             //init load
             userService.show(authService.getToken()).then(function (res) {
@@ -14,7 +15,9 @@ angular.module('appModule')
             vm.updateUser = function(user) {
                 userService.update(user).then(function (res) {
                     vm.user = res.data;
-                    $location.path('user/' + vm.userId); 
+                    if (res.status >= 200 && res.status < 300) {
+                        vm.updatedUser = res.data; 
+                    }
                 }); 
             }
             vm.destroyAccount = function () {

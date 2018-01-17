@@ -11,20 +11,11 @@ angular.module('appModule')
             }); 
         }
         
-//        service.show = function (id) {
-//            var bizId = authService.getToken(); 
-//            return $http({
-//                method: 'GET',
-//                url: BASE_URL +'business/'+ bizId + '/certification/' + id,
-//            });
-//        }
-        
         service.addCertification = function (certification) {
             var bizId = authService.getBusToken(); 
-            console.log("Service add " + bizId);
             return $http({
                 method: 'POST',
-                url: BASE_URL + 'business/' +  bizId + '/certification',
+                url: BASE_URL + 'business/' +  bizId + '/certification/',
                 headers: {
                     'content-type': 'application/json'
                 },

@@ -9,10 +9,13 @@
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item active">
-        <a ng-show="!vm.userId" class="nav-link" href="#/home">Home
+        <a ng-show="!vm.userId && !vm.bizId" class="nav-link" href="#/home">Home
           <span class="sr-only">(current)</span>
         </a>
-        <a ng-show="vm.userId" class="nav-link" href="#/user/{{vm.userId}}">Home
+        <a ng-show="vm.userId && !vm.bizId" class="nav-link" href="#/user/{{vm.userId}}">Home
+          <span class="sr-only">(current)</span>
+        </a>
+        <a ng-show="vm.bizId && !vm.userId" class="nav-link" href="#/business/{{vm.bizId}}">Home
           <span class="sr-only">(current)</span>
         </a>
       </li>

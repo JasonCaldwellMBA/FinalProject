@@ -20,6 +20,8 @@ angular.module('appModule')
 					vm.status = {}; 
 				}
 				else {
+					vm.userId = null; 
+					vm.bizId = null; 
 					vm.status = null; 
 				}
 			}, 10); 

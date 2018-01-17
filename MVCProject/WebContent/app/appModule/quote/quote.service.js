@@ -17,6 +17,12 @@ angular.module('appModule')
                 url: BASE_URL + 'user/' + userId + '/request/' + rid + '/quote'
             });
         };
+	    	service.show = function(bid, qid){
+	    		return $http({
+	    			method : "GET",
+	    			url : BASE_URL + "business/" + bid + "/quote/" + qid
+	    		})
+	    	}
 
         service.createQuote = function (quote, rid) {
             return $http({

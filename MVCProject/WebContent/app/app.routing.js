@@ -28,6 +28,15 @@ angular.module('appModule')
 		.when('/business/:bid/quote',{
 			template: '<quote></quote>'
 		})
+		.when('/business/:bid/acceptedQuotes',{
+			template: '<accepted-quotes></accepted-quotes>'
+		})
+		.when('/business/:bid/pendingQuotes',{
+			template: '<pending-quotes></pending-quotes>'
+		})
+		.when('/business/:bid/completedQuotes',{
+			template: '<completed-quotes></completed-quotes>'
+		})
 		.when('/business/:bid/certification',{
 			template: '<certification></certification>'
 		})
@@ -49,6 +58,9 @@ angular.module('appModule')
 		})
 		.when('/user/:uid/request/:rid',{
 			template: '<request-detail></request-detail>'
+		})
+		.when('/business/:bid/quote/:qid',{
+			template: '<quote-detail></quote-detail>'
 		})
 		.when('/user/:uid/vehicle/:vid',{
 			template: '<vehicle-detail></vehicle-detail>'

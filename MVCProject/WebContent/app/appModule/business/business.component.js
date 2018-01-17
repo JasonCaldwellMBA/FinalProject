@@ -42,6 +42,9 @@ angular.module('appModule')
 			businessService.indexQuotes(id)
 			.then(function(res){
                 var preQuotes = res.data;
+                vm.winningQuotes = [];
+                vm.pendingQuotes = [];
+                vm.completedQuotes = [];
                 preQuotes.forEach(quote => {
                     if (quote.acceptedRequest != undefined && quote.completed == false) {
                         vm.winningQuotes.push(quote); 
@@ -51,7 +54,7 @@ angular.module('appModule')
 					}
 					if(quote.completed == true){
 						vm.completedQuotes.push(quote)
-						return;
+//						return;
 					}
                 })
                 preQuotes = [];

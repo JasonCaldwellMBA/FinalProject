@@ -1,0 +1,57 @@
+<div class="container-fluid">
+    <div class="row">
+    
+    <!-- Side Bar to filter Quotes -->
+        <div class="col-sm-3">
+            <div class="list-group" id="list-tab" role="tablist">
+                <a class="list-group-item list-group-item-action" id="list-home-list" data-toggle="list" href="#/business/{{vm.bizId}}" role="tab"
+                    aria-controls="home">Home</a>
+                <a class="list-group-item list-group-item-action active " id="list-profile-list" data-toggle="list" href="#/business/{{vm.bizId}}/quote"
+                    role="tab" aria-controls="profile">View all quotes</a>
+                <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#/business/{{vm.bizId}}/pendingQuotes"
+                    role="tab" aria-controls="messages">View pending quotes</a>
+                <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#/business/{{vm.bizId}}/acceptedQuotes"
+                    role="tab" aria-controls="settings">View accepted quotes</a>
+                <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#/business/{{vm.bizId}}/completedQuotes"
+                    role="tab" aria-controls="settings">View completed quotes</a>
+                <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="modal" href="#/business/vm.bizId/request"
+                    role="tab" aria-controls="settings">View requests in area</a>
+                <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" role="tab" aria-controls="settings"
+                    href="#/business/{{vm.business.id}}/settings">Settings</a>
+            </div>
+        </div>
+        
+        <!-- Quote Table -->
+        <div class="col-sm">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Quote id</th>
+                        <th>Customer</th>
+                        <th>Post date</th>
+                        <th>Expire date</th>
+                        <th>View Details</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <!-- Pending Quotes -->
+                    <tr ng-repeat="q in vm.pendingQuotes">
+                        <td>{{q.id}}</td>
+                        <td>{{q.request.user.firstName}} {{q.request.user.lastName}}</td>
+                        <td>{{q.postDate | date: 'MM-dd-yy'}}</td>
+                        <td>{{q.expireDate | date: 'MM-dd-yy'}}</td>
+                        <td><button type="button" ng-click="vm.showDetails(q)">View Details</button></td>
+                        <td><button type="button" ng-click="vm.delete(q.id)">Delete</button></td>
+                    </tr>
+                    <!-- End Pending Quotes -->
+
+                </tbody>
+            </table>
+        </div>
+        <!-- <div class="col-sm">
+            One of three columns
+        </div> -->
+    </div>
+</div>

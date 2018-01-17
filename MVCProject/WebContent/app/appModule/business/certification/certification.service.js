@@ -5,7 +5,6 @@ angular.module('appModule')
 
         service.index = function () {
             var bizId = authService.getBusToken(); 
-            console.log("cert service " + bizId);
             return $http({
                 method: 'GET', 
                 url: BASE_URL + 'business/' + bizId + '/certification',
@@ -20,7 +19,7 @@ angular.module('appModule')
 //            });
 //        }
         
-        service.createCert = function (certification) {
+        service.addCertification = function (certification) {
             var bizId = authService.getBusToken(); 
             return $http({
                 method: 'POST',
@@ -32,7 +31,7 @@ angular.module('appModule')
             })
         }
         
-        service.updateCert = function (certification) {
+        service.updateCertification = function (certification) {
             var bizId = authService.getBusToken(); 
             return $http({
                 method: 'PUT',
@@ -44,7 +43,7 @@ angular.module('appModule')
             })
         }
         
-        service.deleteCert = function (id) {
+        service.destroy = function (id) {
             var bizId = authService.getBusToken(); 
             return $http({
                 method: 'DELETE',

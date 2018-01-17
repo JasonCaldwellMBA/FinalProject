@@ -18,7 +18,7 @@ angular.module('appModule')
 			
 			vm.addCertification = function (certification) {
 				certification.active = true; 
-				certificationService.create(certification).then(function(res){
+				certificationService.addCertification(certification).then(function(res){
 					reload(); 
 				}); 
 			}
@@ -36,7 +36,6 @@ angular.module('appModule')
 			}
 			
 			vm.return = function(){
-				console.log("cert component" + $routeParams.id);
 				$location.path('/business/' + $routeParams.id); 
 			}
         }

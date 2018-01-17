@@ -47,12 +47,25 @@
 </div>
 </div>
 
-<h3>Certifications</h3>
-<div>
-<ul>	
-	<li>Can I see you</li>
-</ul>
-</div>
+ <h3>Business Certifications</h3>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="cert in vm.certifications">
+                        <td>{{cert.name}}</td>
+                        <td>
+                            <button class="btn btn-secondary" ng-click="vm.detailView(cert.id)">Update</button>
+                        </td>
+                        <td>
+                            <button class="btn btn-danger" ng-click="vm.destroy(cert.id)">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
 <button class="btn btn-primary" ng-click="vm.getCertifications()">Add Certification</button>
 
 <h3>Business Contact</h3>

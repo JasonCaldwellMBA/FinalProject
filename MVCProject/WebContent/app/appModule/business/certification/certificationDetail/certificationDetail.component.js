@@ -16,8 +16,8 @@ angular.module('appModule')
 				}); 
 			}
 			
-			vm.destroy = function(){
-				certificationService.destroy(certification).then(function (res) {
+			vm.destroy = function(certid){
+				certificationService.destroy(certid).then(function (res) {
 					reload(); 
 				}); 
 			}

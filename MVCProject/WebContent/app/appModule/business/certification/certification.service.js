@@ -34,23 +34,21 @@ angular.module('appModule')
         
         service.updateCertification = function (certification) {
             var bizId = authService.getBusToken(); 
-            console.log(bizId);
-            console.log(certification.id);
             return $http({
                 method: 'PUT',
                 url: BASE_URL + 'business/' + bizId + '/certification/' + certification.id,
                 headers: {
                     'content-type':'application/json'
                 },
-                data:certification
+                data: certification
             })
         }
         
-        service.destroy = function (id) {
+        service.destroy = function (certification) {
             var bizId = authService.getBusToken(); 
             return $http({
                 method: 'DELETE',
-                url: BASE_URL + 'business/' + bizId + '/certification/' + id
+                url: BASE_URL + 'business/' + bizId + '/certification/' + certification.id,
             }); 
         }
         return service; 

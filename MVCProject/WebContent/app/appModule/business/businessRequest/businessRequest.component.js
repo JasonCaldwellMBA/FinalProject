@@ -2,12 +2,17 @@ angular.module('appModule')
 	.component('businessRequest', {
 		templateUrl: 'app/appModule/business/businessRequest/businessRequest.component.html',
 		controllerAs: 'vm',
-		controller: function (requestService, quoteService) {
+		controller: function (requestService, quoteService, businessService, $routeParams) {
 			var vm = this;
 			vm.requests = [];
 			vm.selected = null;
 			vm.quoteFlag = null;
-
+			vm.business = null;
+		
+            businessService.show($routeParams.bid).then(function (res) {
+                vm.business = angular.copy(res.data);
+            }); 
+			
 			//init Methods
 			requestService.indexAllRequests().then(function (res) {
 				vm.requests = res.data;

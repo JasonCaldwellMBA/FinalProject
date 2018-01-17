@@ -20,12 +20,12 @@ angular.module('appModule')
 					reload(); 
 				}); 
 			}
-			
-			vm.updateCertification = function (certification) {
-				certificationService.updateCertification(certification).then(function(res){
-					reload(); 
-				}); 
-			}
+//			
+//			vm.updateCertification = function (certification) {
+//				certificationService.updateCertification(certification).then(function(res){
+//					reload(); 
+//				}); 
+//			}
 			
 			vm.destroy = function(id) {
 				certificationService.destroy(id).then(function (res) {

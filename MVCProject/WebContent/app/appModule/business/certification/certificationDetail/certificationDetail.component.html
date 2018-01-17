@@ -33,12 +33,14 @@
 			<table class="table">
 				<thead>
 					<tr>
-						<th>Certification Name</th>
+						<th>Certification Details</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="cert in vm.certifications">
-						<td>{{cert.name}}</td>
+					<tr>
+						<td>Can i c u</td>
+						<td>{{vm.certification.id}}</td>
+						<td>{{vm.certification.name}}</td>
 						<td>
 							<button class="btn btn-secondary"
 								ng-click="vm.updateCertification(cert)">Update</button>
@@ -50,7 +52,7 @@
 				</tbody>
 			</table>
 
-			<div class="col-sm">
+			<!-- <div class="col-sm">
 				<div class="col-sm-8">
 					<h4>Add Certification</h4>
 					<div>
@@ -65,7 +67,7 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			</div> -->
 		</div>
 	</div>
 </div>

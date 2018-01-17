@@ -6,7 +6,7 @@ angular.module('appModule')
 			var vm = this; 
 			vm.certification = null; 
 			
-			certificationService.index().then(function(res){
+			certificationService.show($routeParams.certid).then(function(res){
 					vm.certification = angular.copy(res.data); 
 				}); 
 			

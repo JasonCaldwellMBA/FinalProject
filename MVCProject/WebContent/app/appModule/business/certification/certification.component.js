@@ -11,13 +11,7 @@ angular.module('appModule')
 				vm.certifications = res.data;
 			});
 			
-//			vm.detailView = function(id) {
-//				$location.path('business/' + $cookies.get('bizId')
-//						+ '/certification/' + id);
-//			}
-			
 			vm.addCertification = function (certification) {
-				certification.active = true; 
 				certificationService.addCertification(certification).then(function(res){
 					reload(); 
 				}); 

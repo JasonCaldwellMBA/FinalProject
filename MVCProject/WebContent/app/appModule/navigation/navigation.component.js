@@ -1,12 +1,15 @@
 angular.module('appModule')
 	.component('navigation', {
 		templateUrl : "app/appModule/navigation/navigation.component.html",
-		controller: function (authService, $location) {
+		controller: function (authService, $location, positionService) {
 			var vm = this; 
 			vm.status = null;
 			vm.userId = null; 
 			vm.bizId = null; 
 			$location.path('/home')
+
+			positionService.getPosition(); 
+
 			setInterval(function () {
 				if (authService.isUser() || authService.isBus()) {
 					if (authService.getToken()) {

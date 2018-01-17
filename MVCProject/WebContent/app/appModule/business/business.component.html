@@ -4,24 +4,26 @@
 
 <div class="container-fluid">
 	<div class="row">
-        <div class="col-sm-3">
-            <div class="list-group" id="list-tab" role="tablist">
-                <a class="list-group-item list-group-item-action" id="list-home-list" data-toggle="list" href="#/business/{{vm.bizId}}" role="tab"
-                    aria-controls="home">Home</a>
-                <a class="list-group-item list-group-item-action active " id="list-profile-list" data-toggle="list" href="#/business/{{vm.bizId}}/quote"
-                    role="tab" aria-controls="profile">View all quotes</a>
-                <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#/business/{{vm.bizId}}/pendingQuotes"
-                    role="tab" aria-controls="messages">View pending quotes</a>
-                <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#/business/{{vm.bizId}}/acceptedQuotes"
-                    role="tab" aria-controls="settings">View accepted quotes</a>
-                <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#/business/{{vm.bizId}}/completedQuotes"
-                    role="tab" aria-controls="settings">View completed quotes</a>
-                <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="modal" data-target="#exampleModalLong"
-                    role="tab" aria-controls="settings">View requests in area</a>
-                <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" role="tab" aria-controls="settings"
-                    href="#/business/{{vm.business.id}}/settings">Settings</a>
-            </div>
-        </div>
+		<div class="col-sm-3">
+			<div class="list-group" id="list-tab" role="tablist">
+				<a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#/business/{{vm.business.id}}"
+				 role="tab" aria-controls="home">Home</a>
+				<a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#/business/{{vm.business.id}}/quote"
+				 role="tab" aria-controls="profile">View all quotes</a>
+				 <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#/business/{{vm.business.id}}/pendingQuotes"
+						 role="tab" aria-controls="messages">View pending quotes</a>
+				 <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#/business/{{vm.business.id}}/acceptedQuotes"
+						 role="tab" aria-controls="settings">View accepted quotes</a>
+				 <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#/business/{{vm.business.id}}/completedQuotes"
+						 role="tab" aria-controls="settings">View completed quotes</a>
+				<a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="modal" data-target="#exampleModalLong"
+				 role="tab" aria-controls="settings">View requests in area</a>
+				<a class="list-group-item list-group-item-action" id="list-certifications-list" data-toggle="list" href="#/business/{{vm.business.id}}/certification"
+				 role="tab" aria-controls="messages">View certifications</a>
+				<a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" role="tab" aria-controls="settings"
+				 href="#/business/{{vm.business.id}}/settings">Settings</a>
+			</div>
+		</div>
 		<div class="col-sm">
 
 		</div>
@@ -44,28 +46,6 @@
 				<li class="list-group-item">
 					<strong>Zip Code:</strong> {{vm.business.contact.zipcode}}</li>
 			</ul>
-			<div>
-				<h3 class="row justify-content-center">Certifications</h3>
-				<table class="table table-hover">
-					<thead>
-						<tr>
-							<th>Name</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr ng-repeat="cert in vm.certifications">
-							<td>{{cert.name}}</td>
-							<td>
-								<button class="btn btn-secondary" ng-click="vm.detailView(cert.id)">Update</button>
-							</td>
-							<td>
-								<button class="btn btn-danger" ng-click="vm.destroy(cert.id)">Delete</button>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-				<button class="btn btn-primary" ng-click="vm.getCertifications()">Add Certification</button>
-			</div>
 		</div>
 	</div>
 </div>

@@ -6,6 +6,8 @@ angular.module('appModule')
 			var vm = this;
 			vm.bizId = $routeParams.bid;
 			vm.pendingQuotes = [];
+			vm.updateFlag = false;
+			vm.quote = null;
 			
 			//init load
 			quoteService.index()
@@ -19,6 +21,21 @@ angular.module('appModule')
 				})
 				preQuotes = [];
 			})	
+			
+	    		vm.viewDetails = function(quote){
+	    			$location.path("business/"+ vm.bizId + "/quote/" + quote.id);
+	    		};
+	    		
+	    		vm.update = function(quote){
+	    			vm.updateFlag = true;
+	    			vm.quote = angular.copy(quote);
+	    		}
+	    		vm.updateQuote = function(quote){
+	    			quoteService.updateQuote(quote).then(function(res){
+	    				vm.updateFlag = false;
+	    				vm.quote = null;
+	    			})
+	    		}
 			
 		}
 	})

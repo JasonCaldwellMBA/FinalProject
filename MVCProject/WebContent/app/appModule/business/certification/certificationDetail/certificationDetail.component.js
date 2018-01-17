@@ -6,7 +6,7 @@ angular.module('appModule')
 			var vm = this; 
 			vm.certification = null; 
 			
-			certificationService.index().then(function(res){
+			certificationService.show($routeParams.certid).then(function(res){
 					vm.certification = angular.copy(res.data); 
 				}); 
 			
@@ -16,8 +16,8 @@ angular.module('appModule')
 				}); 
 			}
 			
-			vm.destroy = function(){
-				certificationService.destroy(certification).then(function (res) {
+			vm.destroy = function(certid){
+				certificationService.destroy(certid).then(function (res) {
 					reload(); 
 				}); 
 			}

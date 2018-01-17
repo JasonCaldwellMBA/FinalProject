@@ -15,7 +15,7 @@
         <div class="col-sm">
             <div class="form-group">
                 <label for="txtFirstName">First Name</label>
-                <input type="text" class="form-control" ng-model="vm.user.firstName" id="txtFirstName" placeholder="Enter FirstName" />
+                <input type="text" class="form-control" ng-model="vm.user.firstName" id="txtFirstName" placeholder="Enter first name" />
             </div>
             <div class="form-group">
                 <label for="txtLastName">Last Name</label>
@@ -23,31 +23,31 @@
             </div>
             <div class="form-group">
                 <label for="txtAddress1">Address 1</label>
-                <input type="text" class="form-control" ng-model="vm.user.contact.address1" id="txtAddress1" placeholder="Enter address1">
+                <input type="text" class="form-control" ng-model="vm.user.contact.address1" id="txtAddress1" placeholder="Ex: 905 s broadway address1">
             </div>
             <div class="form-group">
                 <label for="txtAddress2">Address 2</label>
-                <input type="text" class="form-control" id="txtAddress2" placeholder="First name" ng-model="vm.user.contact.address2">
+                <input type="text" class="form-control" id="txtAddress2" placeholder="Ex: apt 44" ng-model="vm.user.contact.address2">
             </div>
             <div class="form-group">
                 <label for="txtZipcode">Zip code</label>
-                <input type="text" class="form-control" id="txtZipcode" ng-model="vm.user.contact.zipcode" required>
+                <input type="text" class="form-control" id="txtZipcode" ng-model="vm.user.contact.zipcode" placeholder="Ex: 454733"required>
             </div>
             <div class="form-group">
                 <label for="txtCity">City</label>
-                <input type="text" class="form-control" id="txtCity" ng-model="vm.user.contact.city">
+                <input type="text" class="form-control" id="txtCity" ng-model="vm.user.contact.city" placeholder="Kansas City">
             </div>
             <div class="form-group">
                 <label for="txtState">State</label>
-                <input type="text" class="form-control" id="txtState" ng-model="vm.user.contact.state">
+                <input type="text" class="form-control" id="txtState" ng-model="vm.user.contact.state" placeholder="Ex: Missouri">
             </div>
             <div class="form-group">
                 <label for="txtPhone">Phone</label>
-                <input type="phone" class="form-control" id="txtPhone" ng-model="vm.user.contact.phone" required>
+                <input type="text" class="form-control" id="txtPhone" ng-model="vm.user.contact.phone" required placeholder="Ex: 8269890872"> 
             </div>
             <div class="form-group">
                 <label for="txtEmail">Email</label>
-                <input type="email" class="form-control" id="txtEmail" ng-model="vm.user.contact.email" required>
+                <input type="email" class="form-control" id="txtEmail" ng-model="vm.user.contact.email" required placeholder="user@gmail.com">
             </div>
             <button ng-click="vm.return()" class="btn btn-primary">Back</button>
             <button ng-click="vm.updateUser(vm.user)" class="btn btn-primary">Save</button>

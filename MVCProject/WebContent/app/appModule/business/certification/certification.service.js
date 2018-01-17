@@ -11,19 +11,11 @@ angular.module('appModule')
             }); 
         }
         
-//        service.show = function (id) {
-//            var bizId = authService.getToken(); 
-//            return $http({
-//                method: 'GET',
-//                url: BASE_URL +'business/'+ bizId + '/certification/' + id,
-//            });
-//        }
-        
         service.addCertification = function (certification) {
             var bizId = authService.getBusToken(); 
             return $http({
                 method: 'POST',
-                url: BASE_URL + 'business/' +  bizId + '/certification',
+                url: BASE_URL + 'business/' +  bizId + '/certification/',
                 headers: {
                     'content-type': 'application/json'
                 },
@@ -33,6 +25,7 @@ angular.module('appModule')
         
         service.updateCertification = function (certification) {
             var bizId = authService.getBusToken(); 
+            console.log("Service update " + bizId);
             return $http({
                 method: 'PUT',
                 url: BASE_URL + 'business/' + bizId + '/certification/' + certification.id,
@@ -45,6 +38,7 @@ angular.module('appModule')
         
         service.destroy = function (id) {
             var bizId = authService.getBusToken(); 
+            console.log("Service destroy " + bizId);
             return $http({
                 method: 'DELETE',
                 url: BASE_URL + 'business/' + bizId + '/certification/' + id

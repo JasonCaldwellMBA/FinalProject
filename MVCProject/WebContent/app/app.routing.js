@@ -40,7 +40,8 @@ angular.module('appModule')
 		.when('/user/:id/request',{
 			template: '<request></request>'
 		})
-		.when('/request',{
+		//Comeback to
+		.when('/business/:id/request',{
 			template: '<business-request></business-request>'
 		})
 		.when('/user/:uid/business/:bid',{

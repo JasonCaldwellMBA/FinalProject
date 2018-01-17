@@ -7,6 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 //test
 @Entity
 public class Certification {
@@ -17,6 +19,8 @@ public class Certification {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	private String name;
+	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="business_id")
 	private Business business;

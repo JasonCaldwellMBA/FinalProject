@@ -24,16 +24,15 @@
         </div>
         
         <!-- Quote Table -->
-        <div ng-hide="vm.updateFlage" class="col-sm">
+        <div ng-hide="vm.updateFlag" class="col-sm">
             <table class="table">
                 <thead>
                     <tr>
                         <th>Quote id</th>
                         <th>Customer</th>
-                        <th>Customer's Estimate</th>
+                        <th>Asking Price</th>
                         <th>Quote Price</th>
                         <th>Post date</th>
-                        <th>Estimate</th>
                         <th>Expire date</th>
                         <th>View Details</th>
                         <th>Update</th>
@@ -79,7 +78,7 @@
                       	<input class="form-control" type="text" ng-model="vm.quote.completeDate">
                     </li>
                     <li class="list-group-item justify-content-center">
-                    		<button type="button" class="btn btn-warning" ng-click="vm.updateFlag = false>Return</button>
+                    		<button type="button" class="btn btn-warning" ng-click="vm.updateFlag = false">Return</button>
 						<button type="button" class="btn btn-success" ng-click="vm.updateQuote(vm.quote)">Submit Changes</button>
                     </li>
                 </ul>

@@ -29,7 +29,7 @@
                         <label>Customer Name: {{vm.quote.request.user.firstName}} {{vm.quote.request.user.lastName}}</label><br>
                     </li>
                     <li class="list-group-item">
-                      	<label>Vehicle: {{vm.quote.request.vehicle.year}} {{vm.quote.request.vehicle.make}} {{vm.quote.request.vehicle.model}} VIN: {{vm.quote.request.vehicle.vin}}</label><br>
+                      	<label>Vehicle: {{vm.quote.request.vehicle.year}} {{vm.quote.request.vehicle.make}} {{vm.quote.request.vehicle.model}}<br> VIN: {{vm.quote.request.vehicle.vin}}</label><br>
                     </li>
                     <li class="list-group-item">
                       	<label>Request Description: {{vm.quote.request.description}}</label><br>
@@ -60,7 +60,7 @@
                     </li>
                     <li class="list-group-item justify-content-center">
                     		<button type="button" class="btn btn-warning" ng-click="vm.returnToQuotes()">Return</button>
-						<button type="button" class="btn btn-success" ng-click="vm.updateFlag = true; vm.detailFlag = false">Update</button>
+						<!-- <button type="button" class="btn btn-success" ng-click="vm.updateFlag = true; vm.detailFlag = false">Update</button> -->
                     </li>
                 </ul>
 		</div>

@@ -10,18 +10,20 @@ angular.module('appModule')
 			vm.quote = null;
 			
 			//init load
-			quoteService.index()
-			.then(function(res){
-				var preQuotes = res.data;
-				vm.pendingQuotes = [];
-				preQuotes.forEach(quote => {
-					if(quote.acceptedRequest == undefined && quote.completed == false){
-						vm.pendingQuotes.push(quote);
-					}
-				})
-				preQuotes = [];
-			})	
-			
+			var reload = function(){
+				quoteService.index()
+				.then(function(res){
+					var preQuotes = res.data;
+					vm.pendingQuotes = [];
+					preQuotes.forEach(quote => {
+						if(quote.acceptedRequest == undefined && quote.completed == false){
+							vm.pendingQuotes.push(quote);
+						}
+					})
+					preQuotes = [];
+				})	
+			}
+			reload();
 	    		vm.viewDetails = function(quote){
 	    			$location.path("business/"+ vm.bizId + "/quote/" + quote.id);
 	    		};
@@ -34,6 +36,7 @@ angular.module('appModule')
 	    			quoteService.updateQuote(quote).then(function(res){
 	    				vm.updateFlag = false;
 	    				vm.quote = null;
+	    				reload();
 	    			})
 	    		}
 			

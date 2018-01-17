@@ -22,6 +22,14 @@ angular.module('appModule')
 	    		vm.viewDetails = function(quote){
 	    			$location.path("business/"+ vm.bizId + "/quote/" + quote.id);
 	    		};
+	    		
+	    		vm.markComplete = function(quote){
+	    			quote.completed = true;
+	    			quoteService.updateQuote(quote)
+	    			.then(function(res){
+	    				$location.path("business/"+vm.bizId+"/completedQuote")
+	    			})
+	    		}
 			
 		}
 	})

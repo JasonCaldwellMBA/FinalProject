@@ -1,6 +1,10 @@
 package data;
 
 import java.io.IOException;
+import java.security.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.temporal.TemporalField;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -27,16 +31,16 @@ public class RequestDAOImpl implements RequestDAO {
 	@Override
 	public List<Request> index(int uid) {
 		String query = "SELECT r FROM Request r WHERE (r.active = true) AND r.user.id = :id"; 
-		return em.createQuery(query, Request.class).setParameter("id", uid)
-				.getResultList();
+		List<Request> list =  em.createQuery(query, Request.class).setParameter("id", uid)
+				.getResultList(); 
+		return list; 
 	}
 	@Override
 	public List<Request> indexAllRequests() {
-		String query = "SELECT r FROM Request r"; 
+		String query = "SELECT r FROM Request r";
 		return em.createQuery(query, Request.class)
 				.getResultList();
 	}
-
 	@Override
 	public Request show(int uid, int rid) {
 		return em.find(Request.class, rid); 
@@ -45,7 +49,6 @@ public class RequestDAOImpl implements RequestDAO {
 	public Request showForBiz(int id) {
 		return em.find(Request.class, id); 
 	}
-
 	@Override
 	public Request create(int uid, int vid, String requestJson) {
 		ObjectMapper mapper = new ObjectMapper(); 
@@ -66,7 +69,6 @@ public class RequestDAOImpl implements RequestDAO {
 		}
 		return request;
 	}
-
 	@Override
 	public Request update(int uid, int vid, int rid, String requestJson) {
 		ObjectMapper mapper = new ObjectMapper();

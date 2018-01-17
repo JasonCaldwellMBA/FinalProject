@@ -25,7 +25,8 @@ angular.module('appModule')
         
         service.updateCertification = function (certification) {
             var bizId = authService.getBusToken(); 
-            console.log("Service update " + bizId);
+            console.log(bizId);
+            console.log(certification.id);
             return $http({
                 method: 'PUT',
                 url: BASE_URL + 'business/' + bizId + '/certification/' + certification.id,
@@ -38,7 +39,6 @@ angular.module('appModule')
         
         service.destroy = function (id) {
             var bizId = authService.getBusToken(); 
-            console.log("Service destroy " + bizId);
             return $http({
                 method: 'DELETE',
                 url: BASE_URL + 'business/' + bizId + '/certification/' + id

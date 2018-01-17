@@ -115,6 +115,18 @@ public class BusinessController {
 		return certifications;
 	}
 	
+	@RequestMapping(path="/business/{bid}/certification/{certid}", method=RequestMethod.GET)
+	public Certification show(@PathVariable int bid, @PathVariable int certid, HttpServletResponse res) {
+		Certification cert = dao.showCert(bid, certid); 
+		if(cert != null) {
+			res.setStatus(202);
+		}
+		else {
+			res.setStatus(404);
+		}
+		return cert; 
+	}
+	
 	@RequestMapping(path="/business/{bid}/certification", method=RequestMethod.POST)
 	public Certification createCert(@PathVariable int bid, HttpServletResponse res, @RequestBody String certJson) {
 		Certification cert = dao.createCert(bid, certJson);

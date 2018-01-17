@@ -17,6 +17,12 @@ angular.module('appModule')
 				}); 
 			}
 			
+			vm.updateCertification = function (certification) {
+				certificationService.updateCertification(certification).then(function(res){
+					reload(); 
+				}); 
+			}
+			
 			vm.destroy = function(id) {
 				certificationService.destroy(id).then(function (res) {
 					reload();

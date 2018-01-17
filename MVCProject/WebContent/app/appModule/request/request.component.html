@@ -21,8 +21,8 @@
                         <th>Vehicle VIN</th>
                         <th>Complete date</th>
                         <th>Completed</th>
-                        <th>Expire date</th>
                         <th>Post Date</th>
+                        <th>Expire date</th>
                         <th>Update</th>
                         <th>Delete</th>
                     </tr>
@@ -32,10 +32,10 @@
                         <td ng-click="vm.detailView(r.id)">{{r.id}}</td>
                         <td>{{r.estimate | currency}}</td>
                         <td>{{r.vehicle.vin}}</td>
-                        <td>{{r.completeDate | date: 'MMM dd, yy'}}</td>
+                        <td>{{r.completeDate | date: 'MM-dd-yy'}}</td>
                         <td>{{r.completed}}</td>
-                        <td>{{r.postDate | date: 'MMM dd, yy'}}</td>
-                        <td>{{r.expireDate | date: 'MMM dd, yy'}}</td>
+                        <td>{{r.postDate | date: 'MM-dd-yy'}}</td>
+                        <td>{{r.expireDate | date: 'MM-dd-yy'}}</td>
                         <td>
                             <button class="btn btn-secondary" ng-click="vm.detailView(r.id)">Update</button>
                         </td>

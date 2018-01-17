@@ -1,28 +1,54 @@
 <div class="container-fluid">
     <div class="row">
-        <div class="col-sm">
-            <div class="row">
-                <div class="col-4">
-                    <div class="list-group" id="list-tab" role="tablist">
-                        <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#/user/{{vm.user.id}}"
-                            role="tab" aria-controls="home">Home</a>
-                        <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#/user/{{vm.user.id}}/request"
-                            role="tab" aria-controls="profile">View requests</a>
-                        <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#/user/{{vm.user.id}}/vehicle"
-                            role="tab" aria-controls="messages">View vehicles</a>
-                        <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="modal" data-target="#exampleModalLong"
-                            role="tab" aria-controls="settings">View businesses</a>
-                        <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" role="tab" aria-controls="settings"
-                            href="#/user/{{vm.user.id}}/settings">Settings</a>
-                    </div>
-                </div>
+        <div class="col-sm-2">
+            <div class="list-group" id="list-tab" role="tablist">
+                <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#/user/{{vm.user.id}}"
+                    role="tab" aria-controls="home">Home</a>
+                <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#/user/{{vm.user.id}}/request"
+                    role="tab" aria-controls="profile">View requests</a>
+                <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#/user/{{vm.user.id}}/vehicle"
+                    role="tab" aria-controls="messages">View vehicles</a>
+                <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="modal" data-target="#exampleModalLong"
+                    role="tab" aria-controls="settings">View businesses</a>
+                <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" role="tab" aria-controls="settings"
+                    href="#/user/{{vm.user.id}}/settings">Settings</a>
             </div>
         </div>
         <div class="col-sm">
-            <h3>
-                Welcome, {{vm.user.firstName}} {{vm.user.lastName}}!
-            </h3>
-            <!-- Modal -->
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th colspan="4">
+                            <p>Welcome, {{vm.user.firstName}} {{vm.user.lastName}}!</p>
+                        </th>
+                        <th colspan="4">
+                            <button class="btn" ng-click="vm.getRequests()">Add a new request?</button>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>#</th>
+                        <th>Estimate</th>
+                        <th>Vehicle VIN</th>
+                        <th>Complete By</th>
+                        <th>Completed</th>
+                        <th>Post Date</th>
+                        <th>Expire Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="v in vm.activeRequest">
+                        <td>{{v.id}}</td>
+                        <td>{{v.estimate | currency}}</td>
+                        <td>{{v.vehicle.vin}}</td>
+                        <td>{{v.completeDate | date: 'MM-dd-yy'}}</td>
+                        <td>{{v.completed}}</td>
+                        <td>{{v.postDate | date: 'MM-dd-yy'}}</td>
+                        <td>{{v.expireDate | date: 'MM-dd-yy'}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-sm">
             <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -43,8 +69,7 @@
                                 <tbody>
                                     <tr ng-repeat="b in vm.businesses">
                                         <td data-dismiss="modal" ng-click="vm.getBusiness(b)">{{b.companyName}}</td>
-                                        <td>{{b.laborRate}}</td>
-                                        <button class="btn btn-secondary" ng-click="vm.detailedQuote(b.id)">Business Quotes</button>
+                                        <td>{{b.laborRate | currency}}</td>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -59,3 +84,4 @@
             </div>
         </div>
     </div>
+</div>

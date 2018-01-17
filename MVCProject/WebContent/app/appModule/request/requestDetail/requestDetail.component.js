@@ -30,7 +30,7 @@ angular.module('appModule')
             }
             vm.update = function (request) {
                 requestService.update(request).then(function (res) {
-                    reload();
+                    vm.return(); 
                 }); 
             }
             vm.destroy = function (id) {

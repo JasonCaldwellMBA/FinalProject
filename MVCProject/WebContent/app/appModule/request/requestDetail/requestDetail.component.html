@@ -1,55 +1,63 @@
 <div class="container">
-        <div class="row">
-            <div class="col-sm">
-                <!-- optional sidebar -->
-                <button class="btn btn-primary" ng-click="vm.return()">Return to Request List</button>
-            </div>
-            <div class="col-sm">
-                <ul class="list-group">
-                    <li class="list-group-item">
-                        <label>Request id: </label>
-                        <input type="text" ng-model="vm.request.description" />
-                    </li>
-                    <li class="list-group-item">
-                        <label>Vehicle VIN: </label>
-                        <input type="text" ng-model="vm.request.vehicle.vin" />
-                    </li>
-                    <li class="list-group-item">
-                        <label>Complete Date: </label>
-                        <input type="calendar" ng-model="vm.request.completeDate" />
-                    </li>
-                    <li class="list-group-item">
-                        <label>Posted: </label>
-                        <input type="text" ng-model="vm.request.postDate" />
-                    </li>
-                    <li class="list-group-item">
-                        <label>Estimate: </label>
-                        <input type="text" ng-model="vm.request.estimate" />
-                    </li>
-                    <li class="list-group-item justify-content-center">
-                        <button class="btn btn-warning" ng-click="vm.update(vm.request)">Update</button>
-                        <button class="btn btn-danger" ng-click="vm.destroy(vm.request.id)">Delete</button>
-                    </li>
-                </ul>
-            </div>
-            <div class="col-sm">
-                <!-- optional sidebar -->
-                <ul ng-repeat="q in vm.quotes" class="list-group">
-                    <li class="list-group-item">
-                        <label>Quote ID: {{q.id}}</label>
-                    </li>
-                    <li class="list-group-item">
-                    	<label>{{q.description}}</label>
-                    </li>
-                    <li class="list-group-item">
-                    	<label>Estimate: {{q.estimate}}</label>
-                    </li>
-                	<li class="list-group-item justify-content-center">
-                        <button class="btn btn-success" ng-click="vm.selectQuote(q)">Select</button>
-                    </li>
+    <div class="row">
+        <div class="col-sm">
+            <!-- optional sidebar -->
+            <button class="btn btn-primary" ng-click="vm.return()">Return to Request List</button>
+        </div>
+        <div class="col-sm">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <label>Request id: </label>
+                    <input class="form-control" type="text" ng-model="vm.request.description" />
+                </li>
+                <li class="list-group-item">
+                    <label>Vehicle VIN: </label>
+                    <input class="form-control" type="text" ng-model="vm.request.vehicle.vin" />
+                </li>
+                <li class="list-group-item">
+                    <label>Complete By: </label>
+                    <input class="form-control" type="date" ng-model="vm.request.completeDate" />
+                </li>
+                <li class="list-group-item">
+                    <label>Expires By: </label>
+                    <input class="form-control" type="date" ng-model="vm.request.expireDate" />
+                </li>
+                <li class="list-group-item">
+                    <label>Posted: </label>
+                    <input class="form-control" type="date" ng-model="vm.request.postDate" readonly/>
+                </li>
+                <li class="list-group-item">
+                    <label>Completed: </label>
+                    <input type="checkbox" ng-model="vm.request.completed" />
+                </li>
+                <li class="list-group-item">
+                    <label>Estimate: </label>
+                    <input class="form-control" type="text" ng-model="vm.request.estimate" />
+                </li>
+                <li class="list-group-item justify-content-center">
+                    <button class="btn btn-warning" ng-click="vm.update(vm.request)">Update</button>
+                    <button class="btn btn-danger" ng-click="vm.destroy(vm.request.id)">Delete</button>
+                </li>
+            </ul>
+        </div>
+        <div class="col-sm">
+            <!-- optional sidebar -->
+            <ul ng-repeat="q in vm.quotes" class="list-group">
+                <li class="list-group-item">
+                    <label>Quote ID: {{q.id}}</label>
+                </li>
+                <li class="list-group-item">
+                    <label>{{q.description}}</label>
+                </li>
+                <li class="list-group-item">
+                    <label>Estimate: {{q.estimate}}</label>
+                </li>
+                <li class="list-group-item justify-content-center">
+                    <button class="btn btn-success" ng-click="vm.selectQuote(q)">Select</button>
+                </li>
                 <!-- <ul ng-repeat="q in vm.quotes">
                     <li>{{q.description}}</li>
                 </ul> -->
-            </div>
         </div>
     </div>
+</div>

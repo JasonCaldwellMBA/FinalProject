@@ -5,7 +5,7 @@ angular.module('geolocationModule')
         service.getDistanceJson = function (origin, destination) {
             return $http({
                 method: 'GET',
-                url: 'https://maps.googleapis.com/maps/api/distancematrix/json?origins=' + origin + '&destinations=' + destination + '&key=WHERE THE KEY SHOULD GO'
+                url: 'https://maps.googleapis.com/maps/api/distancematrix/json?origins=' + origin + '&destinations=' + destination + '&key=INSERT KEY HERE'
             }); 
         }
         return service; 

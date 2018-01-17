@@ -31,7 +31,7 @@ angular.module('appModule')
 		.when('/business/:bid/certification',{
 			template: '<certification></certification>'
 		})
-		.when('/businessSettings',{
+		.when('/business/:bid/settings',{
 			template : '<business-settings></business-settings>'
 		})
 		.when('/user/:id/vehicle',{

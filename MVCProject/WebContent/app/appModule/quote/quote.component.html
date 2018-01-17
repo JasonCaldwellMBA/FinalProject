@@ -1,38 +1,47 @@
-<div class="container">
+<div class="container-fluid">
     <div class="row">
-        <div class="col-sm">
-            <div class="col-sm-8">
-                <h4>Add Quote</h4>
-                <div>
-                    <div class="collapse" id="collapseExample">
-                        <div class="card card-body">
-                            <form>
-                                <ul class="list-group">
-                                    <li class="list-group-item">
-                                        <label>Description</label>
-                                        <input type="text" ng-model="quote.description" />
-                                    </li>
-                                    <li class="list-group-item">
-                                        <label>Estimate</label>
-                                        <input type="number" ng-model="quote.estimate" />
-                                    </li>
-                                    <li class="list-group-item">
-                                        <label>Complete Date</label>
-                                        <input type="date" ng-model="quote.completeDate" />
-                                    </li>
-                                    <li class="list-group-item">
-                                        <label>Expire Date</label>
-                                        <input type="date" ng-model="quote.expireDate" />
-                                    </li>
-                                    <li class="list-group-item">
-                                        <button class="btn btn-primary" ng-click="vm.addQuote(quote)">Add Quote</button>
-                                    </li>
-                                </ul>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+        <div class="col-sm-3">
+            <div class="list-group" id="list-tab" role="tablist">
+                <a class="list-group-item list-group-item-action" id="list-home-list" data-toggle="list" href="#/business/{{vm.bizId}}" role="tab"
+                    aria-controls="home">Home</a>
+                <a class="list-group-item list-group-item-action active " id="list-profile-list" data-toggle="list" href="#/business/{{vm.bizId}}/quote"
+                    role="tab" aria-controls="profile">View all quotes</a>
+                <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#/business/{{vm.bizId}}/quote"
+                    role="tab" aria-controls="messages">View pending quotes</a>
+                <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="modal" data-target="#exampleModalLong"
+                    role="tab" aria-controls="settings">View accepted quotes</a>
+                <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="modal" data-target="#exampleModalLong"
+                    role="tab" aria-controls="settings">View requests in area</a>
+                <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" role="tab" aria-controls="settings"
+                    href="#/business/{{vm.business.id}}/settings">Settings</a>
             </div>
         </div>
+        <div class="col-sm">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Quote id</th>
+                        <th>Customer</th>
+                        <th>Post date</th>
+                        <th>Complete by</th>
+                        <th>Expire date</th>
+                        <th>Completed</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="q in vm.quotes">
+                        <td>{{q.id}}</td>
+                        <td>{{q.request.user.firstName}} {{q.request.user.lastName}}</td>
+                        <td>{{q.postDate | date: 'MM-dd-yy'}}</td>
+                        <td>{{q.completeDate | date: 'MM-dd-yy'}}</td>
+                        <td>{{q.expireDate | date: 'MM-dd-yy'}}</td>
+                        <td>{{q.completed}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- <div class="col-sm">
+            One of three columns
+        </div> -->
     </div>
 </div>

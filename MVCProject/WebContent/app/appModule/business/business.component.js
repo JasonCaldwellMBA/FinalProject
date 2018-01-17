@@ -4,6 +4,7 @@ angular.module('appModule')
 	controllerAs : 'vm',
 	controller : function(authService, businessService, quoteService, certificationService, $routeParams, $location){
 		var vm = this;
+		vm.bizId = authService.getBusToken(); 
 		vm.copy = null;
 		
 		vm.pendingQuotes = [];

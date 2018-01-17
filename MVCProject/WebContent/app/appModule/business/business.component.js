@@ -6,8 +6,9 @@ angular.module('appModule')
 		var vm = this;
 		vm.copy = null;
 		
-		vm.quotes = [];
+		vm.pendingQuotes = [];
 		vm.winningQuotes = [];
+		vm.completedQuotes = [];
 		vm.update = null;
 		
 		vm.business = null;
@@ -19,7 +20,8 @@ angular.module('appModule')
 		vm.businesses = [];
 		
 		vm.loadBusinesses = function(){
-		businessService.index().then(function(res) {
+		
+			businessService.index().then(function(res) {
 			vm.businesses = res.data;
 			console.log("Data is: ", res.data);
 		
@@ -40,17 +42,41 @@ angular.module('appModule')
 		var getQuotes = function(){
 			var id = authService.getBusToken();
 			businessService.indexQuotes(id)
-			.then(function(response){
-				vm.quotes = response.data;
-				vm.quotes.forEach(function(element){
-					if (element.acceptedRequest != null) {
-						vm.winningQuotes.put(element);
+			.then(function(res){
+                var preQuotes = res.data;
+                preQuotes.forEach(quote => {
+                    if (quote.acceptedRequest != undefined && quote.completed == false) {
+                        vm.winningQuotes.push(quote); 
+                    }
+					if (quote.acceptedRequest == undefined && quote.completed == false) {
+						vm.pendingQuotes.push(quote); 
 					}
-				})
+					if(quote.completed == true){
+						vm.completedQuotes.push(quote)
+						return;
+					}
+                })
+                preQuotes = [];
 			})
 		}
+//		var getPendingQuotes = function(){
+//			var id = authService.getBusToken();
+//			businessService.indexQuotes(id)
+//			.then(function(res){
+//				var preQuotes = res.data;
+//				preQuotes.forEach(quote => {
+//					if (quote.acceptedRequest == undefined) {
+//						vm.pendingQuotes = []; 
+//						vm.pendingQuotes.push(quote); 
+//						return; 
+//					}
+//				})
+//			})
+//		}
+	
 		
-		getQuotes($routeParams.busId);
+		getQuotes();
+//		getPendingQuotes();
 		
 		vm.detailedQuote = function(quote){
 			vm.copy = angular.copy(quote);	
@@ -69,6 +95,17 @@ angular.module('appModule')
 		
 		vm.updateQuote = function(quote){
 			quoteService.updateQuote(quote, vm.copy.id)
+			.then(function(res){
+				vm.selected = null;
+				vm.copy = null;
+				vm.update = null;
+				getQuotes();
+			})
+		}
+		
+		vm.markComplete = function(quote){
+			quote.completed = true;
+			quoteService.updateQuote(quote)
 			.then(function(res){
 				vm.selected = null;
 				vm.copy = null;

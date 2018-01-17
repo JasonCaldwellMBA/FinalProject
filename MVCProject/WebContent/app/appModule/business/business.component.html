@@ -1,8 +1,8 @@
 <h2 class="row justify-content-center">
-	{{vm.business.companyName}} homepage</h2>
+	{{vm.business.companyName}} homepage
+</h2>
 
-
-<div class="container-fluid">
+<div class="container-fluid mt-4">
 	<div class="row">
 		<div class="col-sm-3">
 			<div class="list-group" id="list-tab" role="tablist">
@@ -17,7 +17,7 @@
 				 <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#/business/{{vm.business.id}}/completedQuotes"
 						 role="tab" aria-controls="settings">View completed quotes</a>
 				<a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="modal" data-target="#exampleModalLong"
-				 role="tab" aria-controls="settings">View requests in area</a>
+				 role="tab" aria-controls="settings" href="#/business/{{vm.business.id}}/request">View requests in area</a>
 				<a class="list-group-item list-group-item-action" id="list-certifications-list" data-toggle="list" href="#/business/{{vm.business.id}}/certification"
 				 role="tab" aria-controls="messages">View certifications</a>
 				<a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" role="tab" aria-controls="settings"
@@ -25,7 +25,7 @@
 			</div>
 		</div>
 		<div class="col-sm">
-
+			<!-- main stuff -->
 		</div>
 		<div class="col-sm-3">
 			<ul class="list-group">
@@ -47,78 +47,5 @@
 					<strong>Zip Code:</strong> {{vm.business.contact.zipcode}}</li>
 			</ul>
 		</div>
-	</div>
-</div>
-
-
-
-
-<button type="button" ng-click="vm.getRequests()">View All Requests</button>
-
-<h3>{{vm.business.companyName}}'s Requests</h3>
-		<h5>Winning Quotes</h5>
-<ul>
-	<div ng-hide="vm.copy" ng-repeat="quote in vm.winningQuotes">
-		<li ng-click="vm.detailedQuote(quote)">
-			{{quote.request.user.lastName}}, {{quote.description}} {{quote.postDate | date: "MMM dd, yy"}} {{quote.request.vehicle.make}}
-			{{quote.request.vehicle.model}}
-		</li>
-	</div>
-</ul>
-		<h5>Pending Quotes</h5>
-<ul>
-	<div ng-hide="vm.copy" ng-repeat="quote in vm.pendingQuotes">
-		<li ng-click="vm.detailedQuote(quote)">
-			{{quote.request.user.lastName}}, {{quote.description}} {{quote.expireDate | date: "MMM dd, yy"}} {{quote.request.vehicle.make}}
-			{{quote.request.vehicle.model}}
-		</li>
-	</div>
-</ul>
-		<h5>Completed Quotes</h5>
-<ul>
-	<div ng-hide="vm.copy" ng-repeat="quote in vm.completedQuotes">
-		<li ng-click="vm.detailedQuote(quote)">
-			{{quote.request.user.lastName}}, {{quote.description}} {{quote.expireDate | date: "MMM dd, yy"}} {{quote.request.vehicle.make}}
-			{{quote.request.vehicle.model}}
-			<!-- {{quote.completeDate | date: "MMM dd, yy"]}} -->
-		</li>
-	</div>
-</ul>
-
-<div class="container">
-	<div class="row">
-		<div class="col-3"></div>
-		<div class="col" ng-model="vm.copy" ng-show="vm.copy">
-			<form>
-				Customer Name: {{vm.copy.request.user.firstName}} {{vm.copy.request.user.lastName}}
-				<br> Phone Number: {{vm.copy.request.user.contact.phone}}
-				<br> Vehicle Information: {{vm.copy.request.vehicle.make}}{{vm.copy.request.vehicle.model}}{{vm.copy.request.vehicle.year}}
-				<br> VIN: {{vm.copy.request.vehicle.vin}}
-				<br> Mileage: {{vm.copy.request.vehicle.mileage}}
-				<br> Vehicle Issues: {{vm.copy.request.description}}
-				<br> Work Description: {{vm.copy.description}}
-				<div ng-show="vm.update">
-					<input type="text" ng-model="vm.copy.description"></input>
-				</div>
-				<br> Expire Date : {{vm.copy.expireDate | date:"MMM dd, yy"}}
-				<div ng-show="vm.update">
-					<input type="date" ng-model="vm.copy.expireDate"></input>
-				</div>
-				<br> Estimate : {{vm.copy.estimate}}
-				<br> Completed : {{vm.copy.completed}}
-				<input type="checkbox" ng-model="vm.copy.completed" ng-change="vm.updateQuote(vm.copy)">
-				<br>
-				<div ng-show="vm.update">
-					Complete Date
-					<input type="date" name="Complete Date" ng-model="vm.copy.completeDate"></input>
-					<br>
-					<button type="button" ng-click="vm.markComplete(vm.copy)">Submit Completion</button>
-				</div>
-
-			</form>
-			<button type="button" ng-click="vm.update = true">Update Quote</button>
-			<button type="button" ng-click="vm.copy = null; vm.update = null">Return</button>
-		</div>
-		<div class="col-3"></div>
 	</div>
 </div>

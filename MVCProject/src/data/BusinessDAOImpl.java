@@ -154,6 +154,11 @@ public class BusinessDAOImpl implements BusinessDAO {
 	}
 	
 	@Override
+	public Certification showCert(int uid, int certid) {
+		return em.find(Certification.class, certid);
+	}
+	
+	@Override
 	public Certification createCert(int bid, String certJson) {
 		ObjectMapper mapper = new ObjectMapper();
 		Certification certification = null;

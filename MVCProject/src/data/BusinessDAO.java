@@ -26,6 +26,7 @@ public interface BusinessDAO {
 	Contact showContact(int bid, int cid);
 	
 	public List<Certification> indexCert(int bid);
+	public Certification showCert(int bid, int certid);
 	public Certification createCert(int bid, String certJson);
 	public Certification updateCert(int bid, int certid, String certJson);
 	public Boolean deleteCert(int bid, int certid);

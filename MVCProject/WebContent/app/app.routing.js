@@ -40,6 +40,9 @@ angular.module('appModule')
 		.when('/business/:bid/certification',{
 			template: '<certification></certification>'
 		})
+		.when('/business/:bid/certification/:certid',{
+			template: '<certification-detail></certification-detail>'
+		})
 		.when('/business/:bid/settings',{
 			template : '<business-settings></business-settings>'
 		})
@@ -49,7 +52,8 @@ angular.module('appModule')
 		.when('/user/:id/request',{
 			template: '<request></request>'
 		})
-		.when('/request',{
+		//Comeback to
+		.when('/business/:id/request',{
 			template: '<business-request></business-request>'
 		})
 		.when('/user/:uid/business/:bid',{

@@ -1,0 +1,75 @@
+
+<div class="container">
+        <div class="row">
+            <div class="col-sm">
+                <!-- optional sidebar -->
+                <button class="btn btn-primary" ng-click="vm.return()">Return to Quotes</button>
+            </div>
+            <div class="col-sm" ng-show="vm.detailFlag">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <label>Customer Name: {{vm.quote.request.user.firstName}} {{vm.quote.request.user.lastName}}</label><br>
+                    </li>
+                    <li class="list-group-item">
+                      	<label>Vehicle: {{vm.quote.request.vehicle.year}} {{vm.quote.request.vehicle.make}} {{vm.quote.request.vehicle.model}} VIN: {{vm.quote.request.vehicle.vin}}</label><br>
+                    </li>
+                    <li class="list-group-item">
+                      	<label>Request Description: {{vm.quote.request.description}}</label><br>
+                    </li>
+                    <li class="list-group-item">
+                      	<label>Quote Description: {{vm.quote.description}}</label><br>
+                    </li>
+                    <li class="list-group-item">
+                      	<label>Request PostDate: {{vm.quote.request.postDate}}</label><br>
+                    </li>
+                    <li class="list-group-item">
+                      	<label>Quote PostDate: {{vm.quote.postDate}}</label><br>
+                    </li>
+                    <li class="list-group-item">
+                      	<label>Quote Expire Date: {{vm.quote.request.expireDate}}</label><br>
+                    </li>
+                    <li class="list-group-item">
+                      	<label>Request Estimate: {{vm.quote.request.estimate}}</label><br>
+                    </li>
+                    <li class="list-group-item">
+                      	<label>Quote Estimate: {{vm.quote.estimate}}</label><br>
+                    </li>
+                    <li class="list-group-item">
+                      	<label>Request Expire Date: {{vm.quote.request.expireDate}}</label><br>
+                    </li>
+                    <li class="list-group-item">
+                      	<label>Complete: {{vm.quote.completed}}</label><br>
+                    </li>
+                    <li class="list-group-item justify-content-center">
+                    		<button type="button" class="btn btn-warning" ng-click="vm.returnToQuotes()">Return</button>
+						<button type="button" class="btn btn-success" ng-click="vm.updateFlag = true; vm.detailFlag = false">Update</button>
+                    </li>
+                </ul>
+		</div>
+        <div class="col-sm" ng-show="vm.updateFlag">
+                <ul class="list-group">
+
+                    <li class="list-group-item">
+                      	<label>Quote Description:</label>
+                      	<input class="form-control" type="text" ng-model="vm.quote.description">
+                    </li>
+                    <li class="list-group-item">
+                      	<label>Quote Expire Date: </label>
+                      	<input class="form-control" type="text" ng-model="vm.quote.expireDate">
+                    </li>
+                    <li class="list-group-item">
+                      	<label>Quote Estimate: </label>
+                      	<input class="form-control" type="text" ng-model="vm.quote.estimate">
+                    </li>
+                    <li class="list-group-item">
+                      	<label>Complete Date:</label>
+                      	<input class="form-control" type="text" ng-model="vm.quote.completeDate">
+                    </li>
+                    <li class="list-group-item justify-content-center">
+                    		<button type="button" class="btn btn-warning" ng-click="vm.updateFlag = false; vm.detailFlag = true">Return</button>
+						<button type="button" class="btn btn-success" ng-click="vm.updateQuote(vm.quote)">Submit Changes</button>
+                    </li>
+                </ul>
+		</div>
+	</div>
+</div>

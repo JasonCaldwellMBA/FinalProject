@@ -6,31 +6,36 @@
             <div class="list-group" id="list-tab" role="tablist">
                 <a class="list-group-item list-group-item-action" id="list-home-list" data-toggle="list" href="#/business/{{vm.bizId}}" role="tab"
                     aria-controls="home">Home</a>
-                <a class="list-group-item list-group-item-action active " id="list-profile-list" data-toggle="list" href="#/business/{{vm.bizId}}/quote"
+                <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#/business/{{vm.bizId}}/quote"
                     role="tab" aria-controls="profile">View all quotes</a>
-                <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#/business/{{vm.bizId}}/pendingQuotes"
+                <a class="list-group-item list-group-item-action active" id="list-messages-list" data-toggle="list" href="#/business/{{vm.bizId}}/pendingQuotes"
                     role="tab" aria-controls="messages">View pending quotes</a>
                 <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#/business/{{vm.bizId}}/acceptedQuotes"
                     role="tab" aria-controls="settings">View accepted quotes</a>
                 <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#/business/{{vm.bizId}}/completedQuotes"
                     role="tab" aria-controls="settings">View completed quotes</a>
-                <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="modal" href="#/business/vm.bizId/request"
+                <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="modal" data-target="#exampleModalLong"
                     role="tab" aria-controls="settings">View requests in area</a>
+                <a class="list-group-item list-group-item-action" id="list-certifications-list" data-toggle="list" href="#/business/{{vm.bizId}}/certification"
+				 	role="tab" aria-controls="messages">View certifications</a>
                 <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" role="tab" aria-controls="settings"
                     href="#/business/{{vm.business.id}}/settings">Settings</a>
             </div>
         </div>
         
         <!-- Quote Table -->
-        <div class="col-sm">
+        <div ng-hide="vm.updateFlag" class="col-sm">
             <table class="table">
                 <thead>
                     <tr>
                         <th>Quote id</th>
                         <th>Customer</th>
+                        <th>Asking Price</th>
+                        <th>Quote Price</th>
                         <th>Post date</th>
                         <th>Expire date</th>
                         <th>View Details</th>
+                        <th>Update</th>
                         <th>Delete</th>
                     </tr>
                 </thead>
@@ -40,9 +45,12 @@
                     <tr ng-repeat="q in vm.pendingQuotes">
                         <td>{{q.id}}</td>
                         <td>{{q.request.user.firstName}} {{q.request.user.lastName}}</td>
+                        <td>{{q.request.estimate}}</td>
+                        <td>{{q.estimate}}</td>
                         <td>{{q.postDate | date: 'MM-dd-yy'}}</td>
                         <td>{{q.expireDate | date: 'MM-dd-yy'}}</td>
-                        <td><button type="button" ng-click="vm.showDetails(q)">View Details</button></td>
+                        <td><button type="button" ng-click="vm.viewDetails(q)">View Details</button></td>
+                        <td><button type="button" ng-click="vm.update(q)">Update</button></td>
                         <td><button type="button" ng-click="vm.delete(q.id)">Delete</button></td>
                     </tr>
                     <!-- End Pending Quotes -->
@@ -50,8 +58,30 @@
                 </tbody>
             </table>
         </div>
-        <!-- <div class="col-sm">
-            One of three columns
-        </div> -->
+        <div class="col-sm" ng-show="vm.updateFlag">
+                <ul class="list-group">
+
+                    <li class="list-group-item">
+                      	<label>Quote Description:</label>
+                      	<input class="form-control" type="text" ng-model="vm.quote.description">
+                    </li>
+                    <li class="list-group-item">
+                      	<label>Quote Expire Date: </label>
+                      	<input class="form-control" type="text" ng-model="vm.quote.expireDate">
+                    </li>
+                    <li class="list-group-item">
+                      	<label>Quote Estimate: </label>
+                      	<input class="form-control" type="text" ng-model="vm.quote.estimate">
+                    </li>
+                    <li class="list-group-item">
+                      	<label>Complete Date:</label>
+                      	<input class="form-control" type="text" ng-model="vm.quote.completeDate">
+                    </li>
+                    <li class="list-group-item justify-content-center">
+                    		<button type="button" class="btn btn-warning" ng-click="vm.updateFlag = false">Return</button>
+						<button type="button" class="btn btn-success" ng-click="vm.updateQuote(vm.quote)">Submit Changes</button>
+                    </li>
+                </ul>
+		</div> 
     </div>
 </div>

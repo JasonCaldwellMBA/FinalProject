@@ -13,7 +13,7 @@ angular.module('appModule')
         service.indexAllRequests = function () {
             return $http({
                 method: 'GET',
-                url: 'api/request'
+                url: BASE_URL + 'request'
             })
         }
         service.show = function (id) {
@@ -26,7 +26,7 @@ angular.module('appModule')
         service.showForBiz = function (request) {
             return $http({
                 method: 'GET',
-                url: 'api/request/' + request.id
+                url: BASE_URL + 'request/' + request.id
             })
         }
         service.create = function (request) {

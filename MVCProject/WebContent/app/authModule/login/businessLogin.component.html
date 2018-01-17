@@ -4,7 +4,7 @@
                 <!-- optional sidebar -->
             </div>
             <div class="col-sm">
-                <form>
+                <div class="bg-light mt-4 p-4 rounded">
                     <div class="form-group">
                         <label for="txtUserName">Login Name</label>
                         <input type="text" class="form-control"id="txtUsername" placeholder="Business Login" ng-model="business.loginName" required>
@@ -14,7 +14,7 @@
                         <input type="password" class="form-control" id="txtPassword" placeholder="Password" ng-model="business.loginPassword" required>
                     </div>
                     <button ng-click="vm.setBusiness(business)" class="btn btn-primary">Login</button>
-                </form>
+                </div>
             </div>
             <div class="col-sm">
                 <!-- optional sidebar -->

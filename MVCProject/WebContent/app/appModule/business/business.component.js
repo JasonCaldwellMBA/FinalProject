@@ -21,11 +21,8 @@ angular.module('appModule')
 		vm.businesses = [];
 		
 		vm.loadBusinesses = function(){
-		
 			businessService.index().then(function(res) {
-			vm.businesses = res.data;
-			console.log("Data is: ", res.data);
-		
+			vm.businesses = res.data;		
 		});
 		}
 		vm.loadBusinesses();

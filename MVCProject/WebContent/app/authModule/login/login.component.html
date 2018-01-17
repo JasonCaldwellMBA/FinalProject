@@ -1,23 +1,24 @@
 <div class="container">
-        <div class="row">
-            <div class="col-sm">
-                <!-- optional sidebar -->
-            </div>
-            <div class="col-sm">
-                <form>
-                    <div class="form-group">
-                        <label for="txtUserName">Username</label>
-                        <input type="text" class="form-control"id="txtUsername" placeholder="Username" ng-model="user.username" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="txtPassword">Password</label>
-                        <input type="password" class="form-control" id="txtPassword" placeholder="Password" ng-model="user.password" required>
-                    </div>
-                    <button ng-click="vm.setUser(user)" class="btn btn-primary">Login</button>
-                </form>
-            </div>
-            <div class="col-sm">
-                <!-- optional sidebar -->
+    <div class="row">
+        <div class="col-sm">
+            <!-- optional sidebar -->
+        </div>
+        <div class="col-sm-5">
+            <div class="bg-light mt-4 p-4 rounded" id="login-container">
+                <h5 class="row justify-content-center text-light">User login</h5>
+                <div class="form-group">
+                    <label for="txtUserName">Username</label>
+                    <input type="text" class="form-control" id="txtUsername" placeholder="Username" ng-model="user.username" required>
+                </div>
+                <div class="form-group">
+                    <label for="txtPassword">Password</label>
+                    <input type="password" class="form-control" id="txtPassword" placeholder="Password" ng-model="user.password" required>
+                </div>
+                <button ng-click="vm.setUser(user)" class="btn btn-primary">Login</button>
             </div>
         </div>
+        <div class="col-sm">
+            <!-- optional sidebar -->
+        </div>
     </div>
+</div>

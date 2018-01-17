@@ -2,7 +2,7 @@ angular.module('authModule')
 	.component('register', {
 		templateUrl: 'app/authModule/register/register.component.html',
 		controllerAs: 'vm',
-		controller: function(authService, $location){
+		controller: function(authService, $location, $cookies){
 			var vm = this; 
 			vm.user = null; 
 			vm.error = null; 
@@ -36,10 +36,15 @@ angular.module('authModule')
 				}; 
 			}
 			vm.registerUser = function () {
+				var lat = $cookies.get('latitude'); 
+				var long = $cookies.get('longitude'); 
+				vm.user.contact.latitude = lat; 
+				vm.user.contact.longitude = long; 
 				authService.register(vm.user)
 					.then(function (res) {
 						var id = res.data.id; 
-                        authService.setToken(res.data.id); 
+						authService.setToken(res.data.id); 
+						console.log(res.data); 
 						$location.path('/user/' + id);
 					}).catch(console.error); 
 			}

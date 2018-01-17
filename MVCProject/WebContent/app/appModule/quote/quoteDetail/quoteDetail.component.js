@@ -5,6 +5,7 @@ angular.module('appModule')
 		controller : function(quoteService, authService, $location, $routeParams){
 			var vm = this;
 			vm.quote = null;
+			vm.bizId = authService.getBusToken();
 			vm.updateFlag = false;
 			vm.detailFlag = true;
 			
@@ -20,7 +21,7 @@ angular.module('appModule')
 				quoteService.updateQuote(quote).then(function(res){
 					vm.detailFlag = true;
 				})
-				
+	
 			}
 			
 		}

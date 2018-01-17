@@ -19,6 +19,9 @@ angular.module('appModule')
 				})
 				preQuotes = [];
 			})	
+	    		vm.viewDetails = function(quote){
+	    			$location.path("business/"+ vm.bizId + "/quote/" + quote.id);
+	    		};
 			
 		}
 	})

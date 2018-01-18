@@ -6,6 +6,7 @@ angular.module('appModule')
 			var vm = this;
 			vm.updatedBusiness = null;
 			vm.business = null;
+			vm.bizId = authService.getBusToken();
 
 			//init methods
 			businessService.show($cookies.get('busId')).then(function (res) {
@@ -36,6 +37,32 @@ angular.module('appModule')
 				businessService.show($cookies.get('busId')).then(function (res) {
 					vm.business = angular.copy(res.data);
 				});
+			}
+			
+			//functions for sidebar routing
+			vm.home = function(){
+				$location.path("business/" + vm.bizId);
+			}
+			vm.viewAllQuotes = function(){
+				$location.path("business/" + vm.bizId + "/quote");
+			}
+			vm.viewPendingQuotes = function(){
+				$location.path("business/" + vm.bizId + "/pendingQuotes");
+			}
+			vm.viewAcceptedQuotes = function(){
+				$location.path("business/" + vm.bizId + "/acceptedQuotes");
+			}
+			vm.viewCompletedQuotes = function(){
+				$location.path("business/" + vm.bizId + "/completedQuotes");
+			}
+			vm.viewRequests = function(){
+				$location.path("business/" + vm.bizId + "/request");
+			}
+			vm.viewCertifications = function(){
+				$location.path("business/" + vm.bizId + "/certification");
+			}
+			vm.viewSettings = function(){
+				$location.path("business/" + vm.bizId + "/settings");
 			}
 		}
 	})	

@@ -1,32 +1,43 @@
-<div ng-show="!vm.user" class="container">
+<div ng-show="!vm.user" class="container mt-4">
     <div class="row">
         <div class="col-sm">
             <!-- optional sidebar -->
         </div>
         <div class="col-sm">
-            <div class="bg-light mt-4 p-4 rounded">
-                <div class="form-group">
-                    <label for="txtUserName">Username</label>
-                    <input type="text" class="form-control" id="txtUsername" placeholder="Username" ng-model="user.username" required>
+            <div class="card" style="width: 40rem;">
+                <img class="card-img-top" src="css/img/signup-car.jpeg" alt="Card image cap">
+                <div class="card-body">
+                    <div class="row justify-content-center">
+                        <h5 class="card-title">A network of customers & mechanics</h5>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="txtUsername" placeholder="Username" ng-model="user.username" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="txtFirstName" placeholder="First name" ng-model="user.firstName" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="txtLastName" placeholder="Last Name" ng-model="user.lastName" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" id="txtPassword" ng-model="user.password" placeholder="Password" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" id="txtConfirmPwd" ng-model="user.confirm" placeholder="Confirm password">
+                    </div>
+                    <label>{{vm.error}}</label>
+                    <div class="row justify-content-center">
+                        <button id="signup-next" ng-click="vm.setUser(user)" class="btn btn-primary">Next</button>
+                    </div>
+                    <div class="justify-content-center">
+                        <p>Already have an account?
+                            <a href="#/login">Log-in</a>
+                        </p>
+                        <p>Are you a business?
+                            <a href="#/registerBusiness">register here</a>
+                        </p>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="txtFirstName">FirstName</label>
-                    <input type="text" class="form-control" id="txtFirstName" placeholder="First name" ng-model="user.firstName" required>
-                </div>
-                <div class="form-group">
-                    <label for="txtLastName">Last Name</label>
-                    <input type="text" class="form-control" id="txtLastName" placeholder="Last Name" ng-model="user.lastName" required>
-                </div>
-                <div class="form-group">
-                    <label for="txtPassword">Password</label>
-                    <input type="password" class="form-control" id="txtPassword" ng-model="user.password" placeholder="Password" required>
-                </div>
-                <div class="form-group">
-                    <label for="txtConfirmPwd">Confirm Password</label>
-                    <input type="password" class="form-control" id="txtConfirmPwd" ng-model="user.confirm" placeholder="Password">
-                </div>
-                <label>{{vm.error}}</label>
-                <button ng-click="vm.setUser(user)" class="btn btn-primary">Next</button>
             </div>
         </div>
         <div class="col-sm">
@@ -41,37 +52,36 @@
             <!-- optional sidebar -->
         </div>
         <div class="col-sm">
-            <div class="bg-light mt-4 p-4 rounded">
-                <div class="form-group">
-                    <label for="txtAddress1">Address 1</label>
-                    <input type="text" class="form-control" ng-model="contact.address1" id="txtAddress1" placeholder="Enter address1">
+            <div class="card" style="width: 40rem;">
+                <img class="card-img-top" src="css/img/signup-car.jpeg" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">A network of customers & mechanics</h5>
+                    <div class="form-group">
+                        <input type="text" class="form-control" ng-model="contact.address1" id="txtAddress1" placeholder="Enter address1">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="txtAddress2" placeholder="First name" ng-model="contact.address2">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="txtZipcode" ng-model="contact.zipcode" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="txtCity" ng-model="contact.city">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="txtState" ng-model="contact.state">
+                    </div>
+                    <div class="form-group">
+                        <input type="phone" class="form-control" id="txtPhone" ng-model="contact.phone" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" id="txtEmail" ng-model="contact.email" required>
+                    </div>
+                    <div class="row justify-content-center">
+                        <button id="signup-back" ng-click="vm.return()" class="btn btn-primary">Back</button>
+                        <button id="signup-register" ng-click="vm.addContact(contact)" class="btn btn-primary">Register</button>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="txtAddress2">Address 2</label>
-                    <input type="text" class="form-control" id="txtAddress2" placeholder="First name" ng-model="contact.address2">
-                </div>
-                <div class="form-group">
-                    <label for="txtZipcode">Zip code</label>
-                    <input type="text" class="form-control" id="txtZipcode" ng-model="contact.zipcode" required>
-                </div>
-                <div class="form-group">
-                    <label for="txtCity">City</label>
-                    <input type="text" class="form-control" id="txtCity" ng-model="contact.city">
-                </div>
-                <div class="form-group">
-                    <label for="txtState">State</label>
-                    <input type="text" class="form-control" id="txtState" ng-model="contact.state">
-                </div>
-                <div class="form-group">
-                    <label for="txtPhone">Phone</label>
-                    <input type="phone" class="form-control" id="txtPhone" ng-model="contact.phone" required>
-                </div>
-                <div class="form-group">
-                    <label for="txtEmail">Email</label>
-                    <input type="email" class="form-control" id="txtEmail" ng-model="contact.email" required>
-                </div>
-                <button ng-click="vm.return()" class="btn btn-primary">Back</button>
-                <button ng-click="vm.addContact(contact)" class="btn btn-primary">Register</button>
             </div>
         </div>
         <div class="col-sm">

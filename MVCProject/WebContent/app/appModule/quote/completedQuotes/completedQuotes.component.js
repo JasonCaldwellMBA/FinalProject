@@ -22,6 +22,32 @@ angular.module('appModule')
 	    		vm.viewDetails = function(quote){
 	    			$location.path("business/"+ vm.bizId + "/quote/" + quote.id);
 	    		};
+	    		
+	    		//functions for sidebar routing
+	    		vm.home = function(){
+	    			$location.path("business/" + vm.bizId);
+	    		}
+	    		vm.viewAllQuotes = function(){
+	    			$location.path("business/" + vm.bizId + "/quote");
+	    		}
+	    		vm.viewPendingQuotes = function(){
+	    			$location.path("business/" + vm.bizId + "/pendingQuotes");
+	    		}
+	    		vm.viewAcceptedQuotes = function(){
+	    			$location.path("business/" + vm.bizId + "/acceptedQuotes");
+	    		}
+	    		vm.viewCompletedQuotes = function(){
+	    			$location.path("business/" + vm.bizId + "/completedQuotes");
+	    		}
+	    		vm.viewRequests = function(){
+	    			$location.path("business/" + vm.bizId + "/request");
+	    		}
+	    		vm.viewCertifications = function(){
+	    			$location.path("business/" + vm.bizId + "/certification");
+	    		}
+	    		vm.viewSettings = function(){
+	    			$location.path("business/" + vm.bizId + "/settings");
+	    		}
 			
 		}
 	})

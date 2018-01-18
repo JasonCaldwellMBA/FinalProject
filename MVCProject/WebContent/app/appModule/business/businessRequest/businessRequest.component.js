@@ -2,17 +2,23 @@ angular.module('appModule')
 	.component('businessRequest', {
 		templateUrl: 'app/appModule/business/businessRequest/businessRequest.component.html',
 		controllerAs: 'vm',
-		controller: function (requestService, $routeParams, businessService, quoteService, distanceMatrixService, authService) {
+		controller: function (requestService, $routeParams, $location, businessService, quoteService, distanceMatrixService, authService) {
 			var vm = this;
 			vm.business = null;
 			vm.requests = [];
 			vm.selected = null;
 			vm.quoteFlag = null;
-
+			vm.business = null;
+			vm.bizId = authService.getBusToken();
+		
+            businessService.show($routeParams.bid).then(function (res) {
+                vm.business = angular.copy(res.data);
+            }); 
+			
 			//init Methods
 			businessService.show($routeParams.id).then(function (res) {
 				vm.business = res.data;
-				console.log(vm.business);
+//				console.log(vm.business);
 				requestService.indexAllRequests().then(function (res) {
 					//UNCOMMENT FOR PRACTICAL PRESENTATION
 					// var MAX_DISTANCE = 50;
@@ -57,6 +63,32 @@ angular.module('appModule')
 				quoteService.createQuote(quote, vm.selected.id).then(function (res) {
 					vm.quoteFlag = null;
 				});
+			}
+			
+			//functions for sidebar routing
+			vm.home = function(){
+				$location.path("business/" + vm.bizId);
+			}
+			vm.viewAllQuotes = function(){
+				$location.path("business/" + vm.bizId + "/quote");
+			}
+			vm.viewPendingQuotes = function(){
+				$location.path("business/" + vm.bizId + "/pendingQuotes");
+			}
+			vm.viewAcceptedQuotes = function(){
+				$location.path("business/" + vm.bizId + "/acceptedQuotes");
+			}
+			vm.viewCompletedQuotes = function(){
+				$location.path("business/" + vm.bizId + "/completedQuotes");
+			}
+			vm.viewRequests = function(){
+				$location.path("business/" + vm.bizId + "/request");
+			}
+			vm.viewCertifications = function(){
+				$location.path("business/" + vm.bizId + "/certification");
+			}
+			vm.viewSettings = function(){
+				$location.path("business/" + vm.bizId + "/settings");
 			}
 		}
 	})

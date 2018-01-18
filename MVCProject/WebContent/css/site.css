@@ -4,12 +4,16 @@ html{
     position: relative;
     min-height: 100%;
     font-family: 'Lato', sans-serif; 
+    background-color:#FAFBFC;
 }
 body {
+    background-color:#FAFBFC;
     margin-bottom: 60px; /* Margin bottom by footer height */
 }
-
-
+#login-button, #signup-next, #signup-back, #signup-register{
+    width:200px;
+    border-radius:25px;
+}
 .home-form {
 	width : 100%;
 	z-index : 10000;
@@ -17,17 +21,14 @@ body {
 	left : 25%;
 	top : 25%;
 }
-
 .home-form > button {
 	margin-right : auto;
 	margin-left : auto;
 	width : 50%;
 }
-
 .home-form > input { 
 	width : 50%;
 }
-
 #bg {
 	height:100%;
 	width:100%;
@@ -61,7 +62,11 @@ background-color: grey; Green
 #input {
 	position: absolute;
     top: 50%;
+
      background-color: white; Green
+
+    background-color: white; /* Green */
+
     border: grey;
     color: lightgrey;
     padding: 15px 32px;
@@ -70,4 +75,7 @@ background-color: grey; Green
     display: block;
     font-size: 24px;
     border-radius: 30px;
+}
+.list-group-item {
+	cursor : pointer;
 }

@@ -26,7 +26,6 @@ public class BusinessController {
 	
 	@RequestMapping(path="/business", method=RequestMethod.GET)
 	public List<Business> index(HttpServletResponse res){
-		System.out.println("In Controller");
 		return dao.index();
 	}
 	

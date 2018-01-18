@@ -37,7 +37,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="q in vm.allQuotes  | orderBy:'lastName'">
+                    <tr ng-repeat="q in vm.allQuotes | orderBy:'lastName'">
                         <td>{{q.id}}</td>
                         <td>{{q.request.user.firstName}} {{q.request.user.lastName}}</td>
                         <td>{{q.postDate | date: 'MM-dd-yy'}}</td>

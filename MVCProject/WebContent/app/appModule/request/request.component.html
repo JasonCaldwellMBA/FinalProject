@@ -28,7 +28,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="r in vm.requests  | orderBy:'estimate'">
+                    <tr ng-repeat="r in vm.requests | orderBy:'estimate'">
                         <td ng-click="vm.detailView(r.id)">{{r.id}}</td>
                         <td>{{r.estimate | currency}}</td>
                         <td>{{r.vehicle.vin}}</td>

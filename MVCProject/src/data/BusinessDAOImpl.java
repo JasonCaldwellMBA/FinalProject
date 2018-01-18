@@ -27,7 +27,6 @@ public class BusinessDAOImpl implements BusinessDAO {
 
 	@Override
 	public List<Business> index() {
-		System.out.println("in DAO");
 		String query = "Select b from Business b";
 		return em.createQuery(query, Business.class)
 				 .getResultList();
@@ -43,7 +42,6 @@ public class BusinessDAOImpl implements BusinessDAO {
 		ObjectMapper mapper = new ObjectMapper();
 		Business business = null;
 		try {
-			System.out.println(businessJson);
 			business = mapper.readValue(businessJson, Business.class);
 			em.persist(business);
 			em.flush();

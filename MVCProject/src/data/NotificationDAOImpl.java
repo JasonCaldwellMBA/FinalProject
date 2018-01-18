@@ -22,7 +22,7 @@ public class NotificationDAOImpl implements NotificationDAO{
 	
 	@Override
 	public List<Notification> index(int uid) {
-		String query = "SELECT n FROM Notification n WHERE n.user.id = :uid"; 
+		String query = "SELECT n FROM Notification n WHERE (n.user.id = :uid) AND (n.type = 'user') ";
 		
 		return em.createQuery(query, Notification.class)
 				.setParameter("uid", uid)
@@ -58,7 +58,7 @@ public class NotificationDAOImpl implements NotificationDAO{
 
 	@Override
 	public List<Notification> bizIndex(int bizId) {
-		String query = "SELECT n FROM Notification n WHERE n.business.id = :bizId"; 
+		String query = "SELECT n FROM Notification n WHERE (n.business.id = :bizId) AND (n.type = 'business') "; 
 		
 		return em.createQuery(query, Notification.class)
 				.setParameter("bizId", bizId)

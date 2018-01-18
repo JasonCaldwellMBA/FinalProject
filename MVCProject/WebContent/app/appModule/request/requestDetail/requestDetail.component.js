@@ -29,7 +29,8 @@ angular.module('appModule')
                     var notification = {
                         business: quote.business,
                         user: quote.request.user,
-                        message: vm.request.user.firstName + ' ' + vm.request.user.lastName + ' selected your quote for #Quote id: ' + quote.id + ', #Request id: ' + vm.request.id
+                        message: vm.request.user.firstName + ' ' + vm.request.user.lastName + ' selected your quote for #Quote id: ' + quote.id + ', #Request id: ' + vm.request.id,
+                        type = "business"
                     };
 
                     console.log(notification);

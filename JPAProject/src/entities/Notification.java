@@ -20,6 +20,8 @@ public class Notification {
 	@JoinColumn(name="business_id")
 	private Business business; 
 	private String message;
+	private String type; 
+	
 	public User getUser() {
 		return user;
 	}
@@ -40,5 +42,11 @@ public class Notification {
 	}
 	public int getId() {
 		return id;
+	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
 	} 
 }

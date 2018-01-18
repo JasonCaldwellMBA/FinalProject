@@ -15,7 +15,6 @@ angular.module('notificationModule')
             }); 
         }
         service.create = function (notification) {
-            console.log(notification); 
             return $http({
                 method: 'POST',
                 url: BASE_URL + 'create/notification',
@@ -25,10 +24,14 @@ angular.module('notificationModule')
                 data: notification
             }); 
         }
-        service.destroy = function (notificationId) {
+        service.destroy = function (n) {
+            console.log(n.id); 
             return $http({
                 method: 'DELETE',
-                url: BASE_URL + 'notification/' + notificationId
+                url: BASE_URL + 'notification/' + n.id,
+                headers: {
+                    'content-type': 'application/json'
+                }
             }); 
         }
         return service; 

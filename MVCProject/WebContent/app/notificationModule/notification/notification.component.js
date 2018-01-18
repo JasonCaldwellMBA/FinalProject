@@ -5,17 +5,20 @@ angular.module('notificationModule')
         controller : function (authService, notificationService) {
             var vm = this;
             vm.notifications = null;
+            vm.size = null; 
             //init load 
-            if (authService.getToken()) {
+            if (authService.isUser()) {
                 var userId = authService.getToken();
                 notificationService.index(userId).then(function (res) {
                     vm.notifications = res.data;
+                    vm.size = vm.notifications.length
                 });
             }
-            else if (authService.getBusToken()) {
+            else if (authService.isBus()) {
                 var bizId = authService.getBusToken();
                 notificationService.bizIndex(bizId).then(function (res) {
                     vm.notifications = res.data;
+                    vm.size = vm.notifications.length
                 });
             }
 
@@ -27,16 +30,18 @@ angular.module('notificationModule')
             }
             //HELPER
             var reload = function () {
-                if (authService.getToken()) {
+                if (authService.isUser()) {
                     var userId = authService.getToken();
                     notificationService.index(userId).then(function (res) {
                         vm.notifications = res.data;
+                        vm.size = vm.notifications.length
                     });
                 }
-                else if (authService.getBusToken()) {
+                else if (authService.isBus()) {
                     var bizId = authService.getBusToken();
                     notificationService.bizIndex(bizId).then(function (res) {
                         vm.notifications = res.data;
+                        vm.size = vm.notifications.length
                     });
                 }
             }

@@ -66,7 +66,8 @@ angular.module('appModule')
 					var notification = {
 						business: vm.business,
 						user : vm.selected.user,
-						message : vm.business.companyName + ' sent a quote for #Request id: ' + vm.selected.id + ', Vehicle: ' + vm.selected.vehicle.make + ' ' + vm.selected.vehicle.model
+						message: vm.business.companyName + ' sent a quote for #Request id: ' + vm.selected.id + ', Vehicle: ' + vm.selected.vehicle.make + ' ' + vm.selected.vehicle.model,
+						type: "user"
 					}; 
 
 					console.log(notification); 

@@ -2,9 +2,11 @@ angular.module('appModule')
 	.component('userComponent', {
 		templateUrl: 'app/appModule/user/user.component.html',
 		controllerAs: 'vm',
-		controller: function ($routeParams, $location, userService, businessService, requestService, distanceMatrixService) {
+		controller: function ($routeParams, $location, userService, businessService, requestService, distanceMatrixService, notificationService) {
 			var vm = this;
 			vm.user = null;
+			vm.notifications = null; 
+			vm.size = null; 
 			vm.activeRequest = [];
 			vm.businesses = [];
 			//Init load
@@ -37,6 +39,14 @@ angular.module('appModule')
 					//remove for presentation
 					vm.businesses = res.data
 				});
+				notificationService.index($routeParams.id).then(function (res) {
+					console.log(res)
+					vm.notifications = res.data; 
+					vm.size = vm.notifications.length; 
+					// if (res.data = null) {
+					// 	vm.size = 0; 
+					// }
+				})
 			});
 
 			requestService.index().then(function (res) {
@@ -52,7 +62,6 @@ angular.module('appModule')
 				$location.path("/user/" + $routeParams.id + "/vehicle");
 			}
 			vm.getSettings = function () {
-				console.log('hello');
 				$location.path("/user/" + $routeParams.id + '/settings');
 			}
 			vm.getRequests = function () {

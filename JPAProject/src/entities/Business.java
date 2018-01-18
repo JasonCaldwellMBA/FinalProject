@@ -43,7 +43,9 @@ public class Business {
 	@OneToMany(mappedBy="business")
 	private List<Certification> certifications;
 	private boolean active; 
-
+	@JsonIgnore
+	@OneToMany(mappedBy="business")
+	private List<Notification> notifications; 
 	
 	@Column(name = "login_name")
 	private String loginName;
@@ -115,6 +117,12 @@ public class Business {
 	}
 	public void setLoginPassword(String loginPassword) {
 		this.loginPassword = loginPassword;
+	}
+	public List<Notification> getNotifications() {
+		return notifications;
+	}
+	public void setNotifications(List<Notification> notifications) {
+		this.notifications = notifications;
 	}
 	@Override
 	public String toString() {

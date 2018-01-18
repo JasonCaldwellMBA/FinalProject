@@ -6,10 +6,14 @@ angular.module('appModule')
             var vm = this; 
             vm.quotes = null; 
             vm.business = null; 
+            var business = null;
             //init load
             businessService.show($routeParams.bid).then(function (res) {
-                vm.business = angular.copy(res.data);
+                vm.business = res.data;
             }); 
+
+            vm.googleMapsUrl = "https://maps.googleapis.com/maps/api/js?key=AIzaSyCiTHajsiPtjxhedochfeIEsXprCNNQFfU";
+
         
             vm.update = function (business) {
                 businessService.update(request).then(function (res) {
@@ -30,18 +34,8 @@ angular.module('appModule')
                 }); 
             }
             
-            vm.googleMapsUrl = "https://maps.googleapis.com/maps/api/js?key=AIzaSyCiTHajsiPtjxhedochfeIEsXprCNNQFfU"
-            	vm.mapOptions = null;
 
-            
-            vm.mapOptions = {
-                      center: {lat: vm.business.latitude, lng: vm.business.longitude},
-                      markers : [
-                        {lat: vm.business.latitude, lng: vm.business.longitude, title : "center"},
 
-                      ],
-                      zoom: 8
-                 };
 
         }
     }); 

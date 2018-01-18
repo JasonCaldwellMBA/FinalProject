@@ -309,9 +309,9 @@ DEFAULT CHARACTER SET = utf8;
 DROP TABLE IF EXISTS `autodb`.`Notification` ;
 
 CREATE TABLE IF NOT EXISTS `autodb`.`Notification` (
-  `id` INT NOT NULL,
-  `user_id` INT NULL,
-  `business_id` INT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `user_id` INT NOT NULL,
+  `business_id` INT NOT NULL,
   `message` TEXT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_message_to_business_idx` (`business_id` ASC),
@@ -442,6 +442,16 @@ USE `autodb`;
 INSERT INTO `autodb`.`quote` (`id`, `estimate`, `post_date`, `description`, `request_id`, `complete_date`, `expire_date`, `business_id`, `active`, `accepted_request`, `completed`) VALUES (1, 69.99, NULL, 'Air muffle', 1, NULL, NULL, 1, 1, NULL, 0);
 INSERT INTO `autodb`.`quote` (`id`, `estimate`, `post_date`, `description`, `request_id`, `complete_date`, `expire_date`, `business_id`, `active`, `accepted_request`, `completed`) VALUES (2, 345, NULL, 'Air Brakes', 1, NULL, NULL, 1, 1, NULL, 0);
 INSERT INTO `autodb`.`quote` (`id`, `estimate`, `post_date`, `description`, `request_id`, `complete_date`, `expire_date`, `business_id`, `active`, `accepted_request`, `completed`) VALUES (3, 1000, NULL, 'Air Guitar', 1, NULL, NULL, 2, 1, NULL, 0);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `autodb`.`Notification`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `autodb`;
+INSERT INTO `autodb`.`Notification` (`id`, `user_id`, `business_id`, `message`) VALUES (1, 1, 1, 'I can not do the work');
 
 COMMIT;
 

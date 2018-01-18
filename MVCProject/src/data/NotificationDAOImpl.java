@@ -30,7 +30,8 @@ public class NotificationDAOImpl implements NotificationDAO{
 	}
 
 	@Override
-	public Notification create(String json, int userId) {
+	public Notification create(String json) {
+		System.out.println(json);
 		ObjectMapper om = new ObjectMapper();
 		Notification n = null; 
 		

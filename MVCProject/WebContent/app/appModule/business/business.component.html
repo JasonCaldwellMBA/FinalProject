@@ -6,46 +6,50 @@
 	<div class="row">
 		<div class="col-sm-3">
 			<div class="list-group" id="list-tab" role="tablist">
-				<a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" ng-click="vm.home()"
-						 role="tab" aria-controls="home">Home</a>
+				<a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" ng-click="vm.home()" role="tab"
+				 aria-controls="home">Home</a>
+				 <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" ng-click="#/business/{{vm.business.id}}/business-notification"
+				  role="tab" aria-controls="messages"><button type="button" class="btn btn-primary">
+						Notifications <span class="badge badge-light">{{vm.size}}</span>
+					  </button></a>
 				<a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" ng-click="vm.viewAllQuotes()"
-						 role="tab" aria-controls="profile">View all quotes</a>
-				 <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" ng-click="vm.viewPendingQuotes()"
-						 role="tab" aria-controls="messages">View pending quotes</a>
-				 <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" ng-click="vm.viewAcceptedQuotes()"
-						 role="tab" aria-controls="settings">View accepted quotes</a>
-				 <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" ng-click="vm.viewCompletedQuotes()"
-						 role="tab" aria-controls="settings">View completed quotes</a>
+				 role="tab" aria-controls="profile">View all quotes</a>
+				<a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" ng-click="vm.viewAcceptedQuotes()"
+				 role="tab" aria-controls="settings">View accepted quotes</a>
+				<a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" ng-click="vm.viewCompletedQuotes()"
+				 role="tab" aria-controls="settings">View completed quotes</a>
 				<a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" ng-click="vm.viewRequests()"
-				 		role="tab" aria-controls="settings" >View requests in area</a>
+				 role="tab" aria-controls="settings">View requests in area</a>
 				<a class="list-group-item list-group-item-action" id="list-certifications-list" data-toggle="list" ng-click="vm.viewCertifications()"
-						 role="tab" aria-controls="messages">View certifications</a>
+				 role="tab" aria-controls="messages">View certifications</a>
 				<a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" ng-click="vm.viewSettings()"
-						 role="tab" aria-controls="settings">Settings</a>
+				 role="tab" aria-controls="settings">Settings</a>
 			</div>
 		</div>
 		<div class="col-sm">
-		<h5>Active Quotes</h5>
+			<h5>Active Quotes</h5>
 			<table class="table">
-					<thead>
-							<tr>
-									<th>Quote id</th>
-									<th>Customer</th>
-									<th>Post date</th>
-									<th>Expire date</th>
-									<th>View Details</th>
-							</tr>
-					</thead>
-					<tbody>
-							<tr ng-repeat="q in vm.activeQuotes">
-									<td>{{q.id}}</td>
-									<td>{{q.request.user.firstName}} {{q.request.user.lastName}}</td>
-									<td>{{q.postDate | date: 'MM-dd-yy'}}</td>
-									<td>{{q.expireDate | date: 'MM-dd-yy'}}</td>
-									<td><button type="button" ng-click="vm.viewDetails(q)">View Details</button></td>
-							</tr>
+				<thead>
+					<tr>
+						<th>Quote id</th>
+						<th>Customer</th>
+						<th>Post date</th>
+						<th>Expire date</th>
+						<th>View Details</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="q in vm.activeQuotes">
+						<td>{{q.id}}</td>
+						<td>{{q.request.user.firstName}} {{q.request.user.lastName}}</td>
+						<td>{{q.postDate | date: 'MM-dd-yy'}}</td>
+						<td>{{q.expireDate | date: 'MM-dd-yy'}}</td>
+						<td>
+							<button type="button" ng-click="vm.viewDetails(q)">View Details</button>
+						</td>
+					</tr>
 
-					</tbody>
+				</tbody>
 			</table>
 		</div>
 		<div class="col-sm-3">
@@ -55,7 +59,9 @@
 				<li class="list-group-item">
 					<strong>Email:</strong> {{vm.business.contact.email}}</li>
 				<li class="list-group-item">
-					<strong>Website:</strong><a href="{{vm.business.website}}">{{vm.business.website}}</a></li>
+					<strong>Website:</strong>
+					<a href="{{vm.business.website}}">{{vm.business.website}}</a>
+				</li>
 				<li class="list-group-item">
 					<strong>Address:</strong> {{vm.business.contact.address1}}</li>
 				<li class="list-group-item">

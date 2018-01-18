@@ -28,8 +28,8 @@ public class NotificationController {
 		return dao.index(bizId); 
 	}
 	@RequestMapping(path="create/notification", method=RequestMethod.POST)
-	public List<Notification> create(@RequestBody String json, @PathVariable int bizId){
-		return dao.index(bizId); 
+	public Notification create(@RequestBody String json){
+		return dao.create(json); 
 	}
 	@RequestMapping(path="notification/{nid}", method=RequestMethod.DELETE)
 	public Notification destroy(@PathVariable int nId){

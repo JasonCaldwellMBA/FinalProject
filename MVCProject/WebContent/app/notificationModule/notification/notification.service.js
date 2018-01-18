@@ -15,6 +15,7 @@ angular.module('notificationModule')
             }); 
         }
         service.create = function (notification) {
+            console.log(notification); 
             return $http({
                 method: 'POST',
                 url: BASE_URL + 'create/notification',

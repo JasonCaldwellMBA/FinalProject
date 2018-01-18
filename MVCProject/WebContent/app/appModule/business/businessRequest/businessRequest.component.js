@@ -2,7 +2,7 @@ angular.module('appModule')
 	.component('businessRequest', {
 		templateUrl: 'app/appModule/business/businessRequest/businessRequest.component.html',
 		controllerAs: 'vm',
-		controller: function (requestService, $routeParams, $location, businessService, quoteService, distanceMatrixService, authService) {
+		controller: function (requestService, $routeParams, $location, businessService, quoteService, distanceMatrixService, authService, notificationService) {
 			var vm = this;
 			vm.business = null;
 			vm.requests = [];
@@ -61,6 +61,18 @@ angular.module('appModule')
 			}
 			vm.addQuote = function (quote) {
 				quoteService.createQuote(quote, vm.selected.id).then(function (res) {
+					//Create notification to the user of the request
+					var notification = {
+						business: vm.business,
+						user : vm.selected.user,
+						message : vm.business.companyName + ' sent a quote for #Request id: ' + vm.selected.id + ', Vehicle: ' + vm.selected.vehicle.make + ' ' + vm.selected.vehicle.model
+					}; 
+
+					console.log(notification); 
+					notificationService.create(notification).then(function (res) {
+						console.log(res); 
+					})
+
 					vm.quoteFlag = null;
 				});
 			}

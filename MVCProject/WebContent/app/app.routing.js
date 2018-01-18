@@ -53,7 +53,10 @@ angular.module('appModule')
 				template: '<request></request>'
 			})
 			.when('/user/:id/notification', {
-				tempplate: '<notification></notification>'
+				template: '<notification></notification>'
+			})
+			.when('/business/:bid/notification', {
+				template: '<businessNotification></businessNotification>'
 			})
 			.when('/business/:id/request', {
 				template: '<business-request></business-request>'

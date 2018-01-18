@@ -4,121 +4,76 @@ angular.module('appModule')
 	controllerAs : 'vm',
 	controller : function(authService, businessService, quoteService, certificationService, $routeParams, $location){
 		var vm = this;
-		vm.bizId = authService.getBusToken(); 
-		vm.copy = null;
-		
-		vm.pendingQuotes = [];
-		vm.winningQuotes = [];
-		vm.completedQuotes = [];
-		vm.update = null;
-		
+		vm.bizId = authService.getBusToken();
+		vm.activeQuotes = [];
 		vm.business = null;
-		
-		vm.singleQuote = null;
-		
-		vm.message = "Working...";
-		
 		vm.businesses = [];
+
+		//init load
+		quoteService.index()
+		.then(function(res){
+			var preQuotes = res.data;
+			vm.acceptedQuotes = [];
+			preQuotes.forEach(quote => {
+				if(quote.acceptedRequest != undefined && quote.completed == false){
+					vm.activeQuotes.push(quote);
+				}
+			})
+			preQuotes = [];
+		})	
 		
 		vm.loadBusinesses = function(){
-			businessService.index().then(function(res) {
-			vm.businesses = res.data;		
-		});
+			businessService.index()
+			.then(function(res) {
+				vm.businesses = res.data;
+			});
 		}
-		vm.loadBusinesses();
 		
+		vm.loadBusinesses();
+
 		var getBusiness = function(id){
 			businessService.show(id)
 			.then(function(response){
 				vm.business = response.data;
 			})
-		}		
+		}
 
-		
 		getBusiness($routeParams.busId);
-		
-		var getQuotes = function(){
-			var id = authService.getBusToken();
-			businessService.indexQuotes(id)
-			.then(function(res){
-                var preQuotes = res.data;
-                vm.winningQuotes = [];
-                vm.pendingQuotes = [];
-                vm.completedQuotes = [];
-                preQuotes.forEach(quote => {
-                    if (quote.acceptedRequest != undefined && quote.completed == false) {
-                        vm.winningQuotes.push(quote); 
-                    }
-					if (quote.acceptedRequest == undefined && quote.completed == false) {
-						vm.pendingQuotes.push(quote); 
-					}
-					if(quote.completed == true){
-						vm.completedQuotes.push(quote)
-//						return;
-					}
-                })
-                preQuotes = [];
-			})
-		}
-//		var getPendingQuotes = function(){
-//			var id = authService.getBusToken();
-//			businessService.indexQuotes(id)
-//			.then(function(res){
-//				var preQuotes = res.data;
-//				preQuotes.forEach(quote => {
-//					if (quote.acceptedRequest == undefined) {
-//						vm.pendingQuotes = []; 
-//						vm.pendingQuotes.push(quote); 
-//						return; 
-//					}
-//				})
-//			})
-//		}
-	
-		
-		getQuotes();
-//		getPendingQuotes();
-		
-		vm.detailedQuote = function(quote){
-			vm.copy = angular.copy(quote);	
-		}
-		
-		var getQuote = function(bid, qid){
-			businessService.getQuote(bid, qid)
-			.then(function(res){
-				vm.singleQuote = res.data;
-			})
-		}
-		
+
+
 		vm.getRequests = function(){
 			$location.path("/request");
 		}
 		
-		vm.updateQuote = function(quote){
-			quoteService.updateQuote(quote, vm.copy.id)
-			.then(function(res){
-				vm.selected = null;
-				vm.copy = null;
-				vm.update = null;
-				getQuotes();
-			})
+		vm.viewDetails = function(quote){
+			$location.path("business/"+ vm.business.id + "/quote/" + quote.id);
+		};
+		
+		//functions for sidebar routing
+		vm.home = function(){
+			$location.path("business/" + vm.bizId);
+		}
+		vm.viewAllQuotes = function(){
+			$location.path("business/" + vm.bizId + "/quote");
+		}
+		vm.viewPendingQuotes = function(){
+			$location.path("business/" + vm.bizId + "/pendingQuotes");
+		}
+		vm.viewAcceptedQuotes = function(){
+			$location.path("business/" + vm.bizId + "/acceptedQuotes");
+		}
+		vm.viewCompletedQuotes = function(){
+			$location.path("business/" + vm.bizId + "/completedQuotes");
+		}
+		vm.viewRequests = function(){
+			$location.path("business/" + vm.bizId + "/request");
+		}
+		vm.viewCertifications = function(){
+			$location.path("business/" + vm.bizId + "/certification");
+		}
+		vm.viewSettings = function(){
+			$location.path("business/" + vm.bizId + "/settings");
 		}
 		
-		vm.markComplete = function(quote){
-			quote.completed = true;
-			quoteService.updateQuote(quote)
-			.then(function(res){
-				vm.selected = null;
-				vm.copy = null;
-				vm.update = null;
-				getQuotes();
-			})
-		}
-
 	}
-})	
-
-
-
-
-
+})

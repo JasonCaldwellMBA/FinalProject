@@ -16,19 +16,19 @@
             <table class="table table-sm">
                 <thead>
                     <tr>
-                        <th>#</th>
-                        <th>Estimate</th>
-                        <th>Vehicle VIN</th>
-                        <th>Complete date</th>
-                        <th>Completed</th>
-                        <th>Post Date</th>
-                        <th>Expire date</th>
+                        <th ng-click = "vm.sortCriteria = 'id'">#</th>
+                        <th ng-click = "vm.sortCriteria = 'estimate'">Estimate</th>
+                        <th ng-click = "vm.sortCriteria = 'vin'">Vehicle VIN</th>
+                        <th ng-click = "vm.sortCriteria = 'completeDate'">Complete date</th>
+                        <th ng-click = "vm.sortCriteria = 'completed'">Completed</th>
+                        <th ng-click = "vm.sortCriteria = 'postDate'">Post Date</th>
+                        <th ng-click = "vm.sortCriteria = 'expireDate'">Expire date</th>
                         <th>Update</th>
                         <th>Delete</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="r in vm.requests | orderBy:'estimate'">
+                    <tr ng-repeat="r in vm.requests | orderBy:vm.sortCriteria">
                         <td ng-click="vm.detailView(r.id)">{{r.id}}</td>
                         <td>{{r.estimate | currency}}</td>
                         <td>{{r.vehicle.vin}}</td>

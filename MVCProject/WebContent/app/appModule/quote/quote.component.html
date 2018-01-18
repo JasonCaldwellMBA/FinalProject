@@ -28,16 +28,16 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th>Quote id</th>
-                        <th>Customer</th>
-                        <th>Post date</th>
-                        <th>Expire date</th>
-                        <th>Completed</th>
+                        <th ng-click = "vm.sortCriteria = 'id'">Quote id</th>
+                        <th ng-click = "vm.sortCriteria = 'lastName'">Customer</th>
+                        <th ng-click = "vm.sortCriteria = 'postDate'">Post date</th>
+                        <th ng-click = "vm.sortCriteria = 'expireDate'">Expire date</th>
+                        <th ng-click = "vm.sortCriteria = 'completed'">Completed</th>
                         <th>View Details</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="q in vm.allQuotes">
+                    <tr ng-repeat="q in vm.allQuotes | orderBy:sortCriteria">
                         <td>{{q.id}}</td>
                         <td>{{q.request.user.firstName}} {{q.request.user.lastName}}</td>
                         <td>{{q.postDate | date: 'MM-dd-yy'}}</td>

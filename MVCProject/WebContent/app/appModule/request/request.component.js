@@ -8,6 +8,7 @@ angular.module('appModule')
 			vm.requests = [];
 			vm.vehicles = [];
 			vm.vehicle = null; 
+			vm.sortCriteria = 'estimate';
 
 			//init load
 			requestService.index().then(function (res) {

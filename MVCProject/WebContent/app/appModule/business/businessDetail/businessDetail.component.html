@@ -22,7 +22,13 @@
 			</ul>
 		</div>
 		<div class="col-sm">
-			<h1>Business Details</h1>
+	   	 <h1>Map</h1>
+		   <div ng-if="vm.mapOptions" map-lazy-load="https://maps.google.com/maps/api/js"
+		       map-lazy-load-params="{{vm.googleMapsUrl}}">
+		       <ng-map center="{{vm.mapOptions.center.lat}},{{vm.mapOptions.center.lng}}" zoom="{{vm.mapOptions.zoom}}">
+		         <marker ng-repeat="mark in vm.mapOptions.markers" position="[{{mark.lat}},{{mark.lng}}]" title="{{mark.title}}" icon="{{mark.icon}}" animation="{{mark.animation}}" draggable="{{mark.draggable}}"></marker>
+		       </ng-map>
+		   </div>
 		</div>
 		<div class="col-sm-3">
 		</div>

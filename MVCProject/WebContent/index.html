@@ -14,10 +14,12 @@
     <link rel="stylesheet" href="css/home.min.css"/>
 
 <!--END CSS files -->
+
 <!-- Angular Files -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.7/angular.min.js" type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.7/angular-route.min.js" type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.7/angular-cookies.min.js"></script>
+	<script src="https://apis.google.com/js/api.js"></script>
 <!--End Angular Files-->
 <!--Auth module -->
     <script src="app/authModule/auth.module.js"type="text/javascript"></script>
@@ -29,17 +31,21 @@
     <script src="app/authModule/register/registerBusiness.component.js"type="text/javascript"></script>
     <script src="app/geolocationModule/geolocation.module.js" type="text/javascript"></script>
 <!--End Auth module  -->
+<!-- Map Files -->
+<script src="app/appModule/map/ng-map.min.js"></script>
+<!-- End Map Files -->
 <!-- Services  -->
 <script src="app/appModule/app.module.js" type="text/javascript"></script>
 <script src="app/app.routing.js" type="text/javascript"></script>
 <script src="app/appModule/user/user.service.js" type="text/javascript"> </script>
 <script src="app/appModule/request/request.service.js" type="text/javascript"> </script>
+<script src="app/appModule/map/mapView/mapView.component.js" type="text/javascript"></script>
 <script src="app/appModule/business/business.service.js" type="text/javascript"></script>
 <script src="app/appModule/vehicle/vehicle.service.js" type="text/javascript"></script>
 <script src="app/geolocationModule/googleAPI/distanceMatrix.service.js" type="text/javascript"></script>
 <script src="app/geolocationModule/position/position.service.js" type="text/javascript"></script>
 <script src="app/appModule/quote/quote.service.js" type="text/javascript"></script>
-    <script src="app/appModule/navigation/navigation.component.js" type="text/javascript"> </script>
+<script src="app/appModule/navigation/navigation.component.js" type="text/javascript"> </script>
 <!-- 	<script src="app/appModule/footer/ngFooter.component.js" type="text/javascript"> </script>
  -->	<script src="app/appModule/notFound/notFound.component.js" type="text/javascript"> </script>
 	<script src="app/appModule/user/user.component.js" type="text/javascript"> </script>
@@ -64,6 +70,9 @@
     <script src="app/appModule/business/certification/certification.service.js" type="text/javascript"></script>
     <script src="app/appModule/business/certification/certificationDetail/certificationDetail.component.js" type="text/javascript"></script>
     <script src="webContent/javascript/home.js" type="text/javascript"></script>
+    
+    
+
 </head>
 <body>
 	<navigation> Loading... </navigation>

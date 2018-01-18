@@ -49,7 +49,7 @@ angular.module('appModule')
                 data: quote
             })
         }
-        service.delete = function(id){
+        service.deleteQuote = function(id){
 	        	var bizId = authService.getBusToken();
 	        	return $http({
 	        		method : 'DELETE',

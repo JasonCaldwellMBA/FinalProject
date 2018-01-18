@@ -16,5 +16,5 @@ public interface QuoteDAO {
 	public Quote showBiz(int bid, int qid);
 	public Quote createBiz(int bid, int rid, String quoteJson);
 	public Quote updateBiz(int bid, int qid, String quoteJson);
-	public Quote destroyBiz(int bid, int rid, int qid);
+	public Quote destroyBiz(int bid, int qid);
 }

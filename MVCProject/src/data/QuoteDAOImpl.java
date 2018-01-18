@@ -150,7 +150,7 @@ public class QuoteDAOImpl implements QuoteDAO {
     }
 
     @Override
-    public Quote destroyBiz(int bid, int rid, int qid) {
+    public Quote destroyBiz(int bid, int qid) {
         Quote quote = em.find(Quote.class, qid);
         if (quote.isActive()) {
             quote.setActive(false);

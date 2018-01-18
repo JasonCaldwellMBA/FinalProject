@@ -6,6 +6,7 @@ angular.module('appModule')
 			var vm = this;
 			vm.bizId = authService.getBusToken();
 			vm.acceptedQuotes = [];
+			vm.sortCriteria = 'lastName';
 			
 			//init load
 			quoteService.index()

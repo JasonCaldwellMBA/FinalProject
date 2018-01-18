@@ -28,12 +28,12 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th>Quote id</th>
-                        <th>Customer</th>
-                        <th>Asking Price</th>
-                        <th>Quote Price</th>
-                        <th>Post date</th>
-                        <th>Expire date</th>
+                        <th ng-click = "vm.sortCriteria = 'id'">Quote Id</th>
+                        <th ng-click = "vm.sortCriteria = 'lastName'">Customer</th>
+                        <th ng-click = "vm.sortCriteria = 'estimate'">Asking Price</th>
+                        <th ng-click = "vm.sortCriteria = 'estimate'">Quote Price</th>
+                        <th ng-click = "vm.sortCriteria = 'postDate'">Post Date</th>
+                        <th ng-click = "vm.sortCriteria = 'expireDate'">Expire Date</th>
                         <th>View Details</th>
                         <th>Update</th>
                         <th>Delete</th>

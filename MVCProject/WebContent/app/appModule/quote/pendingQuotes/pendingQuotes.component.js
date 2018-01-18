@@ -8,6 +8,7 @@ angular.module('appModule')
 			vm.pendingQuotes = [];
 			vm.updateFlag = false;
 			vm.quote = null;
+			vm.sortCriteria = 'lastName';
 			
 			//init load
 			var reload = function(){

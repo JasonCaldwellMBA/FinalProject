@@ -6,6 +6,7 @@ angular.module('appModule')
 			var vm = this;
 			vm.bizId = $routeParams.bid;
 			vm.acceptedQuotes = [];
+			vm.sortCriteria = 'lastName';
 			
 			//init load
 			quoteService.index()

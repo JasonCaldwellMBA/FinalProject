@@ -55,8 +55,8 @@ angular.module('appModule')
 			.when('/user/:id/notification', {
 				template: '<notification></notification>'
 			})
-			.when('/business/:bid/notification', {
-				template: '<businessNotification></businessNotification>'
+			.when('/business/:bid/businessNotification', {
+				template: '<business-notification></business-notification>'
 			})
 			.when('/business/:id/request', {
 				template: '<business-request></business-request>'

@@ -41,7 +41,9 @@ angular.module('appModule')
 	    			})
 	    		}
 	    		vm.deleteQuote = function(id){
-	    			quoteService.d
+	    			quoteService.deleteQuote(id).then(function(res){
+	    				reload();
+	    			})
 	    		}
 	    		
 	    		//functions for sidebar routing

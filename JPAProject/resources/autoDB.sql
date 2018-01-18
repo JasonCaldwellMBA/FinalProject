@@ -313,6 +313,7 @@ CREATE TABLE IF NOT EXISTS `autodb`.`Notification` (
   `user_id` INT NOT NULL,
   `business_id` INT NOT NULL,
   `message` TEXT NOT NULL,
+  `type` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_message_to_business_idx` (`business_id` ASC),
   INDEX `fk_message_to_user_idx` (`user_id` ASC),
@@ -451,7 +452,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `autodb`;
-INSERT INTO `autodb`.`Notification` (`id`, `user_id`, `business_id`, `message`) VALUES (1, 1, 1, 'I can not do the work');
+INSERT INTO `autodb`.`Notification` (`id`, `user_id`, `business_id`, `message`, `type`) VALUES (1, 1, 1, 'I can not do the work', 'user');
 
 COMMIT;
 

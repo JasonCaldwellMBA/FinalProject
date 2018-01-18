@@ -40,6 +40,9 @@ angular.module('appModule')
 	    				reload();
 	    			})
 	    		}
+	    		vm.deleteQuote = function(id){
+	    			quoteService.d
+	    		}
 	    		
 	    		//functions for sidebar routing
 	    		vm.home = function(){

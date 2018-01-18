@@ -1,15 +1,30 @@
-<h1>Business Detail</h1>
-<table class="table table-hover">
-    <thead>
-        <tr>
-            <th>Business name</th>
-            <th>Labor Rate</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>{{vm.business.companyName}}</td>
-            <td>{{vm.business.laborRate}}</td>
-        </tr>
-    </tbody>
-</table>
+<h1>Business Profile</h1>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-sm-3">
+			<ul class="list-group">
+				<li class="list-group-item">
+					<strong>Phone:</strong> {{vm.business.contact.phone}}</li>
+				<li class="list-group-item">
+					<strong>Email:</strong> {{vm.business.contact.email}}</li>
+				<li class="list-group-item">
+					<strong>Website:</strong><a href="{{vm.business.website}}">{{vm.business.website}}</a></li>
+				<li class="list-group-item">
+					<strong>Address:</strong> {{vm.business.contact.address1}}</li>
+				<li class="list-group-item">
+					<strong>Address 2:</strong> {{vm.business.contact.address2}}</li>
+				<li class="list-group-item">
+					<strong>City:</strong> {{vm.business.contact.city}}</li>
+				<li class="list-group-item">
+					<strong>State:</strong> {{vm.business.contact.state}}</li>
+				<li class="list-group-item">
+					<strong>Zip Code:</strong> {{vm.business.contact.zipcode}}</li>
+			</ul>
+		</div>
+		<div class="col-sm">
+			<h1>Business Details</h1>
+		</div>
+		<div class="col-sm-3">
+		</div>
+	</div>
+</div>

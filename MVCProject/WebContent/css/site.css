@@ -4,7 +4,7 @@ html{
     position: relative;
     min-height: 100%;
     font-family: 'Lato', sans-serif; 
-    background-color:#FAFBFC;
+    /* background-color:#FAFBFC; */
 }
 body {
     background-color:#FAFBFC;

@@ -8,7 +8,13 @@ angular.module('appModule')
 			vm.requests = [];
 			vm.selected = null;
 			vm.quoteFlag = null;
-
+			vm.business = null;
+			vm.bizId = authService.getBusToken();
+		
+            businessService.show($routeParams.bid).then(function (res) {
+                vm.business = angular.copy(res.data);
+            }); 
+			
 			//init Methods
 			businessService.show($routeParams.id).then(function (res) {
 				vm.business = res.data;

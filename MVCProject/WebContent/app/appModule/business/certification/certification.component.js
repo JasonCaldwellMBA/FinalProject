@@ -6,6 +6,7 @@ angular.module('appModule')
 				$routeParams, authService) {
         		var vm = this;
 			vm.certifications = [];
+			vm.bizId = authService.getBusToken();
 			
 			vm.detailView = function(certid) {
 				$location.path('business/' + authService.getBusToken() + '/certification/' + certid);

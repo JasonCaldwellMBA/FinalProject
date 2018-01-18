@@ -26,7 +26,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="v in vm.vehicles">
+                    <tr ng-repeat="v in vm.vehicles  | orderBy:'make'">
                         <td>{{v.make}}</td>
                         <td>{{v.model}}</td>
                         <td>{{v.year}}</td>

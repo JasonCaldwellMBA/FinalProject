@@ -28,7 +28,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="cert in vm.certifications">
+					<tr ng-repeat="cert in vm.certifications | orderBy:'name'">
 						<td>{{cert.name}}</td>
 						<td>
 							<button class="btn btn-secondary"

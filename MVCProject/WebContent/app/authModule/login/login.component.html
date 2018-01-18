@@ -1,10 +1,29 @@
-<div class="container">
-    <div class="row">
+<div class="container bg-light">
+    <div class="row bg-light">
         <div class="col-sm">
             <!-- optional sidebar -->
         </div>
         <div class="col-sm-5">
-            <div class="bg-light mt-4 p-4 rounded" id="login-container">
+            <div class="card mt-4" style="width: 24rem;">
+                <img class="card-img-top" src="css/img/login-car.jpeg" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Welcome back!</h5>
+                    <div class="form-group">
+                        <label for="txtUserName">Username</label>
+                        <input type="text" class="form-control" id="txtUsername" placeholder="Username" ng-model="user.username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="txtPassword">Password</label>
+                        <input type="password" class="form-control" id="txtPassword" placeholder="Password" ng-model="user.password" required>
+                    </div>
+                    <div class="row justify-content-center">
+                        <button id="login-button" ng-click="vm.setUser(user)" class="btn btn-primary">Login</button>
+                        <span>Don't have an account?<a href="#/register">Signup</a></span>
+                        <span>Are you a business?<a href="#/registerBusiness">register here</a></span>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="bg-light mt-4 p-4 rounded" id="login-container">
                 <h5 class="row justify-content-center text-light">User login</h5>
                 <div class="form-group">
                     <label for="txtUserName">Username</label>
@@ -15,8 +34,9 @@
                     <input type="password" class="form-control" id="txtPassword" placeholder="Password" ng-model="user.password" required>
                 </div>
                 <button ng-click="vm.setUser(user)" class="btn btn-primary">Login</button>
-            </div>
+            </div> -->
         </div>
+
         <div class="col-sm">
             <!-- optional sidebar -->
         </div>

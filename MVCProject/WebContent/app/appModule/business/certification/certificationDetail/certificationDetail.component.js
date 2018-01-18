@@ -13,12 +13,13 @@ angular.module('appModule')
 			vm.updateCertification = function (certification) {
 				certificationService.updateCertification(certification).then(function(res){
 					reload(); 
+					vm.return();
 				}); 
 			}
 			
 			vm.destroy = function(certid){
 				certificationService.destroy(certid).then(function (res) {
-					reload(); 
+					vm.return();
 				}); 
 			}
 			

@@ -2,7 +2,7 @@ angular.module('appModule')
 	.component('businessRequest', {
 		templateUrl: 'app/appModule/business/businessRequest/businessRequest.component.html',
 		controllerAs: 'vm',
-		controller: function (requestService, $routeParams, $location, businessService, quoteService, distanceMatrixService, authService) {
+		controller: function (requestService, $routeParams, $location, businessService, quoteService, distanceMatrixService, authService, notificationService) {
 			var vm = this;
 			vm.business = null;
 			vm.requests = [];
@@ -11,15 +11,15 @@ angular.module('appModule')
 			vm.business = null;
 			vm.bizId = authService.getBusToken();
 			vm.sortCriteria = 'estimate';
-			
-            businessService.show($routeParams.bid).then(function (res) {
-                vm.business = angular.copy(res.data);
-            }); 
-			
+
+			businessService.show($routeParams.bid).then(function (res) {
+				vm.business = angular.copy(res.data);
+			});
+
 			//init Methods
 			businessService.show($routeParams.id).then(function (res) {
 				vm.business = res.data;
-//				console.log(vm.business);
+				//				console.log(vm.business);
 				requestService.indexAllRequests().then(function (res) {
 					//UNCOMMENT FOR PRACTICAL PRESENTATION
 					// var MAX_DISTANCE = 50;
@@ -42,10 +42,10 @@ angular.module('appModule')
 					// 		}
 					// 	}); 
 					// })
-					 vm.requests = res.data;
+					vm.requests = res.data;
 				});
 
-			}); 
+			});
 			//helper methods
 			var reload = function () {
 				requestService.indexAllRequests().then(function (res) {
@@ -62,33 +62,46 @@ angular.module('appModule')
 			}
 			vm.addQuote = function (quote) {
 				quoteService.createQuote(quote, vm.selected.id).then(function (res) {
+					//Create notification to the user of the request
+					var notification = {
+						business: vm.business,
+						user: vm.selected.user,
+						message: vm.business.companyName + ' sent a quote for #Request id: ' + vm.selected.id + ', Vehicle: ' + vm.selected.vehicle.make + ' ' + vm.selected.vehicle.model,
+						type: "user"
+					};
+
+					console.log(notification);
+					notificationService.create(notification).then(function (res) {
+						console.log(res);
+					})
+
 					vm.quoteFlag = null;
 				});
 			}
-			
+
 			//functions for sidebar routing
-			vm.home = function(){
+			vm.home = function () {
 				$location.path("business/" + vm.bizId);
 			}
-			vm.viewAllQuotes = function(){
+			vm.viewAllQuotes = function () {
 				$location.path("business/" + vm.bizId + "/quote");
 			}
-			vm.viewPendingQuotes = function(){
+			vm.viewPendingQuotes = function () {
 				$location.path("business/" + vm.bizId + "/pendingQuotes");
 			}
-			vm.viewAcceptedQuotes = function(){
+			vm.viewAcceptedQuotes = function () {
 				$location.path("business/" + vm.bizId + "/acceptedQuotes");
 			}
-			vm.viewCompletedQuotes = function(){
+			vm.viewCompletedQuotes = function () {
 				$location.path("business/" + vm.bizId + "/completedQuotes");
 			}
-			vm.viewRequests = function(){
+			vm.viewRequests = function () {
 				$location.path("business/" + vm.bizId + "/request");
 			}
-			vm.viewCertifications = function(){
+			vm.viewCertifications = function () {
 				$location.path("business/" + vm.bizId + "/certification");
 			}
-			vm.viewSettings = function(){
+			vm.viewSettings = function () {
 				$location.path("business/" + vm.bizId + "/settings");
 			}
 		}

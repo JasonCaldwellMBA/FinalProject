@@ -25,7 +25,28 @@
 			</div>
 		</div>
 		<div class="col-sm">
-			<!-- main stuff -->
+		<h5>Active Quotes</h5>
+			<table class="table">
+					<thead>
+							<tr>
+									<th>Quote id</th>
+									<th>Customer</th>
+									<th>Post date</th>
+									<th>Expire date</th>
+									<th>View Details</th>
+							</tr>
+					</thead>
+					<tbody>
+							<tr ng-repeat="q in vm.activeQuotes">
+									<td>{{q.id}}</td>
+									<td>{{q.request.user.firstName}} {{q.request.user.lastName}}</td>
+									<td>{{q.postDate | date: 'MM-dd-yy'}}</td>
+									<td>{{q.expireDate | date: 'MM-dd-yy'}}</td>
+									<td><button type="button" ng-click="vm.viewDetails(q)">View Details</button></td>
+							</tr>
+
+					</tbody>
+			</table>
 		</div>
 		<div class="col-sm-3">
 			<ul class="list-group">

@@ -8,6 +8,7 @@ angular.module('appModule')
 			vm.pendingQuotes = [];
 			vm.updateFlag = false;
 			vm.quote = null;
+			vm.sortCriteria = 'lastName';
 			
 			//init load
 			var reload = function(){
@@ -36,6 +37,11 @@ angular.module('appModule')
 	    			quoteService.updateQuote(quote).then(function(res){
 	    				vm.updateFlag = false;
 	    				vm.quote = null;
+	    				reload();
+	    			})
+	    		}
+	    		vm.deleteQuote = function(id){
+	    			quoteService.deleteQuote(id).then(function(res){
 	    				reload();
 	    			})
 	    		}

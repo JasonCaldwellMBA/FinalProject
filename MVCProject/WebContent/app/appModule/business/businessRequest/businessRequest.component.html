@@ -25,17 +25,17 @@
             <table class="table" ng-hide="vm.selected">
                 <thead>
                     <tr>
-                        <th>Request id</th>
-                        <th>Description</th>
-                        <th>make</th>
-                        <th>model</th>
-                        <th>Estimate</th>
-                        <th>Complete By</th>
-                        <th>Expires By</th>
+                        <th ng-click = "vm.sortCriteria = 'id'">Request Id</th>
+                        <th ng-click = "vm.sortCriteria = 'description'">Description</th>
+                        <th ng-click = "vm.sortCriteria = 'make'">Make</th>
+                        <th ng-click = "vm.sortCriteria = 'model'">Model</th>
+                        <th ng-click = "vm.sortCriteria = 'estimate'">Estimate</th>
+                        <th ng-click = "vm.sortCriteria = 'completeDate'">Complete By</th>
+                        <th ng-click = "vm.sortCriteria = 'expireDate'">Expires By</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="r in vm.requests">
+                    <tr ng-repeat="r in vm.requests | orderBy:vm.sortCriteria">
                         <td>{{r.id}}</td>
                         <td>{{r.description}}</td>
                         <td>{{r.vehicle.make}}</td>
@@ -52,6 +52,14 @@
             <ul ng-show="vm.selected" class="list-group">
                 <li class="list-group-item">
                     <label>Name: {{vm.selected.user.firstName}} {{vm.selected.user.lastName}}</label>
+                    <br>
+                </li>
+                <li class="list-group-item">
+                    <label>Phone Number: {{vm.selected.user.contact.phone}}</label>
+                    <br>
+                </li>
+                <li class="list-group-item">
+                    <label>Email: {{vm.selected.user.contact.email}}</label>
                     <br>
                 </li>
                 <li class="list-group-item">

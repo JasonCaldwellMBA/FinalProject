@@ -8,16 +8,16 @@
                 </button>
             </a>
             <div class="list-group mt-2" id="list-tab" role="tablist">
-                <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#/user/{{vm.user.id}}"
+                <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" ng-click="vm.getHome()"
                     role="tab" aria-controls="home">Home</a>
-                <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#/user/{{vm.user.id}}/request"
+                <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" ng-click="vm.getRequests()"
                     role="tab" aria-controls="profile">View requests</a>
-                <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#/user/{{vm.user.id}}/vehicle"
+                <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" ng-click="vm.getVehicles()"
                     role="tab" aria-controls="messages">View vehicles</a>
                 <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="modal" data-target="#exampleModalLong"
                     role="tab" aria-controls="settings">View businesses</a>
                 <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" role="tab" aria-controls="settings"
-                    href="#/user/{{vm.user.id}}/settings">Settings</a>
+                ng-click="vm.getSettings()">Settings</a>
             </div>
             <div class="justify-content-left bg-white rounded mt-2 p-2 border">
                 <h6 class="row justify-content-center">Contact information</h6>

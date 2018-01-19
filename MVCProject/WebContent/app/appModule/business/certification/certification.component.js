@@ -21,18 +21,6 @@ angular.module('appModule')
 					reload(); 
 				}); 
 			}
-//			
-//			vm.updateCertification = function (certification) {
-//				certificationService.updateCertification(certification).then(function(res){
-//					reload(); 
-//				}); 
-//			}
-			
-			vm.destroy = function(id) {
-				certificationService.destroy(id).then(function (res) {
-					reload();
-				})
-			}
 			
 			var reload = function() {
 				certificationService.index().then(function(res) {
@@ -43,6 +31,7 @@ angular.module('appModule')
 			vm.return = function(){
 				$location.path('/business/' + $routeParams.id); 
 			}
+			
 			//functions for sidebar routing
 			vm.home = function(){
 				$location.path("business/" + vm.bizId);

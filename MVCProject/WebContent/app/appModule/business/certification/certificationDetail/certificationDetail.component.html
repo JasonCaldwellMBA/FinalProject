@@ -19,7 +19,8 @@
 					accepted quotes</a> <a class="list-group-item list-group-item-action"
 					id="list-settings-list" data-toggle="modal"
 					data-target="#exampleModalLong" role="tab" aria-controls="settings">View
-					requests in area</a> <a class="list-group-item list-group-item-action active"
+					requests in area</a> <a
+					class="list-group-item list-group-item-action active"
 					id="list-certifications-list" data-toggle="list"
 					href="#/business/{{vm.business.id}}/certification" role="tab"
 					aria-controls="messages">View certifications</a> <a
@@ -36,6 +37,8 @@
 				</label> <input class="form-control" type="text"
 					ng-model="vm.certification.name" /></li>
 				<li class="list-group-item justify-content-center">
+					<button class="btn btn-primary"
+						ng-click="vm.return()">Go Back</button>
 					<button class="btn btn-warning"
 						ng-click="vm.updateCertification(vm.certification)">Update</button>
 					<button class="btn btn-danger"
@@ -43,44 +46,5 @@
 				</li>
 			</ul>
 		</div>
-		<!-- <div class="col-sm">
-			<table class="table">
-				<thead>
-					<tr>
-						<th>Certification Details</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>{{vm.certification.id}}</td>
-						<td>{{vm.certification.name}}</td>
-						<td>
-							<button class="btn btn-secondary"
-								ng-click="vm.updateCertification(cert)">Update</button>
-						</td>
-						<td>
-							<button class="btn btn-danger" ng-click="vm.destroy(cert.id)">Delete</button>
-						</td>
-					</tr>
-				</tbody>
-			</table> -->
-
-		<!-- <div class="col-sm">
-				<div class="col-sm-8">
-					<h4>Add Certification</h4>
-					<div>
-						<div class="card card-body">
-							<ul class="list-group">
-								<li class="list-group-item"><label>Name</label><input
-									type="text" ng-model="certification.name" /></li>
-								<li class="list-group-item"><button class="btn btn-primary"
-										ng-click="vm.addCertification(certification)">Add
-										Certification</button></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div> -->
 	</div>
-</div>
 </div>

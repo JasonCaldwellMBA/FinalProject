@@ -39,7 +39,6 @@
 					<tr>
 						<th>Certification Name</th>
 						<th>Update</th>
-						<th>Delete</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -47,10 +46,7 @@
 						<td>{{cert.name}}</td>
 						<td>
 							<button class="btn btn-secondary"
-								ng-click="vm.detailView(cert.id)">Update</button>
-						</td>
-						<td>
-							<button class="btn btn-danger" ng-click="vm.destroy(cert.id)">Delete</button>
+								ng-click="vm.detailView(cert.id)">Edit</button>
 						</td>
 					</tr>
 				</tbody>

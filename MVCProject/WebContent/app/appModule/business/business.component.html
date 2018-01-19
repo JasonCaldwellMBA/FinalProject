@@ -1,17 +1,16 @@
-<h2 class="row justify-content-center">
-	{{vm.business.companyName}} homepage
-</h2>
-
 <div class="container-fluid mt-4">
 	<div class="row">
 		<div class="col-sm-3">
-			<div class="list-group" id="list-tab" role="tablist">
-				<a class="clickable list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" ng-click="vm.home()" role="tab"
-				 aria-controls="home">Home</a>
-				 <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#/business/{{vm.business.id}}/businessNotification"
-				  role="tab" aria-controls="messages"><button type="button" class="btn btn-primary">
-						Notifications <span class="badge badge-light">{{vm.size}}</span>
-					  </button></a>
+			<a class="" id="list-messages-list" data-toggle="list" href="#/business/{{vm.business.id}}/businessNotification" role="tab"
+			 aria-controls="messages">
+				<button type="button" class="btn btn-outline-danger">
+					Notifications
+					<span class="badge badge-danger border-white">{{vm.size}}</span>
+				</button>
+			</a>
+			<div class="list-group mt-2 " id="list-tab" role="tablist">
+				<a class="clickable list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" ng-click="vm.home()"
+				 role="tab" aria-controls="home">Home</a>
 				<a class="clickable list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" ng-click="vm.viewAllQuotes()"
 				 role="tab" aria-controls="profile">View all quotes</a>
 				<a class="clickable list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" ng-click="vm.viewAcceptedQuotes()"
@@ -25,17 +24,53 @@
 				<a class="clickable list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" ng-click="vm.viewSettings()"
 				 role="tab" aria-controls="settings">Settings</a>
 			</div>
+			<div class="justify-content-left bg-white rounded mt-2 p-2 border">
+				<h6 class="row justify-content-center">Contact Information</h6>
+				<hr/>
+				<label>
+					<strong>Phone: </strong> {{vm.business.contact.phone}}</label>
+				<br/>
+				<label>
+					<strong>Email: </strong> {{vm.business.contact.email}}</label>
+				<br/>
+				<label>
+					<strong>Website: </strong> {{vm.business.contact.website}}</label>
+				<br/>
+				<label>
+					<strong>Address: </strong> {{vm.business.contact.address1}}</label>
+				<br/>
+				<label>
+					<strong>Address 2: </strong> {{vm.business.contact.address2}}</label>
+				<br/>
+				<label>
+					<strong>City: </strong> {{vm.business.contact.city}}</label>
+				<br/>
+				<label>
+					<strong>State: </strong> {{vm.business.contact.state}}</label>
+				<br/>
+				<label>
+					<strong>Zipcode: </strong> {{vm.business.contact.zipcode}}</label>
+				<br/>
+			</div>
 		</div>
 		<div class="col-sm">
-			<h5>Active Quotes</h5>
-			<table class="table">
+			<table class="table table-hover bg-white p-2 rounded">
 				<thead>
+					<tr>
+						<td colspan="2">
+							<h6> Welcome, {{vm.business.companyName}} !</h6>
+						</td>
+						<td></td>
+						<td colspan="1">
+							<button class="btn btn-warning" ng-click="vm.viewRequests()">Find a request?</button>
+						</td>
+					</tr>
 					<tr>
 						<th>Quote id</th>
 						<th>Customer</th>
 						<th>Post date</th>
 						<th>Expire date</th>
-						<th>View Details</th>
+						<th>View details</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -52,27 +87,8 @@
 				</tbody>
 			</table>
 		</div>
-		<div class="col-sm-3">
-			<ul class="list-group">
-				<li class="list-group-item">
-					<strong>Phone:</strong> {{vm.business.contact.phone}}</li>
-				<li class="list-group-item">
-					<strong>Email:</strong> {{vm.business.contact.email}}</li>
-				<li class="list-group-item">
-					<strong>Website:</strong>
-					<a href="{{vm.business.website}}">{{vm.business.website}}</a>
-				</li>
-				<li class="list-group-item">
-					<strong>Address:</strong> {{vm.business.contact.address1}}</li>
-				<li class="list-group-item">
-					<strong>Address 2:</strong> {{vm.business.contact.address2}}</li>
-				<li class="list-group-item">
-					<strong>City:</strong> {{vm.business.contact.city}}</li>
-				<li class="list-group-item">
-					<strong>State:</strong> {{vm.business.contact.state}}</li>
-				<li class="list-group-item">
-					<strong>Zip Code:</strong> {{vm.business.contact.zipcode}}</li>
-			</ul>
-		</div>
+		<!-- <div class="col-sm-3">
+
+		</div> -->
 	</div>
 </div>

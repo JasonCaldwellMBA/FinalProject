@@ -57,6 +57,9 @@ angular.module('appModule')
 				});
 			})
 			//
+			vm.getHome = function () {
+				$location.path("/user/" + $routeParams.id); 
+			}
 			vm.getVehicles = function () {
 				$location.path("/user/" + $routeParams.id + "/vehicle");
 			}
@@ -68,6 +71,9 @@ angular.module('appModule')
 			}
 			vm.getBusiness = function (business) {
 				$location.path("/user/" + $routeParams.id + "/business/" + business.id)
+			}
+			vm.getNotifications = function () {
+				$location.path('/user/' + $routeParams.id + '/notification');
 			}
 		}
 	})	

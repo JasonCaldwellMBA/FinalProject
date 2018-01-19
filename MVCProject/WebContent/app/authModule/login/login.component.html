@@ -1,10 +1,10 @@
-<div class="container bg-light">
+<div class="container-fluid mt-4">
     <div class="row bg-light">
         <div class="col-sm">
             <!-- optional sidebar -->
         </div>
-        <div class="col-sm-5">
-            <div class="card mt-4" style="width: 24rem;">
+        <div class="col-sm">
+            <div class="card" style="width: 30rem;">
                 <img class="card-img-top" src="css/img/login-car.jpeg" alt="Card image cap">
                 <div class="card-body">
                     <h5 class="card-title">Welcome back!</h5>
@@ -18,8 +18,10 @@
                     </div>
                     <div class="row justify-content-center">
                         <button id="login-button" ng-click="vm.setUser(user)" class="btn btn-primary">Login</button>
-                        <span>Don't have an account? <a href="#/register">Sign Up</a></span>
-                        <span>Are you a business? <a href="#/registerBusiness">Register Here</a></span>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div>Don't have an account? <a href="#/register">Sign Up</a></div>
+                        <div>Are you a business? <a href="#/registerBusiness">Register Here</a></div>
                     </div>
                 </div>
             </div>

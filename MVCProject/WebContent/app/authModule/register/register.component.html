@@ -1,10 +1,10 @@
-<div ng-show="!vm.user" class="container mt-4">
+<div ng-show="!vm.user" class="container-fluid mt-4">
     <div class="row">
         <div class="col-sm">
             <!-- optional sidebar -->
         </div>
         <div class="col-sm">
-            <div class="card" style="width: 40rem;">
+            <div class="card" style="width: 30rem;">
                 <img class="card-img-top" src="css/img/signup-car.jpeg" alt="Card image cap">
                 <div class="card-body">
                     <div class="row justify-content-center">
@@ -29,13 +29,13 @@
                     <div class="row justify-content-center">
                         <button id="signup-next" ng-click="vm.setUser(user)" class="btn btn-primary">Next</button>
                     </div>
-                    <div class="justify-content-center">
-                        <p>Already have an account?
+                    <div class="row justify-content-center">
+                        <div>Already have an account?
                             <a href="#/login">Log-in</a>
-                        </p>
-                        <p>Are you a business?
+                        </div>
+                        <div>Are you a business?
                             <a href="#/registerBusiness">register here</a>
-                        </p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -46,13 +46,13 @@
     </div>
 </div>
 
-<div ng-show="vm.user" class="container">
+<div ng-show="vm.user" class="container-fluid mt-4">
     <div class="row">
         <div class="col-sm">
             <!-- optional sidebar -->
         </div>
         <div class="col-sm">
-            <div class="card" style="width: 40rem;">
+            <div class="card" style="width: 30rem;">
                 <img class="card-img-top" src="css/img/signup-car.jpeg" alt="Card image cap">
                 <div class="card-body">
                     <h5 class="card-title">A network of customers & mechanics</h5>

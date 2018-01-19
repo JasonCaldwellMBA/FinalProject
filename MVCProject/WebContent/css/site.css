@@ -10,7 +10,8 @@ body {
     background-color:#FAFBFC;
     margin-bottom: 60px; /* Margin bottom by footer height */
 }
-#login-button, #signup-next, #signup-back, #signup-register{
+#login-button, #signup-next, #signup-back, #signup-register, #login-business, #signup-business
+, #signup-back, #signup-register{
     width:200px;
     border-radius:25px;
 }

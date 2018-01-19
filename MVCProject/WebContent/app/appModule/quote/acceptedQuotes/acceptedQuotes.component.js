@@ -28,7 +28,7 @@ angular.module('appModule')
 	    			quote.completed = true;
 	    			quoteService.updateQuote(quote)
 	    			.then(function(res){
-	    				$location.path("business/"+vm.bizId+"/completedQuote")
+	    				$location.path("business/"+vm.bizId+"/completedQuotes")
 	    			})
 	    		}
 	    		

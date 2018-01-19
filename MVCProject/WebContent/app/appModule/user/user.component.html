@@ -1,27 +1,38 @@
 <div class="container-fluid mt-4">
     <div class="row">
         <div class="col-sm-2">
-            <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" role="tab" aria-controls="profile"
+            <a class="" id="list-profile-list" data-toggle="list" role="tab" aria-controls="profile"
                 href="#/user/{{vm.user.id}}/notification">
-                <button type="button" class="btn btn-dark">
+                <button type="button" class="btn btn-outline-danger">
                     Notifications
-                    <span class="badge badge-danger">{{vm.size}}</span>
-                </button></a>
-            <div class="list-group" id="list-tab" role="tablist">
+                    <span class="badge badge-danger border col-sm-2">{{vm.size}}</span>
+                </button>
+            </a>
+            <div class="list-group mt-2" id="list-tab" role="tablist">
                 <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#/user/{{vm.user.id}}"
                     role="tab" aria-controls="home">Home</a>
                 <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#/user/{{vm.user.id}}/request"
                     role="tab" aria-controls="profile">View requests</a>
-                    <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#/user/{{vm.user.id}}/vehicle"
-                        role="tab" aria-controls="messages">View vehicles</a>
-                    <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="modal" data-target="#exampleModalLong"
-                        role="tab" aria-controls="settings">View businesses</a>
-                    <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" role="tab" aria-controls="settings"
-                        href="#/user/{{vm.user.id}}/settings">Settings</a>
+                <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#/user/{{vm.user.id}}/vehicle"
+                    role="tab" aria-controls="messages">View vehicles</a>
+                <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="modal" data-target="#exampleModalLong"
+                    role="tab" aria-controls="settings">View businesses</a>
+                <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" role="tab" aria-controls="settings"
+                    href="#/user/{{vm.user.id}}/settings">Settings</a>
+            </div>
+            <div class="justify-content-left bg-white rounded mt-2 p-2 border">
+                <h6 class="row justify-content-center">Contact information</h6>
+                <hr/>
+                <label>Address: {{vm.user.contact.address1}}</label></br>
+                <label>City: {{vm.user.contact.city}}</label></br>
+                <label>State: {{vm.user.contact.state}}</label></br>
+                <label>Zipcode: {{vm.user.contact.zipcode}}</label></br>
+                <label>Phone: {{vm.user.contact.phone}}</label></br>
+                <label>Email: {{vm.user.contact.email}}</label></br>
             </div>
         </div>
         <div class="col-sm">
-            <table class="table table-hover">
+            <table class="table table-hover p-2 rounded bg-white">
                 <thead>
                     <tr>
                         <th colspan="4">
@@ -29,7 +40,7 @@
                         </th>
                         <th colspan="2"></th>
                         <th colspan="1">
-                            <button class="btn" ng-click="vm.getRequests()">Add a new request?</button>
+                            <button class="btn btn-warning" ng-click="vm.getRequests()">Add a new request?</button>
                         </th>
                     </tr>
                     <tr>
@@ -81,15 +92,14 @@
                             </table>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
+                            <button type="button" class="btn" data-dismiss="modal">Close</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-sm">
+        <!-- <div class="col-sm">
 
-        </div>
+        </div> -->
     </div>
 </div>

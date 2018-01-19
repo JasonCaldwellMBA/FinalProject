@@ -38,9 +38,18 @@ public class User {
 	@JsonIgnore
 	@OneToMany(mappedBy="user")
 	private List<Request> requests;
+	@JsonIgnore
+	@OneToMany(mappedBy="user")
+	private List<Notification> notifications; 
 
 	
 	
+	public List<Notification> getNotifications() {
+		return notifications;
+	}
+	public void setNotifications(List<Notification> notifications) {
+		this.notifications = notifications;
+	}
 	public String getFirstName() {
 		return firstName;
 	}

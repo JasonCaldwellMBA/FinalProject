@@ -1,0 +1,38 @@
+<div class="container-fluid mt-4">
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="list-group" id="list-tab" role="tablist">
+                <a class="list-group-item list-group-item-action " id="list-home-list" data-toggle="list" ng-click="vm.home()" role="tab"
+                    aria-controls="home">Home</a>
+                <a class="list-group-item list-group-item-action active" id="list-messages-list" data-toggle="list" href="#/business/{{vm.business.id}}/businessNotification"
+                    role="tab" aria-controls="messages">
+                    <button type="button" class="btn btn-primary">
+                        Notifications
+                        <span class="badge badge-danger">{{vm.size}}</span>
+                    </button>
+                </a>
+                <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" ng-click="vm.viewAllQuotes()"
+                    role="tab" aria-controls="profile">View all quotes</a>
+                <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" ng-click="vm.viewAcceptedQuotes()"
+                    role="tab" aria-controls="settings">View accepted quotes</a>
+                <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" ng-click="vm.viewCompletedQuotes()"
+                    role="tab" aria-controls="settings">View completed quotes</a>
+                <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" ng-click="vm.viewRequests()"
+                    role="tab" aria-controls="settings">View requests in area</a>
+                <a class="list-group-item list-group-item-action" id="list-certifications-list" data-toggle="list" ng-click="vm.viewCertifications()"
+                    role="tab" aria-controls="messages">View certifications</a>
+                <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" ng-click="vm.viewSettings()"
+                    role="tab" aria-controls="settings">Settings</a>
+            </div>
+        </div>
+        <div class="col-sm">
+            <h1>Notifications</h1>
+            <ul class="list-group" ng-repeat="n in vm.notifications">
+                <li ng-click="vm.destroy(n)" class="list-group-item">{{n.message}}</li>
+            </ul>
+        </div>
+        <!-- <div class="col-sm">
+            One of three columns
+        </div> -->
+    </div>
+</div>

@@ -1,1 +1,1 @@
-angular.module('appModule', ['ngRoute', 'authModule', 'geolocationModule', 'ngMap'])
+angular.module('appModule', ['ngRoute', 'authModule', 'geolocationModule', 'notificationModule', 'ngMap'])

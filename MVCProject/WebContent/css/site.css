@@ -15,6 +15,9 @@ body {
     width:200px;
     border-radius:25px;
 }
+nav{
+    font-size: 18pt;
+}
 /* .home-form {
 	width : 100%;
 	z-index : 10000;

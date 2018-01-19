@@ -6,6 +6,7 @@ angular.module('appModule')
 			var vm = this;
 			vm.bizId = $routeParams.bid;
 			vm.completedQuotes = [];
+			vm.sortCriteria = 'expiredDate';
 			
 			//init load
 			quoteService.index()

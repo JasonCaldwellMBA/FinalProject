@@ -25,7 +25,7 @@ public class QuoteDAOImpl implements QuoteDAO {
 
 	@Override
     public List<Quote> index(int uid, int rid) {
-        String query = "SELECT q FROM Quote q WHERE q.request.id = :rid";
+        String query = "SELECT q FROM Quote q WHERE q.request.id = :rid order by q.expireDate";
         List<Quote> quotes = em.createQuery(query, Quote.class)
                             .setParameter("rid", rid)
                             .getResultList();

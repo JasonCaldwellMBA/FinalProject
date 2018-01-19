@@ -2,7 +2,7 @@ angular.module('appModule')
     .component('businessDetail', {
         controllerAs: 'vm',
         templateUrl: 'app/appModule/business/businessDetail/businessDetail.component.html',
-        controller: function (businessService, quoteService, $location, $routeParams) {
+        controller: function (businessService, quoteService, $location, $routeParams, keyService) {
             var vm = this; 
             vm.quotes = null; 
             vm.business = null; 
@@ -11,8 +11,10 @@ angular.module('appModule')
             businessService.show($routeParams.bid).then(function (res) {
                 vm.business = res.data;
             }); 
+            
+            var key = keyService.getGoogleMapsApi();
 
-            vm.googleMapsUrl = "https://maps.googleapis.com/maps/api/js?key=AIzaSyCiTHajsiPtjxhedochfeIEsXprCNNQFfU";
+            vm.googleMapsUrl = "https://maps.googleapis.com/maps/api/js?key=" + key;
 
         
             vm.update = function (business) {

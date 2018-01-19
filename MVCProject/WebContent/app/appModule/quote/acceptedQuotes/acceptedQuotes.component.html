@@ -43,10 +43,10 @@
                         <td>{{q.request.user.firstName}} {{q.request.user.lastName}}</td>
                         <td>{{q.postDate | date: 'MM-dd-yy'}}</td>
                         <td>{{q.expireDate | date: 'MM-dd-yy'}}</td>
-                        <td><button type="button" ng-click="vm.viewDetails(q)">View Details</button></td>
+                        <td><button class="btn btn-primary" type="button" ng-click="vm.viewDetails(q)">View Details</button></td>
                         <td ng-hide="vm.completeFlag"><button type="button" ng-click="vm.completeFlag = true">Mark Complete</button></td>
                         <td ng-show="vm.completeFlag"><input class="form-control" type="date" ng-model="q.completeDate"></input><br>
-                        <button type="button" ng-click="vm.markComplete(q)">Submit</button></td>
+                        <button class="btn btn-secondary" type="button" ng-click="vm.markComplete(q)">Submit</button></td>
                     </tr>
 
                 </tbody>

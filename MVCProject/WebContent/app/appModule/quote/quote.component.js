@@ -2,16 +2,25 @@ angular.module('appModule')
     .component('quote', {
         controllerAs: 'vm',
         templateUrl: 'app/appModule/quote/quote.component.html',
-        controller: function (authService, quoteService, $location, $routeParams) {
+        controller: function (authService, quoteService, $location, $routeParams, notificationService, businessService) {
             var vm = this; 
             vm.bizId = authService.getBusToken(); 
             vm.allQuotes = [];
-            vm.business = null;
+			vm.business = null;
+			vm.notifications = null; 
+			vm.size = null; 
             vm.sortCriteria = 'expireDate';
             
             
             quoteService.index().then(function(res){
-            		vm.allQuotes = res.data;
+				vm.allQuotes = res.data;
+				businessService.show(vm.bizId).then(function (res) {
+					vm.business = res.data; 
+					notificationService.bizIndex(vm.bizId).then(function (res) {
+						vm.notifications = res.data;
+						vm.size = vm.notifications.length;
+					}); 
+				})
             })
             vm.addQuote = function(quote){
             		quote.active = true;
@@ -60,6 +69,5 @@ angular.module('appModule')
 	    		vm.viewSettings = function(){
 	    			$location.path("business/" + vm.bizId + "/settings");
 	    		}
-    
         }
     })

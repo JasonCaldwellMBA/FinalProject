@@ -1,38 +1,71 @@
 <div class="container-fluid mt-4">
     <div class="row">
-		<div class="col-sm-3">
-			<div class="list-group" id="list-tab" role="tablist">
-				<a class="clickable list-group-item list-group-item-action" id="list-home-list" data-toggle="list" ng-click="vm.home()"
-						 role="tab" aria-controls="home">Home</a>
-				<a class="clickable list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" ng-click="vm.viewAllQuotes()"
-						 role="tab" aria-controls="profile">View all quotes</a>
-				 <a class="clickable list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" ng-click="vm.viewPendingQuotes()"
-						 role="tab" aria-controls="messages">View pending quotes</a>
-				 <a class="clickable list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" ng-click="vm.viewAcceptedQuotes()"
-						 role="tab" aria-controls="settings">View accepted quotes</a>
-				 <a class="clickable list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" ng-click="vm.viewCompletedQuotes()"
-						 role="tab" aria-controls="settings">View completed quotes</a>
-				<a class="clickable list-group-item list-group-item-action active" id="list-settings-list" data-toggle="list" ng-click="vm.viewRequests()"
-				 		role="tab" aria-controls="settings" >View requests in area</a>
-				<a class="clickable list-group-item list-group-item-action" id="list-certifications-list" data-toggle="list" ng-click="vm.viewCertifications()"
-						 role="tab" aria-controls="messages">View certifications</a>
-				<a class="clickable list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" ng-click="vm.viewSettings()"
-						 role="tab" aria-controls="settings">Settings</a>
-			</div>
-		</div>
+        <div class="col-sm-3">
+            <a class="" id="list-messages-list" data-toggle="list" href="#/business/{{vm.business.id}}/businessNotification" role="tab"
+                aria-controls="messages">
+                <button type="button" class="btn btn-outline-danger">
+                    Notifications
+                    <span class="badge badge-danger border-white">{{vm.size}}</span>
+                </button>
+            </a>
+            <div class="list-group mt-2 " id="list-tab" role="tablist">
+                <a class="clickable list-group-item list-group-item-action " id="list-home-list" data-toggle="list" ng-click="vm.home()"
+                    role="tab" aria-controls="home">Home</a>
+                <a class="clickable list-group-item list-group-item-action " id="list-profile-list" data-toggle="list" ng-click="vm.viewAllQuotes()"
+                    role="tab" aria-controls="profile">View all quotes</a>
+                <a class="clickable list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" ng-click="vm.viewAcceptedQuotes()"
+                    role="tab" aria-controls="settings">View accepted quotes</a>
+                <a class="clickable list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" ng-click="vm.viewCompletedQuotes()"
+                    role="tab" aria-controls="settings">View completed quotes</a>
+                <a class="clickable list-group-item list-group-item-action active" id="list-settings-list" data-toggle="list" ng-click="vm.viewRequests()"
+                    role="tab" aria-controls="settings">View requests in area</a>
+                <a class="clickable list-group-item list-group-item-action" id="list-certifications-list" data-toggle="list" ng-click="vm.viewCertifications()"
+                    role="tab" aria-controls="messages">View certifications</a>
+                <a class="clickable list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" ng-click="vm.viewSettings()"
+                    role="tab" aria-controls="settings">Settings</a>
+            </div>
+            <div class="justify-content-left bg-white rounded mt-2 p-2 border">
+                <h6 class="row justify-content-center">Contact Information</h6>
+                <hr/>
+                <label>
+                    <strong>Phone: </strong> {{vm.business.contact.phone}}</label>
+                <br/>
+                <label>
+                    <strong>Email: </strong> {{vm.business.contact.email}}</label>
+                <br/>
+                <label>
+                    <strong>Website: </strong> {{vm.business.contact.website}}</label>
+                <br/>
+                <label>
+                    <strong>Address: </strong> {{vm.business.contact.address1}}</label>
+                <br/>
+                <label>
+                    <strong>Address 2: </strong> {{vm.business.contact.address2}}</label>
+                <br/>
+                <label>
+                    <strong>City: </strong> {{vm.business.contact.city}}</label>
+                <br/>
+                <label>
+                    <strong>State: </strong> {{vm.business.contact.state}}</label>
+                <br/>
+                <label>
+                    <strong>Zipcode: </strong> {{vm.business.contact.zipcode}}</label>
+                <br/>
+            </div>
+        </div>
         <div class="col-sm">
             <h2 class="row justify-content-center">All requests</h2>
             <table class="table" ng-hide="vm.selected">
                 <thead>
                     <tr>
-                        <th ng-click = "vm.sortCriteria = 'id'">Request Id</th>
-                        <th ng-click = "vm.sortCriteria = 'description'">Description</th>
-                        <th ng-click = "vm.sortCriteria = 'make'">Make</th>
-                        <th ng-click = "vm.sortCriteria = 'model'">Model</th>
-                        <th ng-click = "vm.sortCriteria = 'estimate'">Estimate</th>
-                        <th ng-click = "vm.sortCriteria = 'completeDate'">Complete By</th>
-                        <th ng-click = "vm.sortCriteria = 'expireDate'">Expires By</th>
-                        <th ng-click = "vm.sortCriteria = 'expireDate'">Details</th>
+                        <th ng-click="vm.sortCriteria = 'id'">Request Id</th>
+                        <th ng-click="vm.sortCriteria = 'description'">Description</th>
+                        <th ng-click="vm.sortCriteria = 'make'">Make</th>
+                        <th ng-click="vm.sortCriteria = 'model'">Model</th>
+                        <th ng-click="vm.sortCriteria = 'estimate'">Estimate</th>
+                        <th ng-click="vm.sortCriteria = 'completeDate'">Complete By</th>
+                        <th ng-click="vm.sortCriteria = 'expireDate'">Expires By</th>
+                        <th ng-click="vm.sortCriteria = 'expireDate'">Details</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -114,7 +147,7 @@
                     </ul>
                 </form>
             </div>
-<!--         <div class="col-sm">
+            <!--         <div class="col-sm">
         </div> -->
         </div>
     </div>

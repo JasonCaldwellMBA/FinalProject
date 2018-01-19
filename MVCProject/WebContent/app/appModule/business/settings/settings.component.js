@@ -2,8 +2,10 @@ angular.module('appModule')
 	.component('businessSettings', {
 		templateUrl: 'app/appModule/business/settings/settings.component.html',
 		controllerAs: 'vm',
-		controller: function (businessService, $routeParams, $cookies, $location, authService) {
+		controller: function (businessService, $routeParams, $cookies, $location, authService, notificationService) {
 			var vm = this;
+			vm.notifications = null; 
+			vm.size = null; 
 			vm.updatedBusiness = null;
 			vm.business = null;
 			vm.bizId = authService.getBusToken();
@@ -11,6 +13,10 @@ angular.module('appModule')
 			//init methods
 			businessService.show($cookies.get('busId')).then(function (res) {
 				vm.business = angular.copy(res.data);
+				notificationService.bizIndex(vm.business.id).then(function (res) {
+					vm.notifications = res.data;
+					vm.size = vm.notifications.length;
+				});
 			});
 
 			//CRUD  && functionality
@@ -38,30 +44,30 @@ angular.module('appModule')
 					vm.business = angular.copy(res.data);
 				});
 			}
-			
+
 			//functions for sidebar routing
-			vm.home = function(){
+			vm.home = function () {
 				$location.path("business/" + vm.bizId);
 			}
-			vm.viewAllQuotes = function(){
+			vm.viewAllQuotes = function () {
 				$location.path("business/" + vm.bizId + "/quote");
 			}
-			vm.viewPendingQuotes = function(){
+			vm.viewPendingQuotes = function () {
 				$location.path("business/" + vm.bizId + "/pendingQuotes");
 			}
-			vm.viewAcceptedQuotes = function(){
+			vm.viewAcceptedQuotes = function () {
 				$location.path("business/" + vm.bizId + "/acceptedQuotes");
 			}
-			vm.viewCompletedQuotes = function(){
+			vm.viewCompletedQuotes = function () {
 				$location.path("business/" + vm.bizId + "/completedQuotes");
 			}
-			vm.viewRequests = function(){
+			vm.viewRequests = function () {
 				$location.path("business/" + vm.bizId + "/request");
 			}
-			vm.viewCertifications = function(){
+			vm.viewCertifications = function () {
 				$location.path("business/" + vm.bizId + "/certification");
 			}
-			vm.viewSettings = function(){
+			vm.viewSettings = function () {
 				$location.path("business/" + vm.bizId + "/settings");
 			}
 		}

@@ -9,7 +9,7 @@ angular.module('appModule')
 			vm.business = null;
 			vm.businesses = [];
 			vm.notifications = null;
-			vm.size = null; 
+			vm.size = null;
 
 			//init load
 			quoteService.index().then(function (res) {
@@ -29,7 +29,7 @@ angular.module('appModule')
 				vm.business = res.data;
 				notificationService.bizIndex(vm.business.id).then(function (res) {
 					vm.notifications = res.data;
-					vm.size = vm.notifications.length; 
+					vm.size = vm.notifications.length;
 				});
 			})
 			//Helper methods

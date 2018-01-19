@@ -4,21 +4,23 @@ angular.module('appModule')
 		controllerAs: 'vm',
 		controller: function (requestService, $routeParams, $location, businessService, quoteService, distanceMatrixService, authService, notificationService) {
 			var vm = this;
-			vm.business = null;
 			vm.requests = [];
+			vm.notifications = null; 
+			vm.size = null; 
 			vm.selected = null;
 			vm.quoteFlag = null;
 			vm.business = null;
 			vm.bizId = authService.getBusToken();
 			vm.sortCriteria = 'expireDate';
 
-			businessService.show($routeParams.bid).then(function (res) {
-				vm.business = angular.copy(res.data);
-			});
-
-			//init Methods
+			//init methods
 			businessService.show($routeParams.id).then(function (res) {
-				vm.business = res.data;
+				vm.business = angular.copy(res.data);
+
+				notificationService.bizIndex(vm.bizId).then(function (res) {
+					vm.notifications = res.data;
+					vm.size = res.data.length;
+				});
 				requestService.indexAllRequests().then(function (res) {
 					//UNCOMMENT FOR PRACTICAL PRESENTATION
 					// var MAX_DISTANCE = 50;
@@ -43,8 +45,8 @@ angular.module('appModule')
 					// })
 					vm.requests = res.data;
 				});
-
 			});
+
 			//helper methods
 			var reload = function () {
 				requestService.indexAllRequests().then(function (res) {

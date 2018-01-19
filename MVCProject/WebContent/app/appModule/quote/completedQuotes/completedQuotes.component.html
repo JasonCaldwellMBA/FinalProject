@@ -1,38 +1,71 @@
-<div class="container-fluid">
+<div class="container-fluid mt-4">
     <div class="row">
-    
-    <!-- Side Bar to filter Quotes -->
+
+        <!-- Side Bar to filter Quotes -->
         <div class="col-sm-3">
-            			<div class="list-group" id="list-tab" role="tablist">
-				<a class="clickable list-group-item list-group-item-action" id="list-home-list" data-toggle="list" ng-click="vm.home()"
-						 role="tab" aria-controls="home">Home</a>
-				<a class="clickable list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" ng-click="vm.viewAllQuotes()"
-						 role="tab" aria-controls="profile">View all quotes</a>
-				 <a class="clickable list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" ng-click="vm.viewPendingQuotes()"
-						 role="tab" aria-controls="messages">View pending quotes</a>
-				 <a class="clickable list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" ng-click="vm.viewAcceptedQuotes()"
-						 role="tab" aria-controls="settings">View accepted quotes</a>
-				 <a class="clickable list-group-item list-group-item-action active" id="list-settings-list" data-toggle="list" ng-click="vm.viewCompletedQuotes()"
-						 role="tab" aria-controls="settings">View completed quotes</a>
-				<a class="clickable list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" ng-click="vm.viewRequests()"
-				 		role="tab" aria-controls="settings" >View requests in area</a>
-				<a class="clickable list-group-item list-group-item-action" id="list-certifications-list" data-toggle="list" ng-click="vm.viewCertifications()"
-						 role="tab" aria-controls="messages">View certifications</a>
-				<a class="clickable list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" ng-click="vm.viewSettings()"
-						 role="tab" aria-controls="settings">Settings</a>
-			</div>
+            <a class="" id="list-messages-list" data-toggle="list" href="#/business/{{vm.business.id}}/businessNotification" role="tab"
+                aria-controls="messages">
+                <button type="button" class="btn btn-outline-danger">
+                    Notifications
+                    <span class="badge badge-danger border-white">{{vm.size}}</span>
+                </button>
+            </a>
+            <div class="list-group mt-2 " id="list-tab" role="tablist">
+                <a class="clickable list-group-item list-group-item-action " id="list-home-list" data-toggle="list" ng-click="vm.home()"
+                    role="tab" aria-controls="home">Home</a>
+                <a class="clickable list-group-item list-group-item-action " id="list-profile-list" data-toggle="list" ng-click="vm.viewAllQuotes()"
+                    role="tab" aria-controls="profile">View all quotes</a>
+                <a class="clickable list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" ng-click="vm.viewAcceptedQuotes()"
+                    role="tab" aria-controls="settings">View accepted quotes</a>
+                <a class="clickable list-group-item list-group-item-action active" id="list-settings-list" data-toggle="list" ng-click="vm.viewCompletedQuotes()"
+                    role="tab" aria-controls="settings">View completed quotes</a>
+                <a class="clickable list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" ng-click="vm.viewRequests()"
+                    role="tab" aria-controls="settings">View requests in area</a>
+                <a class="clickable list-group-item list-group-item-action" id="list-certifications-list" data-toggle="list" ng-click="vm.viewCertifications()"
+                    role="tab" aria-controls="messages">View certifications</a>
+                <a class="clickable list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" ng-click="vm.viewSettings()"
+                    role="tab" aria-controls="settings">Settings</a>
+            </div>
+            <div class="justify-content-left bg-white rounded mt-2 p-2 border">
+                <h6 class="row justify-content-center">Contact Information</h6>
+                <hr/>
+                <label>
+                    <strong>Phone: </strong> {{vm.business.contact.phone}}</label>
+                <br/>
+                <label>
+                    <strong>Email: </strong> {{vm.business.contact.email}}</label>
+                <br/>
+                <label>
+                    <strong>Website: </strong> {{vm.business.contact.website}}</label>
+                <br/>
+                <label>
+                    <strong>Address: </strong> {{vm.business.contact.address1}}</label>
+                <br/>
+                <label>
+                    <strong>Address 2: </strong> {{vm.business.contact.address2}}</label>
+                <br/>
+                <label>
+                    <strong>City: </strong> {{vm.business.contact.city}}</label>
+                <br/>
+                <label>
+                    <strong>State: </strong> {{vm.business.contact.state}}</label>
+                <br/>
+                <label>
+                    <strong>Zipcode: </strong> {{vm.business.contact.zipcode}}</label>
+                <br/>
+            </div>
         </div>
-        
+
         <!-- Quote Table -->
         <div class="col-sm">
             <table class="table">
                 <thead>
                     <tr>
-                        <th ng-click = "vm.sortCriteria = 'id'">Quote id</th>
-                        <th ng-click = "vm.sortCriteria = 'lastName'">Customer</th>
-                        <th ng-click = "vm.sortCriteria = 'postDate'">Post date</th>
-                        <th ng-click = "vm.sortCriteria = 'expireDate'">Expire date</th>
-                        <th ng-click = "vm.sortCriteria = 'completeDate'">Complete date</th>
+                        <th ng-click="vm.sortCriteria = 'id'">Quote id</th>
+                        <th ng-click="vm.sortCriteria = 'lastName'">Customer</th>
+                        <th ng-click="vm.sortCriteria = 'postDate'">Post date</th>
+                        <th ng-click="vm.sortCriteria = 'expireDate'">Expire date</th>
+                        <th ng-click="vm.sortCriteria = 'completeDate'">Complete date</th>
                         <th>View Details</th>
                     </tr>
                 </thead>
@@ -44,7 +77,9 @@
                         <td>{{q.postDate | date: 'MM-dd-yy'}}</td>
                         <td>{{q.expireDate | date: 'MM-dd-yy'}}</td>
                         <td>{{q.completeDate | date: 'MM-dd-yy'}}</td>
-                        <td><button class="btn btn-primary" type="button" ng-click="vm.viewDetails(q)">View Details</button></td>
+                        <td>
+                            <button class="btn btn-primary" type="button" ng-click="vm.viewDetails(q)">View Details</button>
+                        </td>
                     </tr>
 
                 </tbody>

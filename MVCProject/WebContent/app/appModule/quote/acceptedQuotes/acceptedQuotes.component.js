@@ -2,21 +2,32 @@ angular.module('appModule')
 	.component('acceptedQuotes',{
 		templateUrl : 'app/appModule/quote/acceptedQuotes/acceptedQuotes.component.html',
 		controllerAs : 'vm',
-		controller : function(quoteService, $routeParams, authService, $location){
+		controller : function(quoteService, $routeParams, authService, $location, businessService, notificationService){
 			var vm = this;
+			vm.business = null; 
+			vm.notifications = null; 
+			vm.size = null; 
 			vm.bizId = authService.getBusToken();
 			vm.acceptedQuotes = [];
 			vm.sortCriteria = 'expireDate';
 			
 			//init load
-			quoteService.index()
-			.then(function(res){
+			quoteService.index().then(function(res){
 				var preQuotes = res.data;
 				vm.acceptedQuotes = [];
 				preQuotes.forEach(quote => {
-					if(quote.acceptedRequest != undefined && quote.completed == false){
+					if (quote.acceptedRequest != undefined && quote.completed == false) {
 						vm.acceptedQuotes.push(quote);
 					}
+				}); 
+
+				businessService.show(vm.bizId).then(function (res) {
+					vm.business = res.data; 
+
+					notificationService.bizIndex(vm.bizId).then(function (res) {
+						vm.notifications = res.data; 
+						vm.size = res.data.length; 
+					})
 				})
 				preQuotes = [];
 			})	

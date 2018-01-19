@@ -78,6 +78,6 @@ background-color: grey;
     font-size: 24px;
     border-radius: 30px;
 }
-.list-group-item {
+.clickable {
 	cursor : pointer;
 }

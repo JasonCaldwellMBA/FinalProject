@@ -45,8 +45,8 @@
                     <tr ng-repeat="q in vm.pendingQuotes">
                         <td>{{q.id}}</td>
                         <td>{{q.request.user.firstName}} {{q.request.user.lastName}}</td>
-                        <td>{{q.request.estimate}}</td>
-                        <td>{{q.estimate}}</td>
+                        <td>{{q.request.estimate | currency}}</td>
+                        <td>{{q.estimate | currency}}</td>
                         <td>{{q.postDate | date: 'MM-dd-yy'}}</td>
                         <td>{{q.expireDate | date: 'MM-dd-yy'}}</td>
                         <td><button class="btn btn-primary" type="button" ng-click="vm.viewDetails(q)">View Details</button></td>

@@ -46,22 +46,22 @@
                       	<label>Quote Description: {{vm.quote.description}}</label><br>
                     </li>
                     <li class="list-group-item">
-                      	<label>Request PostDate: {{vm.quote.request.postDate | date : "MMM dd, yy"}}</label><br>
+                      	<label>Request PostDate: {{vm.quote.request.postDate | date : "MM-dd-yy"}}</label><br>
                     </li>
                     <li class="list-group-item">
-                      	<label>Quote PostDate: {{vm.quote.postDate | date : "MMM dd, yy"}}</label><br>
+                      	<label>Quote PostDate: {{vm.quote.postDate | date : "MM-dd-yy"}}</label><br>
                     </li>
                     <li class="list-group-item">
-                      	<label>Quote Expire Date: {{vm.quote.request.expireDate}}</label><br>
+                      	<label>Quote Expire Date: {{vm.quote.request.expireDate | date : "MM-dd-yy"}}</label><br>
                     </li>
                     <li class="list-group-item">
-                      	<label>Request Estimate: {{vm.quote.request.estimate}}</label><br>
+                      	<label>Request Estimate: {{vm.quote.request.estimate | currency}}</label><br>
                     </li>
                     <li class="list-group-item">
-                      	<label>Quote Estimate: {{vm.quote.estimate}}</label><br>
+                      	<label>Quote Estimate: {{vm.quote.estimate | currency}}</label><br>
                     </li>
                     <li class="list-group-item">
-                      	<label>Request Expire Date: {{vm.quote.request.expireDate}}</label><br>
+                      	<label>Request Expire Date: {{vm.quote.request.expireDate | date : "MM-dd-yy"}}</label><br>
                     </li>
                     <li class="list-group-item">
                       	<label>Complete: {{vm.quote.completed}}</label><br>

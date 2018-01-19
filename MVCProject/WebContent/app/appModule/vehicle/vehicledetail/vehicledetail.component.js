@@ -16,9 +16,9 @@ angular.module('appModule')
 					vm.return(); 
 				})
 			}
-			vm.destroy = function(){
-				vehicleService.destroy(vehicle).then(function (res) {
-					reload(); 
+			vm.destroy = function(vehicle){
+				vehicleService.destroy(vehicle.id).then(function (res) {
+					vm.return();
 				}); 
 			}
 			vm.return = function(){

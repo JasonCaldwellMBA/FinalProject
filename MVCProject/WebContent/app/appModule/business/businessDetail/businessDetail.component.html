@@ -24,10 +24,12 @@
 	   	 <h1>Map</h1>
 		   <div map-lazy-load="https://maps.google.com/maps/api/js"
 		       map-lazy-load-params="{{vm.googleMapsUrl}}">
-		       <ng-map center="{{vm.business.contact.latitude}},{{vm.business.contact.longitude}}" zoom="8">
+		       <ng-map center="{{vm.business.contact.latitude}},{{vm.business.contact.longitude}}" zoom="12">
 		         <marker position="[{{vm.business.contact.latitude}},{{vm.business.contact.longitude}}]"></marker>
 		       </ng-map>
 		   </div>
+		</div>
+		<div class="col-sm-2">
 		</div>
 
 	</div>

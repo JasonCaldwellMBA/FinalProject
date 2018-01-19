@@ -10,7 +10,7 @@ angular.module('appModule')
 			vm.quoteFlag = null;
 			vm.business = null;
 			vm.bizId = authService.getBusToken();
-			vm.sortCriteria = 'estimate';
+			vm.sortCriteria = 'expireDate';
 
 			businessService.show($routeParams.bid).then(function (res) {
 				vm.business = angular.copy(res.data);

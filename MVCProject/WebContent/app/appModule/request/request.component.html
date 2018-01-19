@@ -94,7 +94,7 @@
                             <input class="form-control" type="date" ng-model="request.expireDate" />
                         </li>
                         <li class="list-group-item">
-                            <button class="btn btn-primary" ng-click="vm.addRequest(request)">Add Request</button>
+                            <button class="btn btn-primary" data-toggle="collapse" data-target="#collapseExample" ng-click="vm.addRequest(request); request = {}">Add Request</button>
                         </li>
                     </ul>
                 </div>

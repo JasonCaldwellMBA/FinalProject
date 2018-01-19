@@ -2,7 +2,7 @@ angular.module('authModule')
 	.component('registerBusiness', {
 		templateUrl: 'app/authModule/register/registerBusiness.component.html',
 		controllerAs: 'vm',
-		controller: function(authService, $location){
+		controller: function(authService, $location, $cookies){
 			var vm = this; 
 			vm.business = null;
 			

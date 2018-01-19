@@ -9,20 +9,16 @@
                 <div class="card-body">
                     <h5 class="row justify-content-center card-title">Register</h5>
                     <div class="form-group">
-                        <label for="txtBusName">Login Name</label>
                         <input type="text" class="form-control" id="txtBusname" placeholder="Username" ng-model="business.loginName" required>
                     </div>
                     <div class="form-group">
-                        <label for="txtCompanyName">Company Name</label>
                         <input type="text" class="form-control" id="txtCompanyName" placeholder="Company name" ng-model="business.companyName" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="txtPassword">Password</label>
                         <input type="password" class="form-control" id="txtPassword" ng-model="business.loginPassword" placeholder="Password" required>
                     </div>
                     <div class="form-group">
-                        <label for="txtConfirmPwd">Confirm Password</label>
                         <input type="password" class="form-control" id="txtConfirmPwd" ng-model="business.confirm" placeholder="Password">
                     </div>
                     <div class="row justify-content-center">
@@ -30,7 +26,8 @@
                     </div>
                     <div class="row justify-content-center">
                         <div>Already have an account?
-                            <a href="#/loginbusiness">Log-in</a>
+                            <a href="#/loginBusiness">Log-in</a>
+                        </br>
                         </div>
                         <div>Are you a user? 
                             <a href="#/register">register here</a>
@@ -56,32 +53,25 @@
                 <div class="card-body">
                     <h5 class="row justify-content-center card-title">Register</h5>
                     <div class="form-group">
-                        <label for="txtAddress1">Address 1</label>
                         <input type="text" class="form-control" ng-model="contact.address1" id="txtAddress1" placeholder="Enter address1">
                     </div>
                     <div class="form-group">
-                        <label for="txtAddress2">Address 2</label>
-                        <input type="text" class="form-control" id="txtAddress2" placeholder="First name" ng-model="contact.address2">
+                        <input type="text" class="form-control" id="txtAddress2" placeholder="Enter address2" ng-model="contact.address2">
                     </div>
                     <div class="form-group">
-                        <label for="txtZipcode">Zip code</label>
-                        <input type="text" class="form-control" id="txtZipcode" ng-model="contact.zipcode" required>
+                        <input type="text" class="form-control" id="txtZipcode" placeholder="Enter zipcode" ng-model="contact.zipcode" required>
                     </div>
                     <div class="form-group">
-                        <label for="txtCity">City</label>
-                        <input type="text" class="form-control" id="txtCity" ng-model="contact.city">
+                        <input type="text" class="form-control" id="txtCity" placeholder="Enter city" ng-model="contact.city">
                     </div>
                     <div class="form-group">
-                        <label for="txtState">State</label>
-                        <input type="text" class="form-control" id="txtState" ng-model="contact.state">
+                        <input type="text" class="form-control" id="txtState" placeholder="Enter state" ng-model="contact.state">
                     </div>
                     <div class="form-group">
-                        <label for="txtPhone">Phone</label>
-                        <input type="phone" class="form-control" id="txtPhone" ng-model="contact.phone" required>
+                        <input type="phone" class="form-control" id="txtPhone" placeholder="Enter phone" ng-model="contact.phone" required>
                     </div>
                     <div class="form-group">
-                        <label for="txtEmail">Email</label>
-                        <input type="email" class="form-control" id="txtEmail" ng-model="contact.email" required>
+                        <input type="email" class="form-control" id="txtEmail" placeholder="Enter email" ng-model="contact.email" required>
                     </div>
                     <div class="row justify-content-center">
                         <button id="signup-back" ng-click="vm.return()" class="btn btn-primary">Back</button>

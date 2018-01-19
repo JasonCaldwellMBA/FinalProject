@@ -42,8 +42,8 @@
                         <td>{{r.vehicle.make}}</td>
                         <td>{{r.vehicle.model}}</td>
                         <td>{{r.estimate | currency}}</td>
-                        <td>{{r.completeDate}}</td>
-                        <td>{{r.expireDate}}</td>
+                        <td>{{r.completeDate | date: "MM-dd-yy"}}</td>
+                        <td>{{r.expireDate | date: "MM-dd-yy"}}</td>
                         <td>
                             <button class="btn btn-primary" class="btn" ng-click="vm.viewDetails(r)">View details</button>
                         </td>
@@ -76,11 +76,11 @@
                     <br>
                 </li>
                 <li class="list-group-item">
-                    <label>Request Expire Date: {{vm.selected.expireDate}}</label>
+                    <label>Request Expire Date: {{vm.selected.expireDate | date: "MM-dd-yy"}}</label>
                     <br>
                 </li>
                 <li class="list-group-item">
-                    <label>Estimate: {{vm.selected.estimate}}</label>
+                    <label>Estimate: {{vm.selected.estimate | currency}}</label>
                     <br>
                 </li>
                 <li class="list-group-item justify-content-center">
@@ -88,9 +88,7 @@
                     <button type="button" class="btn btn-success" ng-click="vm.quoteFlag = true">Add Quote</button>
                 </li>
             </ul>
-        </div>
-        <div class="col-sm">
-            <div ng-show="vm.quoteFlag" class="card card-body">
+            <div ng-show="vm.quoteFlag" class="col-sm-4 card card-body">
                 <form>
                     <ul class="list-group">
                         <li class="list-group-item">
@@ -102,20 +100,22 @@
                             <input type="number" ng-model="quote.estimate" />
                         </li>
                         <li class="list-group-item">
-                            <label>Complete Date</label>
+                            <label>I Can Complete By</label>
                             <input type="date" ng-model="quote.completeDate" />
                         </li>
                         <li class="list-group-item">
-                            <label>Expire Date</label>
+                            <label>Expires On</label>
                             <input type="date" ng-model="quote.expireDate" />
                         </li>
                         <li class="list-group-item">
                             <button class="btn btn-primary" ng-click="vm.return()">Return</button>
-                            <button class="btn btn-primary" ng-click="vm.addQuote(quote)">Add Quote</button>
+                            <button class="btn btn-primary" ng-click="vm.addQuote(quote); quote = {}">Add Quote</button>
                         </li>
                     </ul>
                 </form>
             </div>
+<!--         <div class="col-sm">
+        </div> -->
         </div>
     </div>
 </div>

@@ -13,7 +13,6 @@ angular.module('appModule')
         
         service.show = function (certid) {
         	var bizId = authService.getBusToken(); 
-        	console.log(certid);
         	return $http({
         		method: 'GET', 
         		url: BASE_URL + 'business/' + bizId + '/certification/' + certid

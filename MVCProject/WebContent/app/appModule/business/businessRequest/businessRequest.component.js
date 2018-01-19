@@ -19,7 +19,6 @@ angular.module('appModule')
 			//init Methods
 			businessService.show($routeParams.id).then(function (res) {
 				vm.business = res.data;
-				//				console.log(vm.business);
 				requestService.indexAllRequests().then(function (res) {
 					//UNCOMMENT FOR PRACTICAL PRESENTATION
 					// var MAX_DISTANCE = 50;
@@ -69,13 +68,11 @@ angular.module('appModule')
 						message: vm.business.companyName + ' sent a quote for #Request id: ' + vm.selected.id + ', Vehicle: ' + vm.selected.vehicle.make + ' ' + vm.selected.vehicle.model,
 						type: "user"
 					};
-
-					console.log(notification);
 					notificationService.create(notification).then(function (res) {
-						console.log(res);
 					})
 
 					vm.quoteFlag = null;
+					vm.viewAllQuotes();
 				});
 			}
 

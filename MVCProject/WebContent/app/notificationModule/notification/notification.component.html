@@ -1,28 +1,42 @@
 <div class="container-fluid mt-4">
     <div class="row">
-        <div class="col-sm-3">
-            <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" role="tab" aria-controls="profile"
-                href="#/user/{{vm.user.id}}/notification">
-                <button type="button" class="btn btn-primary">
+        <div class="col-sm-2">
+            <a class="" id="list-profile-list" data-toggle="list" role="tab" aria-controls="profile" ng-click="vm.getNotifications()">
+                <button type="button" class="btn btn-danger">
                     Notifications
-                    <span class="badge badge-danger">{{vm.size}}</span>
+                    <span class="badge badge-danger border col-sm-2">{{vm.size}}</span>
                 </button>
             </a>
-            <div class="list-group" id="list-tab" role="tablist">
-                <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#/user/{{vm.user.id}}"
-                role="tab" aria-controls="home">Home</a>
-                <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#/user/{{vm.user.id}}/request"
+            <div class="list-group mt-2" id="list-tab" role="tablist">
+                <a class="list-group-item list-group-item-action" id="list-home-list" data-toggle="list" ng-click="vm.getHome()" role="tab"
+                    aria-controls="home">Home</a>
+                <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" ng-click="vm.getRequests()"
                     role="tab" aria-controls="profile">View requests</a>
-                <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#/user/{{vm.user.id}}/vehicle"
+                <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" ng-click="vm.getVehicles()"
                     role="tab" aria-controls="messages">View vehicles</a>
-                <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="modal" data-target="#exampleModalLong"
-                    role="tab" aria-controls="settings">View businesses</a>
                 <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" role="tab" aria-controls="settings"
-                    href="#/user/{{vm.user.id}}/settings">Settings</a>
+                    ng-click="vm.getSettings()">Settings</a>
+            </div>
+            <div class="justify-content-left bg-white rounded mt-2 p-2 border">
+                <h6 class="row justify-content-center">Contact information</h6>
+                <hr/>
+                <label>Address: {{vm.user.contact.address1}}</label>
+                </br>
+                <label>City: {{vm.user.contact.city}}</label>
+                </br>
+                <label>State: {{vm.user.contact.state}}</label>
+                </br>
+                <label>Zipcode: {{vm.user.contact.zipcode}}</label>
+                </br>
+                <label>Phone: {{vm.user.contact.phone}}</label>
+                </br>
+                <label>Email: {{vm.user.contact.email}}</label>
+                </br>
             </div>
         </div>
         <div class="col-sm">
-            <h1>Notifications</h1>
+            <h1><label>{{vm.user.firstName}}, your notifications are here.</label></h1>
+            <label>(psst...click the notification to delete)</label>
             <ul class="list-group" ng-repeat="n in vm.notifications">
                 <li ng-click="vm.destroy(n)" class="list-group-item">{{n.message}}</li>
             </ul>

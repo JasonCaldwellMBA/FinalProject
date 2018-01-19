@@ -11,12 +11,10 @@ html , body {
 }
 
 h1 {
-	color: lightgreen;
 /* 	font-family: 'Cabin', 'Helvetica Neue', Helvetica, Arial, sans-serif;
  */  font-weight: 700;
   margin: 0 0 35px;
   letter-spacing: 1px;
-  text-transform: uppercase; }
 }
 
 h2,

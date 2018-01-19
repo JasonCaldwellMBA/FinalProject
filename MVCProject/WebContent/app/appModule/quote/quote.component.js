@@ -7,7 +7,7 @@ angular.module('appModule')
             vm.bizId = authService.getBusToken(); 
             vm.allQuotes = [];
             vm.business = null;
-            vm.sortCriteria = 'lastName';
+            vm.sortCriteria = 'expireDate';
             
             
             quoteService.index().then(function(res){

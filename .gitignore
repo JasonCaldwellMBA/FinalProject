@@ -9,6 +9,8 @@ Servers
 .settings
 .springBeans
 bin
+keys
+key.service.js
 build.sh
 integration-repo
 ivy-cache

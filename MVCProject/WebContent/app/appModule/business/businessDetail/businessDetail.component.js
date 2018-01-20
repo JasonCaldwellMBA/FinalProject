@@ -2,7 +2,7 @@ angular.module('appModule')
     .component('businessDetail', {
         controllerAs: 'vm',
         templateUrl: 'app/appModule/business/businessDetail/businessDetail.component.html',
-        controller: function (businessService, userService, quoteService, $location, $routeParams, keyService, notificationService) {
+        controller: function (authService,businessService, userService, quoteService, $location, $routeParams, keyService, notificationService) {
             var vm = this;
             vm.quotes = null;
             vm.business = null;
@@ -11,9 +11,11 @@ angular.module('appModule')
             vm.notifications = null; 
             vm.size = null; 
             //init load
-            if (authService.isBus() == false) {
-                $location.path('/loginBusiness'); 
+            
+            if (authService.isUser() == false) {
+                $location.path('/login'); 
             }
+            
             businessService.show($routeParams.bid).then(function (res) {
                 vm.business = res.data;
                 userService.show($routeParams.uid).then(function (res) {

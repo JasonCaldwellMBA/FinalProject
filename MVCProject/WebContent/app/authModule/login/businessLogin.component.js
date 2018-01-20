@@ -4,7 +4,7 @@ angular.module('authModule')
 	controllerAs : 'vm',
 	controller : function (authService, $location, $cookies) {
 		var vm = this;
-		if (authService.isUser() == true){
+		if (authService.isBus() == true){
 			var id = authService.getBusToken();
 			$location.path('/business/' + id);
 		}

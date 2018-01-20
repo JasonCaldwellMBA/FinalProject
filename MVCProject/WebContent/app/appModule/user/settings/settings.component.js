@@ -20,17 +20,13 @@ angular.module('appModule')
                 notificationService.index($routeParams.id).then(function (res) {
 					vm.notifications = res.data; 
 					vm.size = vm.notifications.length; 
-					// if (res.data = null) {
-					// 	vm.size = 0; 
-					// }
 				})
             });
             vm.updateUser = function(user) {
                 userService.update(user).then(function (res) {
                     vm.user = res.data;
-                    if (res.status >= 200 && res.status < 300) {
-                        vm.updatedUser = res.data; 
-                    }
+                    vm.updatedUser = res.data; 
+                    console.log(res);
                 }); 
             }
             vm.destroyAccount = function () {

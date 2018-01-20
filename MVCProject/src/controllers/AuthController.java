@@ -1,6 +1,7 @@
 package controllers;
 
 import javax.servlet.http.HttpServletResponse;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 import data.AuthDAO;
 import entities.Business;
 import entities.User;
-@CrossOrigin
 
+@CrossOrigin
 @RestController
 public class AuthController {
 	@Autowired

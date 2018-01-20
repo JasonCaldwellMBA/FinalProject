@@ -1,27 +1,26 @@
 angular.module('appModule')
     .factory('vehicleService', function($http, authService){
         var service = {}; 
-        var BASE_URL = 'http://localhost:8080/MVCProject/api/'; 
-
+        
         service.index = function () {
              var userId = authService.getToken(); 
             return $http({
                 method: 'GET', 
-                url: BASE_URL + 'user/' + userId + '/vehicle',
+                url: 'api/' +'user/' + userId + '/vehicle',
             }); 
         }
         service.show = function (id) {
             var userId = authService.getToken(); 
             return $http({
                 method: 'GET',
-                url: BASE_URL +'user/'+ userId + '/vehicle/' + id,
+                url: 'api/' + 'user/'+ userId + '/vehicle/' + id,
             });
         }
         service.create = function (vehicle) {
             var userId = authService.getToken(); 
             return $http({
                 method: 'POST',
-                url: BASE_URL + 'user/' +  userId + '/vehicle',
+                url: 'api/' +  'user/' +  userId + '/vehicle',
                 headers: {
                     'content-type': 'application/json'
                 },
@@ -32,7 +31,7 @@ angular.module('appModule')
             var userId = authService.getToken(); 
             return $http({
                 method: 'PUT',
-                url: BASE_URL + 'user/' + userId + '/vehicle/' + vehicle.id,
+                url: 'api/' +  'user/' + userId + '/vehicle/' + vehicle.id,
                 headers: {
                     'content-type':'application/json'
                 },
@@ -43,7 +42,7 @@ angular.module('appModule')
             var userId = authService.getToken(); 
             return $http({
                 method: 'DELETE',
-                url: BASE_URL + 'user/' + userId + '/vehicle/' + id
+                url: 'api/' +  'user/' + userId + '/vehicle/' + id
             }); 
         }
         return service; 

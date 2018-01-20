@@ -8,7 +8,7 @@ angular.module('appModule')
 			vm.bizId = null; 
 			$location.path('/home')
 
-			positionService.getPosition(); 
+//			positionService.getPosition(); 
 
 			setInterval(function () {
 				if (authService.isUser() || authService.isBus()) {

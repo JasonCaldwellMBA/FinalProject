@@ -11,8 +11,6 @@ angular.module('authModule')
             vm.setUser = function (user) {
                 authService.login(user)
                     .then(function (res) {
-                    	console.log(res);
-                    	console.log(res.data.id); 
                     	if(authService.setToken(res.data.id)){
                     		$location.path('/user/' + authService.getToken()); 
                     	}

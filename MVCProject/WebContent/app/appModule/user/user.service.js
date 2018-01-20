@@ -1,12 +1,11 @@
 angular.module('appModule')
 .factory('userService', function($http, authService){
 	var service = {};
-	var BASE_URL = "http://localhost:8080/MVCProject/api/"
 		
 	service.show = function(id){
 		return $http({
 			method : "GET",
-			url : BASE_URL + "user/" + id
+			url : 'api/' +  "user/" + id
 		})
 	}
 
@@ -21,7 +20,7 @@ angular.module('appModule')
 		var id = authService.getToken(); 
 		return $http({
 			method: 'PUT',
-			url: BASE_URL + 'user/' + id, 
+			url: 'api/' +  'user/' + id, 
 			headers: {
 				'content-type': 'application/json'
 			},
@@ -32,7 +31,7 @@ angular.module('appModule')
 		var id = authService.getToken(); 
 		return $http({
 			method: 'DELETE',
-			url: BASE_URL + 'user/' + id
+			url: 'api/' +  'user/' + id
 		}); 
 	}
 	return service;

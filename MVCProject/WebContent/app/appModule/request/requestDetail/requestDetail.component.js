@@ -2,7 +2,7 @@ angular.module('appModule')
     .component('requestDetail', {
         controllerAs: 'vm',
         templateUrl: 'app/appModule/request/requestDetail/requestDetail.component.html',
-        controller: function (requestService, quoteService, $location, $routeParams, notificationService) {
+        controller: function (authService, requestService, quoteService, $location, $routeParams, notificationService) {
             var vm = this;
             vm.request = null;
             vm.quotes = [];

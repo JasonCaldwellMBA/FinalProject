@@ -2,7 +2,7 @@ angular.module('appModule')
 	.component('vehicleDetail', {
 		templateUrl: 'app/appModule/vehicle/vehicledetail/vehicledetail.component.html',
 		controllerAs: 'vm',
-		controller: function (vehicleService, $location, $routeParams) {
+		controller: function (vehicleService, $location, $routeParams, authService) {
 			var vm = this;
 			vm.vehicle = null;
 			//			init load

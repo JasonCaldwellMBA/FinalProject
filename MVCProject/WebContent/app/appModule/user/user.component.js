@@ -23,19 +23,40 @@ angular.module('appModule')
 					var MAX_DISTANCE = 50;
 					var CONVERT_TO_MILES = 1.609344;
 					var b = res.data;
-					var origin = vm.user.contact.latitude + ',' + vm.user.contact.longitude; 
+					var origin;
 
+					if (vm.user.contact.latitude != null && vm.user.contact.longitude != null) {
+						 origin = vm.user.contact.latitude + ',' + vm.user.contact.longitude; 
+					}
+					else {
+						let c = vm.user.contact; 
+						origin = c.address1.split(' ').join('+') + '+' + c.city + '+' + c.state + '+' + c.zipcode; 
+						console.log(origin); 
+					}
+					console.log(origin); 
 					b.forEach((biz) => {
-						var destination = biz.contact.latitude + ',' + biz.contact.longitude; 
+						var destination; 
+						if (biz.contact.latitude != null && biz.contact.longitude != null) {
+							destination = biz.contact.latitude + ',' + biz.contact.longitude; 
+						}
+						else {
+							let b = biz.contact; 
+							destination = b.address1.split(' ').join('+') + '+' + b.city + '+' + b.state + '+' + b.zipcode; 
+						}
+						console.log(destination); 
+						
 						//GET google API distance info
 						distanceMatrixService.getDistanceJson(origin, destination).then(function (res) {
 							var returnDistance  = res.data;
 							if (returnDistance != undefined){
 								var row = returnDistance.rows.pop(); 
-								var obj = row.elements.pop(); 
-								var miles = ((obj.distance.value / 1000) / CONVERT_TO_MILES);
-								if (miles <= MAX_DISTANCE) {
-									vm.businesses.push(biz);
+								var obj = row.elements.pop();
+								
+								if(obj.distance.value != null){
+									var miles = ((obj.distance.value / 1000) / CONVERT_TO_MILES);
+									if (miles <= MAX_DISTANCE) {
+										vm.businesses.push(biz);
+									}
 								}
 							}
 						})

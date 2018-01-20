@@ -2,7 +2,7 @@ angular.module('appModule')
 	.component('request', {
 		templateUrl : 'app/appModule/request/request.component.html',
 		controllerAs : 'vm',
-		controller : function(authService, notificationService, requestService, vehicleService, $cookies, $location, $routeParams) {				
+		controller : function(userService, authService, notificationService, requestService, vehicleService, $cookies, $location, $routeParams) {				
 			var vm = this;
 			vm.userId = authService.getToken(); 
 			vm.requests = [];
@@ -19,8 +19,10 @@ angular.module('appModule')
 			
 			requestService.index().then(function (res) {
 				vm.requests = res.data; 
-				var request = vm.request[0]; 
-				vm.user = request.user; 
+				userService.show(authService.getToken()).then(function(res){
+					vm.user = res.data; 
+				})
+				
 				notificationService.index($routeParams.id).then(function (res) {
 					vm.notifications = res.data; 
 					vm.size = vm.notifications.length; 

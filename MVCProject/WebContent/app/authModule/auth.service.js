@@ -1,11 +1,10 @@
 angular.module('authModule')
 	.factory('authService', function($http, $cookies, $location){
 		var service = {}; 
-		var BASE_URL = "http://localhost:8080/MVCProject/"
 		service.register = function(user){
 			return $http({
 				method: 'POST',
-				url: BASE_URL + 'api/auth/user/register',
+				url:  'api/auth/user/register',
 				headers: {
 					'content-type': 'application/json'
 				},
@@ -15,7 +14,7 @@ angular.module('authModule')
 		service.login = function(user){
 			return $http({
 				method: 'PUT',
-				url: BASE_URL + 'api/auth/user/login',
+				url:  'api/auth/user/login',
 				headers: {
 					'content-type': 'application/json'
 				},
@@ -25,7 +24,7 @@ angular.module('authModule')
 		service.registerBusiness = function(business){
 			return $http({
 				method: 'POST',
-				url: BASE_URL + 'api/auth/business/register',
+				url:  'api/auth/business/register',
 				headers: {
 					'content-type': 'application/json'
 				},
@@ -35,7 +34,7 @@ angular.module('authModule')
 		service.businessLogin = function(business){
 			return $http({
 				method: 'PUT',
-				url: BASE_URL + 'api/auth/business/login',
+				url:  'api/auth/business/login',
 				headers: {
 					'content-type': 'application/json'
 				},

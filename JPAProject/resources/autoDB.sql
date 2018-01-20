@@ -346,13 +346,13 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `autodb`;
-INSERT INTO `autodb`.`contact` (`id`, `city`, `state`, `address_1`, `address_2`, `zipcode`, `phone`, `email`, `latitude`, `longitude`, `active`) VALUES (1, 'Seattle', 'WA', '783 Hollow avenue', NULL, '89393', '303-728-0970', 'allen.jackson@outlook.com', '39.608854', '-104.902828', 1);
-INSERT INTO `autodb`.`contact` (`id`, `city`, `state`, `address_1`, `address_2`, `zipcode`, `phone`, `email`, `latitude`, `longitude`, `active`) VALUES (2, 'Phoenix', 'AZ', '897 Black st', NULL, '83939', '202-393-9999', 'brian.tanney@outlook.com', '39.608854', '-104.902828', 1);
-INSERT INTO `autodb`.`contact` (`id`, `city`, `state`, `address_1`, `address_2`, `zipcode`, `phone`, `email`, `latitude`, `longitude`, `active`) VALUES (3, 'Denver', 'CO', 'Arapahoe Rd 909', NULL, '20202', '888-888-8888', 'Victor.black@gmail.com', '39.608854', '-104.902828', 1);
-INSERT INTO `autodb`.`contact` (`id`, `city`, `state`, `address_1`, `address_2`, `zipcode`, `phone`, `email`, `latitude`, `longitude`, `active`) VALUES (4, 'Kansas City', 'MO', '905 E Newton', NULL, '39393', '888-888-8888', 'Freddy.fingers@hotmail.com', '39.608854', '-104.902828', 1);
-INSERT INTO `autodb`.`contact` (`id`, `city`, `state`, `address_1`, `address_2`, `zipcode`, `phone`, `email`, `latitude`, `longitude`, `active`) VALUES (5, 'San diego', 'CA', 'Imperial drive 202', NULL, '89191', '888-888-8888', 'Bob.bishop@live.com', '39.608854', '-104.902828', 1);
-INSERT INTO `autodb`.`contact` (`id`, `city`, `state`, `address_1`, `address_2`, `zipcode`, `phone`, `email`, `latitude`, `longitude`, `active`) VALUES (6, 'San Francisco', 'CA', NULL, NULL, '45344', '888-888-8888', 'StumpAuto@live.com', '38.989589', '-94.577736', 1);
-INSERT INTO `autodb`.`contact` (`id`, `city`, `state`, `address_1`, `address_2`, `zipcode`, `phone`, `email`, `latitude`, `longitude`, `active`) VALUES (7, 'Memphis', 'TN', NULL, NULL, '84988', '888-888-8888', 'OliverSanchez@meet.com', '39.608486', '-104.898324', 1);
+INSERT INTO `autodb`.`contact` (`id`, `city`, `state`, `address_1`, `address_2`, `zipcode`, `phone`, `email`, `latitude`, `longitude`, `active`) VALUES (1, 'Seattle', 'WA', '783 Hollow avenue', NULL, '89393', '303-728-0970', 'allen.jackson@outlook.com', '', '', 1);
+INSERT INTO `autodb`.`contact` (`id`, `city`, `state`, `address_1`, `address_2`, `zipcode`, `phone`, `email`, `latitude`, `longitude`, `active`) VALUES (2, 'Phoenix', 'AZ', '897 Black st', NULL, '83939', '202-393-9999', 'brian.tanney@outlook.com', '', '', 1);
+INSERT INTO `autodb`.`contact` (`id`, `city`, `state`, `address_1`, `address_2`, `zipcode`, `phone`, `email`, `latitude`, `longitude`, `active`) VALUES (3, 'Denver', 'CO', 'Arapahoe Rd 909', NULL, '20202', '888-888-8888', 'Victor.black@gmail.com', '', '', 1);
+INSERT INTO `autodb`.`contact` (`id`, `city`, `state`, `address_1`, `address_2`, `zipcode`, `phone`, `email`, `latitude`, `longitude`, `active`) VALUES (4, 'Kansas City', 'MO', '905 E Newton', NULL, '39393', '888-888-8888', 'Freddy.fingers@hotmail.com', '', '', 1);
+INSERT INTO `autodb`.`contact` (`id`, `city`, `state`, `address_1`, `address_2`, `zipcode`, `phone`, `email`, `latitude`, `longitude`, `active`) VALUES (5, 'San diego', 'CA', 'Imperial drive 202', NULL, '89191', '888-888-8888', 'Bob.bishop@live.com', '', '', 1);
+INSERT INTO `autodb`.`contact` (`id`, `city`, `state`, `address_1`, `address_2`, `zipcode`, `phone`, `email`, `latitude`, `longitude`, `active`) VALUES (6, 'San Francisco', 'CA', NULL, NULL, '45344', '888-888-8888', 'StumpAuto@live.com', '', '', 1);
+INSERT INTO `autodb`.`contact` (`id`, `city`, `state`, `address_1`, `address_2`, `zipcode`, `phone`, `email`, `latitude`, `longitude`, `active`) VALUES (7, 'Memphis', 'TN', NULL, NULL, '84988', '888-888-8888', 'OliverSanchez@meet.com', '', '-104.898324', 1);
 
 COMMIT;
 

@@ -39,8 +39,10 @@ angular.module('authModule')
 			vm.registerBusiness = function () {
 				var lat = $cookies.get('latitude'); 
 				var long = $cookies.get('longitude'); 
-				vm.business.contact.latitude = lat; 
-				vm.business.contact.longitude = long; 
+				if (lat !== undefined && long !== undefined) {
+					vm.business.contact.latitude = lat; 
+					vm.business.contact.longitude = long; 
+				}
 				authService.registerBusiness(vm.business)
 					.then(function (res) {
 						var id = res.data.id;

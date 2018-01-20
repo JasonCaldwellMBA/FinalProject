@@ -28,9 +28,29 @@ angular.module('appModule')
 					var MAX_DISTANCE = 50;
 					var CONVERT_TO_MILES = 1.609344;
 					var r = res.data;
-					var origin = vm.business.contact.latitude + ',' + vm.business.contact.longitude;
+					var origin; 
+					
+					if(vm.business.contact.latitude !== null && vm.business.contact.longitude !== null){
+						origin = vm.business.contact.latitude + ',' + vm.business.contact.longitude;
+					}
+					else{
+						let c = vm.business.contact; 
+						origin = c.address1.split(' ').join('+') + '+' + c.city + '+' + c.state  + '+' + c.zipcode; 
+					}
+					console.log(origin);
 
 					r.forEach((req) => {
+						var destination;
+						var u = req.user.contact; 
+						
+						if(u.latitude !== null && u.longitude !== null){
+							destination = u.latitude + ',' + u.longitude;
+						}
+						else{
+							destination = u.address1.split(' ').join('+') + '+' + u.city + '+' + u.state  + '+' + u.zipcode; 
+						}
+						console.log(destination);
+						
 						var destination = req.user.contact.latitude + ',' + req.user.contact.longitude;
 						//GET google API distance info
 						distanceMatrixService.getDistanceJson(origin, destination).then(function (res) {

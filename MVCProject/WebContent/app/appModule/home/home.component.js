@@ -1,14 +1,14 @@
 angular.module('appModule')
-    .component('home', {
-        templateUrl: 'app/appModule/home/home.component.html',
-        controllerAs: 'vm',
-        controller: function ($rootScope, $location, $anchorScroll) {
-        	var vm = this;
-        	
-        	vm.scrollTo = function(id) {
-        		console.log('clicked');
-        	      $location.hash(id);
-        	      $anchorScroll();
-        	   }
-        	}
-    });
+	.component('home', {
+		templateUrl: 'app/appModule/home/home.component.html',
+		controllerAs: 'vm',
+		controller: function ($anchorScroll, $location) {
+			var vm = this;
+
+			vm.scrollTo = function () {
+				$location.hash('about');
+				$anchorScroll();
+			}
+		}
+	});
+

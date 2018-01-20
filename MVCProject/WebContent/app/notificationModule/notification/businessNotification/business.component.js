@@ -2,16 +2,21 @@ angular.module('notificationModule')
     .component('businessNotification', {
         controllerAs: 'vm',
         templateUrl: 'app/notificationModule/notification/businessNotification/business.component.html',
-        controller: function (notificationService, $routeParams, authService, $location) {
+        controller: function (notificationService, $routeParams, authService, $location, businessService) {
             var vm = this;
             vm.bizId = authService.getBusToken();
             vm.notifications = null;
             vm.size = null;
+            vm.business = null; 
 
             //init load
             notificationService.bizIndex(vm.bizId).then(function (res) {
                 vm.notifications = res.data;
                 vm.size = vm.notifications.length;
+
+                businessService.show(vm.bizId).then(function (res) {
+                    vm.business = res.data; 
+                }); 
             });
 
             vm.destroy = function(n) {

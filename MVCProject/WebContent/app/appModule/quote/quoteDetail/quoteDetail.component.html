@@ -1,81 +1,124 @@
-
-<div class="container-fluid">
-        <div class="row">
-                <!-- optional sidebar -->
-          <div class="col-sm-3">
-			<div class="list-group" id="list-tab" role="tablist">
-				<a class="clickable list-group-item list-group-item-action" id="list-home-list" data-toggle="list" ng-click="vm.home()"
-						 role="tab" aria-controls="home">Home</a>
-				<a class="clickable list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" ng-click="vm.viewAllQuotes()"
-						 role="tab" aria-controls="profile">View all quotes</a>
-				 <a class="clickable list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" ng-click="vm.viewPendingQuotes()"
-						 role="tab" aria-controls="messages">View pending quotes</a>
-				 <a class="clickable list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" ng-click="vm.viewAcceptedQuotes()"
-						 role="tab" aria-controls="settings">View accepted quotes</a>
-				 <a class="clickable list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" ng-click="vm.viewCompletedQuotes()"
-						 role="tab" aria-controls="settings">View completed quotes</a>
-				<a class="clickable list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" ng-click="vm.viewRequests()"
-				 		role="tab" aria-controls="settings" >View requests in area</a>
-				<a class="clickable list-group-item list-group-item-action" id="list-certifications-list" data-toggle="list" ng-click="vm.viewCertifications()"
-						 role="tab" aria-controls="messages">View certifications</a>
-				<a class="clickable list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" ng-click="vm.viewSettings()"
-						 role="tab" aria-controls="settings">Settings</a>
-			</div>
-		</div>
-            <div class="col-sm">
-            <h1>Quote Details</h1>
-                <ul class="list-group">
-                    <li class="list-group-item">
-                        <label>Customer Name: {{vm.quote.request.user.firstName}} {{vm.quote.request.user.lastName}}</label><br>
-                    </li>
-                    <li class="list-group-item">
-                      	<label>Vehicle: {{vm.quote.request.vehicle.year}} {{vm.quote.request.vehicle.make}} {{vm.quote.request.vehicle.model}}<br> VIN: {{vm.quote.request.vehicle.vin}}</label><br>
-                    </li>
-                                    <li class="list-group-item">
+<h2 class="row justify-content-center">Quote Details</h2>
+<div class="container-fluid mt-4">
+    <div class="row">
+        <div class="col-sm-3">
+            <a class="" id="list-messages-list" data-toggle="list" href="#/business/{{vm.business.id}}/businessNotification" role="tab"
+                aria-controls="messages">
+                <button type="button" class="btn btn-outline-danger">
+                    Notifications
+                    <span class="badge badge-danger border-white">{{vm.size}}</span>
+                </button>
+            </a>
+            <div class="list-group mt-2 " id="list-tab" role="tablist">
+                <a class="clickable list-group-item list-group-item-action" id="list-home-list" data-toggle="list" ng-click="vm.home()" role="tab"
+                    aria-controls="home">Home</a>
+                <a class="clickable list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" ng-click="vm.viewAllQuotes()"
+                    role="tab" aria-controls="profile">View all quotes</a>
+                <a class="clickable list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" ng-click="vm.viewAcceptedQuotes()"
+                    role="tab" aria-controls="settings">View accepted quotes</a>
+                <a class="clickable list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" ng-click="vm.viewCompletedQuotes()"
+                    role="tab" aria-controls="settings">View completed quotes</a>
+                <a class="clickable list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" ng-click="vm.viewRequests()"
+                    role="tab" aria-controls="settings">View requests in area</a>
+                <a class="clickable list-group-item list-group-item-action" id="list-certifications-list" data-toggle="list" ng-click="vm.viewCertifications()"
+                    role="tab" aria-controls="messages">View certifications</a>
+                <a class="clickable list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" ng-click="vm.viewSettings()"
+                    role="tab" aria-controls="settings">Settings</a>
+            </div>
+            <div class="justify-content-left bg-white rounded mt-2 p-2 border">
+                <h6 class="row justify-content-center">Contact Information</h6>
+                <hr/>
+                <label>
+                    <strong>Phone: </strong> {{vm.business.contact.phone}}</label>
+                <br/>
+                <label>
+                    <strong>Email: </strong> {{vm.business.contact.email}}</label>
+                <br/>
+                <label>
+                    <strong>Website: </strong> {{vm.business.contact.website}}</label>
+                <br/>
+                <label>
+                    <strong>Address: </strong> {{vm.business.contact.address1}}</label>
+                <br/>
+                <label>
+                    <strong>Address 2: </strong> {{vm.business.contact.address2}}</label>
+                <br/>
+                <label>
+                    <strong>City: </strong> {{vm.business.contact.city}}</label>
+                <br/>
+                <label>
+                    <strong>State: </strong> {{vm.business.contact.state}}</label>
+                <br/>
+                <label>
+                    <strong>Zipcode: </strong> {{vm.business.contact.zipcode}}</label>
+                <br/>
+            </div>
+        </div>
+        <div class="col-sm">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <label>Customer Name: {{vm.quote.request.user.firstName}} {{vm.quote.request.user.lastName}}</label>
+                    <br>
+                </li>
+                <li class="list-group-item">
+                    <label>Vehicle: {{vm.quote.request.vehicle.year}} {{vm.quote.request.vehicle.make}} {{vm.quote.request.vehicle.model}}
+                        <br> VIN: {{vm.quote.request.vehicle.vin}}</label>
+                    <br>
+                </li>
+                <li class="list-group-item">
                     <label>Phone Number: {{vm.quote.request.user.contact.phone}}</label>
                     <br>
-            		    </li>
-               		<li class="list-group-item">
+                </li>
+                <li class="list-group-item">
                     <label>Email: {{vm.quote.request.user.contact.email}}</label>
                     <br>
-              	  	</li>
-                    <li class="list-group-item">
-                      	<label>Request Description: {{vm.quote.request.description}}</label><br>
-                    </li>
-                    <li class="list-group-item">
-                      	<label>Quote Description: {{vm.quote.description}}</label><br>
-                    </li>
-                    <li class="list-group-item">
-                      	<label>Request PostDate: {{vm.quote.request.postDate | date : "MM-dd-yy"}}</label><br>
-                    </li>
-                    <li class="list-group-item">
-                      	<label>Quote PostDate: {{vm.quote.postDate | date : "MM-dd-yy"}}</label><br>
-                    </li>
-                    <li class="list-group-item">
-                      	<label>Quote Expire Date: {{vm.quote.request.expireDate | date : "MM-dd-yy"}}</label><br>
-                    </li>
-                    <li class="list-group-item">
-                      	<label>Request Estimate: {{vm.quote.request.estimate | currency}}</label><br>
-                    </li>
-                    <li class="list-group-item">
-                      	<label>Quote Estimate: {{vm.quote.estimate | currency}}</label><br>
-                    </li>
-                    <li class="list-group-item">
-                      	<label>Request Expire Date: {{vm.quote.request.expireDate | date : "MM-dd-yy"}}</label><br>
-                    </li>
-                    <li class="list-group-item">
-                      	<label>Complete: {{vm.quote.completed}}</label><br>
-                    </li>
-                    <li class="list-group-item justify-content-center">
-                    		<button type="button" class="btn btn-warning" ng-click="vm.returnToQuotes()">Return</button>
-						<!-- <button type="button" class="btn btn-success" ng-click="vm.updateFlag = true; vm.detailFlag = false">Update</button> -->
-                    </li>
-                </ul>
-		</div>
-		<div class="col-sm-3">
-		
-		</div>
-<!--         <div class="col-sm" ng-show="vm.updateFlag">
+                </li>
+                <li class="list-group-item">
+                    <label>Request Description: {{vm.quote.request.description}}</label>
+                    <br>
+                </li>
+                <li class="list-group-item">
+                    <label>Quote Description: {{vm.quote.description}}</label>
+                    <br>
+                </li>
+                <li class="list-group-item">
+                    <label>Request PostDate: {{vm.quote.request.postDate | date : "MM-dd-yy"}}</label>
+                    <br>
+                </li>
+                <li class="list-group-item">
+                    <label>Quote PostDate: {{vm.quote.postDate | date : "MM-dd-yy"}}</label>
+                    <br>
+                </li>
+                <li class="list-group-item">
+                    <label>Quote Expire Date: {{vm.quote.request.expireDate | date : "MM-dd-yy"}}</label>
+                    <br>
+                </li>
+                <li class="list-group-item">
+                    <label>Request Estimate: {{vm.quote.request.estimate | currency}}</label>
+                    <br>
+                </li>
+                <li class="list-group-item">
+                    <label>Quote Estimate: {{vm.quote.estimate | currency}}</label>
+                    <br>
+                </li>
+                <li class="list-group-item">
+                    <label>Request Expire Date: {{vm.quote.request.expireDate | date : "MM-dd-yy"}}</label>
+                    <br>
+                </li>
+                <li class="list-group-item">
+                    <label>Complete: {{vm.quote.completed}}</label>
+                    <br>
+                </li>
+                <li class="list-group-item justify-content-center">
+                    <button type="button" class="btn btn-warning" ng-click="vm.returnToQuotes()">Return</button>
+                    <!-- <button type="button" class="btn btn-success" ng-click="vm.updateFlag = true; vm.detailFlag = false">Update</button> -->
+                </li>
+            </ul>
+        </div>
+        <div class="col-sm-3">
+
+        </div>
+        <!--         <div class="col-sm" ng-show="vm.updateFlag">
                 <ul class="list-group">
 
                     <li class="list-group-item">
@@ -100,6 +143,6 @@
                     </li>
                 </ul>
 		</div> -->
-	</div>
+    </div>
 
 </div>

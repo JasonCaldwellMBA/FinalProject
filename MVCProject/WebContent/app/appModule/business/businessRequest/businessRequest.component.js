@@ -37,6 +37,7 @@ angular.module('appModule')
 						let c = vm.business.contact; 
 						origin = c.address1.split(' ').join('+') + '+' + c.city + '+' + c.state  + '+' + c.zipcode; 
 					}
+					
 					console.log(origin);
 
 					r.forEach((req) => {
@@ -51,17 +52,26 @@ angular.module('appModule')
 						}
 						console.log(destination);
 						
-						var destination = req.user.contact.latitude + ',' + req.user.contact.longitude;
 						//GET google API distance info
 						distanceMatrixService.getDistanceJson(origin, destination).then(function (res) {
+							console.log(res.data);
 							var returnDistance = res.data;
 							if (returnDistance != undefined) {
 								var row = returnDistance.rows.pop();
 								var obj = row.elements.pop();
-								var miles = ((obj.distance.value / 1000) / CONVERT_TO_MILES);
-								if (miles <= MAX_DISTANCE) {
-									vm.requests.push(req);
+								
+								if(obj != undefined){
+									if(obj.distance != undefined){
+										if(obj.distance.value != undefined){
+											var miles = ((obj.distance.value / 1000) / CONVERT_TO_MILES);
+											if (miles <= MAX_DISTANCE) {
+												console.log(req);
+												vm.requests.push(req);
+											}
+										}
+									}
 								}
+								
 							}
 						}); 
 					})

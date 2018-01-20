@@ -67,8 +67,8 @@ public class AuthDAOImpl implements AuthDAO {
 				retUser = users.get(0);
 				if(retUser.getUsername().equals(user.getUsername())) {
 					//Change to match user; 
-					if(/*encoder.matches(user.getPassword(), retUser.getPassword())*/
-							user.getPassword().equals(retUser.getPassword())) {
+					if(encoder.matches(user.getPassword(), retUser.getPassword())
+							/*user.getPassword().equals(retUser.getPassword())*/) {
 						return retUser; 
 					}
 					else {
@@ -129,8 +129,8 @@ public class AuthDAOImpl implements AuthDAO {
 			if(buses.size() == 1) {
 				retBus = buses.get(0);
 				if(retBus.getLoginName().equals(bus.getLoginName())) {
-					if(/*encoder.matches(bus.getLoginPassword(), retBus.getLoginPassword())*/
-							bus.getLoginPassword().equals(retBus.getLoginPassword())) {
+					if(encoder.matches(bus.getLoginPassword(), retBus.getLoginPassword())
+							/*bus.getLoginPassword().equals(retBus.getLoginPassword())*/) {
 						return retBus; 
 					}
 					else {

@@ -39,6 +39,7 @@
 			<div id="gMap" map-lazy-load="https://maps.google.com/maps/api/js?" map-lazy-load-params="{{vm.googleMapsUrl}}">
 				<ng-map center="{{vm.business.contact.latitude}},{{vm.business.contact.longitude}}" zoom="12">
 					<marker position="[{{vm.business.contact.latitude}},{{vm.business.contact.longitude}}]"></marker>
+					<marker position="[{{vm.user.contact.latitude}},{{vm.user.contact.longitude}}]"></marker>
 				</ng-map>
 			</div>
 		</div>

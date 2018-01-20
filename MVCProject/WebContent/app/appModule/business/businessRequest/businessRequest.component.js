@@ -14,6 +14,9 @@ angular.module('appModule')
 			vm.sortCriteria = 'expireDate';
 
 			//init methods
+			if (authService.isBus() == false) {
+                $location.path('/loginBusiness'); 
+            }
 			businessService.show($routeParams.id).then(function (res) {
 				vm.business = angular.copy(res.data);
 

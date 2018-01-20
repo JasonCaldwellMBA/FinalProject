@@ -11,6 +11,10 @@ angular.module('appModule')
 			vm.certifications = [];
 			vm.bizId = authService.getBusToken();
 
+			if (authService.isBus() == false) {
+                $location.path('/loginBusiness'); 
+			}
+			
 			vm.detailView = function (certid) {
 				$location.path('business/' + authService.getBusToken() + '/certification/' + certid);
 			}

@@ -11,6 +11,9 @@ angular.module('appModule')
 			vm.bizId = authService.getBusToken();
 
 			//init methods
+			if (authService.isBus() == false) {
+                $location.path('/loginBusiness'); 
+            }
 			businessService.show($cookies.get('busId')).then(function (res) {
 				vm.business = angular.copy(res.data);
 				notificationService.bizIndex(vm.business.id).then(function (res) {

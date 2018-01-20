@@ -13,6 +13,11 @@ angular.module('appModule')
 				vm.size = null; 
 				vm.user = null; 
 
+				if (authService.isUser() == false) {
+					var id = authService.getToken(); 
+					$location.path('/login'); 
+				}
+				
 				vehicleService.index().then(function(res) {
 					vm.vehicles = res.data;
 					notificationService.index($routeParams.id).then(function (res) {

@@ -12,6 +12,10 @@ angular.module('appModule')
 			vm.notifications = null; 
 			vm.size = null; 
 
+			//init methods 
+			if (authService.isBus() == false) {
+                $location.path('/loginBusiness'); 
+            }
 			quoteService.show($routeParams.bid, $routeParams.qid).then(function (res) {
 				vm.quote = angular.copy(res.data);
 				businessService.show(vm.bizId).then(function (res) {

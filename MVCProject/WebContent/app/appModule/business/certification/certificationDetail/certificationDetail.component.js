@@ -10,6 +10,9 @@ angular.module('appModule')
 			vm.notifications = null;
 			vm.size = null;
 
+			if (authService.isBus() == false) {
+                $location.path('/loginBusiness'); 
+            }
 			certificationService.show($routeParams.certid).then(function (res) {
 				vm.certification = angular.copy(res.data);
 

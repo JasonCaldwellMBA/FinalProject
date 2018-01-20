@@ -2,13 +2,18 @@ angular.module('appModule')
 	.component('userComponent', {
 		templateUrl: 'app/appModule/user/user.component.html',
 		controllerAs: 'vm',
-		controller: function ($routeParams, $location, userService, businessService, requestService, distanceMatrixService, notificationService) {
+		controller: function ($routeParams, $location, userService, businessService, requestService, distanceMatrixService, notificationService, authService) {
 			var vm = this;
 			vm.user = null;
 			vm.notifications = null; 
 			vm.size = null; 
 			vm.activeRequest = [];
 			vm.businesses = [];
+
+			if (authService.isUser() == false) {
+				var id = authService.getToken(); 
+                $location.path('/login'); 
+			}
 			//Init load
 			userService.show($routeParams.id).then(function (res) {
 				vm.user = res.data;

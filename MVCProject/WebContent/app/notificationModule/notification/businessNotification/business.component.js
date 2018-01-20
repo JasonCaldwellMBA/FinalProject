@@ -10,6 +10,9 @@ angular.module('notificationModule')
             vm.business = null; 
 
             //init load
+            if (authService.isBus() == false) {
+                $location.path('/loginBusiness'); 
+            }
             notificationService.bizIndex(vm.bizId).then(function (res) {
                 vm.notifications = res.data;
                 vm.size = vm.notifications.length;

@@ -12,6 +12,9 @@ angular.module('appModule')
 			vm.size = null;
 
 			//init load
+			if (authService.isBus() == false) {
+                $location.path('/loginBusiness'); 
+            }
 			quoteService.index().then(function (res) {
 				var preQuotes = res.data;
 				vm.acceptedQuotes = [];

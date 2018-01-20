@@ -8,6 +8,12 @@ angular.module('appModule')
             vm.user = null;
             vm.updatedUser = null; 
             
+
+            if (authService.isUser() == false) {
+				var id = authService.getToken(); 
+                $location.path('/login'); 
+            }
+            
             //init load
             userService.show(authService.getToken()).then(function (res) {
                 vm.user = angular.copy(res.data); 

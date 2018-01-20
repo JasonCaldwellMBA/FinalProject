@@ -12,6 +12,9 @@ angular.module('appModule')
 			vm.sortCriteria = 'expiredDate';
 			
 			//init load
+			if (authService.isBus() == false) {
+                $location.path('/loginBusiness'); 
+            }
 			quoteService.index().then(function(res){
 				var preQuotes = res.data;
 				vm.completedQuotes = [];

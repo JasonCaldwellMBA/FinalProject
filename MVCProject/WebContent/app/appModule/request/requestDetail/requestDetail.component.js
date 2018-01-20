@@ -7,6 +7,10 @@ angular.module('appModule')
             vm.request = null;
             vm.quotes = [];
             //init load
+            if (authService.isUser() == false) {
+                var id = authService.getToken();
+                $location.path('/login');
+            }
             requestService.show($routeParams.rid).then(function (res) {
                 vm.request = angular.copy(res.data);
             });
@@ -30,7 +34,7 @@ angular.module('appModule')
                         business: quote.business,
                         user: quote.request.user,
                         message: vm.request.user.firstName + ' ' + vm.request.user.lastName + ' selected your quote for #Quote id: ' + quote.id + ', #Request id: ' + vm.request.id,
-                        type : "business"
+                        type: "business"
                     };
 
                     console.log(notification);

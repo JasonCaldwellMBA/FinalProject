@@ -11,6 +11,9 @@ angular.module('appModule')
             vm.notifications = null; 
             vm.size = null; 
             //init load
+            if (authService.isBus() == false) {
+                $location.path('/loginBusiness'); 
+            }
             businessService.show($routeParams.bid).then(function (res) {
                 vm.business = res.data;
                 userService.show($routeParams.uid).then(function (res) {

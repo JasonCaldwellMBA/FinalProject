@@ -12,6 +12,11 @@ angular.module('appModule')
 			vm.sortCriteria = 'estimate';
 
 			//init load
+			if (authService.isUser() == false) {
+				var id = authService.getToken(); 
+                $location.path('/login'); 
+			}
+			
 			requestService.index().then(function (res) {
 				vm.requests = res.data; 
 				vm.user = vm.requests[0].user; 

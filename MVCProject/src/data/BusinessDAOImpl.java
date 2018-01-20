@@ -78,6 +78,9 @@ public class BusinessDAOImpl implements BusinessDAO {
 			orgBusiness.setCompanyName(holderBusiness.getCompanyName());
 			orgBusiness.setLoginName(holderBusiness.getLoginName());
 			orgBusiness.setLoginPassword(holderBusiness.getLoginPassword());
+			orgBusiness.setLaborRate(holderBusiness.getLaborRate());
+			orgBusiness.setWebsite(holderBusiness.getWebsite());
+			orgBusiness.setExperience(holderBusiness.getExperience());
 			orgBusiness.setContact(c);
 		} catch (Exception e) {
 			e.printStackTrace();

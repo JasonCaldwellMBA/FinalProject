@@ -2,7 +2,7 @@ angular.module('authModule')
 	.component('registerBusiness', {
 		templateUrl: 'app/authModule/register/registerBusiness.component.html',
 		controllerAs: 'vm',
-		controller: function(authService, $location, $cookies){
+		controller: function(authService, $location, $cookies, distanceMatrixService){
 			var vm = this; 
 			vm.business = null;
 			
@@ -37,18 +37,25 @@ angular.module('authModule')
 				vm.business.laborRate = 20;
 			}
 			vm.registerBusiness = function () {
-				var lat = $cookies.get('latitude'); 
-				var long = $cookies.get('longitude'); 
-				if (lat !== undefined && long !== undefined) {
-					vm.business.contact.latitude = lat; 
-					vm.business.contact.longitude = long; 
-				}
-				authService.registerBusiness(vm.business)
-					.then(function (res) {
-						var id = res.data.id;
-						authService.setBusToken(res.data.id);
-						$location.path('/business/' + id);
-					}).catch(console.error); 
+				
+                let b = vm.business.contact; 
+                let address = b.address1.split(' ').join('+') + '+' + b.city + '+' + b.state +'+' +  b.zipcode; 
+                distanceMatrixService.geocode(address).then(function(res){
+                		let obj = res.data.results.pop().geometry.location
+                		
+                		vm.business.contact.latitude = obj.lat;
+                		vm.business.contact.longitude = obj.lng;
+                		
+                		
+                		authService.registerBusiness(vm.business)
+                		.then(function (res) {
+                			var id = res.data.id;
+                			console.log(res.data); 
+                			authService.setBusToken(res.data.id);
+                			$location.path('/business/' + id);
+                		}).catch(console.error); 
+                }); 
+                
 			}
 			//helper methods
 			vm.return = function () {

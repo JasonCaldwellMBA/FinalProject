@@ -2,7 +2,7 @@ angular.module('appModule')
     .component('settings', {
         controllerAs: 'vm', 
         templateUrl: 'app/appModule/user/settings/settings.component.html',
-        controller: function (authService, userService, $routeParams, $location, authService, notificationService) {
+        controller: function (authService, userService, $routeParams, $location, authService, notificationService, distanceMatrixService) {
             var vm = this; 
             vm.userId = authService.getToken(); 
             vm.user = null;
@@ -16,17 +16,27 @@ angular.module('appModule')
             
             //init load
             userService.show(authService.getToken()).then(function (res) {
-                vm.user = angular.copy(res.data); 
+            		vm.user = res.data; 
+                vm.updatedUser = angular.copy(res.data); 
                 notificationService.index($routeParams.id).then(function (res) {
 					vm.notifications = res.data; 
 					vm.size = vm.notifications.length; 
 				})
             });
             vm.updateUser = function(user) {
-                userService.update(user).then(function (res) {
-                    vm.user = res.data;
-                    vm.updatedUser = res.data; 
-                    console.log(res);
+            	let c = user.contact; 
+                let address = c.address1.split(' ').join('+') + '+' + c.city + '+' + c.state + '+' + c.zipcode;
+                distanceMatrixService.geocode(address).then(function(res){
+                		let geometry = res.data.results.pop().geometry.location; 
+                		
+                		user.contact.latitude = geometry.lat; 
+                		user.contact.longitude = geometry.lng;
+                		
+                		userService.update(user).then(function (res) {
+                			vm.user = res.data;
+                			vm.updatedUser = angular.copy(res.data); 
+                			console.log(res);
+                		}); 
                 }); 
             }
             vm.destroyAccount = function () {

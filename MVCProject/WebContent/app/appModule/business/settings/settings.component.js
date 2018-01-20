@@ -2,7 +2,7 @@ angular.module('appModule')
 	.component('businessSettings', {
 		templateUrl: 'app/appModule/business/settings/settings.component.html',
 		controllerAs: 'vm',
-		controller: function (businessService, $routeParams, $cookies, $location, authService, notificationService) {
+		controller: function (businessService, $routeParams, $cookies, $location, authService, distanceMatrixService, notificationService) {
 			var vm = this;
 			vm.notifications = null; 
 			vm.size = null; 
@@ -27,13 +27,23 @@ angular.module('appModule')
 				$location.path('business/' + $routeParams.bid);
 			}
 			vm.update = function (business) {
-				businessService.update(business).then(function (res) {
-					if (res.status >= 200 && res.status < 300) {
-						vm.updatedBusiness = res.data;
-					}
-					vm.business = res.data;
-					reload();
-				})
+				console.log(business); 
+                let b = business.contact; 
+                let address = b.address1.split(' ').join('+') + '+' + b.city + '+' + b.state +'+' +  b.zipcode; 
+                distanceMatrixService.geocode(address).then(function(res){
+                		let obj = res.data.results.pop().geometry.location
+                		
+                		business.contact.latitude = obj.lat;
+                		business.contact.longitude = obj.lng;
+                		businessService.update(business).then(function (res) {
+                			if (res.status >= 200 && res.status < 300) {
+                				vm.updatedBusiness = res.data;
+                			}
+                			console.log(res.data);
+                			vm.business = res.data;
+                			reload();
+                		}); 
+                }); 
 			}
 			vm.destroyAccount = function () {
 				businessService.destroy().then(function (res) {

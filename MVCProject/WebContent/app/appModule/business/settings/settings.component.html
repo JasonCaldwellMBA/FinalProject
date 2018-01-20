@@ -34,7 +34,7 @@
                     <strong>Email: </strong> {{vm.business.contact.email}}</label>
                 <br/>
                 <label>
-                    <strong>Website: </strong> {{vm.business.contact.website}}</label>
+                    <strong>Website: </strong><a href="{{vm.business.website}}">{{vm.business.website}}</a></label>
                 <br/>
                 <label>
                     <strong>Address: </strong> {{vm.business.contact.address1}}</label>
@@ -58,6 +58,16 @@
                 <div class="form-group">
                     <label for="txtCompanyName">Company Name</label>
                     <input type="text" class="form-control" id="txtCompanyName" placeholder="Company name" ng-model="vm.business.companyName"
+                        required>
+                </div>
+                <div class="form-group">
+                    <label for="txtCompanyName">Labor Rate</label>
+                    <input type="text" class="form-control" id="txtCompanyName" placeholder="Company name" ng-model="vm.business.laborRate"
+                        required>
+                </div>
+                <div class="form-group">
+                    <label for="txtCompanyName">Years in Business</label>
+                    <input type="text" class="form-control" id="txtCompanyName" placeholder="Company name" ng-model="vm.business.experience"
                         required>
                 </div>
                 <div class="form-group">
@@ -87,6 +97,10 @@
                 <div class="form-group">
                     <label for="txtEmail">Email</label>
                     <input type="email" class="form-control" id="txtEmail" ng-model="vm.business.contact.email" required>
+                </div>
+                <div class="form-group">
+                    <label for="txtEmail">Website</label>
+                    <input type="text" class="form-control" id="txtEmail" ng-model="vm.business.website" required>
                 </div>
                 <button ng-click="vm.return()" class="btn btn-primary">Back</button>
                 <button ng-click="vm.update(vm.business)" class="btn btn-primary">Update</button>

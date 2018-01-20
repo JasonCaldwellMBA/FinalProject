@@ -6,7 +6,6 @@ angular.module('appModule')
             var vm = this;
             vm.quotes = null;
             vm.business = null;
-//            var business = null;
             vm.user = null;
             vm.notifications = null; 
             vm.size = null;
@@ -26,29 +25,10 @@ angular.module('appModule')
                 vm.business = res.data;
                 userService.show($routeParams.uid).then(function (res) {
                     vm.user = res.data; 
-                    var c = vm.user.contact; 
-                    vm.userAddress = c.address1.split(' ').join('+') + '+' + c.city + '+' + c.state + '+' + c.zipcode;
-                    distanceMatrixService.geocode(vm.userAddress).then(function(res){
-                    		let geometry = res.data.results.pop().geometry.location; 
-                    		
-                    		vm.user.contact.latitude = geometry.lat; 
-                    		vm.user.contact.longitude = geometry.lng; 
-                    }); 
                     notificationService.index(vm.user.id).then(function (res) {
                         vm.notifications = res.data; 
                         vm.size = vm.notifications.length; 
                     }); 
-                }); 
-                
-                var b = vm.business.contact; 
-                vm.businessAddress = b.address1.split(' ').join('+') + '+' + b.city + '+' + b.state +'+' +  b.zipcode; 
-                distanceMatrixService.geocode(vm.businessAddress).then(function(res){
-                	console.log(res)
-                		let obj = res.data.results.pop().geometry.location
-                		console.log(obj);
-                		vm.business.contact.latitude = obj.lat;
-                		vm.business.contact.longitude = obj.lng;
-                		console.log(vm.business); 
                 }); 
             });
 

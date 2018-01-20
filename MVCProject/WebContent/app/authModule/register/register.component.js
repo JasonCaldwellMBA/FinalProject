@@ -2,7 +2,7 @@ angular.module('authModule')
 	.component('register', {
 		templateUrl: 'app/authModule/register/register.component.html',
 		controllerAs: 'vm',
-		controller: function(authService, $location, $cookies){
+		controller: function(authService, $location, $cookies, distanceMatrixService){
 			var vm = this; 
 			vm.user = null; 
 			vm.error = null; 
@@ -36,17 +36,22 @@ angular.module('authModule')
 				}; 
 			}
 			vm.registerUser = function () {
-				var lat = $cookies.get('latitude'); 
-				var long = $cookies.get('longitude'); 
-				if (lat !== undefined && long !== undefined) {
-					vm.user.contact.latitude = lat; 
-					vm.user.contact.longitude = long; 
-				}
-				authService.register(vm.user).then(function (res) {
-						var id = res.data.id; 
-						authService.setToken(res.data.id); 
-						$location.path('/user/' + id);
-					}).catch(console.error); 
+				let c = vm.user.contact; 
+                let address = c.address1.split(' ').join('+') + '+' + c.city + '+' + c.state + '+' + c.zipcode;
+                distanceMatrixService.geocode(address).then(function(res){
+                		let geometry = res.data.results.pop().geometry.location; 
+                		
+                		vm.user.contact.latitude = geometry.lat; 
+                		vm.user.contact.longitude = geometry.lng; 
+                		authService.register(vm.user).then(function (res) {
+                			var id = res.data.id; 
+                			console.log(res); 
+                			authService.setToken(res.data.id); 
+                			$location.path('/user/' + id);
+                		}).catch(console.error); 
+                }); 
+                
+                
 			}
 			//helper methods
 			vm.return = function () {

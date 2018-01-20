@@ -47,9 +47,6 @@ angular.module('appModule')
 				notificationService.index($routeParams.id).then(function (res) {
 					vm.notifications = res.data; 
 					vm.size = vm.notifications.length; 
-					// if (res.data = null) {
-					// 	vm.size = 0; 
-					// }
 				})
 			});
 

@@ -40,11 +40,12 @@ angular.module('appModule')
 								var obj = row.elements.pop();
 								var miles = ((obj.distance.value / 1000) / CONVERT_TO_MILES);
 								if (miles <= MAX_DISTANCE) {
-									vm.requests.push(r);
+									vm.requests.push(req);
 								}
 							}
 						}); 
 					})
+
 
 					//remove for presentation
 					// vm.requests = res.data;

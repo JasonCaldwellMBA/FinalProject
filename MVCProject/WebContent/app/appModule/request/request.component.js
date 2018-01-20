@@ -19,13 +19,11 @@ angular.module('appModule')
 			
 			requestService.index().then(function (res) {
 				vm.requests = res.data; 
-				vm.user = vm.requests[0].user; 
+				var request = vm.request[0]; 
+				vm.user = request.user; 
 				notificationService.index($routeParams.id).then(function (res) {
 					vm.notifications = res.data; 
 					vm.size = vm.notifications.length; 
-					// if (res.data = null) {
-					// 	vm.size = 0; 
-					// }
 				})
 			}); 
 			vehicleService.index().then(function (res) {

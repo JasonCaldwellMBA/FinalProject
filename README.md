@@ -1,17 +1,77 @@
-# Final Project
-### Developed by Airik Leon, David Stumpe, David Chirdon, and Jason Caldwell
+# Final Project (AutoAdvisor);
+## Authors: Airik Leon, David Stumpe, David Chirdon, and Jason Caldwell
+### January 2018
 
-#### January 2018
-
-## Program Overview
-A week and a half sprint on a four person team...
-
+## Website home
+![Website-Home](README-RESOURCES/README-HOME.png);
 ### Summary of Technologies in Course
 ![Technology Highlights](MVCProject/WebContent/css/img/tech_highlights.png "A screenshot showing the major technologies used for the project")
 ![Technologies](MVCProject/WebContent/css/img/tech_summary.jpg "A screenshot showing how all the technologies taught in the course relate")
+### Version control
+* Git/Github
+### Data layer
+* Database: MySQL
+### business layer
+* Java
+* Gradle
+* ORM: JPA/Hibernate
+* JDBC
+* Spring REST
+* Junit
+* Spring security
+* Jackson JSON serializer
+### Presentation layer
+* AngularJS
+* JQuery
+* HTML5
+* CSS3
+* Google API - geocoding
+* Google API - Distance Matrix
 
-### Database
-![Database](MVCProject/WebContent/css/img/AutoDB.png "12 relational tables showing the Auto database")
+## API ROUTES
+### GET (USER)
+http://airikleon.io:8080/AutoAdvisor/user/{userID}
+http://airikleon.io:8080/AutoAdvisor/user/{userID}/vehicle
+http://airikleon.io:8080/AutoAdvisor/user/{userID}/vehicle/{vid}
+http://airikleon.io:8080/AutoAdvisor/user/{userID}/request
+http://airikleon.io:8080/AutoAdvisor/user/{userID}/request/{vid}
+http://airikleon.io:8080/AutoAdvisor/user/{userID}/business
+http://airikleon.io:8080/AutoAdvisor/user/{userID}/business/{bid}
+
+### POST(USER)
+http://airikleon.io:8080/AutoAdvisor/user/
+http://airikleon.io:8080/AutoAdvisor/user/{userId}/vehicle
+http://airikleon.io:8080/AutoAdvisor/user/{userId}/request
+
+### PUT(USER)
+http://airikleon.io:8080/AutoAdvisor/user/{userID}
+http://airikleon.io:8080/AutoAdvisor/user/{userID}/vehicle/{bid}
+http://airikleon.io:8080/AutoAdvisor/user/{userID}/request/{rid}
+
+### DELETE(USER)
+http://airikleon.io:8080/AutoAdvisor/user/{userID}
+http://airikleon.io:8080/AutoAdvisor/user/{userID}/vehicle/{bid}
+http://airikleon.io:8080/AutoAdvisor/user/{userID}/request/{rid}
+
+### GET(BUSINESS)
+http://airikleon.io:8080/AutoAdvisor/business/{bid}
+http://airikleon.io:8080/AutoAdvisor/business/{bid}/request
+http://airikleon.io:8080/AutoAdvisor/business/{bid}/request/{rid}
+http://airikleon.io:8080/AutoAdvisor/business/{bid}/quote/
+http://airikleon.io:8080/AutoAdvisor/business/{bid}/quote/{qid}
+http://airikleon.io:8080/AutoAdvisor/business/{bid}/request/{vid}
+http://airikleon.io:8080/AutoAdvisor/business/{userID}/user
+
+### POST(BUSINESS)
+http://airikleon.io:8080/AutoAdvisor/business
+http://airikleon.io:8080/AutoAdvisor/business/{bid}/quote
+
+### DELETE(BUSINESS)
+http://airikleon.io:8080/AutoAdvisor/business/{bid}
+http://airikleon.io:8080/AutoAdvisor/business/{bid}/quote/{qid}
+
+### Database Schema
+![Database](README-RESOURCES/README-DB.png "AutoAdivosr database schema")
 
 ### UML Diagrams
 ![UML](MVCProject/WebContent/css/img/AutoUML.png "9 UML tables for the auto final project")
@@ -25,5 +85,3 @@ To see additional information and other projects visit our personal websites:
 * [David Stumpe](http://18.216.47.133/)
 * [David Chirdon](http://18.220.183.119/)
 * [Jason Caldwell](http://jdcald13.com/)
-
-

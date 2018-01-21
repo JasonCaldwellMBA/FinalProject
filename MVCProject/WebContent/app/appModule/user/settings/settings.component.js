@@ -7,6 +7,7 @@ angular.module('appModule')
             vm.userId = authService.getToken(); 
             vm.user = null;
             vm.updatedUser = null; 
+            vm.updateFlag = false;
             
 
             if (authService.isUser() == false) {
@@ -35,6 +36,7 @@ angular.module('appModule')
                 		userService.update(user).then(function (res) {
                 			vm.user = res.data;
                 			vm.updatedUser = angular.copy(res.data); 
+                			vm.updateFlag = true;
                 			console.log(res);
                 		}); 
                 }); 

@@ -6,12 +6,12 @@
 ![Website-Home](README-RESOURCES/README-HOME.png);
 ### Summary of Technologies in Course
 ![Technology Highlights](MVCProject/WebContent/css/img/tech_highlights.png "A screenshot showing the major technologies used for the project")
-![Technologies](MVCProject/WebContent/css/img/tech_summary.jpg "A screenshot showing how all the technologies taught in the course relate")
+<!-- ![Technologies](MVCProject/WebContent/css/img/tech_summary.jpg "A screenshot showing how all the technologies taught in the course relate") -->
 ### Version control
 * Git/Github
 ### Data layer
 * Database: MySQL
-### business layer
+### Business layer
 * Java
 * Gradle
 * ORM: JPA/Hibernate
@@ -65,6 +65,10 @@ http://airikleon.io:8080/AutoAdvisor/business/{userID}/user
 ### POST(BUSINESS)
 http://airikleon.io:8080/AutoAdvisor/business
 http://airikleon.io:8080/AutoAdvisor/business/{bid}/quote
+
+### PUT(BUSINESS)
+http://airikleon.io:8080/AutoAdvisor/business/{bid}
+http://airikleon.io:8080/AutoAdvisor/business/{bid}/quote/{qid}
 
 ### DELETE(BUSINESS)
 http://airikleon.io:8080/AutoAdvisor/business/{bid}

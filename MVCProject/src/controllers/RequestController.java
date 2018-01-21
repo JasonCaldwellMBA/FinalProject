@@ -75,7 +75,7 @@ public class RequestController {
 	@RequestMapping(path = "/user/{uid}/vehicle/{vid}/request/{rid}", method = RequestMethod.DELETE)
 	public Request destroy(HttpServletResponse res, HttpServletRequest req, @PathVariable int vid,
 			@PathVariable int rid, @PathVariable int uid) {
-		Request r = dao.destroy(vid, rid, uid);
+		Request r = dao.destroy(uid, vid, rid);
 		if (r != null) {
 			res.setStatus(202);
 		} else {

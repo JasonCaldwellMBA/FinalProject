@@ -19,7 +19,7 @@ public class BusinessDataSecurityInterceptor implements HandlerInterceptor{
 		}
 		else {
 			res.setStatus(401);
-			res.sendRedirect("/MVCProject/api/auth/unauthorized");
+			res.sendRedirect("/AutoAdvisor/api/auth/unauthorized");
 			return false;
 		}
 	}

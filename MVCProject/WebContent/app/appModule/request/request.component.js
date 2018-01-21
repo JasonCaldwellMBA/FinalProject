@@ -18,7 +18,12 @@ angular.module('appModule')
 			}
 			
 			requestService.index().then(function (res) {
-				vm.requests = res.data; 
+				let preRequest  = res.data; 
+				preRequest.forEach(r =>{
+					if(r.active == true){
+						vm.requests.push(r); 
+					}
+				})
 				userService.show(authService.getToken()).then(function(res){
 					vm.user = res.data; 
 				})
@@ -40,7 +45,7 @@ angular.module('appModule')
 			}
 			vm.destroy = function (request) {
 				requestService.destroy(request).then(function (res) {
-					reload();
+					vm.getRequests(); 
 				}); 
 			}
 			vm.detailView = function(id) {

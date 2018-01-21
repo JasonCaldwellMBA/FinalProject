@@ -11,7 +11,7 @@ war {
   destinationDir = file("./")      // Project root
 }
 
-group = 'com.todo'
+group = 'com.AutoAdvisor'
 version = '0.0.1-SNAPSHOT'
 
 ext {

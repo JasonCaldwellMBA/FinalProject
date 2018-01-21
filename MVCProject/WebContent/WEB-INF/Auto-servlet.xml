@@ -8,10 +8,10 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
 	<context:component-scan base-package="controllers, data" />
-	
+
 	<bean id="bCryptPasswordEncoder"
-    class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
-    
+		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+
 	<bean id="myEntityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="persistenceUnitName" value="AutoDB" />
@@ -24,4 +24,31 @@
 	<tx:annotation-driven transaction-manager="transactionManager" />
 	<mvc:annotation-driven />
 
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/user/*" />
+			<mvc:mapping path="/user/*/request" />
+			<mvc:mapping path="/user/*/vehicle" />
+			<mvc:mapping path="/user/*/notification" />
+			<mvc:mapping path="/user/*/request/*" />
+			<mvc:mapping path="/user/*/vehicle/*" />
+			<mvc:mapping path="/user/*/business/*" />
+			<mvc:mapping path="/*" />
+			
+			<bean id="UserDataSecurityInterceptor" class="security.UserDataSecurityInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
+	
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/business/*" />
+			<mvc:mapping path="/business/*/quote" />
+			<mvc:mapping path="/business/*/quote/*" />
+			<mvc:mapping path="/business/*/request" />
+			<mvc:mapping path="/business/*/request/*" />
+			<mvc:mapping path="/business/*/notification" />
+			<bean id="BusinessDataSecurityInterceptor" class="security.BusinessDataSecurityInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
 </beans>

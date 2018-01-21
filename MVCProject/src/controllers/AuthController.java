@@ -57,7 +57,7 @@ public class AuthController {
 	@RequestMapping(path="/auth/unauthorized", method=RequestMethod.GET)
 	public String unauthorized(HttpServletResponse res) {
 		res.setStatus(401);
-		return "Fail"; 
+		return "Status code: 401, You are unauthorized to access this information."; 
 	}
 	
 	//Business Authorization
@@ -67,7 +67,7 @@ public class AuthController {
 			HttpSession session){
 		Business bus = dao.registerBusiness(json); 
 		if(bus != null) {
-			session.setAttribute("bus", bus);
+			session.setAttribute("business", bus);
 			res.setStatus(201);
 		}
 		else {
@@ -82,13 +82,11 @@ public class AuthController {
 		Business bus = dao.loginBusiness(json); 
 		if(bus != null) {
 			res.setStatus(201);
-			session.setAttribute("bus", bus);
+			session.setAttribute("business", bus);
 		}
 		else {
 			res.setStatus(400);
 		}
 		return bus; 
 	}
-
-
 }

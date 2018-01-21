@@ -4,7 +4,7 @@
 
 ## Website home
 ![Website-Home](README-RESOURCES/README-HOME.png);
-### Summary of Technologies in Course
+### Summary of Technologies in Project
 ![Technology Highlights](MVCProject/WebContent/css/img/tech_highlights.png "A screenshot showing the major technologies used for the project")
 <!-- ![Technologies](MVCProject/WebContent/css/img/tech_summary.jpg "A screenshot showing how all the technologies taught in the course relate") -->
 ### Version control

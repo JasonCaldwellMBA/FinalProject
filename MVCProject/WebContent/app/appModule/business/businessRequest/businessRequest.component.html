@@ -117,7 +117,7 @@
                     <br>
                 </li>
                 <li class="list-group-item justify-content-center">
-                    <button type="button" class="btn btn-warning" ng-click="vm.selected = null">Return</button>
+                    <button type="button" class="btn btn-warning" ng-click="vm.selected = null; vm.quoteFlag = false">Return</button>
                     <button type="button" class="btn btn-success" ng-click="vm.quoteFlag = true">Add Quote</button>
                 </li>
             </ul>
@@ -142,7 +142,7 @@
                         </li>
                         <li class="list-group-item">
                             <button class="btn btn-primary" ng-click="vm.return()">Return</button>
-                            <button class="btn btn-primary" ng-click="vm.addQuote(quote); quote = {}">Add Quote</button>
+                            <button class="btn btn-primary" ng-click="vm.addQuote(quote); quote = {}; vm.quoteFlag = false">Add Quote</button>
                         </li>
                     </ul>
                 </form>

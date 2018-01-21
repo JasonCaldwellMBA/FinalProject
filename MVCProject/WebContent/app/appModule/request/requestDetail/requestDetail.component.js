@@ -49,8 +49,8 @@ angular.module('appModule')
                     vm.return();
                 });
             }
-            vm.destroy = function (id) {
-                requestService.destroy(id).then(function (res) {
+            vm.destroy = function (request) {
+                requestService.destroy(request).then(function (res) {
                     vm.return();
                 });
             }

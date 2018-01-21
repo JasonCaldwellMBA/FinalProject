@@ -91,7 +91,7 @@ public class RequestDAOImpl implements RequestDAO {
 
 	@Override
 	public Request destroy(int uid, int vid, int rid) {
-		Request request = em.find(Request.class, uid);
+		Request request = em.find(Request.class, rid);
 				if (request.isActive()) {
 					request.setActive(false);
 				} else {
@@ -99,5 +99,4 @@ public class RequestDAOImpl implements RequestDAO {
 				}
 				return request;
 	}
-
 }

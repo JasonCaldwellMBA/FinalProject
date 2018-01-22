@@ -5,53 +5,45 @@ angular.module('appModule')
 		controller: function ($routeParams, $location, userService, businessService, requestService, distanceMatrixService, notificationService, authService) {
 			var vm = this;
 			vm.user = null;
-			vm.notifications = null; 
-			vm.size = null; 
+			vm.notifications = null;
+			vm.size = null;
 			vm.activeRequest = [];
 			vm.businesses = [];
 
 			if (authService.isUser() == false) {
-				var id = authService.getToken(); 
-                $location.path('/login'); 
+				var id = authService.getToken();
+                $location.path('/login');
 			}
 			//Init load
 			userService.show($routeParams.id).then(function (res) {
 				vm.user = res.data;
-				//once user has loaded load businesses 
+				//once user has loaded load businesses
 				//Commenting out to not overload API calls
 				businessService.index().then(function (res) {
 					var MAX_DISTANCE = 50;
 					var CONVERT_TO_MILES = 1.609344;
 					var b = res.data;
 					var origin;
-
 					if (vm.user.contact.latitude != null && vm.user.contact.longitude != null) {
-						 origin = vm.user.contact.latitude + ',' + vm.user.contact.longitude; 
+						 origin = vm.user.contact.latitude + ',' + vm.user.contact.longitude;
 					}
 					else {
-						let c = vm.user.contact; 
-						origin = c.address1.split(' ').join('+') + '+' + c.city + '+' + c.state + '+' + c.zipcode; 
-						console.log(origin); 
+						let c = vm.user.contact;
+						origin = c.address1.split(' ').join('+') + '+' + c.city + '+' + c.state + '+' + c.zipcode;
 					}
-					console.log(origin); 
 					b.forEach((biz) => {
-						var destination; 
+						var destination;
 						if (biz.contact.latitude != null && biz.contact.longitude != null) {
-							destination = biz.contact.latitude + ',' + biz.contact.longitude; 
+							destination = biz.contact.latitude + ',' + biz.contact.longitude;
 						}
 						else {
-							let b = biz.contact; 
-							destination = b.address1.split(' ').join('+') + '+' + b.city + '+' + b.state + '+' + b.zipcode; 
+							let b = biz.contact;
+							destination = b.address1.split(' ').join('+') + '+' + b.city + '+' + b.state + '+' + b.zipcode;
 						}
-						console.log(destination); 
-						
-						//GET google API distance info
 						distanceMatrixService.getDistanceJson(origin, destination).then(function (res) {
 							var returnDistance  = res.data;
 							if (returnDistance != undefined){
-								var row = returnDistance.rows.pop(); 
-								var obj = row.elements.pop();
-								
+								var obj = returnDistance.rows.elements.pop();
 								if(obj.distance.value != null){
 									var miles = ((obj.distance.value / 1000) / CONVERT_TO_MILES);
 									if (miles <= MAX_DISTANCE) {
@@ -59,15 +51,15 @@ angular.module('appModule')
 									}
 								}
 							}
-						})
-					})
+						});
+					});
 
 					//remove for presentation
 					// vm.businesses = res.data
 				});
 				notificationService.index($routeParams.id).then(function (res) {
-					vm.notifications = res.data; 
-					vm.size = vm.notifications.length; 
+					vm.notifications = res.data;
+					vm.size = vm.notifications.length;
 				})
 			});
 
@@ -81,7 +73,7 @@ angular.module('appModule')
 			})
 			//
 			vm.getHome = function () {
-				$location.path("/user/" + $routeParams.id); 
+				$location.path("/user/" + $routeParams.id);
 			}
 			vm.getVehicles = function () {
 				$location.path("/user/" + $routeParams.id + "/vehicle");
@@ -99,4 +91,4 @@ angular.module('appModule')
 				$location.path('/user/' + $routeParams.id + '/notification');
 			}
 		}
-	})	
+	})

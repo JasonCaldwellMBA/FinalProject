@@ -33,14 +33,14 @@ angular.module('appModule')
                     var notification = {
                         business: quote.business,
                         user: quote.request.user,
-                        message: vm.request.user.firstName + ' ' + vm.request.user.lastName + ' selected your quote for #Quote id: ' + quote.id + ', #Request id: ' + vm.request.id,
+                        message: vm.request.user.firstName
+                        + ' '
+                        + vm.request.user.lastName
+                        + ' selected your quote for #Quote id: '
+                        + quote.id + ', #Request id: ' + vm.request.id,
                         type: "business"
                     };
-
-                    console.log(notification);
-                    notificationService.create(notification).then(function (res) {
-                        console.log(res);
-                    })
+                    notificationService.create(notification);
                     reload();
                 });
             }
@@ -76,4 +76,4 @@ angular.module('appModule')
                 });
             }
         }
-    }); 
+    });

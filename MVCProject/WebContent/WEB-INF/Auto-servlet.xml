@@ -24,7 +24,7 @@
 	<tx:annotation-driven transaction-manager="transactionManager" />
 	<mvc:annotation-driven />
 
-	<mvc:interceptors>
+<!-- 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/user/*" />
 			<mvc:mapping path="/user/*/request" />
@@ -50,5 +50,5 @@
 			<mvc:mapping path="/business/*/notification" />
 			<bean id="BusinessDataSecurityInterceptor" class="security.BusinessDataSecurityInterceptor" />
 		</mvc:interceptor>
-	</mvc:interceptors>
+	</mvc:interceptors> -->
 </beans>

@@ -1,4 +1,4 @@
-# Final Project (AutoAdvisor);
+# Auto Advisor
 ## Authors: Airik Leon, David Stumpe, David Chirdon, and Jason Caldwell
 ### January 2018
 

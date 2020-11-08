@@ -47,6 +47,3 @@
 
 ### Licensing
 See the file called LICENSE.
-
-### About one of the developers
-To see additional information and other projects visit my [personal website](http://jdcald13.com/).
